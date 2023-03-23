@@ -347,7 +347,7 @@ public class MainGame
 //        startUp();
 
 
-        Game game = new Game();
+        Game game = new Game(true);
         playerTeam = game.getTeam();
         game.startGame();
 
@@ -387,7 +387,7 @@ public class MainGame
         switch(response)
         {
             case 1:
-                Game game = new Game();
+                Game game = new Game(true);
                 game.startGame();
         }
     }
