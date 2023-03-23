@@ -37,9 +37,8 @@ public class MainGame
     
     public static void main(String[] args) 
     {
-        //cd Downloads\fileName\dist
-        //java -jar fileName.jar
-        // ProjectPerfection
+//        cd C:\Users\ianth\OneDrive\Desktop\ProjectPerfection\dist
+//        java -jar ProjectPerfection.jar
         
         /*
         Healer classes:
