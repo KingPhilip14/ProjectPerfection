@@ -854,6 +854,7 @@ public abstract class Battle
         if(target.getCurrentHealth() == 0)
         {
             MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!", 25);
+            MainGame.waitForEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
