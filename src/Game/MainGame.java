@@ -20,10 +20,11 @@ import java.util.Scanner;
 
 /**
  * A main class for running the game.
+ *
  * @author Ian King
  */
-public class MainGame 
-{
+public class MainGame {
+
     private static int gold = 10000;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
@@ -34,12 +35,11 @@ public class MainGame
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
-    
-    public static void main(String[] args) 
-    {
+
+    public static void main(String[] args) {
 //        cd C:\Users\ianth\OneDrive\Desktop\ProjectPerfection\dist
 //        java -jar ProjectPerfection.jar
-        
+
         /*
         Healer classes:
             Master Clerk: heavily prioitizes healing; can heal allies no matter the distance; low hp, average attack and defense, 
@@ -72,8 +72,7 @@ public class MainGame
                     Ninlil's canon class
         
         All-Rounder: Fultra exclusive class. All stats are relatively equal, with offensive stats and hp being the highest
-        */
-        
+         */
 //        try
 //        {
 //            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -86,9 +85,8 @@ public class MainGame
         Item.populateAllBuffItems();
         Item.populateAllHealItems();
         PlayerClass.createClasses();
-        
+
 //        ArrayList<Player> team = new ArrayList<>(6);
-        
         // Instantiating Anahita and her moveset--------------------------
 //        Player anahita = new Player("Anahita", "A master of water, and a kind, compassionate soul.", "Water", "Master Clerk", 5);
 //        anahita.setDeathMessage("Everyone... I'm sorry...");
@@ -128,7 +126,6 @@ public class MainGame
 //        anahita.setCurrentAttacks(anahitaCurrentAttacks);
 //        anahita.setListOfOtherAttacks(anahitaOtherAttacks);
         //----------------------------------------------------------------
-        
         // Instantiating Gaea and her moveset--------------------------
 //        PlayerClass pc = PlayerClass.getPlayerClass("Passive Clerk");
 //        Player gaea = new Player("Gaea", "A short and fiesty master of Earth.", "Earth", pc, 5);
@@ -165,7 +162,6 @@ public class MainGame
 //        gaea.setCurrentAttacks(gaeaCurrentAttacks);
 //        gaea.setListOfOtherAttacks(gaeaAllAttacks);
         //----------------------------------------------------------------
-        
         // Instantiating Frigs and his moveset--------------------------
 //        pc = PlayerClass.getPlayerClass("Master Striker");
 //        Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 5);
@@ -205,7 +201,6 @@ public class MainGame
 //        frigs.setCurrentAttacks(frigsCurrentAttacks);
 //        frigs.setListOfOtherAttacks(frigsAllAttacks);
         //--------------------------------------------------------------
-        
         // Instantiating Calmus and his moveset--------------------------
 //        pc = PlayerClass.getPlayerClass("Wild Tank");
 //        Player calmus = new Player("Calmus", "A muscular yet gentle master of Fire.", "Fire", pc, 5);
@@ -243,7 +238,6 @@ public class MainGame
 //        calmus.setCurrentAttacks(calmusCurrentAttacks);
 //        calmus.setListOfOtherAttacks(calmusAllAttacks);
         //--------------------------------------------------------------
-        
         // Instantiating Ninlil and her moveset--------------------------
 //        pc = PlayerClass.getPlayerClass("Guardian Striker");
 //        Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 5);
@@ -281,7 +275,6 @@ public class MainGame
 //        ninlil.setCurrentAttacks(ninlilCurrentAttacks);
 //        ninlil.setListOfOtherAttacks(ninlilAllAttacks);
         //---------------------------------------------------------------
-        
         // Instantiating Fultra and his moveset--------------------------
 //        pc = PlayerClass.getPlayerClass("All-Rounder");
 //        Player fultra = new Player("Fultra", "\"Fearless Thunder.\" A well renowned master of Electricity.", "Electric", 
@@ -327,9 +320,8 @@ public class MainGame
 //        playerFightingTeam.add(anahita);
 //        playerFightingTeam.add(calmus);
 //        playerFightingTeam.add(fultra);
-        
         Enemy.populateAllAttacks();
-        
+
 //        Enemy e0 = new Enemy("Electric Elk", "An Elk that can control electricity.", "Electric", playerTeam, true);
 //        Enemy e1 = new Enemy("Water Elk", "An Elk that can control water.", "Water", playerTeam, true);
 //        Enemy e2 = new Enemy("Earth Elk", "An Elk that can control the earth.", "Earth", playerTeam, true);
@@ -340,12 +332,11 @@ public class MainGame
 //        enemyTeam.add(e0);
 //        enemyTeam.add(e1);
 //        enemyTeam.add(e2);
-
-        
 //        Battle battle = new Battle(enemyTeam, playerTeam);
 //        battle.start(gold);
 //        startUp();
 
+        Game game = new Game(false);
 
         Game game = new Game(true);
         playerTeam = game.getTeam();
@@ -353,316 +344,269 @@ public class MainGame
 
 //        TypeChart tc = new TypeChart();
 //        tc.printChart();
-
 //        playerTeam.add(makeAnahita());
 //        playerTeam.add(makeGaea());
 //        playerTeam.add(makeFultra());
 //        
 //        Wilderness.makeOpiconTutorial(playerTeam).start(gold);
-        
     }
-    
-    public static void startUp()
-    {
+
+    public static void startUp() {
         clearScreen();
         startUpOptions.add("New Game");
-        
+
         String gameTitle = "Project Perfection";
-        
+
         MainGame.printWithRandomLetters(gameTitle);
         System.out.println("\t");
-        
-        for(int i = 0; i < startUpOptions.size(); i++)
-        {
+
+        for (int i = 0; i < startUpOptions.size(); i++) {
             System.out.print("\t(" + (i + 1) + ") ");
             MainGame.printWithRandomLetters(startUpOptions.get(i));
         }
-        
+
         int response = MenuHelper.displayMenu("", 1, startUpOptions.size() + 1);
-        
+
         System.out.println("");
-        
+
         clearScreen();
-        
-        switch(response)
-        {
+
+        switch (response) {
             case 1:
+                Game game = new Game(false);
                 Game game = new Game(true);
                 game.startGame();
         }
     }
-    
+
     /**
      * Prints an ellipsis without adding new lines.
      */
-    public static void ellipsis()
-    {
+    public static void ellipsis() {
         printWait("... ", 500, 1000);
     }
-    
+
     /**
      * Prints an ellipsis with a new line.
      */
-    public static void ellipsisln()
-    {
+    public static void ellipsisln() {
         printlnWait("...", 500, 1000);
     }
-    
+
     /**
      * Prints an ellipsis with 2 new lines.
      */
-    public static void ellipsislnln()
-    {
+    public static void ellipsislnln() {
         printlnlnWait("...", 500, 1000);
     }
-    
-    public static void println(String string, int time)
-    {
-        for(int i = 0; i < string.length(); i++)
-        {
+
+    public static void println(String string, int time) {
+        for (int i = 0; i < string.length(); i++) {
             System.out.print(string.charAt(i));
-            
-            try
-            {
+
+            try {
                 Thread.sleep(time);
-            }
-            catch(InterruptedException ie)
-            {
-                
+            } catch (InterruptedException ie) {
+
             }
         }
-        
+
         System.out.println("");
     }
-    
-    public static void printlnln(String string, int time)
-    {
-        for(int i = 0; i < string.length(); i++)
-        {
+
+    public static void printlnln(String string, int time) {
+        for (int i = 0; i < string.length(); i++) {
             System.out.print(string.charAt(i));
-            
-            try
-            {
+
+            try {
                 Thread.sleep(time);
-            }
-            catch(InterruptedException ie)
-            {
-                
+            } catch (InterruptedException ie) {
+
             }
         }
-        
+
         System.out.println("\n");
     }
-    
+
     /**
      * Calls printlnln and waits for the corresponding wait time.
+     *
      * @param string
      * @param time
-     * @param waitTime 
+     * @param waitTime
      */
-    public static void printlnlnWait(String string, int time, int waitTime)
-    {
+    public static void printlnlnWait(String string, int time, int waitTime) {
         printlnln(string, time);
         wait(waitTime);
     }
-    
+
     /**
      * Calls println and waits for the corresponding wait time.
+     *
      * @param string
      * @param time
-     * @param waitTime 
+     * @param waitTime
      */
-    public static void printlnWait(String string, int time, int waitTime)
-    {
+    public static void printlnWait(String string, int time, int waitTime) {
         println(string, time);
         wait(waitTime);
     }
-    
+
     /**
      * Calls print and waits for the corresponding wait time.
+     *
      * @param string
      * @param time
-     * @param waitTime 
+     * @param waitTime
      */
-    public static void printWait(String string, int time, int waitTime)
-    {
+    public static void printWait(String string, int time, int waitTime) {
         print(string, time);
         wait(waitTime);
     }
-    
-    public static void print(String string, int time)
-    {
-        for(int i = 0; i < string.length(); i++)
-        {
+
+    public static void print(String string, int time) {
+        for (int i = 0; i < string.length(); i++) {
             System.out.print(string.charAt(i));
-            
-            try
-            {
+
+            try {
                 Thread.sleep(time);
-            }
-            catch(InterruptedException ie)
-            {
-                
+            } catch (InterruptedException ie) {
+
             }
         }
-        
+
 //        System.out.print("");
     }
-    
-    public static void print(char c, int time)
-    {
+
+    public static void print(char c, int time) {
         System.out.print(c);
-        
-        try
-        {
+
+        try {
             Thread.sleep(time);
-        }
-        catch(InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
 
         }
     }
-    
+
     /**
      * Takes a String with sentences divided by / to add new line characters.
-     * @param cutscene 
+     *
+     * @param cutscene
      */
-    public static void printWithBreaks(String cutscene)
-    {
+    public static void printWithBreaks(String cutscene) {
         Scanner scan = new Scanner(cutscene);
         scan.useDelimiter("/");
-        
-        while(scan.hasNext())
-        {
+
+        while (scan.hasNext()) {
             printlnln(scan.next(), 25);
             wait(1750);
         }
     }
-    
-    public static void printWithRandomLetters(String string)
-    {
-        for(int i = 0; i < string.length(); i++)
-            {
-                char letter = string.charAt(i);
 
-                if(Character.isUpperCase(letter))
-                {
-                    for(int j = 0; j < 12; j++)
-                    {
-                        int randNum = new Random().nextInt(90 - 65 + 1) + 65;
-                        char c = (char)(randNum);
-                        System.out.print(c);
-                        wait(10);
-                        System.out.print("\b");
-                    }
-                    System.out.print(letter);
+    public static void printWithRandomLetters(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            char letter = string.charAt(i);
+
+            if (Character.isUpperCase(letter)) {
+                for (int j = 0; j < 12; j++) {
+                    int randNum = new Random().nextInt(90 - 65 + 1) + 65;
+                    char c = (char) (randNum);
+                    System.out.print(c);
+                    wait(10);
+                    System.out.print("\b");
                 }
-                else
-                {
-                    for(int j = 0; j < 20; j++)
-                    {
-                        int randNum = new Random().nextInt(122 - 97 + 1) + 97;
-                        char c = (char)(randNum);
-                        System.out.print(c);
-                        wait(10);
-                        System.out.print("\b");
-                    }
-                    System.out.print(letter);
+                System.out.print(letter);
+            } else {
+                for (int j = 0; j < 20; j++) {
+                    int randNum = new Random().nextInt(122 - 97 + 1) + 97;
+                    char c = (char) (randNum);
+                    System.out.print(c);
+                    wait(10);
+                    System.out.print("\b");
                 }
+                System.out.print(letter);
             }
+        }
     }
-    
-    public static void dialoguelnln(Player player, String dialogue)
-    {
-        printlnln("\t" + player.getName() + ": \"" + dialogue  + "\"", 25);
-        wait(2000);
+
+    public static void dialoguelnln(Player player, String dialogue) {
+        printlnln("\t" + player.getName() + ": \"" + dialogue + "\"", 25);
+        wait(1000);
     }
-    
-    public static void dialoguelnln(String name, String dialogue)
-    {
+
+    public static void dialoguelnln(String name, String dialogue) {
         printlnln("\t" + name + ": \"" + dialogue + "\"", 25);
-        wait(2000);
+        wait(1000);
     }
-    
-    public static void dialogueln(Player player, String dialogue)
-    {
+
+    public static void dialogueln(Player player, String dialogue) {
         println("\t" + player.getName() + ": \"" + dialogue + "\"", 25);
-        wait(2000);
+        wait(1000);
     }
-    
-    public static void dialogueln(String name, String dialogue)
-    {
+
+    public static void dialogueln(String name, String dialogue) {
         println("\t" + name + ": \"" + dialogue + "\"", 25);
         wait(2000);
     }
-    
-    public static void dialogueInteract(Player player, String dialogue)
-    {
+
+    public static void dialogueInteract(Player player, String dialogue) {
         print("\t" + player.getName() + ": \"" + dialogue + "\"", 25);
         waitForEnter();
     }
-    
-    public static void dialogueInteract(String name, String dialogue)
-    {
+
+    public static void dialogueInteract(String name, String dialogue) {
         printlnln("\t" + name + ": \"" + dialogue + "\"", 25);
         promptToEnter();
     }
-    
-    public static void waitForEnter()
-    {
+
+    public static void waitForEnter() {
         String prompt = "\n\tPress Enter to Continue >";
         print(prompt, 5);
-        
+
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        
-        if(input.isEmpty())
-        {
+
+        if (input.isEmpty()) {
             return;
         }
-        
-        while(!input.equals(""))
-        {
-            for(int i = 0; i < input.length(); i++)
-            {
+
+        while (!input.equals("")) {
+            for (int i = 0; i < input.length(); i++) {
                 System.out.print("\b");
                 System.out.print("");
             }
-            
+
             input = "";
         }
     }
-    
-    public static void wait(int time)
-    {
-        try
-        {
+
+    public static void wait(int time) {
+        try {
             Thread.sleep(time);
-        }
-        catch(InterruptedException ie)
-        {
-            
+        } catch (InterruptedException ie) {
+
         }
     }
-    
-    public static boolean getFinalBossDefeated() {return finalBossDefeated;}
-    
-    public static void addToInventory(Item item, int quantity)
-    {
+
+    public static boolean getFinalBossDefeated() {
+        return finalBossDefeated;
+    }
+
+    public static void addToInventory(Item item, int quantity) {
         inventory.addTo(item, quantity);
-        
+
     }
-    
-    public static Inventory getInventory() {return inventory;}
-    
+
+    public static Inventory getInventory() {
+        return inventory;
+    }
+
 //    public static int getGold() {return gold;}
 //    
 //    public static void increaseGold(int amt) {gold += amt;}
-    
 //    public static void setCurrentObjective(String objective) {currentObjective= objective;}
 //    
 //    public static String getCurrentObjective() {return currentObjective;}
-    
 //    public static void decreaseGold(int amt) 
 //    {
 //        gold -= amt;
@@ -672,32 +616,25 @@ public class MainGame
 //            gold = 0;
 //        }
 //    }
-    
-    public static void clearScreen()
-    {
-        try
-        {
+    public static void clearScreen() {
+        try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        catch(Exception e)
-        {
-            
+        } catch (Exception e) {
+
         }
     }
-    
+
     /**
      * Waits for the user to press the "enter" key and then clears the screen.
      */
-    public static void promptToEnter()
-    {
+    public static void promptToEnter() {
         MainGame.waitForEnter();
         MainGame.clearScreen();
     }
-    
-    public static void printElementMatchups()
-    {
+
+    public static void printElementMatchups() {
         clearScreen();
-        
+
         println("Water's Offensive Capabilites:", 25);
         printlnWait("\tWater is strong against: Fire and Earth", 25, 100);
         printlnWait("\tWater is not very effective against: Water", 25, 100);
@@ -705,7 +642,7 @@ public class MainGame
         printlnWait("\tWater is resistant to: Fire and Earth", 25, 100);
         printlnlnWait("\tWater is weak to: Electric", 25, 100);
         promptToEnter();
-        
+
         println("Fire's Offensive Capabilites:", 25);
         printlnWait("\tFire is strong against: Ice and Earth", 25, 100);
         printlnWait("\tFire is not very effective against: Fire and Water", 25, 100);
@@ -713,14 +650,14 @@ public class MainGame
         printlnWait("\tFire is resistant to: Ice", 25, 100);
         printlnlnWait("\tFire is weak to: Earth, Wind, and Water", 25, 100);
         promptToEnter();
-        
+
         println("Wind's Offensive Capabilites:", 25);
         printlnWait("\tWind is strong against: Fire", 25, 100);
         printlnWait("\tWind is not very effective against: Electric", 25, 100);
         println("Wind's Defensive Capabilites:", 25);
         printlnlnWait("\tWind is weak to: Ice", 25, 100);
         promptToEnter();
-        
+
         println("Ice's Offensive Capabilites:", 25);
         printlnWait("\tIce is strong against: Wind, Water and Earth", 25, 100);
         printlnWait("\tIce is not very effective against: Ice and Fire", 25, 100);
@@ -728,7 +665,7 @@ public class MainGame
         printlnWait("\tIce is resistant to: Ice", 25, 100);
         printlnlnWait("\tIce is weak to: Fire", 25, 100);
         promptToEnter();
-        
+
         println("Earth's Offensive Capabilites:", 25);
         printlnWait("\tEarth is strong against: Fire and Electric", 25, 100);
         printlnWait("\tEarth is not very effective against: Water", 25, 100);
@@ -736,7 +673,7 @@ public class MainGame
         printlnWait("\tEarth is resistant to: Electric", 25, 100);
         printlnlnWait("\tEarth is weak to: Water, Fire, and Ice", 25, 100);
         promptToEnter();
-        
+
         println("Electric's Offensive Capabilites:", 25);
         printlnWait("\tElectric is strong against: Water", 25, 100);
         printlnWait("\tElectric is not very effective against: Earth and Electric", 25, 100);
@@ -744,31 +681,34 @@ public class MainGame
         printlnWait("\tElectric is resistant to: Wind and Electric", 25, 100);
         printlnlnWait("\tElectric is weak to: Earth", 25, 100);
         promptToEnter();
-        
+
         new TypeChart().printChart();
-        
+
         promptToEnter();
     }
-    
-    public static ArrayList<Player> getPlayerTeam() {return playerTeam;}
-    public static void setPlayerTeam(ArrayList<Player> team) {playerTeam = team;}
-    
-    public static void targetingTutorial()
-    {
+
+    public static ArrayList<Player> getPlayerTeam() {
+        return playerTeam;
+    }
+
+    public static void setPlayerTeam(ArrayList<Player> team) {
+        playerTeam = team;
+    }
+
+    public static void targetingTutorial() {
         clearScreen();
         // Explains targeting with the board
         printlnlnWait("Targeting:", 25, 1500);
         printlnlnWait("\tLeft slot: The left slot can only target and be targeted by the opposing left and center "
                 + "slots.\n\tCenter slot: The center slot can target and be targeted by all opposing slots.\n\t"
                 + "Right slot: The right slot can target adn be targeted by the opposing center and right slots.", 40, 5000);
-        
+
         waitForEnter();
     }
-    
-    public static void aggroTutorial()
-    {
+
+    public static void aggroTutorial() {
         clearScreen();
-        
+
         // Explains the aggro system
         printlnlnWait("Aggro:", 25, 1500);
         printWithBreaks("Each of your characters has a value called "
@@ -776,14 +716,13 @@ public class MainGame
                 + "with the most aggro will have a marker next to their name: (!)./"
                 + "Certain moves accrue more aggro than others, and some classes affect this as well./"
                 + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!");
-        
+
         waitForEnter();
     }
-    
-    public static void cheerPartnerTutorial()
-    {
+
+    public static void cheerPartnerTutorial() {
         clearScreen();
-        
+
         // Explains cheer partner mechanic
         printlnlnWait("Cheer Partners and Cheer Skills:", 25, 1500);
         printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
@@ -793,71 +732,68 @@ public class MainGame
                 + "slightly if they aren't at full HP./\tAll-Rounder: Boosts Speed by 10 points.");
         waitForEnter();
         printlnlnWait("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25, 3000);
-        
+
         waitForEnter();
     }
-    
-    public static void cooldownTutorial()
-    {
+
+    public static void cooldownTutorial() {
         clearScreen();
-        
+
         printlnlnWait("Attack Cooldowns:", 25, 1500);
         printWithBreaks("The more you play, you'll become more acquainted with your types of attacks: Buff, Debuff, Offensive, Single Heal, and Team Heal./"
                 + "All of these attacks except Offensive have \"Cooldowns.\"/If you view your character's attacks, you can see the cooldown value./"
                 + "This value means that after using this attack, it will be unavailable for that amount of turns./After the cooldown effect is over, the move is available again.");
-        
+
         waitForEnter();
     }
-    
-    public static void classTutorial()
-    {
+
+    public static void classTutorial() {
         clearScreen();
-        
+
         // Part 1
         printlnlnWait("Classes:", 25, 1500);
         printWithBreaks("Each character has a \"Class.\" There are 10 unique classes in total:/Clerk classes:\n\tMaster Clerk: Focuses on healing.\n\tHyper Clerk: Focuses on healing and damage.\n\tPassive Clerk: Focuses on healing, debuffs, and aggro./"
                 + "Striker classes:\n\tMaster Striker: Focuses on physical and ranged damage.\n\tTranquil Striker: Focuses on physical damage and slight healing.\n\tGuardian Striker: Focuses on ranged damage and slightly on aggro./"
                 + "Tank classes:\n\tMaster Tank: Focuses on taking physical attacks and gaining aggro.\n\tHoly Tank: Focuses on taking hits in general with minor healing.\n\tWild Tank: Focuses on taking physical hits while dealing damage./"
                 + "Special class:\n\tAll-Rounder: Relatively balanced with everything.");
-        
+
         waitForEnter();
         clearScreen();
-        
+
         // Part 2
         printWithBreaks("All classes except All-Rounder and the Master classes are made of two class roles./"
                 + "For example, the Passive Clerk has the primary role of a Clerk class with the secondary role being the Tank./"
                 + "This means that this role can heal while taking hits better than a Master Clerk.");
-        
+
         waitForEnter();
         clearScreen();
-        
+
         // Part 3
         printWithBreaks("Here are all the classes with their primary and secondary roles listed as Primary, Secondary:/\tMaster Clerk: Clerk, Clerk\n\tHyper Clerk: Clerk, Striker\n\tPassive Clerk: Clerk, Tank/"
                 + "\tMaster Striker: Striker, Striker\n\tTranquil Striker: Striker, Clerk\n\tGuardian Striker: Striker, Tank/"
                 + "\tMaster Tank: Tank, Tank\n\tHoly Tank: Tank, Clerk\n\tWild Tank: Tank, Striker");
-        
+
         waitForEnter();
         clearScreen();
-        
+
         // Part 4
         printWithBreaks("Classes mostly affect how your stats change when a level up occurs./Each class focuses on certain stats, and when a character levels up, their class determines the odds of a stat "
                 + "increasing./For example, if Anahita levels up, you may not see her health increase, but it might increase if she levels up again.");
-        
+
         waitForEnter();
         clearScreen();
-        
+
         // Part 5
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
                 + "The Master Clerk class has a special property where they can heal anyone no matter the adjacency./Normally, a Clerk can only heal an adjacent ally. However, a Master Clerk ignores this.");
-        
+
         waitForEnter();
         clearScreen();
     }
-    
-    public static Player makeAnahita()
-    {
+
+    public static Player makeAnahita() {
         PlayerClass masterClerk = PlayerClass.getPlayerClass("Master Clerk");
-        
+
         // Instantiating Anahita and her moveset--------------------------
         Player anahita = new Player("Anahita", "A master of water and a kind, compassionate soul.", "Water", masterClerk, 5);
         anahita.setDeathMessage("Everyone... I'm sorry...");
@@ -871,14 +807,14 @@ public class MainGame
         anahita.setRangedAttack(70);
         anahita.setRangedDefense(75);
         anahita.setSpeed(55);
-        
+
         // make this a method in the character class as a for loop
         anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
         anahita.getDefense().setOriginalValue(anahita.getDefense().getValue());
         anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
         anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
         anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-        
+
         // All of Anahita's attacks
         TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.2, 2);
         OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
@@ -887,29 +823,28 @@ public class MainGame
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);
-        
+
         ArrayList<Attack> anahitaCurrentAttacks = new ArrayList<>(4);
         anahitaCurrentAttacks.add(blessedRain);
         anahitaCurrentAttacks.add(tsnunamiShot);
         anahitaCurrentAttacks.add(sparklingMist);
         anahitaCurrentAttacks.add(waterHalo);
-        
+
         ComboAttack.getComboAttacks(anahita);
-        
+
         ArrayList<Attack> anahitaOtherAttacks = new ArrayList<>(2);
         anahitaOtherAttacks.add(torrent);
         anahitaOtherAttacks.add(liquidArmor);
-        
+
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
-        
+
         return anahita;
     }
-    
-    public static Player makeGaea()
-    {
+
+    public static Player makeGaea() {
         PlayerClass passiveClerk = PlayerClass.getPlayerClass("Passive Clerk");
-        
+
         // Instantiating Gaea and her moveset--------------------------
         Player gaea = new Player("Gaea", "A short and fiesty master of Earth.", "Earth", passiveClerk, 6);
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
@@ -924,13 +859,13 @@ public class MainGame
         gaea.setRangedAttack(80);
         gaea.setRangedDefense(75);
         gaea.setSpeed(60);
-        
+
         gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
         gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
         gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-        
+
         SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.333);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
         DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
@@ -938,31 +873,30 @@ public class MainGame
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 85, "Attack");
         terraForce.setAccuracy(90);
         OffensiveAttack earthsWrath = new OffensiveAttack("Earth's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
-        
+
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
         gaeaCurrentAttacks.add(foulAroma);
         gaeaCurrentAttacks.add(stoneShield);
         gaeaCurrentAttacks.add(terraForce);
-        
+
         ComboAttack.getComboAttacks(gaea);
-        
+
         ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(2);
         gaeaOtherAttacks.add(overgrowth);
         gaeaOtherAttacks.add(earthsWrath);
-        
+
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
         gaea.setListOfOtherAttacks(gaeaOtherAttacks);
-        
+
         return gaea;
     }
-    
-    public static Player makeFultra()
-    {
+
+    public static Player makeFultra() {
         PlayerClass allRounder = PlayerClass.getPlayerClass("All-Rounder");
-        
+
         // Instantiating Fultra and his moveset--------------------------
-        Player fultra = new Player("Fultra", "\"Fearless Thunder.\" A well renowned master of Electricity and one of the strongest Pulchrians.", "Electric", 
+        Player fultra = new Player("Fultra", "\"Fearless Thunder.\" A well renowned master of Electricity and one of the strongest Pulchrians.", "Electric",
                 allRounder, 6);
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
@@ -975,38 +909,38 @@ public class MainGame
         fultra.setRangedAttack(72);
         fultra.setRangedDefense(72);
         fultra.setSpeed(72);
-        
+
         fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
         fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
         fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());
         fultra.getRangedDefense().setOriginalValue(fultra.getRangedDefense().getValue());
         fultra.getSpeed().setOriginalValue(fultra.getSpeed().getValue());
-        
+
         OffensiveAttack thunderbolt = new OffensiveAttack("Thunderbolt", "The user shocks the target with a large thunderbolt.", 70, "R. Attack");
         OffensiveAttack overdrive = new OffensiveAttack("Overdrive", "The user coats themselves in electricity and rams into the target.", 115, "Attack");
         overdrive.setAccuracy(75);
-        
+
         BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are increased for 2 turns.", "All", 5, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
         SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.1);
         OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 150, "R. Attack");
         plasmaBlast.setAccuracy(50);
-        
+
         ArrayList<Attack> fultraCurrentAttacks = new ArrayList<>(4);
         fultraCurrentAttacks.add(thunderbolt);
         fultraCurrentAttacks.add(overdrive);
         fultraCurrentAttacks.add(charge);
         fultraCurrentAttacks.add(filter);
-        
+
         ComboAttack.getComboAttacks(fultra);
-        
+
         ArrayList<Attack> fultraOtherAttacks = new ArrayList<>(2);
         fultraOtherAttacks.add(bluePulse);
         fultraOtherAttacks.add(plasmaBlast);
-        
+
         fultra.setCurrentAttacks(fultraCurrentAttacks);
         fultra.setListOfOtherAttacks(fultraOtherAttacks);
-        
+
         return fultra;
     }
 }

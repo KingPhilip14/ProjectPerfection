@@ -39,6 +39,7 @@ public class Game
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
+    private boolean isTesting;
     private Cutscene startingCutscene;
     private String endingCutscene;
     private Objective objective;
@@ -55,6 +56,7 @@ public class Game
     
     public Game(boolean isTesting)
     {
+        this.isTesting = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -62,13 +64,17 @@ public class Game
 //                + "life is about to take a drastic turn.");
         populateAllLocations();
         knownLocations.add(remainingLocations.remove(0));
+        nextLocation = remainingLocations.remove(0);
         
         objective = new Objective();
         
-        
-        
-        
-        
+        if(!isTesting)
+        {
+            team.add(MainGame.makeAnahita());
+            currentLocation = knownLocations.get(0);
+            gold = 0;
+        }
+            
         
         
         // DELETE AFTER SECOND TUTORIAL TESTS
@@ -115,10 +121,71 @@ public class Game
         }
         
         
-        
+        currentLocation = knownLocations.get(0);
+        nextLocation = remainingLocations.remove(0);
+        team.add(MainGame.makeAnahita());
+
         map = new Map();
         
         gold = 0;
+//        team.add(MainGame.makeAnahita());
+        
+        if(isTesting)
+        {
+            // Puts the player at Opicon Forest
+            addToKnownLocations();
+//            knownLocations.add(remainingLocations.remove(0));
+            
+            // Puts the player in Water Village
+            addToKnownLocations();
+//            knownLocations.add(remainingLocations.remove(0));
+
+            // Puts the player in Earth Village
+            addToKnownLocations();
+            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            
+//            nextLocation = remainingLocations.remove(0);
+            
+            beachTutorialDone = true;
+            forestTutorialDone = true;
+            Player anahita = MainGame.makeAnahita();
+            Player gaea = MainGame.makeGaea();
+            Player fultra = MainGame.makeFultra();
+            
+            anahita.setMaxHealth(450);
+            anahita.setAttack(200);
+            anahita.setDefense(200);
+            anahita.setRangedAttack(200);
+            anahita.setRangedDefense(200);
+            anahita.setSpeed(200);
+            
+            gaea.setMaxHealth(450);
+            gaea.setAttack(200);
+            gaea.setDefense(200);
+            gaea.setRangedAttack(200);
+            gaea.setRangedDefense(200);
+            gaea.setSpeed(200);
+            
+            fultra.setMaxHealth(450);
+            fultra.setAttack(200);
+            fultra.setDefense(200);
+            fultra.setRangedAttack(200);
+            fultra.setRangedDefense(200);
+            fultra.setSpeed(200);
+            
+            team.add(anahita);
+            team.add(gaea);
+            team.add(fultra);
+            
+            objective.update();
+            objective.update();
+            objective.update();
+            objective.update();
+            
+            gold = 10000;
+        }
+        
+        map = new Map();
     }
     
     public boolean inSecondPhase() {return inSecondPhase;}
@@ -156,11 +223,13 @@ public class Game
     {
         // Comment out for testing
         MainGame.clearScreen();
-//        gameOpening();
+        gameOpening();
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
+//        printNewAreaInfo();
+
         while(!MainGame.getFinalBossDefeated())
         {
             processInput();
@@ -186,7 +255,7 @@ public class Game
     
     private void gameOpening()
     {
-        Cutscene.startingCutscene();
+        Cutscene.startingCutscene(isTesting);
     }
     
     private void displayInfo()
@@ -274,7 +343,22 @@ public class Game
         
         currentLocation = newLocation;
         
+        printNewAreaInfo();
         // Now using currentLocation as the newly arrived to Location
+//        if(!currentLocation.isExplored())
+//        {
+//            MainGame.clearScreen();
+//            MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
+//            MainGame.wait(2000);
+//            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
+////            currentLocation.setIsExplored();
+//        }
+//        
+//        checkForCutscene();
+    }
+    
+    private void printNewAreaInfo()
+    {
         if(!currentLocation.isExplored())
         {
             MainGame.clearScreen();
@@ -500,12 +584,18 @@ public class Game
     {
 //        MainGame.clearScreen();
         MainGame.printlnlnWait("Congratulations! You can now travel to " + nextLocation.getName() + "!", 25, 4000);
-        
+        addToKnownLocations();
         // Removes the location from the overall ArrayList to the known ArrayList
-        knownLocations.add(nextLocation);
-        nextLocation = remainingLocations.remove(0);
+//        knownLocations.add(nextLocation);
+//        nextLocation = remainingLocations.remove(0);
 //        nextLocation.setIsExplored();
 //        levelUpOccurred = false;
+    }
+    
+    private void addToKnownLocations()
+    {
+        knownLocations.add(nextLocation);
+        nextLocation = remainingLocations.remove(0);
     }
     
     private void findVillageChest()
@@ -1143,7 +1233,7 @@ public class Game
         }
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
         {
-            Cutscene.earthVillageCutscene();
+            Cutscene.earthVillageCutscene(isTesting);
             objective.update();
         }
         
