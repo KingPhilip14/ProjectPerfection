@@ -77,13 +77,10 @@ public class Inventory
     public String inventoryListForSelling()
     {
         String message = "";
-        Item item;
         
         for(int i = 0; i < inventory.size(); i++)
         {
-            item = inventory.get(i);
-            message += "\n\t" + (i + 1) + ") " + item.getName() + " x" + item.getQuantity() + " -- Sell Price: " + 
-                    item.getSalePriceString();
+            message += "\n\t" + (i + 1) + ") " + inventory.get(i).getName() + "\tSell Price: " + inventory.get(i).getSalePriceString();
         }
         
         return message;

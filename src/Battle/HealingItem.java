@@ -29,7 +29,7 @@ public class HealingItem extends Item
         salePrice = (int)Math.round(price * 0.75);
     }
     
-    public HealingItem(String name, String description, int price)
+    public HealingItem(String name, String description)
     {
         super.name = name;
         super.description = description;

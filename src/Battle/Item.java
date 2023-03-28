@@ -47,7 +47,17 @@ public abstract class Item implements Collectable
     
     public int getQuantity() {return quantity;}
     
-    public void setQuantity(int amount) {quantity = amount;}
+    public void setQuantity(int amount) throws IllegalArgumentException
+    {
+        if(amount < 0 || amount > 3)
+        {
+            throw new IllegalArgumentException("Item quantity cannot be less than 0 nor larger than 3.");
+        }
+        else
+        {
+            quantity = amount;
+        }
+    }
     
     // The next 4 methods are incorrect. They need to increase the quantity of the item in the inventory (if already there)
     
@@ -63,7 +73,7 @@ public abstract class Item implements Collectable
     
     public void setPrice(int newPrice) {price = newPrice;}
     
-    public String getSalePriceString() {return String.format("%,d", salePrice) + " G";}
+    public String getSalePriceString() {return String.format("%d,", salePrice) + " G";}
     public int getSalePrice() {return salePrice;}
     
     public abstract void use(Character character);
@@ -101,7 +111,7 @@ public abstract class Item implements Collectable
         HealingItem applePie = new HealingItem("Apple Pie", "An old town favorite dessert filled with cinnamon, apples, and lots of love.", 250, 360);
         HealingItem peachCobbler = new HealingItem("Peach Cobbler", "A soft, sweet dessert that makes any heart warm.", 225, 335);
         HealingItem chocoBar = new HealingItem("Choco Bar", "A bar made of high quality chocolate.", 200, 325);
-        HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...", 50);
+        HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
         HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
         HealingItem cheesecake = new HealingItem("Cheesecake", "It's cheesecake! Who doesn't like cheesecake?", 165, 285);
         HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake, melted chocolate inside, and ice cream on top!", 800, 2920);
