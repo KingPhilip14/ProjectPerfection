@@ -335,7 +335,10 @@ public class MainGame {
 //        Battle battle = new Battle(enemyTeam, playerTeam);
 //        battle.start(gold);
 //        startUp();
+
         Game game = new Game(false);
+
+        Game game = new Game(true);
         playerTeam = game.getTeam();
         game.startGame();
 
@@ -371,6 +374,7 @@ public class MainGame {
         switch (response) {
             case 1:
                 Game game = new Game(false);
+                Game game = new Game(true);
                 game.startGame();
         }
     }

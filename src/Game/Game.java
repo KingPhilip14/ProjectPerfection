@@ -36,7 +36,7 @@ public class Game
 {
     private boolean finalBossDefeated;
     private boolean inSecondPhase;
-    private boolean beachTutorialDone = false;
+    private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
     private boolean isTesting;
@@ -66,7 +66,7 @@ public class Game
         knownLocations.add(remainingLocations.remove(0));
         nextLocation = remainingLocations.remove(0);
         
-        
+        objective = new Objective();
         
         if(!isTesting)
         {
@@ -79,14 +79,54 @@ public class Game
         
         // DELETE AFTER SECOND TUTORIAL TESTS
 //        knownLocations.add(allLocations.remove(0));
+//        team.add(MainGame.makeAnahita());
         
+        if(isTesting)
+        {
+            // Puts the player at Opicon Forest
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Puts the player in Water Village
+            knownLocations.add(remainingLocations.remove(0));
+            currentLocation = knownLocations.get(knownLocations.size());
+            
+            nextLocation = remainingLocations.remove(0);
+            
+            beachTutorialDone = true;
+            forestTutorialDone = true;
+            Player anahita = MainGame.makeAnahita();
+            Player gaea = MainGame.makeGaea();
+            Player fultra = MainGame.makeFultra();
+            
+            anahita.setMaxHealth(450);
+            anahita.setAttack(200);
+            anahita.setDefense(200);
+            anahita.setRangedAttack(200);
+            anahita.setRangedDefense(200);
+            anahita.setSpeed(200);
+            
+            gaea.setMaxHealth(450);
+            gaea.setAttack(200);
+            gaea.setDefense(200);
+            gaea.setRangedAttack(200);
+            gaea.setRangedDefense(200);
+            gaea.setSpeed(200);
+            
+            fultra.setMaxHealth(450);
+            fultra.setAttack(200);
+            fultra.setDefense(200);
+            fultra.setRangedAttack(200);
+            fultra.setRangedDefense(200);
+            fultra.setSpeed(200);
+        }
         
         
         currentLocation = knownLocations.get(0);
         nextLocation = remainingLocations.remove(0);
         team.add(MainGame.makeAnahita());
+
         map = new Map();
-        objective = new Objective();
+        
         gold = 0;
 //        team.add(MainGame.makeAnahita());
         
