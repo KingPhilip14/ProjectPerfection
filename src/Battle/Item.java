@@ -47,16 +47,9 @@ public abstract class Item implements Collectable
     
     public int getQuantity() {return quantity;}
     
-    public void setQuantity(int amount) throws IllegalArgumentException
+    public void setQuantity(int amount)
     {
-        if(amount < 0 || amount > 3)
-        {
-            throw new IllegalArgumentException("Item quantity cannot be less than 0 nor larger than 3.");
-        }
-        else
-        {
-            quantity = amount;
-        }
+        quantity = amount;
     }
     
     // The next 4 methods are incorrect. They need to increase the quantity of the item in the inventory (if already there)
@@ -73,7 +66,7 @@ public abstract class Item implements Collectable
     
     public void setPrice(int newPrice) {price = newPrice;}
     
-    public String getSalePriceString() {return String.format("%d,", salePrice) + " G";}
+    public String getSalePriceString() {return String.format("%,d", salePrice) + " G";}
     public int getSalePrice() {return salePrice;}
     
     public abstract void use(Character character);

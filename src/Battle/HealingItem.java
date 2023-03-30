@@ -50,7 +50,7 @@ public class HealingItem extends Item
             character.setCurrentHealth(this.HEALING_AMT + character.currentHealth);
         }
         
-        MainGame.printlnlnWait("\n" + character.getName() + " ate the " + name + " and healed " + HEALING_AMT + " HP!", 5, 1500);
+        MainGame.printlnlnWait("\n" + character.getName() + " ate the " + name + " and healed " + HEALING_AMT + " HP!", 5, 500);
         
         decreaseQuantity();
         

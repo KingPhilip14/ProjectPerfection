@@ -75,6 +75,45 @@ public abstract class Location extends GameProperty
         }
     }
     
+    private boolean hasFullChest()
+    {
+        return !chest.isEmpty();
+    }
+    
+    private void openChest()
+    {
+        MainGame.printlnln("\nYou found a chest! What does it have?", 25);
+        chest.open();
+    }
+    
+    public void findChest()
+    {
+        if(hasFullChest() && !chest.isAlreadyFound())
+        {
+            openChest();
+        }
+        else if(hasFullChest() && chest.isAlreadyFound())
+        {
+            int chance = new Random().nextInt(2);
+            
+            switch(chance)
+            {
+                case 0:
+                    openChest();
+                    break;
+                case 1:
+                    MainGame.printlnlnWait("You couldn't find a chest...", 25, 500);
+                    break;
+            }
+        }
+        else
+        {
+            MainGame.printlnlnWait("You couldn't find a chest...", 25, 500);
+        }
+        
+        MainGame.waitForEnter();
+    }
+    
     public void replenishChest()
     {
         int randNum = new Random().nextInt(5);

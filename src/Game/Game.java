@@ -75,10 +75,20 @@ public class Game
         {
             // Puts the player at Opicon Forest
             knownLocations.add(remainingLocations.remove(0));
+            objective.update();
             
             // Puts the player in Water Village
             knownLocations.add(remainingLocations.remove(0));
-            currentLocation = knownLocations.get(knownLocations.size());
+            objective.update();
+            
+            // Put the player in Earth Village
+            knownLocations.add(remainingLocations.remove(0));
+            objective.update();
+            
+            // Talk to Fleur objective
+            objective.update();
+            
+            currentLocation = knownLocations.get(knownLocations.size() - 1);
             
             nextLocation = remainingLocations.remove(0);
             
@@ -108,17 +118,18 @@ public class Game
             fultra.setRangedAttack(200);
             fultra.setRangedDefense(200);
             fultra.setSpeed(200);
+            
+            gold = 100000;
         }
-        
-        
-        
-        currentLocation = knownLocations.get(0);
-        nextLocation = remainingLocations.remove(0);
-        team.add(MainGame.makeAnahita());
+        else
+        {
+            team.add(MainGame.makeAnahita());
+            currentLocation = knownLocations.get(0);
+            nextLocation = remainingLocations.remove(0); 
+            gold = 0; 
+        }
 
         map = new Map();
-        
-        gold = 0;
     }
     
     public boolean inSecondPhase() {return inSecondPhase;}

@@ -463,6 +463,7 @@ public class MainGame
     {
         printlnln(string, time);
         wait(waitTime);
+        promptToEnter();
     }
     
     /**
@@ -475,6 +476,7 @@ public class MainGame
     {
         println(string, time);
         wait(waitTime);
+        promptToEnter();
     }
     
     /**
@@ -487,6 +489,7 @@ public class MainGame
     {
         print(string, time);
         wait(waitTime);
+        promptToEnter();
     }
     
     public static void print(String string, int time)
@@ -697,52 +700,52 @@ public class MainGame
     {
         clearScreen();
         
-        println("Water's Offensive Capabilites:", 25);
-        printlnWait("\tWater is strong against: Fire and Earth", 25, 100);
-        printlnWait("\tWater is not very effective against: Water", 25, 100);
-        println("Water's Defensive Capabilites:", 25);
-        printlnWait("\tWater is resistant to: Fire and Earth", 25, 100);
-        printlnlnWait("\tWater is weak to: Electric", 25, 100);
-        promptToEnter();
-        
-        println("Fire's Offensive Capabilites:", 25);
-        printlnWait("\tFire is strong against: Ice and Earth", 25, 100);
-        printlnWait("\tFire is not very effective against: Fire and Water", 25, 100);
-        println("Fire's Defensive Capabilites:", 25);
-        printlnWait("\tFire is resistant to: Ice", 25, 100);
-        printlnlnWait("\tFire is weak to: Earth, Wind, and Water", 25, 100);
-        promptToEnter();
-        
-        println("Wind's Offensive Capabilites:", 25);
-        printlnWait("\tWind is strong against: Fire", 25, 100);
-        printlnWait("\tWind is not very effective against: Electric", 25, 100);
-        println("Wind's Defensive Capabilites:", 25);
-        printlnlnWait("\tWind is weak to: Ice", 25, 100);
-        promptToEnter();
-        
-        println("Ice's Offensive Capabilites:", 25);
-        printlnWait("\tIce is strong against: Wind, Water and Earth", 25, 100);
-        printlnWait("\tIce is not very effective against: Ice and Fire", 25, 100);
-        println("Ice's Defensive Capabilites:", 25);
-        printlnWait("\tIce is resistant to: Ice", 25, 100);
-        printlnlnWait("\tIce is weak to: Fire", 25, 100);
-        promptToEnter();
-        
-        println("Earth's Offensive Capabilites:", 25);
-        printlnWait("\tEarth is strong against: Fire and Electric", 25, 100);
-        printlnWait("\tEarth is not very effective against: Water", 25, 100);
-        println("Earth's Defensive Capabilites:", 25);
-        printlnWait("\tEarth is resistant to: Electric", 25, 100);
-        printlnlnWait("\tEarth is weak to: Water, Fire, and Ice", 25, 100);
-        promptToEnter();
-        
-        println("Electric's Offensive Capabilites:", 25);
-        printlnWait("\tElectric is strong against: Water", 25, 100);
-        printlnWait("\tElectric is not very effective against: Earth and Electric", 25, 100);
-        println("Electric's Defensive Capabilites:", 25);
-        printlnWait("\tElectric is resistant to: Wind and Electric", 25, 100);
-        printlnlnWait("\tElectric is weak to: Earth", 25, 100);
-        promptToEnter();
+//        println("Water's Offensive Capabilites:", 25);
+//        printlnWait("\tWater is strong against: Fire and Earth", 25, 100);
+//        printlnWait("\tWater is not very effective against: Water", 25, 100);
+//        println("Water's Defensive Capabilites:", 25);
+//        printlnWait("\tWater is resistant to: Fire and Earth", 25, 100);
+//        printlnlnWait("\tWater is weak to: Electric", 25, 100);
+//        promptToEnter();
+//        
+//        println("Fire's Offensive Capabilites:", 25);
+//        printlnWait("\tFire is strong against: Ice and Earth", 25, 100);
+//        printlnWait("\tFire is not very effective against: Fire and Water", 25, 100);
+//        println("Fire's Defensive Capabilites:", 25);
+//        printlnWait("\tFire is resistant to: Ice", 25, 100);
+//        printlnlnWait("\tFire is weak to: Earth, Wind, and Water", 25, 100);
+//        promptToEnter();
+//        
+//        println("Wind's Offensive Capabilites:", 25);
+//        printlnWait("\tWind is strong against: Fire", 25, 100);
+//        printlnWait("\tWind is not very effective against: Electric", 25, 100);
+//        println("Wind's Defensive Capabilites:", 25);
+//        printlnlnWait("\tWind is weak to: Ice", 25, 100);
+//        promptToEnter();
+//        
+//        println("Ice's Offensive Capabilites:", 25);
+//        printlnWait("\tIce is strong against: Wind, Water and Earth", 25, 100);
+//        printlnWait("\tIce is not very effective against: Ice and Fire", 25, 100);
+//        println("Ice's Defensive Capabilites:", 25);
+//        printlnWait("\tIce is resistant to: Ice", 25, 100);
+//        printlnlnWait("\tIce is weak to: Fire", 25, 100);
+//        promptToEnter();
+//        
+//        println("Earth's Offensive Capabilites:", 25);
+//        printlnWait("\tEarth is strong against: Fire and Electric", 25, 100);
+//        printlnWait("\tEarth is not very effective against: Water", 25, 100);
+//        println("Earth's Defensive Capabilites:", 25);
+//        printlnWait("\tEarth is resistant to: Electric", 25, 100);
+//        printlnlnWait("\tEarth is weak to: Water, Fire, and Ice", 25, 100);
+//        promptToEnter();
+//        
+//        println("Electric's Offensive Capabilites:", 25);
+//        printlnWait("\tElectric is strong against: Water", 25, 100);
+//        printlnWait("\tElectric is not very effective against: Earth and Electric", 25, 100);
+//        println("Electric's Defensive Capabilites:", 25);
+//        printlnWait("\tElectric is resistant to: Wind and Electric", 25, 100);
+//        printlnlnWait("\tElectric is weak to: Earth", 25, 100);
+//        promptToEnter();
         
         new TypeChart().printChart();
         
@@ -756,7 +759,7 @@ public class MainGame
     {
         clearScreen();
         // Explains targeting with the board
-        printlnlnWait("Targeting:", 25, 1500);
+        printlnlnWait("Targeting:", 25, 500);
         printlnlnWait("\tLeft slot: The left slot can only target and be targeted by the opposing left and center "
                 + "slots.\n\tCenter slot: The center slot can target and be targeted by all opposing slots.\n\t"
                 + "Right slot: The right slot can target adn be targeted by the opposing center and right slots.", 40, 5000);
@@ -769,7 +772,7 @@ public class MainGame
         clearScreen();
         
         // Explains the aggro system
-        printlnlnWait("Aggro:", 25, 1500);
+        printlnlnWait("Aggro:", 25, 500);
         printWithBreaks("Each of your characters has a value called "
                 + "\"aggro\"./After every attack, their aggro will increase, forcing the enemy to target them./The character "
                 + "with the most aggro will have a marker next to their name: (!)./"
@@ -784,7 +787,7 @@ public class MainGame
         clearScreen();
         
         // Explains cheer partner mechanic
-        printlnlnWait("Cheer Partners and Cheer Skills:", 25, 1500);
+        printlnlnWait("Cheer Partners and Cheer Skills:", 25, 500);
         printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
                 + "A \"Cheer Partner\" will be there to support the person fighting by using their \"Cheer Skill.\"/"
                 + "A Cheer Skill depends on the Cheer Partner's Class type./\tStriker: Boosts Attack and Ranged Attack "
@@ -800,7 +803,7 @@ public class MainGame
     {
         clearScreen();
         
-        printlnlnWait("Attack Cooldowns:", 25, 1500);
+        printlnlnWait("Attack Cooldowns:", 25, 500);
         printWithBreaks("The more you play, you'll become more acquainted with your types of attacks: Buff, Debuff, Offensive, Single Heal, and Team Heal./"
                 + "All of these attacks except Offensive have \"Cooldowns.\"/If you view your character's attacks, you can see the cooldown value./"
                 + "This value means that after using this attack, it will be unavailable for that amount of turns./After the cooldown effect is over, the move is available again.");
@@ -813,7 +816,7 @@ public class MainGame
         clearScreen();
         
         // Part 1
-        printlnlnWait("Classes:", 25, 1500);
+        printlnlnWait("Classes:", 25, 500);
         printWithBreaks("Each character has a \"Class.\" There are 10 unique classes in total:/Clerk classes:\n\tMaster Clerk: Focuses on healing.\n\tHyper Clerk: Focuses on healing and damage.\n\tPassive Clerk: Focuses on healing, debuffs, and aggro./"
                 + "Striker classes:\n\tMaster Striker: Focuses on physical and ranged damage.\n\tTranquil Striker: Focuses on physical damage and slight healing.\n\tGuardian Striker: Focuses on ranged damage and slightly on aggro./"
                 + "Tank classes:\n\tMaster Tank: Focuses on taking physical attacks and gaining aggro.\n\tHoly Tank: Focuses on taking hits in general with minor healing.\n\tWild Tank: Focuses on taking physical hits while dealing damage./"

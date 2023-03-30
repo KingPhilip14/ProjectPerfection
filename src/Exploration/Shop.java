@@ -36,7 +36,7 @@ public class Shop extends GameProperty
     public void activateGreeting()
     {
         MainGame.dialoguelnln("Berry", description);
-        MainGame.dialoguelnln("Berry", "Here's our inventory! Let me know what you wanna buy!");
+        MainGame.dialoguelnln("Berry", "Take a look at our inventory and lemme know what ya wanna do!");
     }
     
     public void startShopping()
@@ -51,7 +51,7 @@ public class Shop extends GameProperty
         
         String message = "What would you like to do?\n\t1) Buy\n\t2) Sell\n\t3) Exit";
         
-        int input = MenuHelper.displayMenu(message, 1, 2);
+        int input = MenuHelper.displayMenu(message, 1, 3);
         
         shopOptions(input);
     }
@@ -62,10 +62,13 @@ public class Shop extends GameProperty
         {
             case 2:
                 sellItems();
+                break;
             case 3:
                 exit();
+                break;
             default:
                 selectItem();
+                break;
         }
     }
     
@@ -73,10 +76,12 @@ public class Shop extends GameProperty
     {
         int inventorySize = MainGame.getInventory().size();
         
+        System.out.println("");
         MainGame.dialoguelnln("Berry", "What would ya like to sell? I'll take anything!");
         
+        MainGame.print("(Your Inventory\t Current Gold: " + Game.getGoldString() + ")", 5);
         String message = MainGame.getInventory().inventoryListForSelling() + 
-                "\n\t" + ++inventorySize + ")Back";
+                "\n\t" + ++inventorySize + ") Back";
         
         int input = MenuHelper.displayMenu(message, 1, inventorySize);
         
@@ -86,7 +91,7 @@ public class Shop extends GameProperty
         }
         else
         {
-            Item item = MainGame.getInventory().get(input);
+            Item item = MainGame.getInventory().get(--input);
             promptToSell(item);
         }
     }
@@ -103,14 +108,16 @@ public class Shop extends GameProperty
     
     private void completeSale(Item item, int quantity)
     {
+        int amt = item.getSalePrice()* quantity;
+        
         if(quantity == 1)
         {
-            MainGame.dialoguelnln("Berry", "Okay! I'll take that off your hands and give you " + item.getSalePriceString() + "!");
+            MainGame.dialoguelnln("Berry", "Okay! I'll take that off your hands and give you " + String.format("%,d", amt) + "!");
         }
         else
         {
             MainGame.dialoguelnln("Berry", "Okay! I'll take " + quantity + " " + item.getName() + "s from ya, and I'll give ya "
-                    + item.getSalePriceString() + "!");
+                    +  String.format("%,d", amt) + "!");
         }
         
         MainGame.getInventory().sellItem(item, quantity);
@@ -189,7 +196,7 @@ public class Shop extends GameProperty
         {
             System.out.println("");
             
-            MainGame.dialogueln("Berry", "And how many do ya want? You can afford " + maxAmt + " of that item.");
+            MainGame.dialoguelnln("Berry", "And how many do ya want? You can afford " + maxAmt + " of that item.");
 
             String message = "(Type the amount you want to purchase)";
 
@@ -202,7 +209,10 @@ public class Shop extends GameProperty
     private void makePurchase(Item item, int quantity)
     {
         MainGame.addToInventory(item, quantity);
-        Game.decreaseGold(item.getPrice() * quantity);
+        
+        int amt = item.getPrice() * quantity;
+        
+        Game.decreaseGold(amt);
         
         if(quantity > 1)
         {
@@ -213,7 +223,9 @@ public class Shop extends GameProperty
             MainGame.dialoguelnln("Berry", "Okay! Here's 1 " + item.getName() + "!");
         }
         
-        MainGame.printlnln("Current Gold: " + String.format("%,d", Game.getGold()) + " G", 25);
+        MainGame.dialoguelnln("Berry", "Your total comes to " + String.format("%,d", amt) + "!");
+        
+        MainGame.printlnlnWait("Current Gold: " + String.format("%,d", Game.getGold()) + " G", 25, 500);
         
         promptToShopAgain();
     }
@@ -231,7 +243,7 @@ public class Shop extends GameProperty
         MainGame.dialoguelnln("Berry", "Would ya like to do something else?");
         
         String message = "\t1) Buy\n\t2) Sell\n\t3) Exit";
-        int input = MenuHelper.displayMenu(message, 1, 2);
+        int input = MenuHelper.displayMenu(message, 1, 3);
         
         shopOptions(input);
     }

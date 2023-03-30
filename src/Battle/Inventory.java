@@ -49,8 +49,6 @@ public class Inventory
     
     public void showInventory()
     {
-        String message = "";
-        
         if(!inventory.isEmpty())
         {
             for(Item i : inventory)
@@ -59,7 +57,7 @@ public class Inventory
             }
         }
         
-        MainGame.wait(2000);
+        MainGame.wait(1000);
     }
     
     public String inventoryListForMenus()
@@ -80,7 +78,9 @@ public class Inventory
         
         for(int i = 0; i < inventory.size(); i++)
         {
-            message += "\n\t" + (i + 1) + ") " + inventory.get(i).getName() + "\tSell Price: " + inventory.get(i).getSalePriceString();
+            Item item = inventory.get(i);
+            message += "\n\t" + (i + 1) + ") " + item.getName() + " x" + String.format("%,d", item.getQuantity()) + 
+                    " -- Sell Price: " + item.getSalePriceString();
         }
         
         return message;
