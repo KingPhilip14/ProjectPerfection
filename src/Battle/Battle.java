@@ -110,6 +110,8 @@ public abstract class Battle
                     activatePlayerTurn(player);
                 }
                 
+                MainGame.promptToEnter();
+                
                 if(enemyTeam.isEmpty())
                 {
                     won = true;
@@ -1118,8 +1120,6 @@ public abstract class Battle
         {
             chooseAttack(enemy, adjacentPlayers);
         }
-        
-        MainGame.promptToEnter();
     }
     
     private void chooseAttack(Enemy enemy, ArrayList<Player> adjacentPlayers)

@@ -463,7 +463,7 @@ public class MainGame
     {
         printlnln(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     /**
@@ -476,7 +476,7 @@ public class MainGame
     {
         println(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     /**
@@ -489,7 +489,7 @@ public class MainGame
     {
         print(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     public static void print(String string, int time)
@@ -884,8 +884,9 @@ public class MainGame
         // All of Anahita's attacks
         TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.2, 2);
         OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
+        tsnunamiShot.setCritRate(0.35);
         SingleHealingAttack waterHalo = new SingleHealingAttack("Water Halo", "A ring of water surrounds the target and heals 30% of their total health.", 0.3, 3);
-        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 95, "R. Attack");
+        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 100, "R. Attack");
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);

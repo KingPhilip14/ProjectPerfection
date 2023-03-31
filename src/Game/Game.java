@@ -56,6 +56,7 @@ public class Game
     
     public Game(boolean isTesting)
     {
+        this.isTesting = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -65,7 +66,6 @@ public class Game
         knownLocations.add(remainingLocations.remove(0));
         
         objective = new Objective();
-        
         
         // DELETE AFTER SECOND TUTORIAL TESTS
 //        knownLocations.add(allLocations.remove(0));
@@ -88,6 +88,9 @@ public class Game
             // Talk to Fleur objective
             objective.update();
             
+            // Get to Zoni Village
+            objective.update();
+            
             currentLocation = knownLocations.get(knownLocations.size() - 1);
             
             nextLocation = remainingLocations.remove(0);
@@ -98,26 +101,36 @@ public class Game
             Player gaea = MainGame.makeGaea();
             Player fultra = MainGame.makeFultra();
             
-            anahita.setMaxHealth(450);
-            anahita.setAttack(200);
-            anahita.setDefense(200);
-            anahita.setRangedAttack(200);
-            anahita.setRangedDefense(200);
-            anahita.setSpeed(200);
+            anahita.setMaxHealth(999);
+            anahita.setCurrentHealth(999);
+            anahita.setAttack(300);
+            anahita.setDefense(300);
+            anahita.setRangedAttack(300);
+            anahita.setRangedDefense(300);
+            anahita.setSpeed(300);
+            anahita.setLevel(9);
             
-            gaea.setMaxHealth(450);
-            gaea.setAttack(200);
-            gaea.setDefense(200);
-            gaea.setRangedAttack(200);
-            gaea.setRangedDefense(200);
-            gaea.setSpeed(200);
+            gaea.setMaxHealth(999);
+            gaea.setCurrentHealth(999);
+            gaea.setAttack(300);
+            gaea.setDefense(300);
+            gaea.setRangedAttack(300);
+            gaea.setRangedDefense(300);
+            gaea.setSpeed(300);
+            gaea.setLevel(9);
             
-            fultra.setMaxHealth(450);
-            fultra.setAttack(200);
-            fultra.setDefense(200);
-            fultra.setRangedAttack(200);
-            fultra.setRangedDefense(200);
-            fultra.setSpeed(200);
+            fultra.setMaxHealth(999);
+            fultra.setCurrentHealth(999);
+            fultra.setAttack(300);
+            fultra.setDefense(300);
+            fultra.setRangedAttack(300);
+            fultra.setRangedDefense(300);
+            fultra.setSpeed(300);
+            fultra.setLevel(9);
+            
+            team.add(anahita);
+            team.add(gaea);
+            team.add(fultra);
             
             gold = 100000;
         }
@@ -193,6 +206,14 @@ public class Game
         remainingLocations.add(createIceVillage());
         remainingLocations.add(createForlornDesert());
         remainingLocations.add(createElectricVillage());
+        
+        if(isTesting)
+        {
+            remainingLocations.get(0).setIsExplored();
+            remainingLocations.get(1).setIsExplored();
+            remainingLocations.get(2).setIsExplored();
+            remainingLocations.get(3).setIsExplored();
+        }
     }
     
     private void gameOpening()
@@ -290,7 +311,7 @@ public class Game
         {
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-            MainGame.wait(2000);
+            MainGame.wait(1000);
             MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
 //            currentLocation.setIsExplored();
         }
@@ -928,7 +949,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(12, 31);
-        Village v = new Village("Zoni Village", "The \"captial\" of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
+        Village v = new Village("Zoni Village", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
         v.setShop(s);
         return v;
     }

@@ -69,7 +69,7 @@ public class Cutscene
                 + "The imperfections we as humans have is what caused the world to fall to ruin.\n\tThe way to combat this is "
                 + "perfection.");
         MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
-                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed \"perfection\" needed "
+                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed 'perfection' needed "
                 + "help us?\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------
         
@@ -144,7 +144,7 @@ public class Cutscene
         MainGame.dialoguelnln("Fultra", "And maybe we'll prevent another bad hair day for someone else...");
         MainGame.printlnlnWait("Gaea then playfully punched Fultra's arm, making Anahita laugh a little.", 25, 1000);
         MainGame.dialoguelnln("Anahita", "I'd love if you guys could help me! Thank you so much.");
-        MainGame.dialoguelnln("Fultra", "Not a problem. You have \"Fearless Thunder\" with you, so there's nothing to fear!");
+        MainGame.dialoguelnln("Fultra", "Not a problem. You have 'Fearless Thunder' with you, so there's nothing to fear!");
         MainGame.dialoguelnln("Gaea", "*sigh* There he goes again, boosting that ego. Come on, Ana. Let's go!");
         
         MainGame.promptToEnter();
@@ -154,8 +154,8 @@ public class Cutscene
         
         MainGame.promptToEnter();
         
-        MainGame.printWithBreaks("You now have access to Fultra, one of the strongest Pulchrians!/He has a unique class called the \"All-Rounder.\"/"
-                + "All his stats are average and realatively even, but what really makes him shine is his Buff Attack called \"Charge!\"/"
+        MainGame.printWithBreaks("You now have access to Fultra, one of the strongest Pulchrians!/He has a unique class called the 'All-Rounder.'/"
+                + "All his stats are average and realatively even, but what really makes him shine is his Buff Attack called 'Charge!'/"
                 + "With it, he increases all his stats for a certain time, but it has a large cooldown, so be mindful!");
         
         MainGame.promptToEnter();
@@ -249,7 +249,7 @@ public class Cutscene
         MainGame.dialoguelnln("Fultra", "I'm sorry, but you'll have to repeat that for me.");
         print("The girls quickly finished and repeated themselves.");
         MainGame.dialoguelnln("Anahita", "What do you mean you don't want any? I thought what I said was obvious.");
-        MainGame.dialoguelnln("Gaea", "And I said, \"You're missing out. Try some!\" They're amazing!");
+        MainGame.dialoguelnln("Gaea", "And I said, 'You're missing out. Try some!' They're amazing!");
         print("The two were practically beaming with joy, and any guilt Anahita felt for being late evaporated.");
         MainGame.dialoguelnln("Fultra", "Alright, you've convinced me.");
         print("Fultra took one of the Cinnamon Rolls and ate it. After the first bite, he couldn't help but finish the rest/"
@@ -330,7 +330,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Anahita", "We appreciate you too! I'm not complaining, but why the sentiment?");
         MainGame.dialoguelnln("Gaea", "I feel like I don't say it enough. You and Fultra that mean the world to me. I really "
-                + "don't\n\t know what I would do without either of you.");
+                + "don't\n\tknow what I would do without either of you.");
         MainGame.dialoguelnln("Anahita", "Aww, Gaea...");
         MainGame.dialoguelnln("Gaea", "And I know I punch on him a lot, but that's just because we mess around a lot. I really "
                 + "do care for him.\n\tI hope he knows that.");
@@ -347,13 +347,16 @@ public class Cutscene
                 + "I didn't think that was possible!");
         MainGame.dialoguelnln("Anahita", "What can I say - I'm a girl with many talents.");
         
+        //-----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
         print("The two laughed and quickly left Gaea's home. They caught up with Fultra right as Fleur's decoration team left to "
-                + "finish the last decorations at Zoni Village.");
+                + "finish the last\n\tdecorations at Zoni Village.");
         
         MainGame.dialoguelnln("Fultra", "Wow! You look amazing!");
         MainGame.dialoguelnln("Gaea", "You think so? Ana is to thank. She did an amazing job.");
         MainGame.dialoguelnln("Fleur", "Thank you Ana! It's definitely a lot better. If you didn't, the whole island would've "
-                + "felt the \"Wrath of Gaea\".");
+                + "felt the 'Wrath of Gaea'.");
         
         print("Everyone but Gaea laughed at Fleur's remark. Gaea huffed in retaliation.");
         
@@ -391,8 +394,8 @@ public class Cutscene
         MainGame.printlnln("You received 3 Orange Beans!", 25);
         MainGame.addToInventory(Item.getBuffItem("Orange Bean"), 3);
         
-        MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION - \"BEANS MAKE YOU STRONGER FOR LONGER"
-                + "!!!\"");
+        MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION - 'BEANS MAKE YOU STRONGER FOR LONGER"
+                + "!!!'");
         MainGame.dialoguelnln("Calliou", "W O O O O O ! ! !");
         
         print("Anahita and the others accepted the beans and backed away slowly from Calliou, who was now flexing because of the "
@@ -402,7 +405,7 @@ public class Cutscene
        
         print("Anahita nodded slowly in agreement, her eyes wide in fear.");
         
-        MainGame.dialoguelnln("Fultra", "H-he seems kind, a-at least. If he were to attack, \"F-fearless Thunder\" would protect "
+        MainGame.dialoguelnln("Fultra", "H-he seems kind, a-at least. If he were to attack, 'F-fearless Thunder' would protect "
                 + "y-you!");
         MainGame.dialoguelnln("Gaea", "Fultra, why is your voice shaking?");
         MainGame.dialoguelnln("Fultra", "N-no reason...!");

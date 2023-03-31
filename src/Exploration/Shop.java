@@ -125,6 +125,7 @@ public class Shop extends GameProperty
 //        
 //        Game.increaseGold(goldAmt);
         MainGame.printlnlnWait("Current Gold: " + Game.getGoldString(), 25, 1000);
+        MainGame.promptToEnter();
         
         promptToShopAgain();
     }
@@ -226,6 +227,7 @@ public class Shop extends GameProperty
         MainGame.dialoguelnln("Berry", "Your total comes to " + String.format("%,d", amt) + "!");
         
         MainGame.printlnlnWait("Current Gold: " + String.format("%,d", Game.getGold()) + " G", 25, 500);
+        MainGame.promptToEnter();
         
         promptToShopAgain();
     }
