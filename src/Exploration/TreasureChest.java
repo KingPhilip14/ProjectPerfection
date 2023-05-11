@@ -31,9 +31,6 @@ public class TreasureChest extends GameProperty
                 setItemQuantity(item);
                 contents.add(item);
             }
-            
-            Item.populateAllBuffItems();
-            Item.populateAllHealItems();
         }
         else if(numOfItems < 0 || numOfItems > 5)
         {

@@ -244,6 +244,7 @@ public class Player extends Character
         MainGame.printlnln(toStringOriginalStats(), 25);
 
         MainGame.waitForEnter();
+        System.out.println("");
         
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 

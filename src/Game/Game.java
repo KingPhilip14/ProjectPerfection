@@ -88,7 +88,11 @@ public class Game
             // Talk to Fleur objective
             objective.update();
             
-            // Get to Zoni Village
+            // Put the player in Zoni Village
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Talk to everyone in Zoni objective
             objective.update();
             
             currentLocation = knownLocations.get(knownLocations.size() - 1);
@@ -108,7 +112,12 @@ public class Game
             anahita.setRangedAttack(300);
             anahita.setRangedDefense(300);
             anahita.setSpeed(300);
-            anahita.setLevel(9);
+            anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            anahita.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            anahita.setLevel(10);
             
             gaea.setMaxHealth(999);
             gaea.setCurrentHealth(999);
@@ -117,7 +126,12 @@ public class Game
             gaea.setRangedAttack(300);
             gaea.setRangedDefense(300);
             gaea.setSpeed(300);
-            gaea.setLevel(9);
+            gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            gaea.setLevel(10);
             
             fultra.setMaxHealth(999);
             fultra.setCurrentHealth(999);
@@ -126,7 +140,12 @@ public class Game
             fultra.setRangedAttack(300);
             fultra.setRangedDefense(300);
             fultra.setSpeed(300);
-            fultra.setLevel(9);
+            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            fultra.setLevel(10);
             
             team.add(anahita);
             team.add(gaea);
@@ -313,6 +332,7 @@ public class Game
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
             MainGame.wait(1000);
             MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
+            MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
         }
         
@@ -1176,6 +1196,11 @@ public class Game
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
         {
             Cutscene.earthVillageCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.zoniVillageCutscene();
             objective.update();
         }
         

@@ -92,43 +92,47 @@ public abstract class Item implements Collectable
      * Populates all healing items into a static ArrayList.
      */
     public static void populateAllHealItems()
-    {
-        allHealItems = new ArrayList<>();
-        
-        HealingItem cinnamonRoll = new HealingItem();
-        HealingItem bigCinnamonRoll = new HealingItem("Big Cinnamon Roll", "A large cinnamon roll with extra sugar!", 125, 250);
-        HealingItem megaRoll = new HealingItem("Mega Roll", "A cinnamon roll as big as Gaea's head! It's the largest cinnamon roll you can find.", 300, 430);
-        HealingItem cakeSlice = new HealingItem("Cake Slice", "A small slice of cake that can make the saddest people smile.", 150, 275);
-        HealingItem halfCake = new HealingItem("Half Cake", "Half of a cake. Where did the other half go? Who knows!", 350, 490);
-        HealingItem wholeCake = new HealingItem("Whole Cake", "An entire, untampered cake that looks pretty good! It looks very filling.", 500, 700);
-        HealingItem applePie = new HealingItem("Apple Pie", "An old town favorite dessert filled with cinnamon, apples, and lots of love.", 250, 360);
-        HealingItem peachCobbler = new HealingItem("Peach Cobbler", "A soft, sweet dessert that makes any heart warm.", 225, 335);
-        HealingItem chocoBar = new HealingItem("Choco Bar", "A bar made of high quality chocolate.", 200, 325);
-        HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
-        HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
-        HealingItem cheesecake = new HealingItem("Cheesecake", "It's cheesecake! Who doesn't like cheesecake?", 165, 285);
-        HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake, melted chocolate inside, and ice cream on top!", 800, 2920);
-        HealingItem lasagna = new HealingItem("Lasagna", "A (model) skyscraper's worth of immacualte flavors burst from this item.", 605, 1025);
-        
-        allHealItems.add(cinnamonRoll);
-        allHealItems.add(bigCinnamonRoll);
-        allHealItems.add(megaRoll);
-        allHealItems.add(cakeSlice);
-        allHealItems.add(halfCake);
-        allHealItems.add(wholeCake);
-        allHealItems.add(applePie);
-        allHealItems.add(peachCobbler);
-        allHealItems.add(chocoBar);
-        allHealItems.add(unknown);
-        allHealItems.add(lollipop);
-        allHealItems.add(cheesecake);
-        allHealItems.add(tcm);
-        allHealItems.add(lasagna);
-        
-        
-        for(Item i : allHealItems)
+    {   
+        if(allHealItems.size() != 14)
         {
-            allItems.add(i);
+            HealingItem cinnamonRoll = new HealingItem();
+            HealingItem bigCinnamonRoll = new HealingItem("Big Cinnamon Roll", "A large cinnamon roll with extra sugar!", 125, 250);
+            HealingItem megaRoll = new HealingItem("Mega Roll", "A cinnamon roll as big as Gaea's head! It's the largest cinnamon roll you can find.", 300, 430);
+            HealingItem cakeSlice = new HealingItem("Cake Slice", "A small slice of cake that can make the saddest people smile.", 150, 275);
+            HealingItem halfCake = new HealingItem("Half Cake", "Half of a cake. Where did the other half go? Who knows!", 350, 490);
+            HealingItem wholeCake = new HealingItem("Whole Cake", "An entire, untampered cake that looks pretty good! It looks very filling.", 500, 700);
+            HealingItem applePie = new HealingItem("Apple Pie", "An old town favorite dessert filled with cinnamon, apples, and lots of love.", 250, 360);
+            HealingItem peachCobbler = new HealingItem("Peach Cobbler", "A soft, sweet dessert that makes any heart warm.", 225, 335);
+            HealingItem chocoBar = new HealingItem("Choco Bar", "A bar made of high quality chocolate.", 200, 325);
+            HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
+            HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
+            HealingItem cheesecake = new HealingItem("Cheesecake", "It's cheesecake! Who doesn't like cheesecake?", 165, 285);
+            HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake, melted chocolate inside, and ice cream on top!", 800, 2920);
+            HealingItem lasagna = new HealingItem("Lasagna", "A (model) skyscraper's worth of immacualte flavors burst from this item.", 605, 1025);
+
+            ArrayList<HealingItem> items = new ArrayList<>();
+
+            items.add(cinnamonRoll);
+            items.add(bigCinnamonRoll);
+            items.add(megaRoll);
+            items.add(cakeSlice);
+            items.add(halfCake);
+            items.add(wholeCake);
+            items.add(applePie);
+            items.add(peachCobbler);
+            items.add(chocoBar);
+            items.add(unknown);
+            items.add(lollipop);
+            items.add(cheesecake);
+            items.add(tcm);
+            items.add(lasagna);
+
+            allHealItems = items;
+
+            for(Item i : allHealItems)
+            {
+                allItems.add(i);
+            }
         }
     }
     
@@ -136,25 +140,30 @@ public abstract class Item implements Collectable
      * Populates all buff items into a static ArrayList.
      */
     public static void populateAllBuffItems()
-    {
-        allBuffItems = new ArrayList<>();
-        
-        BuffItem redBean = new BuffItem();
-        BuffItem orangeBean = new BuffItem("Orange Bean", "A magical orange bean that boosts the defense stat.", "Defense");
-        BuffItem purpleBean = new BuffItem("Purple Bean", "A magical purple bean that boosts the ranged attack stat.", "R. Attack");
-        BuffItem greenBean = new BuffItem("Green Bean", "A magical green bean that boosts the ranged defense stat.", "R. Defense");
-        BuffItem blueBean = new BuffItem("Blue Bean", "A magical blue bean that boosts the speed stat.", "Speed");
-        
-        allBuffItems.add(redBean);
-        allBuffItems.add(orangeBean);
-        allBuffItems.add(purpleBean);
-        allBuffItems.add(greenBean);
-        allBuffItems.add(blueBean);
-        
-        for(Item i : allBuffItems)
+    {   
+        if(allBuffItems.size() != 5)
         {
-            allItems.add(i);
-        }
+            BuffItem redBean = new BuffItem();
+            BuffItem orangeBean = new BuffItem("Orange Bean", "A magical orange bean that boosts the defense stat.", "Defense");
+            BuffItem purpleBean = new BuffItem("Purple Bean", "A magical purple bean that boosts the ranged attack stat.", "R. Attack");
+            BuffItem greenBean = new BuffItem("Green Bean", "A magical green bean that boosts the ranged defense stat.", "R. Defense");
+            BuffItem blueBean = new BuffItem("Blue Bean", "A magical blue bean that boosts the speed stat.", "Speed");
+
+            ArrayList<BuffItem> items = new ArrayList<>();
+
+            items.add(redBean);
+            items.add(orangeBean);
+            items.add(purpleBean);
+            items.add(greenBean);
+            items.add(blueBean);
+
+            allBuffItems = items;
+
+            for(Item i : allBuffItems)
+            {
+                allItems.add(i);
+            }
+        }   
     }
     
     public static ArrayList<Item> getAllItems() {return allItems;}

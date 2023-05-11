@@ -412,4 +412,23 @@ public class Cutscene
         
         MainGame.promptToEnter();
     }
+    
+    /**
+     * Cutscecne for when the player first enters the Earth Village.
+     */
+    public static void zoniVillageCutscene()
+    {
+        MainGame.dialoguelnln("Anahita", "Finally! We made it!!");
+        
+        print("Anahita and the others entered Zoni Village. The area was very animated. People were going back and forth, helping "
+                + "with last minute/ decorations and setting up food. The group stared in amazement at the beauty of the village.");
+        
+        MainGame.dialoguelnln("Gaea", "Cinnamon Rolls... Triple Chocolate Meltdown... Apple Pies... Today is gonna be amazing!");
+        
+        MainGame.dialoguelnln("Fultra", "Oh yeah. The annual dance will be great too! The music, the food... everything will be wonderful.");
+        
+        MainGame.dialoguelnln("Anahita", "It'll be great! We should talk to everyone to see if anyone else needs help.");
+        
+        MainGame.promptToEnter();
+    }
 }
