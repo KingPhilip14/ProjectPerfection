@@ -82,10 +82,7 @@ public class MainGame
 //        {
 //            
 //        }
-        ComboAttack.populateComboAttackLibrary();
-        Item.populateAllBuffItems();
-        Item.populateAllHealItems();
-        PlayerClass.createClasses();
+
         
 //        ArrayList<Player> team = new ArrayList<>(6);
         
@@ -345,6 +342,11 @@ public class MainGame
 //        Battle battle = new Battle(enemyTeam, playerTeam);
 //        battle.start(gold);
 //        startUp();
+
+        ComboAttack.populateComboAttackLibrary();
+        Item.populateAllBuffItems();
+        Item.populateAllHealItems();
+        PlayerClass.createClasses();
 
         Game game = new Game(true);
         playerTeam = game.getTeam();

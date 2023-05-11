@@ -964,12 +964,13 @@ public class Game
         people.add(clairdra);
         people.add(verg);
         
-        //----------------------------------------------------------------------
-        Shop s = new Shop(Item.getAllItems());
-        //----------------------------------------------------------------------
-        
         Coordinate c = new Coordinate(12, 31);
         Village v = new Village("Zoni Village", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
+        
+        //----------------------------------------------------------------------
+        Shop s = new Shop(Item.allItemsDeepCopy());
+        //----------------------------------------------------------------------
+        
         v.setShop(s);
         return v;
     }

@@ -26,11 +26,13 @@ public class TreasureChest extends GameProperty
         {
             for(int i = 0; i < numOfItems; i++)
             {
-                ArrayList<Item> allItems = Item.getAllItems();
+                ArrayList<Item> allItems = Item.allItemsDeepCopy();
                 Item item = allItems.remove(new Random().nextInt(allItems.size()));
                 setItemQuantity(item);
                 contents.add(item);
             }
+            
+            Item.refreshAllItems();
         }
         else if(numOfItems < 0 || numOfItems > 5)
         {

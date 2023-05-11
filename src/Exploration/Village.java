@@ -29,8 +29,15 @@ public class Village extends Location
     {
         super(name, description, requiredLevel, coordinate);
         this.villagePeople = people;
-        shop = new Shop();
         this.population = population;
+    }
+    
+    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate, Shop shop)
+    {
+        super(name, description, requiredLevel, coordinate);
+        this.villagePeople = people;
+        this.population = population;
+        this.shop = shop;
     }
     
     public ArrayList<NPC> getVillagePeople() {return villagePeople;}
