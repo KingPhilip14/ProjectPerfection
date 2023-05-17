@@ -12,8 +12,7 @@ public class RESIEnemy extends Enemy
 {
     private static ArrayList<OffensiveAttack> allOffensiveAttacks; 
     private static ArrayList<BuffAttack> allBuffAttacks; 
-    private static ArrayList<DebuffAttack> allDebuffAttacks; 
-    private static ArrayList<HealingAttack> allHealingAttacks;
+    private static ArrayList<DebuffAttack> allDebuffAttacks;
     
     // R.E.S.I. Bot: Research Extraction Surveillance Investigator Bot
     public RESIEnemy(Wilderness currentLocation)
@@ -22,6 +21,7 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         improveOffense();
+        populateCurrentAttacks();
     }
     
     public RESIEnemy(int level, Wilderness currentLocation)
@@ -30,6 +30,16 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         improveOffense();
+        populateCurrentAttacks();
+    }
+    
+    public RESIEnemy(int level, String element)
+    {
+        super(level);
+        this.element = element;
+        name = createName();
+        improveOffense();
+        populateCurrentAttacks();
     }
     
     private String createName()
@@ -112,44 +122,69 @@ public class RESIEnemy extends Enemy
      */
     public static void populateAllAttacks()
     {
-        allOffensiveAttacks = new ArrayList<>(10);
+        allOffensiveAttacks = new ArrayList<>(7);
         allDebuffAttacks = new ArrayList<>(4);
-        allBuffAttacks = new ArrayList<>(4);
-        allHealingAttacks = new ArrayList<>(2);
+        allBuffAttacks = new ArrayList<>(3);
         
-        // Indexes 0-9
-        allOffensiveAttacks.add(new OffensiveAttack("Rushdown", "The user rushes at the target and tackles them with impressive force.", 80, "Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Elemental Burst", "The user emits a powerful wave of energy based on their element.", 90, "R. Attack"));
-        allOffensiveAttacks.get(1).setAccuracy(80);
-        allOffensiveAttacks.add(new OffensiveAttack("Wild Fever", "The user uses its wild instinct to cause massive damage.", 110, "Attack"));
-        allOffensiveAttacks.get(2).setAccuracy(65);
-        allOffensiveAttacks.add(new OffensiveAttack("Elemental Pulse", "The user emits a shock wave of energy based on their element.", 80, "R. Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Elemental Blast", "The user emits an overwhelming wave of energy.", 100, "R. Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Fury Strikes", "The user strikes with many quick blows in succession.", 75, "Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Elemental Wrath", "The user uses raw, elemental energy in the area to inflict damage.", 85, "R. Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Outrage", "Using their raw strength, the user attacks with all its might.", 90, "Attack"));
-        allOffensiveAttacks.get(7).setAccuracy(70);
-        allOffensiveAttacks.add(new OffensiveAttack("Piercing Strike", "The user focuses where to land their attack, resulting in more critical hits.", 65, "Attack"));
-        allOffensiveAttacks.get(8).setCritRate(0.35);
-        allOffensiveAttacks.get(8).setAccuracy(85);
-        allOffensiveAttacks.add(new OffensiveAttack("Twister", "The user creates a destructive twister with their elemental property.", 70, "R. Attack"));
+        // Indexes 0-6
+        allOffensiveAttacks.add(new OffensiveAttack("Laser Blast", "The user charges a laser and fires it at the target.", 90, "R. Attack"));
+        allOffensiveAttacks.add(new OffensiveAttack("Metal Grip", "The user grabs the target with a metal claw and crushes them.", 105, "Attack"));
+        allOffensiveAttacks.get(1).setAccuracy(90);
+        allOffensiveAttacks.add(new OffensiveAttack("Engine Rush", "The user rushes into the target with immense force by using it's engines to fly at high speeds.", 110, "Attack"));
+        allOffensiveAttacks.get(2).setAccuracy(85);
+        allOffensiveAttacks.add(new OffensiveAttack("Metal Spike", "The user shoots a sharp, metal spike at the target to inflict damage.", 95, "R. Attack"));
+        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol I: Barrage", "The user throws a barrage of attacks at the target to overwhelm them.", 100, "Attack"));
+        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol II: Blast", "The user flies high in the sky to rain a myriad of lasers on the target.", 115, "R. Attack"));
+        allOffensiveAttacks.get(5).setAccuracy(70);
+        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol III: Arsenal", "The user uses a combination of missles, lasers, and metal projectiles to inflict damage.", 120, "R. Attack"));
+        allOffensiveAttacks.get(6).setAccuracy(70);
         
-        // Indexes 10-13
-        allDebuffAttacks.add(new DebuffAttack("Shattered Spirit", "Emitting a negative aura, the user lowers the target's attack stats for 2 turns.", "Attack,R. Attack", 0.75, 3, 2));
+        // Indexes 7-10
+        allDebuffAttacks.add(new DebuffAttack("Extraction", "The user uses a needle-like apparatus to drain the target of their strength, weakening their offenses.", "Attack,R. Attack", 0.5, 3, 2));
         allDebuffAttacks.get(0).setAccuracy(95);
-        allDebuffAttacks.add(new DebuffAttack("Elemental Purge", "The user strips the target of their elemental strengths, weakening all stats for 2 turns.", "All", 0.75, 5, 2));
-        allDebuffAttacks.get(1).setAccuracy(85);
-        allDebuffAttacks.add(new DebuffAttack("Trip Up", "The user creates an uneven terrain to lower the target's speed for 3 turns.", "Speed", 0.5, 4, 3));
-        allDebuffAttacks.add(new DebuffAttack("Piercing Shout", "The user shouts loudly to lower the target's defenses for 2 turns.", "Defense,R. Defense", 0.75, 3, 2));
+        allDebuffAttacks.add(new DebuffAttack("Metalic Screech", "By using its metatl to make a screeching sound, the user lowers the target's ranged defense.", "R. Defense", 0.5, 5, 2));
+        allDebuffAttacks.get(1).setAccuracy(90);
+        allDebuffAttacks.add(new DebuffAttack("Blinding Light", "The user blinds the target with a bright laser to lower their defense and speed.", "Defense,Speed", 0.5, 4, 3));
+        allDebuffAttacks.add(new DebuffAttack("Cable Wire", "The user wraps the target's feet in thick cable wire, lowering their speed.", "Speed", 0.5, 3, 2));
         
-        // Indexes 14-17
-        allBuffAttacks.add(new BuffAttack("Heightened Spirit", "The user hypes themselves up to increase their attack stats for 2 turns.", "Attack,R. Attack", 1.25, 3, 2));
-        allBuffAttacks.add(new BuffAttack("Careful Guard", "Taking a precautious stance, the user increases their defenses for 2 turns.", "Defense,R. Defense", 1.25, 3, 2));
-        allBuffAttacks.add(new BuffAttack("Agility", "The user moves more swiftly to increase their speed for 3 turns.", "Speed", 1.5, 4, 3));
-        allBuffAttacks.add(new BuffAttack("Absorption", "The user gathers all excess energy around it to increase all its stats for 2 turns.", "All", 1.5, 5, 2));
+        // Indexes 11-13
+        allBuffAttacks.add(new BuffAttack("Light Metal", "The user sheds a layer of metal, increasing their speed for 3 turns.", "Speed", 1.5, 2, 3));
+        allBuffAttacks.add(new BuffAttack("Heavy Shield", "The user creates a heavy shield that doubles their defense for 3 turns", "Defense", 2, 4, 3));
+        allBuffAttacks.add(new BuffAttack("Sharpen", "The user sharpens their weapons to increase their attack for 2 turns.", "Speed", 1.5, 1, 2));
+    }
+    
+    private void populateCurrentAttacks()
+    {
+        Random rand = new Random();
+        int numOfOffensive = rand.nextInt(3) + 1;
         
-        // Indexes 18-19
-        allHealingAttacks.add(new SingleHealingAttack("Restful Spirit", "The user calms the target's spirits to restore 30% their total HP.", 0.3, 2));
-        allHealingAttacks.add(new TeamHealingAttack("Soothing Aura", "The user emits a gentle aura to restore 30% HP to its entire team.", 0.3, 2));
+        if(isOffensive)
+        {
+            /*
+            Offensive RESI Bots will have 3 attacks and one buff attack at all times
+            */
+            for(int i = 0; i < 3; i++)
+            {
+                currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));
+            }
+            
+            currentAttacks.add(allBuffAttacks.remove(rand.nextInt(allBuffAttacks.size())));
+        }
+        else
+        {
+            /*
+            Defensive RESI will always have 2 attacks, one buff, and one debuff attack
+            */
+            for(int i = 0; i < numOfOffensive; i++)
+            {
+                currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));
+            }
+            
+            currentAttacks.add(allBuffAttacks.remove(rand.nextInt(allBuffAttacks.size())));
+            
+            currentAttacks.add(allDebuffAttacks.remove(rand.nextInt(allDebuffAttacks.size())));
+        }
+        
+        populateAllAttacks();
     }
 }

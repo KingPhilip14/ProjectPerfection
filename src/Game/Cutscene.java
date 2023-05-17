@@ -1,6 +1,7 @@
 package Game;
 
 import Battle.Item;
+import Battle.RESITutorialBattle;
 import Exploration.NPC;
 
 /**
@@ -716,9 +717,5 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Guys, be careful! We need to work together if we're going to beat this thing!");
         
         MainGame.promptToEnter();
-        
-        // Start tutorial RESI Battle here
-        
-        // Look at notes on phone for how this should progress.
     }
 }

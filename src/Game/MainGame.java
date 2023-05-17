@@ -861,12 +861,12 @@ public class MainGame
     
     public static void resiTutorial()
     {
-        printWithBreaks("These robots, known as R.E.S.I. Bots, are very durable and are highly adaptable to their environments./"
-                + "Every time a R.E.S.I. is attacked, whatever element it was attacked by is what its element will become.");
+        printWithBreaks("These robots, known as RESI Bots, are very durable and are highly adaptable to their environments./"
+                + "Every time a RESI is attacked, whatever element it was attacked by is what its element will become.");
         
         waitForEnter();
         
-        printWithBreaks("For example, say the R.E.S.I. starts off as a Water element. If it's attacked by an Earth element,/it "
+        printWithBreaks("For example, say the RESI starts off as a Water element. If it's attacked by an Earth element,/it "
                 + "will then become an Earth element.");
     }
     

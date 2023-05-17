@@ -14,6 +14,7 @@ import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
 import Battle.RESIBattle;
+import Battle.RESITutorialBattle;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Battle.WaterEnemy;
@@ -40,6 +41,7 @@ public class Game
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
     private boolean isTesting;
+    private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
     private Objective objective;
@@ -411,12 +413,28 @@ public class Game
             checkForNextLocation();
         }
         // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
-        else if(!inSecondPhase && village.hasTalkedToEveryone())
+        else if(!inSecondPhase && village.getName().equals("Zoni Village") && village.hasTalkedToEveryone())
         {
             MainGame.promptToEnter();
-            Cutscene.warCutscene();
+            
+            // If the player loses the tutorial, skip the cutscene. Otherwise, play it
+            if(resiTutorialAttempts == 0)
+            {
+                Cutscene.warCutscene();
+            }
+            
+            // Start tutorial RESI Battle here
+            RESITutorialBattle rtb = village.makeRESITutorial(team);
+            
+            resiTutorialAttempts++;
+            
             objective.update();
         }
+    }
+    
+    private void startOfWar()
+    {
+        
     }
     
     /**
