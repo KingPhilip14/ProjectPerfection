@@ -90,10 +90,10 @@ public class Game
             
             // Put the player in Zoni Village
             objective.update();
-//            knownLocations.add(remainingLocations.remove(0));
+            knownLocations.add(remainingLocations.remove(0));
             
             // Talk to everyone in Zoni objective
-//            objective.update();
+            objective.update();
             
             currentLocation = knownLocations.get(knownLocations.size() - 1);
             
@@ -413,8 +413,8 @@ public class Game
         // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
         else if(!inSecondPhase && village.hasTalkedToEveryone())
         {
+            Cutscene.warCutscene();
             objective.update();
-//            Cutscene.zoniVillageWar();
         }
     }
     
@@ -935,7 +935,7 @@ public class Game
         NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Ice Village resident");
         
-        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've distracted me enough.", true);
+        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Just go away.", true);
         ninlil.setDescription("Wind Village resident");
         
 //        gift = Item.getHealingItem("Half Cake");
@@ -944,19 +944,22 @@ public class Game
 //        fultra.setDescription("Electric Village resident and Gaea's boyfriend");
         
         Item gift = Item.getBuffItem("Green Bean");
-        NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but he's still struggling with the death of his parents.", gift, 2, false);
-        pheu.setGiveGiftMessage("Take these in advance as a thank you.");
+        NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
+                + "with the loss of his parents from a few years ago. The poor boy needs a break from all he's doing.", gift, 2, false);
+        pheu.setGiveGiftMessage("Take this in advance as a thank you. I know you'll keep my word.");
         pheu.setDescription("Fire Village Resident and Calmus' aunt");
         
-        NPC ilven = new NPC("Ilven", "Oh, hello! I hope you're all doing well. Be patient with Ninlil. I know she can be pretentious at times, but she's not always like that.", false);
+        NPC ilven = new NPC("Ilven", "Hey! I hope you're all ready for the festival! Also, I have a request: be patient with Ninlil.\n\tI know she can be pretentious at times, "
+                + "but she's not always like that. I know it's hard to believe, but trust me.", false);
         ilven.setDescription("Wind Village resident and Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
-        NPC clairdra = new NPC("Clairdra", "I'm so proud of my grandson, Fultra. Thank you two for being there for him. And thank you, Gaea, for being a great partner for him too.", gift, 2, false);
-        clairdra.setGiveGiftMessage("I have some Blue Beans for you. You know their Fultra's favorites.");
+        NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace together, yes?", gift, 2, false);
+        clairdra.setGiveGiftMessage("And to celebrate, take some Blue Beans. They're good for you, you know.");
         clairdra.setDescription("Electric Village resident and Fultra's grandma");
         
-        NPC verg = new NPC("Verg", "Hey Ana, Gaea. I just wanted to let you know that Frigs really appreciates you guys. Thanks for being there for my brother.", false);
+        NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
+                + "amazing people to back\n\thim up when I'm not there. I hope you enjoy the rest of the night!", false);
         verg.setDescription("Ice Village resident and Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();

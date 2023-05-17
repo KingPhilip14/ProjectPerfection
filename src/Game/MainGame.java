@@ -539,8 +539,9 @@ public class MainGame
         while(scan.hasNext())
         {
             println(scan.next(), 25);
-            wait(1750);
         }
+        
+        System.out.println("");
     }
     
     public static void printWithRandomLetters(String string)

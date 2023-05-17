@@ -437,15 +437,15 @@ public class Cutscene
                 + "captivating her.");
         
         MainGame.dialoguelnln("Gaea", "*sniff sniff* I can smell... Cinnamon Rolls... Triple Chocolate Meltdown... Apple "
-                + "Pies... Oh, today is gonna be amazing! There's desserts galore!");
+                + "Pies... Oh, today is gonna be amazing!\n\tThere's desserts galore!");
         
         print("Fultra laughed at the enthusiasm of Gaea's sleuthing nose and attitude.");
         
         MainGame.dialoguelnln("Fultra", "You two will have a field day with the food. Don't forget the annual dance though! "
-                + "The music, the food...\n\t everything will be wonderful.");
+                + "The music, the food...\n\teverything will be wonderful.");
         
         MainGame.dialoguelnln("Anahita", "I agree! This is always the best time of the year. Before we do anything else, we "
-                + "should talk to everyone to see if anyone needs help.\n\tI also see some familar faces, so let's go say hi!");
+                + "should talk to everyone to see if\n\tanyone needs help. I also see some familar faces, so let's go say hi!");
         
         MainGame.promptToEnter();
     }
@@ -456,7 +456,7 @@ public class Cutscene
     public static void calmusCutscene()
     {
         print("The group approaches a young male playing with what appears to be his little sister. He's quite tall and "
-                + "towers over the group. Anahita calls out to him.");
+                + "towers over the group. Anahita/calls out to him.");
         
         MainGame.dialoguelnln("Anahita", "Hey, Calmus? Is that you?");
         
@@ -466,8 +466,8 @@ public class Cutscene
         
         print("Calmus gives the group a hug, smiling at them all. Despite his size, he's known to be a sort of gentle giant. "
                 + "His strength and endurance/is admired by many. He's known the group for years, but the journey to the Fire "
-                + "Village is too strenous for frequent visits. Even though he's physicially strong, emotions can sometimes "
-                + "get the better of him.");
+                + "Village is too strenous for frequent visits. Even though/he's physicially strong, his emotions "
+                + "is something he fights with frequently.");
         
         MainGame.dialoguelnln("Fultra", "It's been too long! How's your family doing?");
         
@@ -478,7 +478,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Gaea", "We're doing quite well! We're excited to eat some wonderful food, listen to the "
-                + "music - everything! You know I love this time of the year.");
+                + "music - everything! You know\n\twe love this time of the year.");
         
         MainGame.dialoguelnln("Calmus", "I don't blame you. It's amazing to watch all of Pulchra come together in harmony... "
                 + "It's beautiful.\n\tI should let you guys go though! Go enjoy the festival, but I'd like to catch up before "
@@ -488,12 +488,18 @@ public class Cutscene
         
         MainGame.dialoguelnln("Calmus", "And before you guys leave, take this! My grandmother made extra.");
         
+        MainGame.promptToEnter();
+        
         MainGame.printlnln("You received an Apple Pie!", 25);
         MainGame.addToInventory(Item.getHealingItem("Apple Pie"), 1);
+        
+        MainGame.promptToEnter();
         
         print("Anahita and Gaea smell the wonderful scent from the pie.");
         
         MainGame.dialoguelnln("Anahtia", "Thank you so much! We'll see you soon, Calmus! Enjoy the festival!");
+        
+        MainGame.promptToEnter();
     }
     
     /**
@@ -506,20 +512,20 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "It might be! Let's go say hi!");
         
         print("The group approaches Frigs, a thin-looking young man. He was watching people put the decorations up as he "
-                + "played with a snowflake on his finger./Anahita snuck up behind him and poked him with her fingers ready "
+                + "played with a snowflake/on his finger. Anahita snuck up behind him and poked him with her fingers ready "
                 + "to use Tsunami Shot.");
 
         MainGame.dialoguelnln("Anahita", "Boo!");
         
-        print("Frigs let out a cry that was uncharacteristic for someone that plays nonchalant often. He pushed a laughing "
-                + "Anahita off of him as he recollected himself. Gaea and Fultra were laughing too.");
+        print("Frigs let out a cry that was uncharacteristic for someone that's known to be nonchalant. He pushed a laughing "
+                + "Anahita/away as he recollected himself. Gaea and Fultra were laughing too.");
         
         MainGame.dialoguelnln("Frigs", "Oh my gosh... Ana! Can you not do that?");
 
         print("Frigs tried to be angry but couldn't help but laugh with the group.");
         
         print("Frigs, a normally witty, yet collected person is another childhood friend of Anahita's. They couldn't visit "
-                + "each other often, so they would talk long into the night after annual festivals.");
+                + "each other often, so they/would talk long into the night after annual festivals.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -534,11 +540,13 @@ public class Cutscene
         print("Gaea and Fultra both gave each other a suggestive look but stayed quiet.");
         
         MainGame.dialoguelnln("Anahita", "I'm glad to hear it! We want to see who else we can find, but we'll catch up soon. "
-                + "See you soon!");
+                + "See you later!");
         
         print("The group and Frigs exchanged hugs and smiles.");
         
         MainGame.dialoguelnln("Frigs", "See you soon!");
+        
+        MainGame.promptToEnter();
     }
     
     /**
@@ -547,21 +555,21 @@ public class Cutscene
     public static void ninlilCutscene()
     {
         print("Anahita was walking and talking to Gaea and Fultra, sharing her enthusiasm with the group. Her excitement, "
-                + "unfortunately, blinded her and casued her to bump into/someone helping with decorations. A basket of "
+                + "unfortunately, blinded her/and caused her to bump into someone helping with decorations. A large basket of "
                 + "flowers and streamers fell on the ground.");
         
         MainGame.dialoguelnln("Anahita", "Oh my gosh! I'm so sorry. Here, let me help yo- Ninlil?");
         
         print("The person Anahita bumped into was Ninlil. She's strong, well-respected, and holds herself to a high esteem. "
-                + "Anahita and Gaea seldom have good interactions with her.");        
+                + "Anahita and Gaea seldom/have smooth interactions with her.");        
         
-        MainGame.dialoguelnln("Ninlil", "Oh... it's you lot. Are you blind or something? Although I shouldn't be too "
-                + "surprised. Ugh, now I have to pick all this up...!");
+        MainGame.dialoguelnln("Ninlil", "Ugh, now I have to pick all this up...! Oh... it's you lot. Are you "
+                + "blind or something? Although, I guess I shouldn't\n\tbe too surprised since its you, Ana...");
         
         print("Ninlil starts to pick up the decorations, waving Anahita's hands away, preventing her from helping.");
         
-        print("Ninlil's arrogance causes her to not have too many good relationships. The only good one she has is with "
-                + "Ilven, her training partner.");
+        print("Ninlil's arrogance causes her to not have many good relationships. The only one she has is with Ilven, "
+                + "her training partner.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -570,18 +578,28 @@ public class Cutscene
         
         print("Ninlil gave Gaea a sharp side eye as she continuted to pick up the mess.");
         
-        MainGame.dialoguelnln("Ninlil", "First, I dont't have an attitude, okay? Second, this wouldn't happen if you would "
-                + "just watch where you're going. It's really not that hard.");
+        MainGame.dialoguelnln("Ninlil", "First, I dont't have an attitude, okay? Second, this wouldn't have happened if you "
+                + "would watch where you're going.\n\tIt's really not that hard.");
         
-        MainGame.dialoguelnln("Gaea", "Why are you always so pretenious? Get off your high horse already.");
+        MainGame.dialoguelnln("Gaea", "Why are you always so pretenious? Get off your high horse already!");
         
         MainGame.dialoguelnln("Fultra", "Hey, calm down a bit Gaea. We're sorry, Ninlil. We'll leave you be, and we're sorry "
                 + "for bumping into you.");
         
         print("Fultra pulls Gaea and Anahita along to diffuse the conflict. Once the group is out of earshot, Gaea "
-                + "releasees pent up emotion.");
+                + "releasees pent up anger.");
         
         MainGame.dialoguelnln("Gaea", "Oh, I can't *stand* her! She always thinks she so high and mighty and above everyone "
-                + "else. Ugh, I'd hate to have to do anything with her!");
+                + "else. Ugh, I'd hate to\n\thave to do *anything* with her!");
+        
+        MainGame.promptToEnter();
+    }
+    
+    /**
+     * A cutscene that plays after the player talks to everyone at the Annual Festival.
+     */
+    public static void warCutscene()
+    {
+        // Look at notes on phone for how this should progress.
     }
 }

@@ -96,6 +96,7 @@ public class Village extends Location
     {
         if(input != numOfOptions)
         {
+            System.out.println("");
             NPC person = villagePeople.get(input - 1);
             person.talk();
             promptToTalk();
