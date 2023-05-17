@@ -3,6 +3,7 @@ package Game;
 import Battle.Attack;
 import Battle.BuffAttack;
 import Battle.ComboAttack;
+import static Battle.ComboAttack.populateComboAttackLibrary;
 import Battle.DebuffAttack;
 import Battle.Enemy;
 import Battle.Inventory;
@@ -10,9 +11,9 @@ import Battle.Item;
 import Battle.OffensiveAttack;
 import Battle.Player;
 import Battle.PlayerClass;
+import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
-import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
 import java.util.Random;
@@ -326,7 +327,7 @@ public class MainGame
 //        playerFightingTeam.add(fultra);
         
         Enemy.populateAllAttacks();
-        
+        RESIEnemy.populateAllAttacks();
 //        Enemy e0 = new Enemy("Electric Elk", "An Elk that can control electricity.", "Electric", playerTeam, true);
 //        Enemy e1 = new Enemy("Water Elk", "An Elk that can control water.", "Water", playerTeam, true);
 //        Enemy e2 = new Enemy("Earth Elk", "An Elk that can control the earth.", "Earth", playerTeam, true);
@@ -797,9 +798,9 @@ public class MainGame
                 + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
                 + "slightly if they aren't at full HP./\tAll-Rounder: Boosts Speed by 10 points.");
         waitForEnter();
-        printlnlnWait("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25, 3000);
+        printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25);
         
-        waitForEnter();
+        promptToEnter();
     }
     
     public static void cooldownTutorial()
@@ -855,21 +856,28 @@ public class MainGame
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
                 + "The Master Clerk class has a special property where they can heal anyone no matter the adjacency./Normally, a Clerk can only heal an adjacent ally. However, a Master Clerk ignores this.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
     }
     
     public static void resiTutorial()
     {
         printWithBreaks("These robots, known as R.E.S.I. Bots, are very durable and are highly adaptable to their environments./"
-                + "At the end of every turn, whatever the last element was that attacked them is what their element will be until/"
-                + "the next turn if they're attacked again.");
+                + "Every time a R.E.S.I. is attacked, whatever element it was attacked by is what its element will become.");
         
         waitForEnter();
         
-        printWithBreaks("For example, say the R.E.S.I. starts off as a Water element. On turn 1, imagine it's hit by a Wind,/ "
-                + "Ice, then Electric attack. At the end of the turn, it'll have the Electric element and start doing Electric/"
-                + " damage. Be mindeful of your attacks!");
+        printWithBreaks("For example, say the R.E.S.I. starts off as a Water element. If it's attacked by an Earth element,/it "
+                + "will then become an Earth element.");
+    }
+    
+    public static void comboAttackTutorial()
+    {
+        printWithBreaks("Combo Attacks are very strong in battle! When someone fighting has a cheer partner and their elements "
+                + "are compatable,/the option of using a Combo attack is unlocked.");
+        
+        printWithBreaks("Combo Attacks work by taking both elements of both the fighter and their cheer partner. The "
+                + "effectiveness of both will/be applied and deal massive damage! This can only be done once a battle, however, "
+                + "so use it wisely!");
     }
     
     public static Player makeAnahita()

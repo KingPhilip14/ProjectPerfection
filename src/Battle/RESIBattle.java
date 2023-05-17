@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.MainGame;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,12 @@ public class RESIBattle extends Battle
     {
         super.attackWithOffense(attack, player, target);
         
-        ((RESIEnemy)target).setElement(player.getElement());
+        RESIEnemy enemy = ((RESIEnemy)target);
+        
+        enemy.setElement(player.getElement());
+        
+        MainGame.print(enemy.name + "'s element is now " + enemy.element + "!", 25);
+        
+        MainGame.promptToEnter();
     }
 }

@@ -472,7 +472,7 @@ public class Cutscene
         MainGame.dialoguelnln("Fultra", "It's been too long! How's your family doing?");
         
         MainGame.dialoguelnln("Calmus", "I'm just taking care of them as normal and helping when I can. "
-                + "Despite everything, we're still holding strong. But how are you guys?");
+                + "Despite everything, we're still holding strong.\n\tBut how are you guys?");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -495,7 +495,7 @@ public class Cutscene
         
         MainGame.promptToEnter();
         
-        print("Anahita and Gaea smell the wonderful scent from the pie.");
+        print("Anahita and Gaea smelled the wonderful scent from the pie.");
         
         MainGame.dialoguelnln("Anahtia", "Thank you so much! We'll see you soon, Calmus! Enjoy the festival!");
         
@@ -512,13 +512,13 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "It might be! Let's go say hi!");
         
         print("The group approaches Frigs, a thin-looking young man. He was watching people put the decorations up as he "
-                + "played with a snowflake/on his finger. Anahita snuck up behind him and poked him with her fingers ready "
+                + "played with a snowflake on/his finger. Anahita snuck up behind him and poked him with her fingers ready "
                 + "to use Tsunami Shot.");
 
         MainGame.dialoguelnln("Anahita", "Boo!");
         
         print("Frigs let out a cry that was uncharacteristic for someone that's known to be nonchalant. He pushed a laughing "
-                + "Anahita/away as he recollected himself. Gaea and Fultra were laughing too.");
+                + "Anahita away as/he recollected himself. Gaea and Fultra were laughing too.");
         
         MainGame.dialoguelnln("Frigs", "Oh my gosh... Ana! Can you not do that?");
 
@@ -581,7 +581,7 @@ public class Cutscene
         MainGame.dialoguelnln("Ninlil", "First, I dont't have an attitude, okay? Second, this wouldn't have happened if you "
                 + "would watch where you're going.\n\tIt's really not that hard.");
         
-        MainGame.dialoguelnln("Gaea", "Why are you always so pretenious? Get off your high horse already!");
+        MainGame.dialoguelnln("Gaea", "Why are you always so pretenious? Get off your high horse already! You're always a-");
         
         MainGame.dialoguelnln("Fultra", "Hey, calm down a bit Gaea. We're sorry, Ninlil. We'll leave you be, and we're sorry "
                 + "for bumping into you.");
@@ -600,7 +600,7 @@ public class Cutscene
      */
     public static void warCutscene()
     {
-        print("After the group finishes talking to other villagers, a bell chimes and a wave of people gather to the center "
+        print("After the group finished talking to other villagers, a bell chimed and a wave of people gathered to the center "
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
                 + "lifestyle.");
         
@@ -614,11 +614,11 @@ public class Cutscene
         MainGame.dialoguelnln("Elder Vitorem", "My dear Pulchrians, welcome to this year's Annual Festival!");
         
         print("An uproar of cheer raised as people hugged one another. Streamers were flying in the air, instruments playing, "
-                + "cymbals crashing. Once it was quiet again, Elder Vitorem continued.");
+                + "cymbals crashing./Once it was quiet again, Elder Vitorem continued.");
         
         MainGame.dialoguelnln("Elder Vitorem", "Today, we celebrate another year of peace, and prosperity. Thank you all for "
-                + "all you've done./May this mark the start of another year of goodness for us all. Please - enjoy the food, "
-                + "enjoy/each other's company, and let's enjoy the celebration!");
+                + "all you've done. May\n\tthis mark the start of another year of goodness for us all. Please - enjoy the food, "
+                + "enjoy each other's company, and let's enjoy the celebration!");
         
         print("After he finished, the music started again. Dancers from the Water and Fire Villages started performing a "
                 + "traditional dance./People walked around, talking, laughing, cheering with one another. It was an amazing "
@@ -628,9 +628,9 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("Calmus and Frigs joined with Anahita, Gaea, and Fultra. The circle of friends talked and caught up with what "
-                + "happened in their lives the past year./Ninlil was with her training partner, Ilven, off to the side. They "
-                + "were also talking, but Ninlil didn't engage in much conversation otherwise./Eventually, someone called Ilven"
-                + "elsewhere, leaving Ninlil on her own.");
+                + "happened in their lives/the past year.Ninlil was with her training partner, Ilven, off to the side. They "
+                + "were also talking, but Ninlil didn't engage in much conversation/otherwise. Eventually, someone called "
+                + "Ilven elsewhere, leaving Ninlil on her own.");
         
         MainGame.dialoguelnln("Anahita", "Hm...");
         
@@ -652,7 +652,7 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "...Fine... Don't be surprised if you fail though.");
         
         print("Anahita approached Ninlil and started conversation. Ninlil surprised Anahita and engaged with her. After a few "
-                + "minutes, the two returned to the rest/of the group. Gaea's jaw dropped, but she quickly recollected herself."
+                + "minutes, the two/returned to the rest of the group. Gaea's jaw dropped, but she quickly recollected herself."
                 + "The other guys waved Ninlil in.");
         
         MainGame.dialoguelnln("Anahita", "I'm sure everyone already knows Ninlil, but she said she's willing to be with us for "
@@ -660,8 +660,8 @@ public class Cutscene
         
         MainGame.dialoguelnln("Ninlil", "It's better than being alone, I guess.");
         
-        print("Ninlil gave a casual shrug and sat with the group. Despite Ninlil not really liking the entire group, she was "
-                + "thankful for being invited to/be with them, but she would never say that. She was quiet for most of the "
+        print("Ninlil shrugged and sat with the group. Despite Ninlil not really liking the entire group, she was "
+                + "thankful for being invited to be with/them, but she would never say that. She was quiet for most of the "
                 + "conversation, but she was attentive and kept to herself.");
         
         //----------------------------------------------------------------------------------------------------------------------
@@ -706,10 +706,10 @@ public class Cutscene
         
         print("A laser shot next to wear the group was standing, causing them all to fall. A robot then zoomed in next to them "
                 + "all. It had/a sleek design, its metal covering glimmering in the light of the surrounding fire. After it, "
-                + "many more similar robots came flying in./They started to attack the villagers that were trying to flee.");
+                + "many other robots came flying in./They started to attack the villagers that were trying to flee.");
         
         print("Other villagers that could fight grouped together to fight. Verg, Frigs' brother; Ilven, Ninlil's training "
-                + "partner; Lac, Anahita's father, among others, were ready.");
+                + "partner; Lac, Anahita's father,/among others, were ready.");
         
         print("The robot that attacked close to Anahita and the others was on the offensive and started to attack them!");
         

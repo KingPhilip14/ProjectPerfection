@@ -154,7 +154,8 @@ public abstract class Battle
             lost();
         }
         
-        MainGame.wait(3000);
+        MainGame.promptToEnter();
+//        MainGame.wait(3000);
         currentTurn = 0;
         resetPlayers();
     }

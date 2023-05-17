@@ -1,6 +1,7 @@
 package Battle;
 
 import Game.MainGame;
+import Utilites.MenuHelper;
 
 /**
  * A class for taking the player through the first tutorial.
@@ -51,11 +52,24 @@ public class BeachTutorialBattle extends TutorialBattle
     @Override
     protected void explainBattles()
     {
-        interfaceTutorial();
+        String message = "Select the tutorial you want to view:"
+                + "\n\t1) Battle Interface\n\t2) Matchup Chart\n\t3) Targeting\n\t4) Done";
+        int input = MenuHelper.displayMenu(message, 1, 4);
         
-        matchupTutorial();
-        
-        targetingTutorial();
+        switch(input)
+        {
+            case 1:
+                interfaceTutorial();
+                break;
+            case 2:
+                matchupTutorial();
+                break;
+            case 3:
+                targetingTutorial();
+                break;
+            default:
+                break;
+        }
         
         MainGame.printlnlnWait("That's a little bit of how battles work. These basics should help you out!", 25, 2000);
     }

@@ -243,9 +243,9 @@ public class Game
     private void displayInfo()
     {
         objective.printCurrentObjective();
-        MainGame.println("Current Location: " + currentLocation.getName(), 10);
-        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G", 10);
-        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation), 10);
+        MainGame.println("Current Location: " + currentLocation.getName(), 5);
+        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G", 5);
+        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation), 5);
     }
     
     public void processInput()
@@ -413,6 +413,7 @@ public class Game
         // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
         else if(!inSecondPhase && village.hasTalkedToEveryone())
         {
+            MainGame.promptToEnter();
             Cutscene.warCutscene();
             objective.update();
         }
@@ -954,12 +955,12 @@ public class Game
         ilven.setDescription("Wind Village resident and Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
-        NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace together, yes?", gift, 2, false);
-        clairdra.setGiveGiftMessage("And to celebrate, take some Blue Beans. They're good for you, you know.");
+        NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
+        clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
         clairdra.setDescription("Electric Village resident and Fultra's grandma");
         
         NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
-                + "amazing people to back\n\thim up when I'm not there. I hope you enjoy the rest of the night!", false);
+                + "amazing\n\tpeople to back him up when I'm not there. I hope you enjoy the rest of the night!", false);
         verg.setDescription("Ice Village resident and Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();

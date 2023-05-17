@@ -620,6 +620,9 @@ public abstract class Enemy extends Character
         return result;
     }
     
+    /**
+     * Populates respective ArrayLists with all possible attacks an Enemy can learn.
+     */
     public static void populateAllAttacks()
     {
         allOffensiveAttacks = new ArrayList<>(10);

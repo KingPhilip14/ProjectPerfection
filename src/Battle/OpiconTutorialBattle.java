@@ -1,6 +1,7 @@
 package Battle;
 
 import Game.MainGame;
+import Utilites.MenuHelper;
 import java.util.ArrayList;
 
 /**
@@ -30,9 +31,24 @@ public class OpiconTutorialBattle extends TutorialBattle
     @Override
     protected void explainBattles()
     {
-        cooldownTutorial();
-        aggroTutorial();
-        classTutorial();
+        String message = "Select the tutorial you want to view:"
+                + "\n\t1) Attack Cooldown\n\t2) Aggro\n\t3) Classes\n\t4) Done";
+        int input = MenuHelper.displayMenu(message, 1, 4);
+        
+        switch(input)
+        {
+            case 1:
+                cooldownTutorial();
+                break;
+            case 2:
+                aggroTutorial();
+                break;
+            case 3:
+                classTutorial();
+                break;
+            default:
+                break;
+        }
     }
     
     private void cooldownTutorial()
