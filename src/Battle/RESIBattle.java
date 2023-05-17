@@ -25,20 +25,4 @@ public class RESIBattle extends Battle
         
         ((RESIEnemy)target).setElement(player.getElement());
     }
-    
-    /**
-     * If the enemy team doesn't solely consist of RESI enemies, an exception is thrown.
-     * @param enemyTeam
-     * @throws IllegalArgumentException 
-     */
-//    protected void validateTeam(ArrayList<Enemy> enemyTeam) throws IllegalArgumentException
-//    {
-//        for(Enemy e : enemyTeam)
-//        {
-//            if(!(e instanceof RESIEnemy))
-//            {
-//                throw new IllegalArgumentException ("The enemy teams needs to only contain RESI enemies.");
-//            }
-//        }
-//    }
 }

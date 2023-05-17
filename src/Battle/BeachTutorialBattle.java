@@ -24,7 +24,7 @@ public class BeachTutorialBattle extends TutorialBattle
     @Override
     protected void intro()
     {
-        MainGame.printlnlnWait("Anahita is being threatened by a Sandy Krobble!", 25, 2000);
+        MainGame.printlnlnWait("Anahita is being threatened by a Sandy Krobble!", 25, 1000);
         
         String message = "Would you like the tutorial of how battles work?\n\t1) Yes\n\t2) No";
         
@@ -44,8 +44,8 @@ public class BeachTutorialBattle extends TutorialBattle
 //                break;
 //        }
         
-        MainGame.wait(2000);
-        MainGame.clearScreen();
+//        MainGame.wait(2000);
+//        MainGame.clearScreen();
     }
     
     @Override
@@ -65,12 +65,12 @@ public class BeachTutorialBattle extends TutorialBattle
         super.printEnemyInfoTable();
         
         // Explains the interface
-        MainGame.printlnlnWait("\nHere is what the battle interface will look like.\n\nWhen there are more enemies and members "
+        MainGame.printlnln("\nHere is what the battle interface will look like.\n\nWhen there are more enemies and members "
                 + "on your team, the slots fill accordingly:\n\t"
                 + "If a team has 1 member, they will be in the middle slot.\n\t"
                 + "If a team has 2 members, they will be in the left and right slots, leaving the middle empty.\n\t"
                 + "And if a team has 3 members, they will fill the entire table.\n\t"
-                + "(This will make more sense the more you play).", 40, 5000);
+                + "(This will make more sense the more you play).", 25);
         
         MainGame.promptToEnter();
     }
@@ -87,10 +87,10 @@ public class BeachTutorialBattle extends TutorialBattle
     private void targetingTutorial()
     {
         // Explains targeting with the board
-        MainGame.printlnlnWait("Next: Targeting.", 25, 1500);
-        MainGame.printlnWait("\tLeft slot: The left slot can only target and be targeted by the opposing left and center slots.", 40, 2000);
-        MainGame.printlnWait("\tCenter slot: The center slot can target and be targeted by all opposing slots.", 40, 2000);
-        MainGame.printlnlnWait("\tRight slot: The right slot can target and be targeted by the opposing center and right slots.", 40, 2000);
+        MainGame.printlnlnWait("Next: Targeting.", 25, 1000);
+        MainGame.println("\tLeft slot: The left slot can only target and be targeted by the opposing left and center slots.", 25);
+        MainGame.println("\tCenter slot: The center slot can target and be targeted by all opposing slots.", 25);
+        MainGame.printlnln("\tRight slot: The right slot can target and be targeted by the opposing center and right slots.", 25);
         MainGame.promptToEnter();
     }
 }

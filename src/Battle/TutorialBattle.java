@@ -53,6 +53,8 @@ public abstract class TutorialBattle extends Battle
                 MainGame.printlnln("\nAlright! Win so you can move on!", 25);
                 break;
         }
+        
+        MainGame.promptToEnter();
     }
     
     /*

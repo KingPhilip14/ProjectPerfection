@@ -107,7 +107,7 @@ public class Cutscene
                 + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./She realizes that she let the "
                 + "time slip past her, however, and that she's close to being late.");
         MainGame.dialoguelnln("Anahita", "*sigh* I wish I could stay here forever...\n\t"
-                + "Oh no! I forgot I need to get back home to help Mom prepare for the annual festival!\n\tYou've gone and done it "
+                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival!\n\tYou've gone and done it "
                 + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest...");
         
         MainGame.promptToEnter();
@@ -267,7 +267,7 @@ public class Cutscene
         print("Anahita and Gaea gave each other a look and nodded as if they were communicating telepathically.");
         MainGame.dialoguelnln("Merda", "Well, thank you, Fultra. You all clearly seemed to have enjoyed them. Hopefully those\n\t"
                 + "at the festival do too.");
-        MainGame.dialoguelnln("Merda", "Brinlee and I will be leaving soon for the annual festival. I'll give you guys some "
+        MainGame.dialoguelnln("Merda", "Brinlee and I will be leaving soon for the Annual Festival. I'll give you guys some "
                 + "extras before we go though.");
         MainGame.dialoguelnln("Anahita", "Oh, wonderful! Thank you so much. You're the best.");
         print("Anahita gave Merda a hug before giving the others her attention.");
@@ -288,7 +288,7 @@ public class Cutscene
      */
     public static void earthVillageCutscene()
     {
-        MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the annual festival, and then\n\t"
+        MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the Annual Festival, and then\n\t"
                 + "we can party!");
         MainGame.dialoguelnln("Fultra", "I've been waiting all day! It'll be nice to catch up with some people from the other "
                 + "villages.");
@@ -525,7 +525,7 @@ public class Cutscene
         print("Frigs tried to be angry but couldn't help but laugh with the group.");
         
         print("Frigs, a normally witty, yet collected person is another childhood friend of Anahita's. They couldn't visit "
-                + "each other often, so they/would talk long into the night after annual festivals.");
+                + "each other often, so they/would talk long into the night after the Annual Festival.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -600,6 +600,125 @@ public class Cutscene
      */
     public static void warCutscene()
     {
+        print("After the group finishes talking to other villagers, a bell chimes and a wave of people gather to the center "
+                + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
+                + "lifestyle.");
+        
+        print("Anahita, Gaea, and Fulchra follow the crowd and find the person who rang the bell. It's an older looking man, "
+                + "with strong physique./He's known as Elder Vitorem, the leader of Pulchra. A kind, caring, and "
+                + "compassionate man.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Vitorem", "My dear Pulchrians, welcome to this year's Annual Festival!");
+        
+        print("An uproar of cheer raised as people hugged one another. Streamers were flying in the air, instruments playing, "
+                + "cymbals crashing. Once it was quiet again, Elder Vitorem continued.");
+        
+        MainGame.dialoguelnln("Elder Vitorem", "Today, we celebrate another year of peace, and prosperity. Thank you all for "
+                + "all you've done./May this mark the start of another year of goodness for us all. Please - enjoy the food, "
+                + "enjoy/each other's company, and let's enjoy the celebration!");
+        
+        print("After he finished, the music started again. Dancers from the Water and Fire Villages started performing a "
+                + "traditional dance./People walked around, talking, laughing, cheering with one another. It was an amazing "
+                + "event. Some would have even considered it perfect.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Calmus and Frigs joined with Anahita, Gaea, and Fultra. The circle of friends talked and caught up with what "
+                + "happened in their lives the past year./Ninlil was with her training partner, Ilven, off to the side. They "
+                + "were also talking, but Ninlil didn't engage in much conversation otherwise./Eventually, someone called Ilven"
+                + "elsewhere, leaving Ninlil on her own.");
+        
+        MainGame.dialoguelnln("Anahita", "Hm...");
+        
+        MainGame.dialoguelnln("Gaea", "What's up Ana? Something on your mind?");
+        
+        MainGame.dialoguelnln("Anahita", "I'm just thinking about Ninlil. I know she's difficult, but I think I'll invite her "
+                + "over. Er, at least, I'll try to.");
+        
+        print("Gaea was surprised at Anahita's desire to invite Ninlil to join the group.");
+        
+        MainGame.dialoguelnln("Gaea", "Why? Did you already forget how she acted earlier?");
+        
+        MainGame.dialoguelnln("Anahita", "I know, but she seems to only have Ilven to talk to. It wouldn't hurt to try.");
+        
+        MainGame.dialoguelnln("Frigs", "I'm not opposed to it. I have to agree and say that no harm could truly be done.");
+        
+        print("Gaea let out an exasperated sigh and then shook her head.");
+        
+        MainGame.dialoguelnln("Gaea", "...Fine... Don't be surprised if you fail though.");
+        
+        print("Anahita approached Ninlil and started conversation. Ninlil surprised Anahita and engaged with her. After a few "
+                + "minutes, the two returned to the rest/of the group. Gaea's jaw dropped, but she quickly recollected herself."
+                + "The other guys waved Ninlil in.");
+        
+        MainGame.dialoguelnln("Anahita", "I'm sure everyone already knows Ninlil, but she said she's willing to be with us for "
+                + "a while.");
+        
+        MainGame.dialoguelnln("Ninlil", "It's better than being alone, I guess.");
+        
+        print("Ninlil gave a casual shrug and sat with the group. Despite Ninlil not really liking the entire group, she was "
+                + "thankful for being invited to/be with them, but she would never say that. She was quiet for most of the "
+                + "conversation, but she was attentive and kept to herself.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The night went on strong, with people still celebrating. The music and dancing was still going, but then...");
+        
+        MainGame.wait(1500);
+        
+        MainGame.dialoguelnln("Anahita", "Do... do you guys see that bright light in the sky?");
+        
+        print("The group looked up and saw a bright red light in the dark night's sky. Then, the light multiplied.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Suddenly, a red laser blasted into the ground in the midst of the festival. Screams erupted instantly, causing "
+                + "panic and for/people to scatter. Anahita and the rest of the group immediately went on the defensive.");
+        
+        MainGame.dialoguelnln("Gaea", "What's happening?!");
+        
+        MainGame.dialoguelnln("Fultra", "It looks like we're under attack! We need to help everyone however we can!");
+        
+        print("The group all nodded and went around the festival grounds to help people get to safety. However, the more time "
+                + "that passed, the more lasers were fired.");
+        
+        print("Fires started from where the lasers blasted, consuming the decorations. People were fleeing the area as quickly "
+                + "as they could.");
+        
+        MainGame.dialoguelnln("Elder Vitorem", "Everyone get to safety - we're under attack! Take the children some where "
+                + "safe! If you\n\tare capable of fighting, please stay here to defend against the invaders!!!");
+        
+        print("Anahita and the others ran up to Elder Vitorem.");
+        
+        MainGame.dialoguelnln("Fultra", "Elder Vitorem! We're here to help in whatever way we can!");
+        
+        MainGame.dialoguelnln("Elder Vitorem", "Ah, Fultra! Thank goodness you're all here. Get ready - I fear that this is a "
+                + "terrible threat.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("A laser shot next to wear the group was standing, causing them all to fall. A robot then zoomed in next to them "
+                + "all. It had/a sleek design, its metal covering glimmering in the light of the surrounding fire. After it, "
+                + "many more similar robots came flying in./They started to attack the villagers that were trying to flee.");
+        
+        print("Other villagers that could fight grouped together to fight. Verg, Frigs' brother; Ilven, Ninlil's training "
+                + "partner; Lac, Anahita's father, among others, were ready.");
+        
+        print("The robot that attacked close to Anahita and the others was on the offensive and started to attack them!");
+        
+        MainGame.dialoguelnln("Anahita", "Guys, be careful! We need to work together if we're going to beat this thing!");
+        
+        MainGame.promptToEnter();
+        
+        // Start tutorial RESI Battle here
+        
         // Look at notes on phone for how this should progress.
     }
 }

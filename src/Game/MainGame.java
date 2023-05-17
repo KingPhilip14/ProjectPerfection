@@ -859,6 +859,19 @@ public class MainGame
         clearScreen();
     }
     
+    public static void resiTutorial()
+    {
+        printWithBreaks("These robots, known as R.E.S.I. Bots, are very durable and are highly adaptable to their environments./"
+                + "At the end of every turn, whatever the last element was that attacked them is what their element will be until/"
+                + "the next turn if they're attacked again.");
+        
+        waitForEnter();
+        
+        printWithBreaks("For example, say the R.E.S.I. starts off as a Water element. On turn 1, imagine it's hit by a Wind,/ "
+                + "Ice, then Electric attack. At the end of the turn, it'll have the Electric element and start doing Electric/"
+                + " damage. Be mindeful of your attacks!");
+    }
+    
     public static Player makeAnahita()
     {
         PlayerClass masterClerk = PlayerClass.getPlayerClass("Master Clerk");
