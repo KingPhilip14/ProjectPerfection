@@ -108,8 +108,8 @@ public abstract class Item implements Collectable
         HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
         HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
         HealingItem cheesecake = new HealingItem("Cheesecake", "It's cheesecake! Who doesn't like cheesecake?", 165, 285);
-        HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake, melted chocolate inside, and ice cream on top!", 800, 2920);
-        HealingItem lasagna = new HealingItem("Lasagna", "A (model) skyscraper's worth of immacualte flavors burst from this item.", 605, 1025);
+        HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake with molten chocolate inside!", 800, 2920);
+        HealingItem snowbake = new HealingItem("Snowbake", "A nice, ice treat that's very popular everywhere in Pultra.", 605, 1025);
 
         ArrayList<HealingItem> items = new ArrayList<>();
 
@@ -126,7 +126,7 @@ public abstract class Item implements Collectable
         items.add(lollipop);
         items.add(cheesecake);
         items.add(tcm);
-        items.add(lasagna);
+        items.add(snowbake);
 
         allHealItems = items;
 
@@ -261,5 +261,12 @@ public abstract class Item implements Collectable
     public String toInventoryString()
     {
         return name + " - x" + quantity + "\n\t" + description;
+    }
+    
+    
+    @Override
+    public String toString()
+    {
+        return this.name;
     }
 }

@@ -143,4 +143,10 @@ public class NPC extends GameProperty
         
         return message;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "Name: " + this.name + "\tGift Item:" + this.gift.toString();
+    }
 }

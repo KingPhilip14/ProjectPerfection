@@ -90,10 +90,10 @@ public class Game
             
             // Put the player in Zoni Village
             objective.update();
-            knownLocations.add(remainingLocations.remove(0));
+//            knownLocations.add(remainingLocations.remove(0));
             
             // Talk to everyone in Zoni objective
-            objective.update();
+//            objective.update();
             
             currentLocation = knownLocations.get(knownLocations.size() - 1);
             
@@ -105,47 +105,47 @@ public class Game
             Player gaea = MainGame.makeGaea();
             Player fultra = MainGame.makeFultra();
             
-            anahita.setMaxHealth(999);
-            anahita.setCurrentHealth(999);
-            anahita.setAttack(300);
-            anahita.setDefense(300);
-            anahita.setRangedAttack(300);
-            anahita.setRangedDefense(300);
-            anahita.setSpeed(300);
+            anahita.setMaxHealth(9999);
+            anahita.setCurrentHealth(9999);
+            anahita.setAttack(9999);
+            anahita.setDefense(9999);
+            anahita.setRangedAttack(9999);
+            anahita.setRangedDefense(9999);
+            anahita.setSpeed(9999);
             anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
             anahita.getDefense().setOriginalValue(anahita.getDefense().getValue());
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(10);
+            anahita.setLevel(9);
             
-            gaea.setMaxHealth(999);
-            gaea.setCurrentHealth(999);
-            gaea.setAttack(300);
-            gaea.setDefense(300);
-            gaea.setRangedAttack(300);
-            gaea.setRangedDefense(300);
-            gaea.setSpeed(300);
+            gaea.setMaxHealth(9999);
+            gaea.setCurrentHealth(9999);
+            gaea.setAttack(9999);
+            gaea.setDefense(9999);
+            gaea.setRangedAttack(9999);
+            gaea.setRangedDefense(9999);
+            gaea.setSpeed(9999);
             gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
             gaea.getDefense().setOriginalValue(anahita.getDefense().getValue());
             gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            gaea.setLevel(10);
+            gaea.setLevel(9);
             
-            fultra.setMaxHealth(999);
-            fultra.setCurrentHealth(999);
-            fultra.setAttack(300);
-            fultra.setDefense(300);
-            fultra.setRangedAttack(300);
-            fultra.setRangedDefense(300);
-            fultra.setSpeed(300);
+            fultra.setMaxHealth(9999);
+            fultra.setCurrentHealth(9999);
+            fultra.setAttack(9999);
+            fultra.setDefense(9999);
+            fultra.setRangedAttack(9999);
+            fultra.setRangedDefense(9999);
+            fultra.setSpeed(9999);
             fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
             fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
             fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            fultra.setLevel(10);
+            fultra.setLevel(9);
             
             team.add(anahita);
             team.add(gaea);
@@ -405,11 +405,16 @@ public class Game
         for if they talked to that person. This is to ensure that if the player is already at a specific level and
         hasn't talked to the specific person, after doing so, the next location is unlocked immediately.
         */
-        
         if(talkedToSpecificPerson())
         {   
             objective.update();
             checkForNextLocation();
+        }
+        // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
+        else if(!inSecondPhase && village.hasTalkedToEveryone())
+        {
+            objective.update();
+//            Cutscene.zoniVillageWar();
         }
     }
     
@@ -922,15 +927,15 @@ public class Game
     
     private Village createZoniVillage()
     {
-        Item gift = Item.getHealingItem("Apple Pie");
-        NPC calmus = new NPC("Calmus", "Oh wow! Ana, Gaea! How's it going? It's been a while since we've talked! I hope we can catch up after all of the celebration.", gift, true);
-        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
+//        Item gift = Item.getHealingItem("Apple Pie");
+        NPC calmus = new NPC("Calmus", "We should catch up more! Let's meet up again after the festival. I'll see you all soon!", true);
+//        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
         calmus.setDescription("Fire Village resident");
         
-        NPC frigs = new NPC("Frigs", "Hey girls. How's it going? I hope you're excited for the festival! I think we'll have a lot of fun tonight. I hope to see you guys later -- especially you Ana.", true);
+        NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Ice Village resident");
         
-        NPC ninlil = new NPC("Ninlil", "(*mumbles* Not these two...) What do you guys want? Can't you see I'm busy? I'm trying to help with decorations.", true);
+        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've distracted me enough.", true);
         ninlil.setDescription("Wind Village resident");
         
 //        gift = Item.getHealingItem("Half Cake");
@@ -938,13 +943,13 @@ public class Game
 //        fultra.setGiveGiftMessage("I'll see you guys later. Love you Gaea!");
 //        fultra.setDescription("Electric Village resident and Gaea's boyfriend");
         
-        gift = Item.getBuffItem("Green Bean");
+        Item gift = Item.getBuffItem("Green Bean");
         NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but he's still struggling with the death of his parents.", gift, 2, false);
         pheu.setGiveGiftMessage("Take these in advance as a thank you.");
         pheu.setDescription("Fire Village Resident and Calmus' aunt");
         
-        NPC ilvent = new NPC("Ilvent", "I hope you two are doing well! Tonight is going to be a great night. The music, the food, the people... Ahh, Pulchra is the place to be, huh?", true);
-        ilvent.setDescription("Wind Village resident and Ninlil's training partner");
+        NPC ilven = new NPC("Ilven", "Oh, hello! I hope you're all doing well. Be patient with Ninlil. I know she can be pretentious at times, but she's not always like that.", false);
+        ilven.setDescription("Wind Village resident and Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
         NPC clairdra = new NPC("Clairdra", "I'm so proud of my grandson, Fultra. Thank you two for being there for him. And thank you, Gaea, for being a great partner for him too.", gift, 2, false);
@@ -960,7 +965,7 @@ public class Game
         people.add(ninlil);
 //        people.add(fultra);
         people.add(pheu);
-        people.add(ilvent);
+        people.add(ilven);
         people.add(clairdra);
         people.add(verg);
         
@@ -1028,7 +1033,7 @@ public class Game
         mimi.setDescription("Fire Village resident");
         
         Item gift = Item.getBuffItem("Red Bean");
-        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...?! So many villages have been destroyed because of him.", gift, false);
+        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
         hitaka.setDescription("Fire Village resident");
         hitaka.setGiveGiftMessage("I'm not much of a fighter, so please, take this. If you can do something about all this... do it.");
         

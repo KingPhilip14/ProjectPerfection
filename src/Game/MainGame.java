@@ -538,7 +538,7 @@ public class MainGame
         
         while(scan.hasNext())
         {
-            printlnln(scan.next(), 25);
+            println(scan.next(), 25);
             wait(1750);
         }
     }
