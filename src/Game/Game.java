@@ -400,6 +400,14 @@ public class Game
     private void talkToPeople()
     {
         Village village = ((Village)currentLocation);
+        
+        if(isTesting && village.getName().equals("Zoni Village"))
+        {
+            village.getVillagePeople().forEach(p -> {
+                p.setTalkedTo(true);
+            });
+        }
+        
         village.talkToPeople();
         
         /*
@@ -417,24 +425,29 @@ public class Game
         {
             MainGame.promptToEnter();
             
+            if(isTesting)
+            {
+                resiTutorialAttempts = 1;
+            }
+            
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
             if(resiTutorialAttempts == 0)
             {
                 Cutscene.warCutscene();
             }
             
+            team.add(MainGame.makeCalmus());
+            team.add(MainGame.makeFrigs());
+            team.add(MainGame.makeNinlil());
+            
             // Start tutorial RESI Battle here
             RESITutorialBattle rtb = village.makeRESITutorial(team);
+            rtb.start(gold);
             
             resiTutorialAttempts++;
             
             objective.update();
         }
-    }
-    
-    private void startOfWar()
-    {
-        
     }
     
     /**

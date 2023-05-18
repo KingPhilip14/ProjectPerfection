@@ -45,7 +45,6 @@ public abstract class TutorialBattle extends Battle
         {
             case 1:
                 MainGame.clearScreen();
-                MainGame.printlnlnWait("Here's how battles work:", 25, 2000);
                 explainBattles();
                 MainGame.printlnln("Alright! Win so you can move on!", 25);
                 break;

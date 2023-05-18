@@ -56,18 +56,23 @@ public class BeachTutorialBattle extends TutorialBattle
                 + "\n\t1) Battle Interface\n\t2) Matchup Chart\n\t3) Targeting\n\t4) Done";
         int input = MenuHelper.displayMenu(message, 1, 4);
         
+        // If the input isn't the player wanting to quit, recursively call the method until it is.
         switch(input)
         {
             case 1:
                 interfaceTutorial();
+                explainBattles();
                 break;
             case 2:
                 matchupTutorial();
+                explainBattles();
                 break;
             case 3:
                 targetingTutorial();
+                explainBattles();
                 break;
             default:
+                MainGame.clearScreen();
                 break;
         }
         

@@ -73,7 +73,7 @@ public class ComboAttack extends Attack
 //        this.baseDamage = baseDamage;
 //    }
     
-    public ComboAttack(String name, String description, int baseDamage, String element1, String element2)
+    private ComboAttack(String name, String description, int baseDamage, String element1, String element2)
     {
         super.name = name;
         super.description = description;
@@ -92,7 +92,7 @@ public class ComboAttack extends Attack
     
     public static void populateComboAttackLibrary()
     {
-        ComboAttack explodingGeyser = new ComboAttack("Exploding Geyser", "Combining the power of water and fire creates scalding-hot water to erupt and hurt the target.", 315, "Fire", "Water");
+        ComboAttack explodingGeyser = new ComboAttack("Exploding Geyser", "Combining the power of water and fire creates scalding-hot water to erupt and hurt the target.", 325, "Fire", "Water");
         ComboAttack infiniteInferno = new ComboAttack("Infinite Inferno", "Intense heat and violent winds combine to create what feels like a never ending inferno.", 330, "Fire", "Wind");
         ComboAttack flamingBolt = new ComboAttack("Flaming Bolt", "The deadly combination of a massive thunderbolt and searing flames creates the Flaming Bolt.", 320, "Fire", "Electric");
         ComboAttack finalStorm = new ComboAttack("Final Storm", "Extreme winds and endless amounts of water combine to create what some consider the \"Storm of Storms,\" the most destructive storm of all.", 330, "Water", "Wind");

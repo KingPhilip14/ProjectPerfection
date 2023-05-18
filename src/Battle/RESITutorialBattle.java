@@ -35,18 +35,23 @@ public class RESITutorialBattle  extends TutorialBattle
                 + "\n\t1) R.E.S.I. Battles\n\t2) Cheer Partners\n\t3) Combo Attacks\n\t4) Done";
         int input = MenuHelper.displayMenu(message, 1, 4);
         
+        // If the input isn't the player wanting to quit, recursively call the method until it is.
         switch(input)
         {
             case 1:
                 MainGame.resiTutorial();
+                explainBattles();
                 break;
             case 2:
                 MainGame.cheerPartnerTutorial();
+                explainBattles();
                 break;
             case 3:
                 MainGame.comboAttackTutorial();
+                explainBattles();
                 break;
             default:
+                MainGame.clearScreen();
                 break;
         }
     }

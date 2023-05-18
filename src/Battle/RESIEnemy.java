@@ -44,7 +44,7 @@ public class RESIEnemy extends Enemy
     
     private String createName()
     {
-        return "R.E.S.I. Bot: " + createElementDescriptor();
+        return "R.E.S.I. Bot " + createElementDescriptor();
     }
 
     private void setDescription()

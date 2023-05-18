@@ -619,7 +619,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Elder Vitorem", "Today, we celebrate another year of peace, and prosperity. Thank you all for "
                 + "all you've done. May\n\tthis mark the start of another year of goodness for us all. Please - enjoy the food, "
-                + "enjoy each other's company, and let's enjoy the celebration!");
+                + "enjoy each other's company,/and let's enjoy the celebration!");
         
         print("After he finished, the music started again. Dancers from the Water and Fire Villages started performing a "
                 + "traditional dance./People walked around, talking, laughing, cheering with one another. It was an amazing "
@@ -629,8 +629,8 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("Calmus and Frigs joined with Anahita, Gaea, and Fultra. The circle of friends talked and caught up with what "
-                + "happened in their lives/the past year.Ninlil was with her training partner, Ilven, off to the side. They "
-                + "were also talking, but Ninlil didn't engage in much conversation/otherwise. Eventually, someone called "
+                + "happened in their lives/the past year. Ninlil was with her training partner, Ilven, off to the side. They "
+                + "were also talking, but Ninlil didn't/engage in much conversation otherwise. Eventually, someone called "
                 + "Ilven elsewhere, leaving Ninlil on her own.");
         
         MainGame.dialoguelnln("Anahita", "Hm...");
@@ -715,6 +715,12 @@ public class Cutscene
         print("The robot that attacked close to Anahita and the others was on the offensive and started to attack them!");
         
         MainGame.dialoguelnln("Anahita", "Guys, be careful! We need to work together if we're going to beat this thing!");
+        
+        print("Everyone nodded and joined Anahita to get ready to fight.");
+        
+        MainGame.promptToEnter();
+        
+        MainGame.printlnln("Congratulations! Calmus, Frigs, and Ninlil joined your party.", 25);
         
         MainGame.promptToEnter();
     }

@@ -17,6 +17,7 @@ public class Village extends Location
     private ArrayList<NPC> villagePeople;
     private Shop shop;
     private int population;
+    private boolean hasTalkedToEveryone;
     
 //    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel)
 //    {
@@ -56,6 +57,8 @@ public class Village extends Location
     public void setShop(Shop s){shop = s;}
     
     public int getPopulation() {return population;}
+    
+    public void setTalkedToEveryone(boolean value) {this.hasTalkedToEveryone = value;}
     
     public String getPopulationString()
     {
@@ -190,6 +193,8 @@ public class Village extends Location
                 result = true;
             }
         }
+        
+        this.hasTalkedToEveryone = result;
         
         return result;
     }
