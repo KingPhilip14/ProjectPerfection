@@ -109,9 +109,9 @@ public class Game
             
             anahita.setMaxHealth(9999);
             anahita.setCurrentHealth(9999);
-            anahita.setAttack(9999);
+            anahita.setAttack(200);
             anahita.setDefense(9999);
-            anahita.setRangedAttack(9999);
+            anahita.setRangedAttack(200);
             anahita.setRangedDefense(9999);
             anahita.setSpeed(9999);
             anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -119,13 +119,13 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(9);
+            anahita.setLevel(10);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
-            gaea.setAttack(9999);
+            gaea.setAttack(200);
             gaea.setDefense(9999);
-            gaea.setRangedAttack(9999);
+            gaea.setRangedAttack(200);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
             gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -133,13 +133,13 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            gaea.setLevel(9);
+            gaea.setLevel(10);
             
             fultra.setMaxHealth(9999);
             fultra.setCurrentHealth(9999);
-            fultra.setAttack(9999);
+            fultra.setAttack(200);
             fultra.setDefense(9999);
-            fultra.setRangedAttack(9999);
+            fultra.setRangedAttack(200);
             fultra.setRangedDefense(9999);
             fultra.setSpeed(9999);
             fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -147,7 +147,7 @@ public class Game
             fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            fultra.setLevel(9);
+            fultra.setLevel(10);
             
             team.add(anahita);
             team.add(gaea);

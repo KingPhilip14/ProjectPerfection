@@ -24,12 +24,15 @@ public class RESIBattle extends Battle
     {
         super.attackWithOffense(attack, player, target);
         
-        RESIEnemy enemy = ((RESIEnemy)target);
+        if(attack.getAttackHit())
+        {
+            RESIEnemy enemy = ((RESIEnemy)target);
         
-        enemy.setElement(player.getElement());
-        
-        MainGame.print(enemy.name + "'s element is now " + enemy.element + "!", 25);
-        
-        MainGame.promptToEnter();
+            enemy.setElement(player.getElement());
+
+            MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!", 25);
+
+            MainGame.promptToEnter();
+        }   
     }
 }

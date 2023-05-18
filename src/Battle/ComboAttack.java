@@ -103,6 +103,17 @@ public class ComboAttack extends Attack
         ComboAttack burningQuake = new ComboAttack("Burning Quake", "An earthquake is combined with flames that burst from the ground to cause devistating damage.", 330, "Earth", "Fire");
         ComboAttack precipiceGale = new ComboAttack("Precipice Gale", "Giants boulders and land masses are launched at the target with great winds and tornados.", 330, "Earth", "Wind");
         
+        explodingGeyser.setAttackHit(true);
+        infiniteInferno.setAttackHit(true);
+        flamingBolt.setAttackHit(true);
+        finalStorm.setAttackHit(true);
+        electroWave.setAttackHit(true);
+        greaterFimbulvetr.setAttackHit(true);
+        permafrostPummel.setAttackHit(true);
+        frozenSurge.setAttackHit(true);
+        burningQuake.setAttackHit(true);
+        precipiceGale.setAttackHit(true);
+        
         comboAttackLibrary.add(explodingGeyser);
         comboAttackLibrary.add(infiniteInferno);
         comboAttackLibrary.add(flamingBolt);
@@ -150,6 +161,10 @@ public class ComboAttack extends Attack
         {
             MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was not very effective.", 5);
         }
+        else
+        {
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.", 5);
+        }
         
         MainGame.wait(1000);
         
@@ -160,6 +175,10 @@ public class ComboAttack extends Attack
         else if(elementEffectiveness2 < 1)
         {
             MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was not very effective.", 5);
+        }
+        else
+        {
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.", 5);
         }
         
         MainGame.wait(1000);
@@ -186,17 +205,22 @@ public class ComboAttack extends Attack
                 result = 1;
                 break;
             default:
-                result = 0.5;
+                result = 0.75;
         }
         
         return result;
     }
     
+    /**
+     * Determines if a character can use a combo attack based on their assigned cheer partner.
+     * @param player
+     * @return true or false
+     */
     public static boolean canUse(Player player)
     {
         if(player.getCheerPartner() != null)
         {
-            checkElementCompatability(player);
+            checkElementCompatibility(player);
         }
         else
         {
@@ -206,53 +230,178 @@ public class ComboAttack extends Attack
         return availableToUse;
     }
     
-    private static void checkElementCompatability(Player player)
+    /**
+     * Determines if a character that's fighting will be able to use a combo attack with the given potential cheer partner.
+     * @param fighting
+     * @param cheer
+     * @return true or false
+     */
+    public static boolean hasElementCompatibility(Player fighting, Player cheer)
     {
-        String playerElement = player.getElement();
-        String cheerElement = player.getCheerPartner().getElement();
+//        String fightingElement = fighting.getElement();
+//        String cheerElement = cheer.getElement();
         
-        switch (playerElement) 
+        boolean result = lookForCompatibility(fighting, cheer);
+        
+//        switch (fightingElement) 
+//        {
+//            case "Fire":
+//                if(cheerElement.equals("Water") || cheerElement.equals("Wind") || cheerElement.equals("Electric"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            case "Water":
+//                if(cheerElement.equals("Wind") || cheerElement.equals("Electric") || cheerElement.equals("Fire"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            case "Ice":
+//                if(cheerElement.equals("Wind") || cheerElement.equals("Earth") || cheerElement.equals("Electric"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            case "Earth":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Wind") || cheerElement.equals("Ice"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            case "Wind":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            case "Electric":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
+//                {
+//                    result = true;
+//                }   
+//                break;
+//            default:
+//                result = false;
+//                break;
+//        }
+        
+        return result;
+    }
+    
+    /**
+     * Checks Combo Attack compatibility based on a player and its cheer partner. 
+     * @param player 
+     */
+    private static void checkElementCompatibility(Player player)
+    {
+//        String playerElement = player.getElement();
+//        String cheerElement = player.getCheerPartner().getElement();
+        
+        availableToUse = lookForCompatibility(player, player.getCheerPartner());
+//        switch (playerElement) 
+//        {
+//            case "Fire":
+//                if(cheerElement.equals("Water") || cheerElement.equals("Wind") || cheerElement.equals("Electric"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            case "Water":
+//                if(cheerElement.equals("Wind") || cheerElement.equals("Electric") || cheerElement.equals("Fire"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            case "Ice":
+//                if(cheerElement.equals("Wind") || cheerElement.equals("Earth") || cheerElement.equals("Electric"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            case "Earth":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Wind") || cheerElement.equals("Ice"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            case "Wind":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            case "Electric":
+//                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
+//                {
+//                    availableToUse = true;
+//                }   
+//                break;
+//            default:
+//                availableToUse = false;
+//                break;
+//        }
+    }
+    
+    /**
+     * Helper method that returns the boolean value of if two Player objects are able to use a Combo.
+     * @param fighting
+     * @param cheer 
+     * @return true or false
+     */
+    private static boolean lookForCompatibility(Player fighting, Player cheer)
+    {
+        String fightingElement = fighting.getElement();
+        String cheerElement = cheer.getElement();
+        
+        boolean result = false;
+        
+        switch (fightingElement) 
         {
             case "Fire":
-                if(cheerElement.equals("Water") || cheerElement.equals("Wind") || cheerElement.equals("Electric"))
+                if(cheerElement.equals("Water") || cheerElement.equals("Wind") || cheerElement.equals("Electric") || 
+                        cheerElement.equals("Earth"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             case "Water":
                 if(cheerElement.equals("Wind") || cheerElement.equals("Electric") || cheerElement.equals("Fire"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             case "Ice":
                 if(cheerElement.equals("Wind") || cheerElement.equals("Earth") || cheerElement.equals("Electric"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             case "Earth":
                 if(cheerElement.equals("Fire") || cheerElement.equals("Wind") || cheerElement.equals("Ice"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             case "Wind":
-                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
+                if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice") ||
+                        cheerElement.equals("Earth"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             case "Electric":
                 if(cheerElement.equals("Fire") || cheerElement.equals("Water") || cheerElement.equals("Ice"))
                 {
-                    availableToUse = true;
+                    result = true;
                 }   
                 break;
             default:
-                availableToUse = false;
+                result = false;
                 break;
         }
+        
+        return result;
     }
     
     public static void getComboAttacks(Player player)

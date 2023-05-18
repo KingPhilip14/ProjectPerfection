@@ -311,7 +311,7 @@ public abstract class Enemy extends Character
         
         if(totalPoints != (level * 60) + 10)
         {
-            int remainder = totalPoints - ((level * 60) + 10);
+            int remainder = ((level * 60) + 10) - totalPoints;
             
             switch (lastStatAllocation) 
             {

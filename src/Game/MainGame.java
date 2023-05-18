@@ -868,6 +868,9 @@ public class MainGame
         printWithBreaks("For example, say the RESI starts off with the Water element. If it's attacked by an Earth element,/it "
                 + "will then have the Earth element.");
         
+        printWithBreaks("If a RESI is hit with a Combo attack, the element will change to the character who is fighting's/"
+                + "element, not their cheer partner not the cheer partner.");
+        
         promptToEnter();
     }
     
@@ -1093,7 +1096,7 @@ public class MainGame
         Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
-        frigs.setCheerReadyMessage("You've got this! I'll be right here");
+        frigs.setCheerReadyMessage("You've got this! I'll be right here.");
         frigs.setClassRole("Striker");
         frigs.setMaxHealth(370);
         frigs.setCurrentHealth(370);
