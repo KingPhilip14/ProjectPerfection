@@ -28,7 +28,13 @@ public abstract class Enemy extends Character
     {
         createLevel(currentLocation);
         generateStats();
-        populateCurrentAttacks();
+        
+        // RESI enemies will not get their moveset from this classes list of attacks
+        if(!(this instanceof RESIEnemy))
+        {
+            populateCurrentAttacks();
+        }
+            
         populateListsOfStats();
     }
     
@@ -36,7 +42,13 @@ public abstract class Enemy extends Character
     {
         this.level = level;
         generateStats();
-        populateCurrentAttacks();
+        
+        // RESI enemies will not get their moveset from this classes list of attacks
+        if(!(this instanceof RESIEnemy))
+        {
+            populateCurrentAttacks();
+        }
+        
         populateListsOfStats();
     }
     
@@ -44,7 +56,13 @@ public abstract class Enemy extends Character
     {
         this.level = level;
         generateStats();
-        populateCurrentAttacks();
+        
+        // RESI enemies will not get their moveset from this classes list of attacks
+        if(!(this instanceof RESIEnemy))
+        {
+            populateCurrentAttacks();
+        }
+        
         populateListsOfStats();
     }
     

@@ -3,7 +3,6 @@ package Game;
 import Battle.Attack;
 import Battle.BuffAttack;
 import Battle.ComboAttack;
-import static Battle.ComboAttack.populateComboAttackLibrary;
 import Battle.DebuffAttack;
 import Battle.Enemy;
 import Battle.Inventory;
@@ -862,13 +861,13 @@ public class MainGame
     public static void resiTutorial()
     {
         clearScreen();
-        printWithBreaks("These robots, known as RESI Bots, are very durable and are highly adaptable to their environments./"
-                + "Every time a RESI is attacked, whatever element it was attacked by is what its element will become.");
+        printWithBreaks("These robots, known as R.E.S.I Bots, are very durable and are highly adaptable to their environments./"
+                + "Every time a R.E.S.I is attacked, whatever element it was attacked by is what its element will become.");
         
-        printWithBreaks("For example, say the RESI starts off with the Water element. If it's attacked by an Earth element,/it "
+        printWithBreaks("For example, say the R.E.S.I starts off with the Water element. If it's attacked by an Earth element,/it "
                 + "will then have the Earth element.");
         
-        printWithBreaks("If a RESI is hit with a Combo attack, the element will change to the character who is fighting's/"
+        printWithBreaks("If a R.E.S.I is hit with a Combo attack, the element will change to the character who is fighting's/"
                 + "element, not their cheer partner not the cheer partner.");
         
         promptToEnter();

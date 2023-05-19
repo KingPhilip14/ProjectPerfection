@@ -10,9 +10,17 @@ import java.util.Random;
  */
 public class RESIEnemy extends Enemy
 {
-    private static ArrayList<OffensiveAttack> allOffensiveAttacks; 
-    private static ArrayList<BuffAttack> allBuffAttacks; 
-    private static ArrayList<DebuffAttack> allDebuffAttacks;
+    
+    /*
+    IMPORTANT: The enemy AI looks for a healing move for RESI bots, which can cause a null pointer reference. Either
+    change the enemyAI in the RESIBattle class, or fix it in the abstract battle class
+    */
+    
+    
+    
+    private static ArrayList<OffensiveAttack> allOffensiveResiAttacks; 
+    private static ArrayList<BuffAttack> allBuffResiAttacks; 
+    private static ArrayList<DebuffAttack> allDebuffResiAttacks;
     
     // R.E.S.I. Bot: Research Extraction Surveillance Investigator Bot
     public RESIEnemy(Wilderness currentLocation)
@@ -20,6 +28,7 @@ public class RESIEnemy extends Enemy
         super(currentLocation);
         createElement(currentLocation);
         name = createName();
+        setDescription();
         improveOffense();
         populateCurrentAttacks();
     }
@@ -29,6 +38,7 @@ public class RESIEnemy extends Enemy
         super(level);
         createElement(currentLocation);
         name = createName();
+        setDescription();
         improveOffense();
         populateCurrentAttacks();
     }
@@ -38,6 +48,7 @@ public class RESIEnemy extends Enemy
         super(level);
         this.element = element;
         name = createName();
+        setDescription();
         improveOffense();
         populateCurrentAttacks();
     }
@@ -122,35 +133,35 @@ public class RESIEnemy extends Enemy
      */
     public static void populateAllAttacks()
     {
-        allOffensiveAttacks = new ArrayList<>(7);
-        allDebuffAttacks = new ArrayList<>(4);
-        allBuffAttacks = new ArrayList<>(3);
+        allOffensiveResiAttacks = new ArrayList<>(7);
+        allDebuffResiAttacks = new ArrayList<>(4);
+        allBuffResiAttacks = new ArrayList<>(3);
         
         // Indexes 0-6
-        allOffensiveAttacks.add(new OffensiveAttack("Laser Blast", "The user charges a laser and fires it at the target.", 90, "R. Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("Metal Grip", "The user grabs the target with a metal claw and crushes them.", 105, "Attack"));
-        allOffensiveAttacks.get(1).setAccuracy(90);
-        allOffensiveAttacks.add(new OffensiveAttack("Engine Rush", "The user rushes into the target with immense force by using it's engines to fly at high speeds.", 110, "Attack"));
-        allOffensiveAttacks.get(2).setAccuracy(85);
-        allOffensiveAttacks.add(new OffensiveAttack("Metal Spike", "The user shoots a sharp, metal spike at the target to inflict damage.", 95, "R. Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol I: Barrage", "The user throws a barrage of attacks at the target to overwhelm them.", 100, "Attack"));
-        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol II: Blast", "The user flies high in the sky to rain a myriad of lasers on the target.", 115, "R. Attack"));
-        allOffensiveAttacks.get(5).setAccuracy(70);
-        allOffensiveAttacks.add(new OffensiveAttack("RESI Protocol III: Arsenal", "The user uses a combination of missles, lasers, and metal projectiles to inflict damage.", 120, "R. Attack"));
-        allOffensiveAttacks.get(6).setAccuracy(70);
+        allOffensiveResiAttacks.add(new OffensiveAttack("Laser Blast", "The user charges a laser and fires it at the target.", 90, "R. Attack"));
+        allOffensiveResiAttacks.add(new OffensiveAttack("Metal Grip", "The user grabs the target with a metal claw and crushes them.", 105, "Attack"));
+        allOffensiveResiAttacks.get(1).setAccuracy(90);
+        allOffensiveResiAttacks.add(new OffensiveAttack("Engine Rush", "The user rushes into the target with immense force by using it's engines to fly at high speeds.", 110, "Attack"));
+        allOffensiveResiAttacks.get(2).setAccuracy(85);
+        allOffensiveResiAttacks.add(new OffensiveAttack("Metal Spike", "The user shoots a sharp, metal spike at the target to inflict damage.", 95, "R. Attack"));
+        allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol I: Barrage", "The user throws a barrage of attacks at the target to overwhelm them.", 100, "Attack"));
+        allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol II: Blast", "The user flies high in the sky to rain a myriad of lasers on the target.", 115, "R. Attack"));
+        allOffensiveResiAttacks.get(5).setAccuracy(70);
+        allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol III: Arsenal", "The user uses a combination of missles, lasers, and metal projectiles to inflict damage.", 120, "R. Attack"));
+        allOffensiveResiAttacks.get(6).setAccuracy(70);
         
         // Indexes 7-10
-        allDebuffAttacks.add(new DebuffAttack("Extraction", "The user uses a needle-like apparatus to drain the target of their strength, weakening their offenses.", "Attack,R. Attack", 0.5, 3, 2));
-        allDebuffAttacks.get(0).setAccuracy(95);
-        allDebuffAttacks.add(new DebuffAttack("Metalic Screech", "By using its metatl to make a screeching sound, the user lowers the target's ranged defense.", "R. Defense", 0.5, 5, 2));
-        allDebuffAttacks.get(1).setAccuracy(90);
-        allDebuffAttacks.add(new DebuffAttack("Blinding Light", "The user blinds the target with a bright laser to lower their defense and speed.", "Defense,Speed", 0.5, 4, 3));
-        allDebuffAttacks.add(new DebuffAttack("Cable Wire", "The user wraps the target's feet in thick cable wire, lowering their speed.", "Speed", 0.5, 3, 2));
+        allDebuffResiAttacks.add(new DebuffAttack("Extraction", "The user uses a needle-like apparatus to drain the target of their strength, weakening their offenses.", "Attack,R. Attack", 0.5, 3, 2));
+        allDebuffResiAttacks.get(0).setAccuracy(95);
+        allDebuffResiAttacks.add(new DebuffAttack("Metalic Screech", "By using its metatl to make a screeching sound, the user lowers the target's ranged defense.", "R. Defense", 0.5, 5, 2));
+        allDebuffResiAttacks.get(1).setAccuracy(90);
+        allDebuffResiAttacks.add(new DebuffAttack("Blinding Light", "The user blinds the target with a bright laser to lower their defense and speed.", "Defense,Speed", 0.5, 4, 3));
+        allDebuffResiAttacks.add(new DebuffAttack("Cable Wire", "The user wraps the target's feet in thick cable wire, lowering their speed.", "Speed", 0.5, 3, 2));
         
         // Indexes 11-13
-        allBuffAttacks.add(new BuffAttack("Light Metal", "The user sheds a layer of metal, increasing their speed for 3 turns.", "Speed", 1.5, 2, 3));
-        allBuffAttacks.add(new BuffAttack("Heavy Shield", "The user creates a heavy shield that doubles their defense for 3 turns", "Defense", 2, 4, 3));
-        allBuffAttacks.add(new BuffAttack("Sharpen", "The user sharpens their weapons to increase their attack for 2 turns.", "Speed", 1.5, 1, 2));
+        allBuffResiAttacks.add(new BuffAttack("Light Metal", "The user sheds a layer of metal, increasing their speed for 3 turns.", "Speed", 1.5, 2, 3));
+        allBuffResiAttacks.add(new BuffAttack("Heavy Shield", "The user creates a heavy shield that doubles their defense for 3 turns", "Defense", 2, 4, 3));
+        allBuffResiAttacks.add(new BuffAttack("Sharpen", "The user sharpens their weapons to increase their attack for 2 turns.", "Speed", 1.5, 1, 2));
     }
     
     private void populateCurrentAttacks()
@@ -165,10 +176,10 @@ public class RESIEnemy extends Enemy
             */
             for(int i = 0; i < 3; i++)
             {
-                currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));
+                currentAttacks.add(allOffensiveResiAttacks.remove(rand.nextInt(allOffensiveResiAttacks.size())));
             }
             
-            currentAttacks.add(allBuffAttacks.remove(rand.nextInt(allBuffAttacks.size())));
+            currentAttacks.add(allBuffResiAttacks.remove(rand.nextInt(allBuffResiAttacks.size())));
         }
         else
         {
@@ -177,12 +188,12 @@ public class RESIEnemy extends Enemy
             */
             for(int i = 0; i < numOfOffensive; i++)
             {
-                currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));
+                currentAttacks.add(allOffensiveResiAttacks.remove(rand.nextInt(allOffensiveResiAttacks.size())));
             }
             
-            currentAttacks.add(allBuffAttacks.remove(rand.nextInt(allBuffAttacks.size())));
+            currentAttacks.add(allBuffResiAttacks.remove(rand.nextInt(allBuffResiAttacks.size())));
             
-            currentAttacks.add(allDebuffAttacks.remove(rand.nextInt(allDebuffAttacks.size())));
+            currentAttacks.add(allDebuffResiAttacks.remove(rand.nextInt(allDebuffResiAttacks.size())));
         }
         
         populateAllAttacks();

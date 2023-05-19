@@ -64,7 +64,7 @@ public class RESITutorialBattle  extends TutorialBattle
     {
         super.attackWithOffense(attack, player, target);
         
-        if(attack.getAttackHit())
+        if(attack.getAttackHit() && !target.isDead())
         {
             RESIEnemy enemy = ((RESIEnemy)target);
         

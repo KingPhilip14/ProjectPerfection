@@ -109,9 +109,9 @@ public class Game
             
             anahita.setMaxHealth(9999);
             anahita.setCurrentHealth(9999);
-            anahita.setAttack(200);
+            anahita.setAttack(9999);
             anahita.setDefense(9999);
-            anahita.setRangedAttack(200);
+            anahita.setRangedAttack(9999);
             anahita.setRangedDefense(9999);
             anahita.setSpeed(9999);
             anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -123,9 +123,9 @@ public class Game
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
-            gaea.setAttack(200);
+            gaea.setAttack(9999);
             gaea.setDefense(9999);
-            gaea.setRangedAttack(200);
+            gaea.setRangedAttack(9999);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
             gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -137,9 +137,9 @@ public class Game
             
             fultra.setMaxHealth(9999);
             fultra.setCurrentHealth(9999);
-            fultra.setAttack(200);
+            fultra.setAttack(9999);
             fultra.setDefense(9999);
-            fultra.setRangedAttack(200);
+            fultra.setRangedAttack(9999);
             fultra.setRangedDefense(9999);
             fultra.setSpeed(9999);
             fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -428,17 +428,21 @@ public class Game
             if(isTesting)
             {
                 resiTutorialAttempts = 1;
+                
+                team.add(MainGame.makeCalmus());
+                team.add(MainGame.makeFrigs());
+                team.add(MainGame.makeNinlil());
             }
             
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
             if(resiTutorialAttempts == 0)
             {
                 Cutscene.warCutscene();
+                
+                team.add(MainGame.makeCalmus());
+                team.add(MainGame.makeFrigs());
+                team.add(MainGame.makeNinlil());
             }
-            
-            team.add(MainGame.makeCalmus());
-            team.add(MainGame.makeFrigs());
-            team.add(MainGame.makeNinlil());
             
             // Start tutorial RESI Battle here
             RESITutorialBattle rtb = village.makeRESITutorial(team);
@@ -446,8 +450,34 @@ public class Game
             
             resiTutorialAttempts++;
             
-            objective.update();
+            // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
+            if(rtb.isWon())
+            {
+                objective.update();
+                
+                startSecondPhase();
+            }
         }
+    }
+    
+    private void startSecondPhase()
+    {
+        
+        Cutscene.warCutscene2();
+        
+        inSecondPhase = true;
+        
+        // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
+        knownLocations.remove(knownLocations.size() - 1);
+        
+        /*
+        Adds the new Water Village with less NPCs and adds it to the known locations. Sets it as the current location
+        for the player to start in for the second phase.
+        */
+        knownLocations.set(2, createWaterVillage2());
+        currentLocation = knownLocations.get(2);
+        
+        Cutscene.postWarCutscene();
     }
     
     /**
@@ -901,6 +931,35 @@ public class Game
         people.add(brinlee);
         people.add(lac);
         people.add(buzi);
+        
+        //----------------------------------------------------------------------
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(Item.getHealingItem("Cinnamon Roll"));
+        items.add(Item.getHealingItem("Big Cinnamon Roll"));
+        items.add(Item.getHealingItem("Lollipop"));
+        items.add(Item.getBuffItem("Purple Bean"));
+        Shop s = new Shop(items);
+        //----------------------------------------------------------------------
+        
+        // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
+        Coordinate c = new Coordinate(17, 24);
+        Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        v.setShop(s);
+        return v;
+    }
+    
+    private Village createWaterVillage2()
+    {
+        NPC merda = new NPC("Merda", "Be careful out there you three. If you ever need something, we're here for you.", false);
+        merda.setDescription("Anahita's mother");
+        
+        // Anahita's little sister
+        NPC brinlee = new NPC("Brinlee", "Ana, please be careful when you leave! I don't want to lose you too...", false);
+        brinlee.setDescription("Anahita's little sister");
+        
+        ArrayList<NPC> people = new ArrayList<>();
+        people.add(merda);
+        people.add(brinlee);
         
         //----------------------------------------------------------------------
         ArrayList<Item> items = new ArrayList<>();
