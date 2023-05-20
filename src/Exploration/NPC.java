@@ -52,6 +52,7 @@ public class NPC extends GameProperty
     public void setDialogue(String message) {dialogue = message;}
     
     public boolean hasBeenTalkedTo() {return talkedTo;}
+    public void setTalkedTo(boolean value) {talkedTo = value;}
     
     /**
      * After dialogue is complete, NPC gives player its item as a gift.
@@ -142,5 +143,11 @@ public class NPC extends GameProperty
         }
         
         return message;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return "Name: " + this.name + "\tGift Item:" + this.gift.toString();
     }
 }

@@ -1,9 +1,12 @@
  package Exploration;
 
+import Battle.Enemy;
+import Battle.Player;
+import Battle.RESIEnemy;
+import Battle.RESITutorialBattle;
 import Game.MainGame;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * A class for creating Villages the player can briefly explore
@@ -14,6 +17,7 @@ public class Village extends Location
     private ArrayList<NPC> villagePeople;
     private Shop shop;
     private int population;
+    private boolean hasTalkedToEveryone;
     
 //    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel)
 //    {
@@ -29,8 +33,15 @@ public class Village extends Location
     {
         super(name, description, requiredLevel, coordinate);
         this.villagePeople = people;
-        shop = new Shop();
         this.population = population;
+    }
+    
+    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate, Shop shop)
+    {
+        super(name, description, requiredLevel, coordinate);
+        this.villagePeople = people;
+        this.population = population;
+        this.shop = shop;
     }
     
     public ArrayList<NPC> getVillagePeople() {return villagePeople;}
@@ -46,6 +57,8 @@ public class Village extends Location
     public void setShop(Shop s){shop = s;}
     
     public int getPopulation() {return population;}
+    
+    public void setTalkedToEveryone(boolean value) {this.hasTalkedToEveryone = value;}
     
     public String getPopulationString()
     {
@@ -89,6 +102,7 @@ public class Village extends Location
     {
         if(input != numOfOptions)
         {
+            System.out.println("");
             NPC person = villagePeople.get(input - 1);
             person.talk();
             promptToTalk();
@@ -180,6 +194,8 @@ public class Village extends Location
             }
         }
         
+        this.hasTalkedToEveryone = result;
+        
         return result;
     }
     
@@ -199,6 +215,22 @@ public class Village extends Location
         }
         
         return null;
+    }
+    
+    /**
+     * Returns a tutorial battle sequence to teach the player how to play.
+     * @param player
+     * @return a tutorial battle
+     */
+    public RESITutorialBattle makeRESITutorial(ArrayList<Player> playerTeam)
+    {
+        RESIEnemy resi = new RESIEnemy(12, "Fire");
+//        resi.setCurrentHealth(1);
+//        resi.setSpeed(1);
+        ArrayList<Enemy> enemyTeam = new ArrayList<>(1);
+        enemyTeam.add(resi);
+        RESITutorialBattle battle = new RESITutorialBattle(enemyTeam, playerTeam);
+        return battle;
     }
     
     @Override

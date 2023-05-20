@@ -34,9 +34,19 @@ public class Shop extends GameProperty
     public void setSoldItems(ArrayList<Item> items) {soldItems = items;}
     
     public void activateGreeting()
-    {
-        MainGame.dialoguelnln("Berry", description);
-        MainGame.dialoguelnln("Berry", "Take a look at our inventory and lemme know what ya wanna do!");
+    {   
+        // If in the first phase, greet the player like this
+        if(!Game.getSecondPhase())
+        {
+            MainGame.dialoguelnln("Berry", description);
+            MainGame.dialoguelnln("Berry", "Take a look at our inventory and lemme know what ya wanna do!");
+        }
+        // Otherwise, greet the player like this.
+        else
+        {
+            MainGame.dialoguelnln("Berry", "... Ah! A customer! Welcome to my shop. Please, let me know if there's anything "
+                    + "I can do for ya.");
+        }
     }
     
     public void startShopping()
@@ -125,6 +135,7 @@ public class Shop extends GameProperty
 //        
 //        Game.increaseGold(goldAmt);
         MainGame.printlnlnWait("Current Gold: " + Game.getGoldString(), 25, 1000);
+        MainGame.promptToEnter();
         
         promptToShopAgain();
     }
@@ -226,6 +237,7 @@ public class Shop extends GameProperty
         MainGame.dialoguelnln("Berry", "Your total comes to " + String.format("%,d", amt) + "!");
         
         MainGame.printlnlnWait("Current Gold: " + String.format("%,d", Game.getGold()) + " G", 25, 500);
+        MainGame.promptToEnter();
         
         promptToShopAgain();
     }
@@ -251,6 +263,15 @@ public class Shop extends GameProperty
     private void exit()
     {
         System.out.println("");
-        MainGame.dialogueln("Berry", "Sounds good! Thanks for stopping by at Berry's Shop! We can't wait to see you again!");
+        
+        // If in first phase, say goodbye like this
+        if(!Game.getSecondPhase())
+        {
+            MainGame.dialogueln("Berry", "Sounds good! Thanks for stopping by at Berry's Shop! We can't wait to see you again!");
+        }
+        else
+        {
+            MainGame.dialogueln("Berry", "A-alright! Please come back again soon...! It's good to see some nice faces.");
+        }
     }
 }

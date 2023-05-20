@@ -28,6 +28,9 @@ public abstract class Item implements Collectable
     */
     
     
+    /*
+    Look into deep copying the actual Item objects so that clones of them can be made but with the same information
+    */
     
     
     
@@ -92,9 +95,7 @@ public abstract class Item implements Collectable
      * Populates all healing items into a static ArrayList.
      */
     public static void populateAllHealItems()
-    {
-        allHealItems = new ArrayList<>();
-        
+    {   
         HealingItem cinnamonRoll = new HealingItem();
         HealingItem bigCinnamonRoll = new HealingItem("Big Cinnamon Roll", "A large cinnamon roll with extra sugar!", 125, 250);
         HealingItem megaRoll = new HealingItem("Mega Roll", "A cinnamon roll as big as Gaea's head! It's the largest cinnamon roll you can find.", 300, 430);
@@ -107,59 +108,81 @@ public abstract class Item implements Collectable
         HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
         HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
         HealingItem cheesecake = new HealingItem("Cheesecake", "It's cheesecake! Who doesn't like cheesecake?", 165, 285);
-        HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake, melted chocolate inside, and ice cream on top!", 800, 2920);
-        HealingItem lasagna = new HealingItem("Lasagna", "A (model) skyscraper's worth of immacualte flavors burst from this item.", 605, 1025);
-        
-        allHealItems.add(cinnamonRoll);
-        allHealItems.add(bigCinnamonRoll);
-        allHealItems.add(megaRoll);
-        allHealItems.add(cakeSlice);
-        allHealItems.add(halfCake);
-        allHealItems.add(wholeCake);
-        allHealItems.add(applePie);
-        allHealItems.add(peachCobbler);
-        allHealItems.add(chocoBar);
-        allHealItems.add(unknown);
-        allHealItems.add(lollipop);
-        allHealItems.add(cheesecake);
-        allHealItems.add(tcm);
-        allHealItems.add(lasagna);
-        
-        
+        HealingItem tcm = new HealingItem("Triple Chocolate Meltdown", "A chocolate-lover's dream: chocolate cake with molten chocolate inside!", 800, 2920);
+        HealingItem snowbake = new HealingItem("Snowbake", "A nice, ice treat that's very popular everywhere in Pultra.", 605, 1025);
+
+        ArrayList<HealingItem> items = new ArrayList<>();
+
+        items.add(cinnamonRoll);
+        items.add(bigCinnamonRoll);
+        items.add(megaRoll);
+        items.add(cakeSlice);
+        items.add(halfCake);
+        items.add(wholeCake);
+        items.add(applePie);
+        items.add(peachCobbler);
+        items.add(chocoBar);
+        items.add(unknown);
+        items.add(lollipop);
+        items.add(cheesecake);
+        items.add(tcm);
+        items.add(snowbake);
+
+        allHealItems = items;
+
         for(Item i : allHealItems)
         {
             allItems.add(i);
         }
+        
     }
     
     /**
      * Populates all buff items into a static ArrayList.
      */
     public static void populateAllBuffItems()
-    {
-        allBuffItems = new ArrayList<>();
-        
+    {   
         BuffItem redBean = new BuffItem();
         BuffItem orangeBean = new BuffItem("Orange Bean", "A magical orange bean that boosts the defense stat.", "Defense");
         BuffItem purpleBean = new BuffItem("Purple Bean", "A magical purple bean that boosts the ranged attack stat.", "R. Attack");
         BuffItem greenBean = new BuffItem("Green Bean", "A magical green bean that boosts the ranged defense stat.", "R. Defense");
         BuffItem blueBean = new BuffItem("Blue Bean", "A magical blue bean that boosts the speed stat.", "Speed");
-        
-        allBuffItems.add(redBean);
-        allBuffItems.add(orangeBean);
-        allBuffItems.add(purpleBean);
-        allBuffItems.add(greenBean);
-        allBuffItems.add(blueBean);
-        
+
+        ArrayList<BuffItem> items = new ArrayList<>();
+
+        items.add(redBean);
+        items.add(orangeBean);
+        items.add(purpleBean);
+        items.add(greenBean);
+        items.add(blueBean);
+
+        allBuffItems = items;
+
         for(Item i : allBuffItems)
         {
             allItems.add(i);
         }
+        
     }
     
     public static ArrayList<Item> getAllItems() {return allItems;}
     public static ArrayList<HealingItem> getAllHealItems() {return allHealItems;}
     public static ArrayList<BuffItem> getBuffAllItems() {return allBuffItems;}
+    
+    public static void refreshAllItems()
+    {
+        allItems = new ArrayList<>();
+        
+        for(Item i : allBuffItems)
+        {
+            allItems.add(i);
+        }
+        
+        for(Item i: allHealItems)
+        {
+            allItems.add(i);
+        }
+    }
     
     /**
      * Returns a preexisting Healing Item by entering its name.
@@ -184,6 +207,22 @@ public abstract class Item implements Collectable
         }
         
         return result;
+    }
+    
+    /**
+     * Returns a deep copied list of all Item objects.
+     * @return ArrayList
+     */
+    public static ArrayList<Item> allItemsDeepCopy()
+    {
+        ArrayList<Item> items = new ArrayList<>();
+        
+        for(Item i : allItems)
+        {
+            items.add(i);
+        }
+        
+        return items;
     }
     
     /**
@@ -222,5 +261,12 @@ public abstract class Item implements Collectable
     public String toInventoryString()
     {
         return name + " - x" + quantity + "\n\t" + description;
+    }
+    
+    
+    @Override
+    public String toString()
+    {
+        return this.name;
     }
 }

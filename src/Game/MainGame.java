@@ -10,9 +10,9 @@ import Battle.Item;
 import Battle.OffensiveAttack;
 import Battle.Player;
 import Battle.PlayerClass;
+import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
-import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
 import java.util.Random;
@@ -82,10 +82,7 @@ public class MainGame
 //        {
 //            
 //        }
-        ComboAttack.populateComboAttackLibrary();
-        Item.populateAllBuffItems();
-        Item.populateAllHealItems();
-        PlayerClass.createClasses();
+
         
 //        ArrayList<Player> team = new ArrayList<>(6);
         
@@ -329,7 +326,7 @@ public class MainGame
 //        playerFightingTeam.add(fultra);
         
         Enemy.populateAllAttacks();
-        
+        RESIEnemy.populateAllAttacks();
 //        Enemy e0 = new Enemy("Electric Elk", "An Elk that can control electricity.", "Electric", playerTeam, true);
 //        Enemy e1 = new Enemy("Water Elk", "An Elk that can control water.", "Water", playerTeam, true);
 //        Enemy e2 = new Enemy("Earth Elk", "An Elk that can control the earth.", "Earth", playerTeam, true);
@@ -345,6 +342,11 @@ public class MainGame
 //        Battle battle = new Battle(enemyTeam, playerTeam);
 //        battle.start(gold);
 //        startUp();
+
+        ComboAttack.populateComboAttackLibrary();
+        Item.populateAllBuffItems();
+        Item.populateAllHealItems();
+        PlayerClass.createClasses();
 
         Game game = new Game(true);
         playerTeam = game.getTeam();
@@ -463,7 +465,7 @@ public class MainGame
     {
         printlnln(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     /**
@@ -476,7 +478,7 @@ public class MainGame
     {
         println(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     /**
@@ -489,7 +491,7 @@ public class MainGame
     {
         print(string, time);
         wait(waitTime);
-        promptToEnter();
+//        promptToEnter();
     }
     
     public static void print(String string, int time)
@@ -536,9 +538,10 @@ public class MainGame
         
         while(scan.hasNext())
         {
-            printlnln(scan.next(), 25);
-            wait(1750);
+            println(scan.next(), 25);
         }
+        
+        System.out.println("");
     }
     
     public static void printWithRandomLetters(String string)
@@ -789,14 +792,14 @@ public class MainGame
         // Explains cheer partner mechanic
         printlnlnWait("Cheer Partners and Cheer Skills:", 25, 500);
         printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
-                + "A \"Cheer Partner\" will be there to support the person fighting by using their \"Cheer Skill.\"/"
-                + "A Cheer Skill depends on the Cheer Partner's Class type./\tStriker: Boosts Attack and Ranged Attack "
+                + "A Cheer Partner will be there to support the person fighting by using their Cheer Skill./"
+                + "A Cheer Skill depends on the Cheer Partner's primary Class type.//\tStriker: Boosts Attack and Ranged Attack "
                 + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
                 + "slightly if they aren't at full HP./\tAll-Rounder: Boosts Speed by 10 points.");
-        waitForEnter();
-        printlnlnWait("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25, 3000);
         
-        waitForEnter();
+        printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25);
+        
+        promptToEnter();
     }
     
     public static void cooldownTutorial()
@@ -852,8 +855,36 @@ public class MainGame
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
                 + "The Master Clerk class has a special property where they can heal anyone no matter the adjacency./Normally, a Clerk can only heal an adjacent ally. However, a Master Clerk ignores this.");
         
-        waitForEnter();
+        promptToEnter();
+    }
+    
+    public static void resiTutorial()
+    {
         clearScreen();
+        printWithBreaks("These robots, known as R.E.S.I Bots, are very durable and are highly adaptable to their environments./"
+                + "Every time a R.E.S.I is attacked, whatever element it was attacked by is what its element will become.");
+        
+        printWithBreaks("For example, say the R.E.S.I starts off with the Water element. If it's attacked by an Earth element,/it "
+                + "will then have the Earth element.");
+        
+        printWithBreaks("If a R.E.S.I is hit with a Combo attack, the element will change to the character who is fighting's/"
+                + "element, not their cheer partner not the cheer partner.");
+        
+        promptToEnter();
+    }
+    
+    public static void comboAttackTutorial()
+    {
+        clearScreen();
+        
+        printWithBreaks("Combo Attacks are very strong in battle! When someone fighting has a cheer partner and their elements "
+                + "are compatable,/the option of using a Combo attack is unlocked.");
+        
+        printWithBreaks("Combo Attacks work by taking both elements of both the fighter and their cheer partner. The "
+                + "effectiveness of both will/be applied and deal massive damage! This can only be done once per battle, however, "
+                + "so use it wisely!");
+        
+        promptToEnter();
     }
     
     public static Player makeAnahita()
@@ -884,8 +915,9 @@ public class MainGame
         // All of Anahita's attacks
         TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.2, 2);
         OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
+        tsnunamiShot.setCritRate(0.35);
         SingleHealingAttack waterHalo = new SingleHealingAttack("Water Halo", "A ring of water surrounds the target and heals 30% of their total health.", 0.3, 3);
-        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 95, "R. Attack");
+        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 100, "R. Attack");
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);
@@ -1010,5 +1042,139 @@ public class MainGame
         fultra.setListOfOtherAttacks(fultraOtherAttacks);
         
         return fultra;
+    }
+    
+    public static Player makeCalmus()
+    {
+        PlayerClass pc = PlayerClass.getPlayerClass("Wild Tank");
+        
+        // Instantiating Calmus and his moveset--------------------------
+        Player calmus = new Player("Calmus", "A muscular yet gentle master of Fire.", "Fire", pc, 10);
+        calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
+        calmus.setBattleReadyMessage("I'm all fired up!");
+        calmus.setCheerReadyMessage("Just let me know what to do!");
+        calmus.setClassRole("Tank");
+        calmus.setAggro(10);
+        calmus.setMaxHealth(420);
+        calmus.setCurrentHealth(420);
+        calmus.setAttack(140);
+        calmus.setDefense(160);
+        calmus.setRangedAttack(100);
+        calmus.setRangedDefense(120);
+        calmus.setSpeed(80);
+        
+        ArrayList<Attack> calmusAllAttacks = new ArrayList<>(6);
+        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 95, "Attack"));
+        calmusAllAttacks.get(0).setAccuracy(80);
+        calmusAllAttacks.add(new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3));
+        calmusAllAttacks.add(new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2));
+        calmusAllAttacks.add(new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack"));
+        calmusAllAttacks.add(new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3));
+        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 100, "Attack"));
+        calmusAllAttacks.get(5).setAccuracy(80);
+        
+        ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
+        calmusCurrentAttacks.add(calmusAllAttacks.get(0));
+        calmusCurrentAttacks.add(calmusAllAttacks.get(2));
+        calmusCurrentAttacks.add(calmusAllAttacks.get(3));
+        calmusCurrentAttacks.add(calmusAllAttacks.get(5));
+        
+        ComboAttack.getComboAttacks(calmus);
+        
+        calmus.setCurrentAttacks(calmusCurrentAttacks);
+        calmus.setListOfOtherAttacks(calmusAllAttacks);
+        
+        return calmus;
+    }
+    
+    public static Player makeFrigs()
+    {
+        PlayerClass pc = PlayerClass.getPlayerClass("Master Striker");
+        
+        // Instantiating Frigs and his moveset--------------------------
+        Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
+        frigs.setDeathMessage("Tch... Why like this... Anything but this...");
+        frigs.setBattleReadyMessage("We've got this. Just stay cool.");
+        frigs.setCheerReadyMessage("You've got this! I'll be right here.");
+        frigs.setClassRole("Striker");
+        frigs.setMaxHealth(370);
+        frigs.setCurrentHealth(370);
+        frigs.setAttack(180);
+        frigs.setDefense(60);
+        frigs.setRangedAttack(165);
+        frigs.setRangedDefense(75);
+        frigs.setSpeed(120);
+        
+        ArrayList<Attack> frigsAllAttacks = new ArrayList<>(6);
+        OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
+        fimblevetr.setCritRate(0.35);
+        fimblevetr.setAccuracy(90);
+        frigsAllAttacks.add(fimblevetr);
+        frigsAllAttacks.get(0).setAccuracy(70);
+        frigsAllAttacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 85, "Attack"));
+        frigsAllAttacks.add(new OffensiveAttack("Hailstorm", "The user damages the target with a harsh hailstorm.", 100, "R. Attack"));
+        frigsAllAttacks.get(2).setAccuracy(85);
+        frigsAllAttacks.add(new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3));
+        frigsAllAttacks.add(new DebuffAttack("Frostbite", "The user causes the target to have frostbite, lowering all stats for 2 turns.", "All", 0.5, 5, 2));
+        frigsAllAttacks.get(4).setAccuracy(60);
+        frigsAllAttacks.add(new OffensiveAttack("Avalanche", "The user attacks by causing an avalanche to fall on the target.", 85, "Attack"));
+        
+        ArrayList<Attack> frigsCurrentAttacks = new ArrayList<>(4);
+        frigsCurrentAttacks.add(frigsAllAttacks.get(0));
+        frigsCurrentAttacks.add(frigsAllAttacks.get(1));
+        frigsCurrentAttacks.add(frigsAllAttacks.get(3));
+        frigsCurrentAttacks.add(frigsAllAttacks.get(5));
+        
+        ComboAttack.getComboAttacks(frigs);
+        
+        frigs.setCurrentAttacks(frigsCurrentAttacks);
+        frigs.setListOfOtherAttacks(frigsAllAttacks);
+        
+        return frigs;
+    }
+    
+    public static Player makeNinlil()
+    {
+        PlayerClass pc = PlayerClass.getPlayerClass("Guardian Striker");
+        
+        // Instantiating Ninlil and her moveset--------------------------
+        Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
+        ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
+        ninlil.setBattleReadyMessage("Tch! I'll show you all how it's done.");
+        ninlil.setCheerReadyMessage("Ugh, fine. I'll help you.");
+        ninlil.setClassRole("Striker");
+        ninlil.setAggro(7);
+        ninlil.setMaxHealth(395);
+        ninlil.setCurrentHealth(395);
+        ninlil.setAttack(60);
+        ninlil.setDefense(60);
+        ninlil.setRangedAttack(200);
+        ninlil.setRangedDefense(65);
+        ninlil.setSpeed(65);
+        
+        ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
+        ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
+        ninlilAllAttacks.get(0).setAccuracy(90);
+        ninlilAllAttacks.add(new OffensiveAttack("Tornado", "The user causes a tornado to cause damage.", 70, "R. Attack"));
+        ninlilAllAttacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
+        ninlilAllAttacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
+        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 75, "R. Attack"));
+        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 90, "Attack");
+        tempestBlade.setAccuracy(90);
+        tempestBlade.setCritRate(0.35);
+        ninlilAllAttacks.add(tempestBlade);
+        
+        ArrayList<Attack> ninlilCurrentAttacks = new ArrayList<>(4);
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(0));
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(1));
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(3));
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(4));
+        
+        ComboAttack.getComboAttacks(ninlil);
+        
+        ninlil.setCurrentAttacks(ninlilCurrentAttacks);
+        ninlil.setListOfOtherAttacks(ninlilAllAttacks);
+        
+        return ninlil;
     }
 }

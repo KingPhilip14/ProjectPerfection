@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.MainGame;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ public class RESIBattle extends Battle
     {
         super(enemyTeam, playerTeam);
         baseGoldAmt = 175;
-        startingText = "A L E R T! Incoming R.E.S.I. Bots!\n\n Battle: S T A R T";
+        startingText = "A L E R T! Incoming R.E.S.I. Bots!\n\nBattle: S T A R T";
     }
     
     @Override
@@ -23,22 +24,15 @@ public class RESIBattle extends Battle
     {
         super.attackWithOffense(attack, player, target);
         
-        ((RESIEnemy)target).setElement(player.getElement());
+        if(attack.getAttackHit() && !target.isDead())
+        {
+            RESIEnemy enemy = ((RESIEnemy)target);
+        
+            enemy.setElement(player.getElement());
+
+            MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!", 25);
+
+            MainGame.promptToEnter();
+        }
     }
-    
-    /**
-     * If the enemy team doesn't solely consist of RESI enemies, an exception is thrown.
-     * @param enemyTeam
-     * @throws IllegalArgumentException 
-     */
-//    protected void validateTeam(ArrayList<Enemy> enemyTeam) throws IllegalArgumentException
-//    {
-//        for(Enemy e : enemyTeam)
-//        {
-//            if(!(e instanceof RESIEnemy))
-//            {
-//                throw new IllegalArgumentException ("The enemy teams needs to only contain RESI enemies.");
-//            }
-//        }
-//    }
 }

@@ -27,6 +27,8 @@ public abstract class Attack extends GameProperty
     
     public boolean getHasCooldown() {return cooldown > 0;}
     
+    public void setAttackHit(boolean value) {attackHit = value;}
+    
     /**
      * Resets the next available turn to be turn 1 for the next battle.
      */

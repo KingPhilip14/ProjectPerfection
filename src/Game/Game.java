@@ -14,6 +14,7 @@ import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
 import Battle.RESIBattle;
+import Battle.RESITutorialBattle;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Battle.WaterEnemy;
@@ -35,11 +36,11 @@ import java.util.ArrayList;
 public class Game 
 {
     private boolean finalBossDefeated;
-    private boolean inSecondPhase;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
     private boolean isTesting;
+    private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
     private Objective objective;
@@ -51,11 +52,13 @@ public class Game
     private ArrayList<Player> team = new ArrayList<>(6);
 //    private static boolean levelUpOccurred;
     private static int gold;
+    private static boolean inSecondPhase;
     private int pulchraPopulation = 43452;
     private Map map = new Map();
     
     public Game(boolean isTesting)
     {
+        this.isTesting = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -65,7 +68,6 @@ public class Game
         knownLocations.add(remainingLocations.remove(0));
         
         objective = new Objective();
-        
         
         // DELETE AFTER SECOND TUTORIAL TESTS
 //        knownLocations.add(allLocations.remove(0));
@@ -88,6 +90,13 @@ public class Game
             // Talk to Fleur objective
             objective.update();
             
+            // Put the player in Zoni Village
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Talk to everyone in Zoni objective
+            objective.update();
+            
             currentLocation = knownLocations.get(knownLocations.size() - 1);
             
             nextLocation = remainingLocations.remove(0);
@@ -98,26 +107,51 @@ public class Game
             Player gaea = MainGame.makeGaea();
             Player fultra = MainGame.makeFultra();
             
-            anahita.setMaxHealth(450);
-            anahita.setAttack(200);
-            anahita.setDefense(200);
-            anahita.setRangedAttack(200);
-            anahita.setRangedDefense(200);
-            anahita.setSpeed(200);
+            anahita.setMaxHealth(9999);
+            anahita.setCurrentHealth(9999);
+            anahita.setAttack(9999);
+            anahita.setDefense(9999);
+            anahita.setRangedAttack(9999);
+            anahita.setRangedDefense(9999);
+            anahita.setSpeed(9999);
+            anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            anahita.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            anahita.setLevel(10);
             
-            gaea.setMaxHealth(450);
-            gaea.setAttack(200);
-            gaea.setDefense(200);
-            gaea.setRangedAttack(200);
-            gaea.setRangedDefense(200);
-            gaea.setSpeed(200);
+            gaea.setMaxHealth(9999);
+            gaea.setCurrentHealth(9999);
+            gaea.setAttack(9999);
+            gaea.setDefense(9999);
+            gaea.setRangedAttack(9999);
+            gaea.setRangedDefense(9999);
+            gaea.setSpeed(9999);
+            gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            gaea.setLevel(10);
             
-            fultra.setMaxHealth(450);
-            fultra.setAttack(200);
-            fultra.setDefense(200);
-            fultra.setRangedAttack(200);
-            fultra.setRangedDefense(200);
-            fultra.setSpeed(200);
+            fultra.setMaxHealth(9999);
+            fultra.setCurrentHealth(9999);
+            fultra.setAttack(9999);
+            fultra.setDefense(9999);
+            fultra.setRangedAttack(9999);
+            fultra.setRangedDefense(9999);
+            fultra.setSpeed(9999);
+            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+            fultra.setLevel(10);
+            
+            team.add(anahita);
+            team.add(gaea);
+            team.add(fultra);
             
             gold = 100000;
         }
@@ -134,6 +168,7 @@ public class Game
     
     public boolean inSecondPhase() {return inSecondPhase;}
     
+    public static boolean getSecondPhase() {return inSecondPhase;}
 //    public static void setLevelUpOccurred() {levelUpOccurred = true;}
     
     public ArrayList<Player> getTeam() {return team;}
@@ -193,6 +228,14 @@ public class Game
         remainingLocations.add(createIceVillage());
         remainingLocations.add(createForlornDesert());
         remainingLocations.add(createElectricVillage());
+        
+        if(isTesting)
+        {
+            remainingLocations.get(0).setIsExplored();
+            remainingLocations.get(1).setIsExplored();
+            remainingLocations.get(2).setIsExplored();
+            remainingLocations.get(3).setIsExplored();
+        }
     }
     
     private void gameOpening()
@@ -203,9 +246,9 @@ public class Game
     private void displayInfo()
     {
         objective.printCurrentObjective();
-        MainGame.println("Current Location: " + currentLocation.getName(), 10);
-        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G", 10);
-        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation), 10);
+        MainGame.println("Current Location: " + currentLocation.getName(), 5);
+        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G", 5);
+        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation), 5);
     }
     
     public void processInput()
@@ -290,8 +333,9 @@ public class Game
         {
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-            MainGame.wait(2000);
+            MainGame.wait(1000);
             MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
+            MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
         }
         
@@ -357,6 +401,14 @@ public class Game
     private void talkToPeople()
     {
         Village village = ((Village)currentLocation);
+        
+        if(isTesting && village.getName().equals("Zoni Village"))
+        {
+            village.getVillagePeople().forEach(p -> {
+                p.setTalkedTo(true);
+            });
+        }
+        
         village.talkToPeople();
         
         /*
@@ -364,11 +416,88 @@ public class Game
         for if they talked to that person. This is to ensure that if the player is already at a specific level and
         hasn't talked to the specific person, after doing so, the next location is unlocked immediately.
         */
-        
         if(talkedToSpecificPerson())
         {   
             objective.update();
             checkForNextLocation();
+        }
+        // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
+        else if(!inSecondPhase && village.getName().equals("Zoni Village") && village.hasTalkedToEveryone())
+        {
+            MainGame.promptToEnter();
+            
+            if(isTesting)
+            {
+                resiTutorialAttempts = 1;
+                
+                team.add(MainGame.makeCalmus());
+                team.add(MainGame.makeFrigs());
+                team.add(MainGame.makeNinlil());
+                
+                objective.update();
+                startSecondPhase();
+            }
+            
+            // If the player loses the tutorial, skip the cutscene. Otherwise, play it
+            if(resiTutorialAttempts == 0 && !isTesting)
+            {
+                Cutscene.warCutscene();
+                
+                team.add(MainGame.makeCalmus());
+                team.add(MainGame.makeFrigs());
+                team.add(MainGame.makeNinlil());
+
+                // Start tutorial RESI Battle here
+                RESITutorialBattle rtb = village.makeRESITutorial(team);
+                rtb.start(gold);
+                
+                resiTutorialAttempts++;
+            
+                // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
+                if(rtb.isWon())
+                {
+                    objective.update();
+                    startSecondPhase();
+                }
+            }
+        }
+    }
+    
+    private void startSecondPhase()
+    {
+        if(!isTesting)
+        {
+            Cutscene.warCutscene2();
+        }   
+        
+        inSecondPhase = true;
+        
+        // Reduces the population number by an arbitray amount to show that the world has changed
+        pulchraPopulation = (pulchraPopulation / 2) - 576;
+        
+        // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
+        knownLocations.remove(knownLocations.size() - 1);
+        
+        /*
+        Adds the new Water Village with less NPCs and adds it to the known locations. Sets it as the current location
+        for the player to start in for the second phase.
+        */
+        knownLocations.set(2, createWaterVillage2());
+        currentLocation = knownLocations.get(2);
+        
+        // Removes Frigs and Ninlil from the player's team of characters
+        removePlayer("Fultra");
+        removePlayer("Frigs");
+        removePlayer("Ninlil");
+        
+        if(isTesting)
+        {
+            setPlayerLevels(11);
+        }
+        
+        if(!isTesting)
+        {
+            Cutscene.postWarCutscene();
         }
     }
     
@@ -840,6 +969,35 @@ public class Game
         return v;
     }
     
+    private Village createWaterVillage2()
+    {
+        NPC merda = new NPC("Merda", "Be careful out there. If you ever need something, we're here for you.", false);
+        merda.setDescription("Anahita's mother");
+        
+        // Anahita's little sister
+        NPC brinlee = new NPC("Brinlee", "Ana, please be careful when you leave! I don't want to lose you too...", false);
+        brinlee.setDescription("Anahita's little sister");
+        
+        ArrayList<NPC> people = new ArrayList<>();
+        people.add(merda);
+        people.add(brinlee);
+        
+        //----------------------------------------------------------------------
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(Item.getHealingItem("Cinnamon Roll"));
+        items.add(Item.getHealingItem("Big Cinnamon Roll"));
+        items.add(Item.getHealingItem("Lollipop"));
+        items.add(Item.getBuffItem("Purple Bean"));
+        Shop s = new Shop(items);
+        //----------------------------------------------------------------------
+        
+        // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
+        Coordinate c = new Coordinate(17, 24);
+        Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        v.setShop(s);
+        return v;
+    }
+    
     private Village createEarthVillage()
     {
         NPC gord = new NPC("Gord", "The thing I love most about Pulchra is how we all live in harmony. Our powers make it easy to help each other out.", false);
@@ -881,15 +1039,15 @@ public class Game
     
     private Village createZoniVillage()
     {
-        Item gift = Item.getHealingItem("Apple Pie");
-        NPC calmus = new NPC("Calmus", "Oh wow! Ana, Gaea! How's it going? It's been a while since we've talked! I hope we can catch up after all of the celebration.", gift, true);
-        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
+//        Item gift = Item.getHealingItem("Apple Pie");
+        NPC calmus = new NPC("Calmus", "We should catch up more! Let's meet up again after the festival. I'll see you all soon!", true);
+//        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
         calmus.setDescription("Fire Village resident");
         
-        NPC frigs = new NPC("Frigs", "Hey girls. How's it going? I hope you're excited for the festival! I think we'll have a lot of fun tonight. I hope to see you guys later -- especially you Ana.", true);
+        NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Ice Village resident");
         
-        NPC ninlil = new NPC("Ninlil", "(*mumbles* Not these two...) What do you guys want? Can't you see I'm busy? I'm trying to help with decorations.", true);
+        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Just go away.", true);
         ninlil.setDescription("Wind Village resident");
         
 //        gift = Item.getHealingItem("Half Cake");
@@ -897,20 +1055,23 @@ public class Game
 //        fultra.setGiveGiftMessage("I'll see you guys later. Love you Gaea!");
 //        fultra.setDescription("Electric Village resident and Gaea's boyfriend");
         
-        gift = Item.getBuffItem("Green Bean");
-        NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but he's still struggling with the death of his parents.", gift, 2, false);
-        pheu.setGiveGiftMessage("Take these in advance as a thank you.");
+        Item gift = Item.getBuffItem("Green Bean");
+        NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
+                + "with the loss of his parents from a few years ago. The poor boy needs a break from all he's doing.", gift, 2, false);
+        pheu.setGiveGiftMessage("Take this in advance as a thank you. I know you'll keep my word.");
         pheu.setDescription("Fire Village Resident and Calmus' aunt");
         
-        NPC ilvent = new NPC("Ilvent", "I hope you two are doing well! Tonight is going to be a great night. The music, the food, the people... Ahh, Pulchra is the place to be, huh?", true);
-        ilvent.setDescription("Wind Village resident and Ninlil's training partner");
+        NPC ilven = new NPC("Ilven", "Hey! I hope you're all ready for the festival! Also, I have a request: be patient with Ninlil.\n\tI know she can be pretentious at times, "
+                + "but she's not always like that. I know it's hard to believe, but trust me.", false);
+        ilven.setDescription("Wind Village resident and Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
-        NPC clairdra = new NPC("Clairdra", "I'm so proud of my grandson, Fultra. Thank you two for being there for him. And thank you, Gaea, for being a great partner for him too.", gift, 2, false);
-        clairdra.setGiveGiftMessage("I have some Blue Beans for you. You know their Fultra's favorites.");
+        NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
+        clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
         clairdra.setDescription("Electric Village resident and Fultra's grandma");
         
-        NPC verg = new NPC("Verg", "Hey Ana, Gaea. I just wanted to let you know that Frigs really appreciates you guys. Thanks for being there for my brother.", false);
+        NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
+                + "amazing\n\tpeople to back him up when I'm not there. I hope you enjoy the rest of the night!", false);
         verg.setDescription("Ice Village resident and Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -919,16 +1080,17 @@ public class Game
         people.add(ninlil);
 //        people.add(fultra);
         people.add(pheu);
-        people.add(ilvent);
+        people.add(ilven);
         people.add(clairdra);
         people.add(verg);
         
+        Coordinate c = new Coordinate(12, 31);
+        Village v = new Village("Zoni Village", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
+        
         //----------------------------------------------------------------------
-        Shop s = new Shop(Item.getAllItems());
+        Shop s = new Shop(Item.allItemsDeepCopy());
         //----------------------------------------------------------------------
         
-        Coordinate c = new Coordinate(12, 31);
-        Village v = new Village("Zoni Village", "The \"captial\" of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
         v.setShop(s);
         return v;
     }
@@ -986,7 +1148,7 @@ public class Game
         mimi.setDescription("Fire Village resident");
         
         Item gift = Item.getBuffItem("Red Bean");
-        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...?! So many villages have been destroyed because of him.", gift, false);
+        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
         hitaka.setDescription("Fire Village resident");
         hitaka.setGiveGiftMessage("I'm not much of a fighter, so please, take this. If you can do something about all this... do it.");
         
@@ -1157,10 +1319,42 @@ public class Game
             Cutscene.earthVillageCutscene();
             objective.update();
         }
+        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.zoniVillageCutscene();
+            objective.update();
+        }
         
         currentLocation.setIsExplored();
     }
     
+    /**
+     * Helper method that removes a Player objects from the team ArrayList based on the given name.
+     * @param name 
+     */
+    private void removePlayer(String name)
+    {
+        for(Player p : team)
+        {
+            if(name.equals(p.getName()))
+            {
+                team.remove(p);
+                break;
+            }
+        }
+    }
+    
+    /**
+     * Helper method that changes each Player object's level from the team ArrayList.
+     * @param name 
+     */
+    private void setPlayerLevels(int level)
+    {
+        for(Player p : team)
+        {
+            p.setLevel(level);
+        }
+    }
     
     
     

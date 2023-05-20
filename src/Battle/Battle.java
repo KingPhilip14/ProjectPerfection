@@ -91,8 +91,6 @@ public abstract class Battle
             {
                 BATTLE_INTERFACE.reprintBattleInterfaceBNW();
             }
-                
-            MainGame.wait(1000);
             
             while(!TURN_ORDER.isEmpty())
             {
@@ -109,6 +107,8 @@ public abstract class Battle
                     MainGame.printlnlnWait("Starting " + player.getName() + "'s turn:", 25, 1000);
                     activatePlayerTurn(player);
                 }
+                
+                MainGame.promptToEnter();
                 
                 if(enemyTeam.isEmpty())
                 {
@@ -152,7 +152,8 @@ public abstract class Battle
             lost();
         }
         
-        MainGame.wait(3000);
+        MainGame.promptToEnter();
+//        MainGame.wait(3000);
         currentTurn = 0;
         resetPlayers();
     }
@@ -213,7 +214,7 @@ public abstract class Battle
     {
         MainGame.printlnln("Incoming foe(s):", 25);
         listEnemies();
-        MainGame.wait(1500);
+        MainGame.wait(500);
         System.out.println("");
         
         // If the player only has one character, they will automatically be selected
@@ -222,12 +223,11 @@ public abstract class Battle
             MainGame.println(PLAYER_TEAM.get(0).getName() + " will fight.", 25);
             addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, 1);
         }
-        else
+        // If the team can't have a cheer partner, this process allows to select the order without much else
+        else if(PLAYER_TEAM.size() < 4)
         {
-            String message;
 //            while(!PLAYER_TEAM.isEmpty() && PLAYER_TEAM.size() != 3)
-            BATTLE_INTERFACE.formatEnemyInfo();
-            BATTLE_INTERFACE.printEnemyInfoBNW();
+            printEnemyInfoTable();
             System.out.println("");
             
             while(!PLAYER_TEAM.isEmpty())
@@ -239,16 +239,29 @@ public abstract class Battle
                     break;
                 }
                 
-                message = "Who would you like to be positioned ";
-                message = loopThroughPlayerTeam(message);
-                int response = MenuHelper.displayMenu(message, 1, PLAYER_TEAM.size());
-                addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, response);
+                positionPlayerProcess();
+                // The 4 lines below are in the positionPlayerProcess method
+//                message = "Who would you like to be positioned ";
+//                message = loopThroughPlayerTeam(message);
+//                int response = MenuHelper.displayMenu(message, 1, PLAYER_TEAM.size());
+//                addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, response);
             }
-            
             
             sortPlayerTeam();
         }
-        
+        // If the team size is 4 or greater, this allows for choosing who to fight with and assign cheer partners.
+        else
+        {
+            printEnemyInfoTable();
+            System.out.println("");
+            
+            while(ORIGINAL_PLAYER_POSITIONS.size() != 3)
+            {
+                positionPlayerProcess();
+            }
+            
+            sortPlayerTeam();
+        }
             
             
         
@@ -271,6 +284,19 @@ public abstract class Battle
 //            sortPlayerTeam();
 //        }
     }
+    
+    /**
+     * Completes the rest of the steps for positioning the characters the player chooses to fight with.
+     */
+    private void positionPlayerProcess()
+    {
+        String message;
+        message = "Who would you like to be positioned ";
+        message = loopThroughPlayerTeam(message);
+        int response = MenuHelper.displayMenu(message, 1, PLAYER_TEAM.size());
+        addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, response);
+    }
+        
     
     protected void printEnemyInfoTable()
     {
@@ -299,23 +325,24 @@ public abstract class Battle
         }
     }
     
+    /**
+     * Takes the player through the process of assigning cheer partners to the characters that will fight.
+     */
     private void selectPartners()
     {
         int response;
         
         for(Player p : ORIGINAL_PLAYER_POSITIONS)
         {
-            if(PLAYER_TEAM.size() > 1)
-            {
-                String message = "Who would you like to be " + p.getName() + "'s cheer partner?";
-                message = loopThroughPlayerTeam(message);
-                
-                message += "\n\t" + (PLAYER_TEAM.size() + 1)  + ") No one" + p.getName();
-                
-                response = MenuHelper.displayMenu(message, 1, PLAYER_TEAM.size());
-                
-                addPlayerToCheer(response, p);
-            }
+            String message = "Who would you like to be " + p.getName() + "'s cheer partner?";
+            message = loopForCheerSelection(p, message);
+
+            message += "\n\t" + (PLAYER_TEAM.size() + 1)  + ") No one";
+
+            response = MenuHelper.displayMenu(message, 1, PLAYER_TEAM.size() + 1);
+
+            addPlayerToCheer(response, p);
+            
                 
             
             // If size is greater than 1, prompt player to choose
@@ -381,6 +408,11 @@ public abstract class Battle
         return message;
     }
     
+    /**
+     * Returns a string that completes the message variable by adding first, second, or third depending on PLAYER_TEAM size.
+     * @param message
+     * @return String
+     */
     private String loopThroughPlayerTeam(String message)
     {
         message = addPositionMessage(message);
@@ -393,6 +425,44 @@ public abstract class Battle
         }
         
         return message;
+    }
+    
+    /**
+     * Returns a message showing the options the player has for who can be a cheer partner.
+     * @param message
+     * @return String
+     */
+    private String loopForCheerSelection(Player p, String message)
+    {
+        int num = 0;
+        
+        for(Player cheer : PLAYER_TEAM)
+        {
+            message += "\n\t" + ++num  + ") " + cheer.getName();
+            message = addComboSymbol(p, cheer, message);
+        }
+        
+        return message;
+    }
+    
+    /**
+     * Takes the fighting player and the potential cheer partner; if their elements allow for a combo, a star is added to the name.
+     * @param fighting
+     * @param cheer
+     * @param message
+     * @return String to complete the given message
+     */
+    private String addComboSymbol(Player fighting, Player cheer, String message)
+    { 
+        if(ComboAttack.hasElementCompatibility(fighting, cheer))
+        {
+            message += (" (!)");
+            return message;
+        }
+        else
+        {
+            return message;
+        }
     }
     
     private void turnSetup()
@@ -1118,8 +1188,6 @@ public abstract class Battle
         {
             chooseAttack(enemy, adjacentPlayers);
         }
-        
-        MainGame.promptToEnter();
     }
     
     private void chooseAttack(Enemy enemy, ArrayList<Player> adjacentPlayers)
