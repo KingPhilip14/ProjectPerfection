@@ -52,44 +52,81 @@ public class Cutscene
      */
     public static void startingCutscene()
     {
-        MainGame.printlnlnWait("The year is 2XXX.", 25, 1500);
-        MainGame.printWait("The world", 25, 100);
+        MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
+        MainGame.printWait("The world is", 25, 100);
         MainGame.ellipsis();
-        MainGame.printlnlnWait("a place of war. A constant place of distress.", 25, 1500);
-        MainGame.printlnlnWait("A place of loss. A place where peace is seldom found.", 25, 2000);
+        MainGame.printWait("a place of war. ", 25, 1000);
+        MainGame.printWait("A constant place of distress.", 25, 1000);
+        MainGame.printlnlnWait("A place of loss. A place where peace is... seldom found.", 25, 1500);
+        MainGame.printlnlnWait("Very, very few can say that they *truly* have peace...", 50, 1000);
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "
-                + "that he can somehow fix things./With his capabilities, he has made great advancements and "
-                + "improved the world in some ways./However, one thing he cannot do is stop all wars.");
+        print("This world, however, has someone they look up to. A man.");
+        
+        print("A man with money. A man with influence. A man with power. A man with intellect.");
+        
+        print("People look up to him. They believe that *he* can fix the world. All that's wrong, he can find a solution to it, "
+                + "surely.");
+        
+        print("He has accomplished so many things in the past. He's done so much for humanity. Surely, he can save them from "
+                + "this pain. This suffering. This nightmare.");
+        
+//        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "
+//                + "that he can somehow fix things./With his capabilities, he has made great advancements and "
+//                + "improved the world in some ways./However, one thing he cannot do is stop all wars.");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.printlnlnWait("After a conference meeting that took place with people buzzing around:", 25, 1000);
-        MainGame.dialoguelnln("Newscaster", "And I'm here today trying to ask Irwin Krov about his plans for the future after "
-                + "his meeting with goverment officials.");
-        MainGame.dialoguelnln("Newscaster", "There he is! Mr. Krov, Mr. Krov! What do you plan to do to help with all the "
-                + "wars currently taking place?\n\tWill you be providing tools for the governemnt to use?");
-        MainGame.dialoguelnln("Irwin", "What I plan on doing is not to be said to the press.\n\tJust know that in due time, "
-                + "a solution will be found. We will be working ever so diligently to bring peace.\n\tYou can depend on that. "
-                + "The imperfections we as humans have is what caused the world to fall to ruin.\n\tThe way to combat this is "
-                + "perfection.");
+        MainGame.printlnlnWait("(After a conference meeting that took place with people buzzing around):", 25, 1000);
+        
+        MainGame.dialoguelnln("Newscaster", "I'm here to today at the highly anticipated government meeting that hosted "
+                + "special guest,\n\tIrwin Krov. He has been discussing and planning ways to save our corrupted world with "
+                + "government officials. It's\n\tonly a matter of time before they finish...");
+        
+        MainGame.ellipsislnln();
+        MainGame.promptToEnter();
+        //-----------------------------------------------------------------------------------------------------------------------
+        
+        print("The doors to a large building open. A man in a suit emerges from the threashold. He has a solid build with "
+                + "peppered hair./Following him are 3 bodyguards. Once he's outside, cameras flash and people with microphones "
+                + "start crowding the door./The bodyguards start to push a few people back to give the man space. The man "
+                + "sighs out of annoyance and shakes his head.");
+        
+        print("The newscaster surprisingly pushes her way past through the crowd and slips past the bodyguards. "
+                + "She then finds/herself face to face with the man. She clears her throat before quickly speaking.");
+        
+        MainGame.dialoguelnln("Newscaster", "Mr. Krov! If I may take a minute of your time, what do you plan to do to help "
+                + "with all the wars and\n\tcorruption currently taking place? Will you be providing tools for the "
+                + "governemnt to use?\n\tWhat can we expect from you to bring back hope to those that look up to you?");
+        
+        print("The newscaster prompts him by moving her microphone in front of him. Irwin sighs again before speaking.");
+        
+        MainGame.promptToEnter();
+        //-----------------------------------------------------------------------------------------------------------------------
+        MainGame.dialoguelnln("Irwin", "What I plan on doing is not to be said to the press. However, know that a solution "
+                + "has been found.\n\tWe will be working ever so diligently to bring peace. You can depend on that. The "
+                + "imperfections we as humans\n\thave is what caused the world to fall into ruin in the first place. Thus, "
+                + "the way to combat this is perfection.\n\tYou will all understand soon.");
+        
+        print("Perplexed, the newscaster turns to the cameraman that accompanied her to finish her broadcast.");
+        
         MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
-                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed 'perfection' needed "
-                + "help us?\n\tI'm Natasha Green with 10PM News, signing off.");
+                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed 'perfection' needed help us?"
+                + "\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------
         
         MainGame.ellipsis();
         MainGame.wait(1000);
         MainGame.clearScreen();
         
-        print("Amidst the blue terror called the ocean, there is a special island./On this island, there is a special people with "
-                + "the ability to control the elements./Using these powers, the people have kept themselves hidden from the rest "
-                + "of the world for their safety./With some having the ability to control water, wind, and electricity, "
-                + "the island is surrounded by violent storms,/preventing anyone and anything from getting through.");
+        print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
+                + "with the ability to control the elements./Using these powers, the people have kept themselves hidden from "
+                + "the rest of the world for their own safety./With some having the ability to control water, wind, and "
+                + "electricity, the island is surrounded by violent storms,/preventing anyone and anything from getting "
+                + "through.");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
@@ -97,7 +134,7 @@ public class Cutscene
         print("Despite the violent storms, the people are extremely tranquil./They all live in harmony, helping others when "
                 + "needed and ensuring that life together is peaceful.");
         print("This island is called Pulchra. It's full of beauty, vast creatures, and a substance called ethrellium./"
-                + "This substance is only found on the island and is the source of the elemental powers./It's found in the "
+                + "This substance is only found here and is the source of the elemental powers./It's found in the "
                 + "vegetation and wildlife, allowing the creatures to have powers themselves.");
         
         MainGame.promptToEnter();
@@ -106,8 +143,8 @@ public class Cutscene
         print("A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
                 + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./She realizes that she let the "
                 + "time slip past her, however, and that she's close to being late.");
-        MainGame.dialoguelnln("Anahita", "*sigh* I wish I could stay here forever...\n\t"
-                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival!\n\tYou've gone and done it "
+        MainGame.dialoguelnln("Anahita", "(*sigh*) I wish I could stay here forever...\n\t"
+                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival! Oh, you've gone and done it "
                 + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest...");
         
         MainGame.promptToEnter();
@@ -129,7 +166,7 @@ public class Cutscene
         
         MainGame.printlnlnWait("Anahita screamed in terror by the sudden voice and used her Tsunami Shot attack where the "
                 + "voice came from.\nShe then cowered and held her fingers out for another blind shot.", 25, 1500);
-        MainGame.dialoguelnln("Strange Voice 1", "Ow! Was that necess- *gasp* my *hair*!");
+        MainGame.dialoguelnln("Strange Voice 1", "Ow! Was that necess- (*gasp*) my *hair*!");
         MainGame.dialoguelnln("Strange Voice 2", "Haha! It's a step up from what it was before.");
         MainGame.dialoguelnln("Strange Voice 1", "Oh shut it, Fultra. I spent so long on it today for the festival...");
         MainGame.printlnlnWait("Anahita realized who the voices belonged to: her best friend Gaea and her boyfriend, Fultra.", 25, 1500);
@@ -139,7 +176,7 @@ public class Cutscene
         
         MainGame.printlnlnWait("She ran up to them, her hands covering her mouth and a guilty expression.", 25, 1500);
         MainGame.dialoguelnln("Anahita", "Oh my gosh! I'm so sorry Gaea. Are you okay?");
-        MainGame.dialoguelnln("Gaea", "*sniff* I'll be fine... I guess...");
+        MainGame.dialoguelnln("Gaea", "(*sniff*) I'll be fine... I guess...");
         MainGame.dialoguelnln("Fultra", "You'll know she'll be okay, Ana. She's more concerned about her hair than anything else.");
         MainGame.dialoguelnln("Gaea", "Don't down play it like it's nothing! I have to redo it all before the festival now!");
         MainGame.dialoguelnln("Anahita", "I promise I'll help you clean up a bit, okay? What're you guys doing here though?");
@@ -154,7 +191,7 @@ public class Cutscene
         MainGame.printlnlnWait("Gaea then playfully punched Fultra's arm, making Anahita laugh a little.", 25, 1000);
         MainGame.dialoguelnln("Anahita", "I'd love if you guys could help me! Thank you so much.");
         MainGame.dialoguelnln("Fultra", "Not a problem. You have 'Fearless Thunder' with you, so there's nothing to fear!");
-        MainGame.dialoguelnln("Gaea", "*sigh* There he goes again, boosting that ego. Come on, Ana. Let's go!");
+        MainGame.dialoguelnln("Gaea", "(*sigh*) There he goes again, boosting that ego. Come on, Ana. Let's go!");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
@@ -437,7 +474,7 @@ public class Cutscene
         print("The group stared in amazement at the beauty of the village. Gaea then started to sniff the air, a sweet aroma "
                 + "captivating her.");
         
-        MainGame.dialoguelnln("Gaea", "*sniff sniff* I can smell... Cinnamon Rolls... Triple Chocolate Meltdown... Apple "
+        MainGame.dialoguelnln("Gaea", "(*sniff sniff*) I can smell... Cinnamon Rolls... Triple Chocolate Meltdown... Apple "
                 + "Pies... Oh, today is gonna be amazing!\n\tThere's desserts galore!");
         
         print("Fultra laughed at the enthusiasm of Gaea's sleuthing nose and attitude.");
@@ -737,7 +774,7 @@ public class Cutscene
                 + "was filled with red, blinding/lights. A loud, collective roar was coming the robots as they flew in the "
                 + "air.");
         
-        MainGame.dialoguelnln("Calmus", "*huff* Is... is everyone okay?");
+        MainGame.dialoguelnln("Calmus", "(*huff*) Is... is everyone okay?");
         
         MainGame.dialoguelnln("Gaea", "Yeah, I think so. If anyone needs to be healed, Ana and I can help you.");
         
@@ -882,7 +919,7 @@ public class Cutscene
                 + "Anahita's/house in the Water Village. The trio and Merda were having conversation as Brinlee laid across "
                 + "Merda's lap.");
         
-        MainGame.dialoguelnln("Merda", "*sniff* Oh, Lac... I can't believe he died... It's too soon... too soon...");
+        MainGame.dialoguelnln("Merda", "(*sniff*) Oh, Lac... I can't believe he died... It's too soon... too soon...");
         
         MainGame.dialoguelnln("Anahita", "I... I couldn't heal him... His wounds were too severe once I got to him... The "
                 + "look he\n\tgave me before he died... I...");
