@@ -36,7 +36,6 @@ import java.util.ArrayList;
 public class Game 
 {
     private boolean finalBossDefeated;
-    private boolean inSecondPhase;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
@@ -53,6 +52,7 @@ public class Game
     private ArrayList<Player> team = new ArrayList<>(6);
 //    private static boolean levelUpOccurred;
     private static int gold;
+    private static boolean inSecondPhase;
     private int pulchraPopulation = 43452;
     private Map map = new Map();
     
@@ -168,6 +168,7 @@ public class Game
     
     public boolean inSecondPhase() {return inSecondPhase;}
     
+    public static boolean getSecondPhase() {return inSecondPhase;}
 //    public static void setLevelUpOccurred() {levelUpOccurred = true;}
     
     public ArrayList<Player> getTeam() {return team;}
@@ -432,40 +433,47 @@ public class Game
                 team.add(MainGame.makeCalmus());
                 team.add(MainGame.makeFrigs());
                 team.add(MainGame.makeNinlil());
+                
+                objective.update();
+                startSecondPhase();
             }
             
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
-            if(resiTutorialAttempts == 0)
+            if(resiTutorialAttempts == 0 && !isTesting)
             {
                 Cutscene.warCutscene();
                 
                 team.add(MainGame.makeCalmus());
                 team.add(MainGame.makeFrigs());
                 team.add(MainGame.makeNinlil());
-            }
-            
-            // Start tutorial RESI Battle here
-            RESITutorialBattle rtb = village.makeRESITutorial(team);
-            rtb.start(gold);
-            
-            resiTutorialAttempts++;
-            
-            // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
-            if(rtb.isWon())
-            {
-                objective.update();
+
+                // Start tutorial RESI Battle here
+                RESITutorialBattle rtb = village.makeRESITutorial(team);
+                rtb.start(gold);
                 
-                startSecondPhase();
+                resiTutorialAttempts++;
+            
+                // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
+                if(rtb.isWon())
+                {
+                    objective.update();
+                    startSecondPhase();
+                }
             }
         }
     }
     
     private void startSecondPhase()
     {
-        
-        Cutscene.warCutscene2();
+        if(!isTesting)
+        {
+            Cutscene.warCutscene2();
+        }   
         
         inSecondPhase = true;
+        
+        // Reduces the population number by an arbitray amount to show that the world has changed
+        pulchraPopulation = (pulchraPopulation / 2) - 576;
         
         // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
@@ -477,7 +485,20 @@ public class Game
         knownLocations.set(2, createWaterVillage2());
         currentLocation = knownLocations.get(2);
         
-        Cutscene.postWarCutscene();
+        // Removes Frigs and Ninlil from the player's team of characters
+        removePlayer("Fultra");
+        removePlayer("Frigs");
+        removePlayer("Ninlil");
+        
+        if(isTesting)
+        {
+            setPlayerLevels(11);
+        }
+        
+        if(!isTesting)
+        {
+            Cutscene.postWarCutscene();
+        }
     }
     
     /**
@@ -950,7 +971,7 @@ public class Game
     
     private Village createWaterVillage2()
     {
-        NPC merda = new NPC("Merda", "Be careful out there you three. If you ever need something, we're here for you.", false);
+        NPC merda = new NPC("Merda", "Be careful out there. If you ever need something, we're here for you.", false);
         merda.setDescription("Anahita's mother");
         
         // Anahita's little sister
@@ -1307,6 +1328,33 @@ public class Game
         currentLocation.setIsExplored();
     }
     
+    /**
+     * Helper method that removes a Player objects from the team ArrayList based on the given name.
+     * @param name 
+     */
+    private void removePlayer(String name)
+    {
+        for(Player p : team)
+        {
+            if(name.equals(p.getName()))
+            {
+                team.remove(p);
+                break;
+            }
+        }
+    }
+    
+    /**
+     * Helper method that changes each Player object's level from the team ArrayList.
+     * @param name 
+     */
+    private void setPlayerLevels(int level)
+    {
+        for(Player p : team)
+        {
+            p.setLevel(level);
+        }
+    }
     
     
     

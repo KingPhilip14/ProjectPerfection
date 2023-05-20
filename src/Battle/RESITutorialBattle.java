@@ -74,6 +74,5 @@ public class RESITutorialBattle  extends TutorialBattle
 
             MainGame.promptToEnter();
         }
-        
     }
 }

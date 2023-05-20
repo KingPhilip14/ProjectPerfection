@@ -760,7 +760,7 @@ public class Cutscene
         
         print("The group looked up to see where the mysterious voice came from. They see a man wearing armor similar to "
                 + "that of the R.E.S.I Bots./The metal covers him perfectly and shines in the light from the flames. He slowly "
-                + "descends from the air as he controls the jetpack attached to his armor.");
+                + "descends from the air as he controls the/jetpack attached to his armor.");
         
         MainGame.dialoguelnln("Elder Vitorem", "Wh-who are you? What is all of this??");
         
@@ -793,8 +793,8 @@ public class Cutscene
                 + "*truly* care for them.");
         
         print("As each name was spoken, Gaea, Calmus, Frigs, and Ninlil's eyes widened. They all quickly left to go find "
-                + "their loved ones./It's now just Fultra, Irwin, and Elder Vitorem, who is still pinned to the "
-                + "ground.");
+                + "their loved ones./Fultra, Irwin, and Elder Vitorem, who is still pinned to the "
+                + "ground were the only ones left.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -811,8 +811,8 @@ public class Cutscene
         MainGame.dialoguelnln("Fultra", "Why would I *ever* do that?! You've caused so much destruction! "
                 + "We've done *nothing* wrong!");
         
-        print("The Bot holding the Elder down starts to tighten its grip, harming him. The Elder lets out a scream of "
-                + "pain. Fear/starts to consume Fultra even more.");
+        print("The Bot holding the Elder down started to tighten its grip, harming him. The Elder let out a scream of "
+                + "pain. Fear/started to consume Fultra even more.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -850,7 +850,7 @@ public class Cutscene
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("Suddenly, Elder Vitorem let out another screech of pain as he was harshly attacked from the Bot that pinned him./"
+        print("Suddenly, Elder Vitorem let out another yell of pain as he was harshly attacked from the Bot that pinned him./"
                 + "This caused a wound that would be too great to heal.");
         
         MainGame.dialoguelnln("Fultra", "NOOOOOO!");
@@ -865,8 +865,8 @@ public class Cutscene
         
         print("The 5 R.E.S.I. Bots that were guarding Elder Vitorem surrounded Fultra and attacked him instead, causing him to "
                 + "yell in pain./Gaea, who was successfully leaving with Fleur, saw this before leaving. She felt her heart "
-                + "choke and desperately wanted to go back to get him,/but she knew it was not wise.As she left "
-                + "the now destroyed Zoni Village, she had tears streaming down her face, with Fultra's/cries ringing in her "
+                + "choke and desperately wanted to go back/to get him, but she knew it was not wise.As she left "
+                + "the now destroyed Zoni Village, she had tears streaming down/her face, with Fultra's cries ringing in her "
                 + "ears.");
         
         //----------------------------------------------------------------------------------------------------------------------
@@ -878,8 +878,8 @@ public class Cutscene
     
     public static void postWarCutscene()
     {
-        print("A week later after the horrible events that took place at Zoni Village, Anahita, Gaea, and Calmus are at "
-                + "Anahita's/house in the Water Village. The trio and Merda were having conversation as Brinlee laid acorss "
+        print("A week after the horrible events that took place at Zoni Village, Anahita, Gaea, and Calmus are at "
+                + "Anahita's/house in the Water Village. The trio and Merda were having conversation as Brinlee laid across "
                 + "Merda's lap.");
         
         MainGame.dialoguelnln("Merda", "*sniff* Oh, Lac... I can't believe he died... It's too soon... too soon...");
@@ -887,12 +887,16 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "I... I couldn't heal him... His wounds were too severe once I got to him... The "
                 + "look he\n\tgave me before he died... I...");
         
+        MainGame.promptToEnter();
+        
         print("The room fell quiet for a moment.");
         
         MainGame.ellipsislnln();
-        MainGame.wait(1000);
+        MainGame.wait(500);
         
-        MainGame.dialoguelnln("Gaea", "It's okay, Ana... I'm really, really sorry... All of this has been, terrible...");
+        MainGame.dialoguelnln("Gaea", "It's okay, Ana... I'm really, really sorry... All of this has been... terrible...");
+        
+        MainGame.promptToEnter();
         
         print("The room fell quiet once more.");
         
@@ -903,7 +907,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Calmus", "We... we should find the others. Frigs and Ninlil, I mean. We need to confront that "
-                + "Irwin guy and stop him");
+                + "man, Irwin, and stop him.");
         
         MainGame.dialoguelnln("Gaea", "I agree, but how would we defeat him? Those robots are already hard enought to fight as "
                 + "is.");
@@ -911,7 +915,7 @@ public class Cutscene
         MainGame.dialoguelnln("Calmus", "To be honest, I'm not too sure. It's better for us to at least find them first. We "
                 + "can probably figure\n\tout how to defeat them and make a good plan with them helping too.");
         
-        print("Anahita and Gaea nodded in agreement");
+        print("Anahita and Gaea nodded in agreement.");
         
         MainGame.dialoguelnln("Merda", "I don't want to admit it, but you're right. It'll be better for you all to fight "
                 + "together. All I ask...");
@@ -928,13 +932,24 @@ public class Cutscene
         print("Anahita wrapped her arms around her mother and let out a shaky breath.");
         
         MainGame.dialoguelnln("Anahita", "I promise, we'll be careful. We'll do what we can be bring peace back. We'll "
-                + "stop him... For Dad, Verg, Ilven, and Fultra...");
+                + "stop him... For Dad, Verg,\n\tIlven, and... Fultra...");
         
-        print("Gaea choked up slightly at the mention of Fultra's name. Calmus put a gentle hadn on her should to calm her "
-                + "down.");
+        print("Gaea choked up slightly at the mention of Fultra's name. Calmus put a gentle hand on her shoulder to comfort "
+                + "her.");
         
         print("After she witnessed him getting attacked as she left Zoni Village, she informed everyone of what she saw. "
                 + "They all concluded that he/died. No one could have survived being attack by 5 of those robots "
                 + "at once.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Calmus", "The way to Frigs is a lot more strenuous. Let's go to Wind Village first to find "
+                + "Ninlil.");
+        
+        print("Anahita and Gaea nodded. The group left Merda's house, saying goodbye. Anahita's eyes watered as they left. "
+                + "She quickly wiped her face before muttering to herself.");
+        
+        MainGame.dialoguelnln("Anahita", "We'll be back, Mom... And I'll make Dad proud.");
     }
 }
