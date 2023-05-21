@@ -3,7 +3,7 @@ package Battle;
 import java.util.ArrayList;
 
 /**
- * A class for creating Class types for player characters/
+ * A class for creating Class types for player characters.
  * @author Ian King
  */
 public class PlayerClass 
@@ -28,16 +28,15 @@ public class PlayerClass
     
     public void setClassName(String value) {className = value;}
     
-    public String getPrimaryRole()
-    {
-        return primaryRole;
-    }
+    public String getPrimaryRole() {return primaryRole;}
     
     public void setPrimaryRole(String value) {primaryRole = value;} 
     
     public String getSecondaryRole() {return secondaryRole;}
 
     public void setSecondaryRole(String value) {secondaryRole = value;}
+    
+    public String getStatSpread() {return this.statSpread;}
     
     public static String getClassName(String toLookFor)
     {
@@ -52,8 +51,6 @@ public class PlayerClass
         
         return name;
     }
-    
-    public String getStatSpread() {return statSpread;}
     
     public static void createClasses()
     {
@@ -108,7 +105,7 @@ public class PlayerClass
         
         for(PlayerClass pc : listOfClasses)
         {
-            if(pc.getSpecificClassName().toLowerCase().equals(className))
+            if(pc.getSpecificClassName().toLowerCase().equals(className.toLowerCase()))
             {
                 return pc;
             }
@@ -178,6 +175,17 @@ public class PlayerClass
     private String allRounderStatSpread()
     {
         return className + ":\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Average";
+    }
+    
+    @Override
+    public String toString()
+    {
+        return this.className;
+    }
+    
+    public String detailedString()
+    {
+        return this.className + "\t(Primary Role: " + this.primaryRole + "\t Secondary Role: " + this.secondaryRole + ")";
     }
     
     /*

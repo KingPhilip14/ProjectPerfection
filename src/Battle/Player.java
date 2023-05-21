@@ -12,6 +12,7 @@ public class Player extends Character
 {
     private ArrayList<Attack> listOfOtherAttacks;
     private ArrayList<ComboAttack> comboAttacks = new ArrayList<>();
+    private ArrayList<PlayerClass> otherClasses = new ArrayList<>();
     private int currentXP;
     private int xpToLevelUp;
     private int aggro;
@@ -61,6 +62,7 @@ public class Player extends Character
     public void setAggro(int newAggro) {aggro = newAggro;}
     
     public PlayerClass getPlayerClass() {return playerClass;}
+    public void setPlayerClass(PlayerClass pc) {this.playerClass = pc;}
     
     public ArrayList<Attack> getOtherAttacks() {return listOfOtherAttacks;}
     public void setListOfOtherAttacks(ArrayList<Attack> newList) {listOfOtherAttacks = newList;}
@@ -86,6 +88,9 @@ public class Player extends Character
     public Player getPlayerToCheer() {return playerToCheer;}
     public void setPlayerToCheer(Player player) {playerToCheer = player;}
     public void resetPlayerToCheer() {playerToCheer = null;}
+    
+    public ArrayList<PlayerClass> getOtherClasses() {return this.otherClasses;}
+    public void setOtherClasses(ArrayList<PlayerClass> list) {otherClasses = list;}
     
     public void resetStats()
     {

@@ -937,6 +937,14 @@ public class MainGame
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
         
+        
+        ArrayList<PlayerClass> anahitaOtherClasses = new ArrayList<>(3);
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Holy Tank"));
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
+        
+        anahita.setOtherClasses(anahitaOtherClasses);
+        
         return anahita;
     }
     
@@ -971,7 +979,7 @@ public class MainGame
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 85, "Attack");
         terraForce.setAccuracy(90);
-        OffensiveAttack earthsWrath = new OffensiveAttack("Earth's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
+        OffensiveAttack naturesAnger = new OffensiveAttack("Nature's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
@@ -983,10 +991,17 @@ public class MainGame
         
         ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(2);
         gaeaOtherAttacks.add(overgrowth);
-        gaeaOtherAttacks.add(earthsWrath);
+        gaeaOtherAttacks.add(naturesAnger);
         
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
         gaea.setListOfOtherAttacks(gaeaOtherAttacks);
+        
+        ArrayList<PlayerClass> gaeaOtherClasses = new ArrayList<>(3);
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Guardian Striker"));
+        
+        gaea.setOtherClasses(gaeaOtherClasses);
         
         return gaea;
     }
@@ -1084,6 +1099,13 @@ public class MainGame
         calmus.setCurrentAttacks(calmusCurrentAttacks);
         calmus.setListOfOtherAttacks(calmusAllAttacks);
         
+        ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
+        
+        calmus.setOtherClasses(calmusOtherClasses);
+        
         return calmus;
     }
     
@@ -1130,6 +1152,13 @@ public class MainGame
         frigs.setCurrentAttacks(frigsCurrentAttacks);
         frigs.setListOfOtherAttacks(frigsAllAttacks);
         
+        ArrayList<PlayerClass> frigsOtherClasses = new ArrayList<>(3);
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Guardian Striker"));
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Wild Tank"));
+        
+        frigs.setOtherClasses(frigsOtherClasses);
+        
         return frigs;
     }
     
@@ -1155,10 +1184,11 @@ public class MainGame
         ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
         ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
         ninlilAllAttacks.get(0).setAccuracy(90);
-        ninlilAllAttacks.add(new OffensiveAttack("Tornado", "The user causes a tornado to cause damage.", 70, "R. Attack"));
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 70, "R. Attack");
+        tornado.setCritRate(0.5);
         ninlilAllAttacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
         ninlilAllAttacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
-        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 75, "R. Attack"));
+        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 85, "R. Attack"));
         OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 90, "Attack");
         tempestBlade.setAccuracy(90);
         tempestBlade.setCritRate(0.35);
@@ -1174,6 +1204,13 @@ public class MainGame
         
         ninlil.setCurrentAttacks(ninlilCurrentAttacks);
         ninlil.setListOfOtherAttacks(ninlilAllAttacks);
+        
+        ArrayList<PlayerClass> ninlilOtherClasses = new ArrayList<>(3);
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Clerk"));
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        
+        ninlil.setOtherClasses(ninlilOtherClasses);
         
         return ninlil;
     }

@@ -13,6 +13,7 @@ import Battle.NormalBattle;
 import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
+import Battle.PlayerClass;
 import Battle.RESIBattle;
 import Battle.RESITutorialBattle;
 import Battle.SingleHealingAttack;
@@ -731,7 +732,7 @@ public class Game
         if(MainGame.getInventory().isEmpty())
         {
             System.out.println("");
-            MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything!");
+            MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything.");
         }
         else
         {
@@ -742,7 +743,8 @@ public class Game
     
     private void viewTeam()
     {
-        MainGame.println("\nWho would you like to view?", 25);
+        MainGame.clearScreen();
+        MainGame.println("Who would you like to view?", 25);
         String message = "";
         int numOfOptions = 0;
         
@@ -769,33 +771,55 @@ public class Game
     private void viewPlayer(Player player)
     {
         MainGame.println("\nWhat would you like to do with " + player.getName() + "?", 25);
-        String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
-        int input = MenuHelper.displayMenu(message, 1, 4);
         
-        switch(input)
+        // The player has access to changing classes when they're in the second phase
+        if(inSecondPhase)
         {
-            case 2:
-                changeMoves(player);
-                break;
-            case 3:
-                // MAKE MEEEEE **********------------------*************
-//                changeClass();
-                break;
-            case 4:
-                viewTeam();
-                break;
-            default:
-                MainGame.printlnln("\n" + player.toOverallString(), 25);
-                MainGame.waitForEnter();
-                break;
+            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
+            int input = MenuHelper.displayMenu(message, 1, 4);
+
+            switch(input)
+            {
+                case 2:
+                    changeMoves(player);
+                    break;
+                case 3:
+                    changeClass(player);
+                    break;
+                case 4:
+                    viewTeam();
+                    break;
+                default:
+                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.waitForEnter();
+                    break;
+            }
         }
-        
-        viewTeam();
+        else
+        {
+            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Back";
+            int input = MenuHelper.displayMenu(message, 1, 3);
+
+            switch(input)
+            {
+                case 2:
+                    changeMoves(player);
+                    break;
+                case 3:
+                    viewTeam();
+                    break;
+                default:
+                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.waitForEnter();
+                    break;
+            }
+        }
     }
     
     private void changeMoves(Player player)
     {
-        MainGame.printlnWait("\n" + player.getName() + "'s current moves:", 25, 1500);
+        MainGame.clearScreen();
+        MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);
         
         // Prints out the four moves the character can use
         for(Attack attack : player.getCurrentAttacks())
@@ -803,7 +827,7 @@ public class Game
             printMove(attack);
         }
         
-        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 1500);
+        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 500);
         
         // Prints out the other two moves the character can use
         for(Attack attack : player.getOtherAttacks())
@@ -812,6 +836,59 @@ public class Game
         }
         
         promptToChangeMove(player);
+    }
+    
+    private void changeClass(Player player)
+    {
+        MainGame.clearScreen();
+        MainGame.printlnlnWait(player.getName() + "'s current class:\n\t" + player.getPlayerClass().toString(), 25, 500);
+        promptToChangeClass(player);
+    }
+    
+    private void promptToChangeClass(Player p)
+    {
+        MainGame.println("\nWhat would you like to change " + p.getName() + "'s class to?", 25);
+        String message = "";
+        int numOfOptions = 0;
+        
+        for(PlayerClass pc : p.getOtherClasses())
+        {
+            message += "\t" + ++numOfOptions + ") " + pc.toString() + "\n";
+        }
+        
+        message += "\t" + ++numOfOptions + ") Go Back to View Team";
+        
+        int input = MenuHelper.displayMenu(message, 1, numOfOptions);
+        
+        if(input == numOfOptions)
+        {
+            viewTeam();
+        }
+        else
+        {
+            switchClasses(p, input);
+        }
+    }
+    
+    private void switchClasses(Player p, int input)
+    {
+        PlayerClass currentClass = p.getPlayerClass();
+        PlayerClass otherClass = p.getOtherClasses().get(--input);
+        
+        p.setPlayerClass(otherClass);
+        p.setClassRole(otherClass.getPrimaryRole());
+        p.getOtherClasses().set(input, currentClass);
+        
+        MainGame.printlnln("\nClass Change: Successful!\n\t" + currentClass.toString() +
+                " <----------> " + otherClass.toString(), 25);
+        
+        MainGame.println(p.getName() + "'s new info:", 25);
+        
+        // Prints out the updated character's info
+        MainGame.printlnln(p.toOverallString(), 5);
+        
+        MainGame.waitForEnter();
+        viewTeam();
     }
     
     private void printMove(Attack attack)

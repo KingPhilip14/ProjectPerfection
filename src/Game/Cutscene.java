@@ -987,6 +987,14 @@ public class Cutscene
         print("Anahita and Gaea nodded. The group left Merda's house, saying goodbye. Anahita's eyes watered as they left. "
                 + "She quickly wiped her face before muttering to herself.");
         
-        MainGame.dialoguelnln("Anahita", "We'll be back, Mom... And I'll make Dad proud.");
+        MainGame.dialoguelnln("Anahita", "We'll be back, Mom... And I'll make Dad proud. I promise.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("You can now change a character's class./In the menu, select Options > View Team and select a character. "
+                + "Then, select 'Change Class.'/Changing a character's class will allow for different growth patterns and "
+                + "allow some characters to become their strongest./Experiment to see what builds help grow Anahita and the "
+                + "others the best.");
     }
 }
