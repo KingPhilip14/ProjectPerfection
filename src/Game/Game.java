@@ -909,12 +909,15 @@ public class Game
         PlayerClass currentClass = p.getPlayerClass();
         PlayerClass otherClass = p.getOtherClasses().get(--input);
         
+        checkClasses(p, currentClass, otherClass);
+        
         p.setPlayerClass(otherClass);
         p.setClassRole(otherClass.getPrimaryRole());
         p.getOtherClasses().set(input, currentClass);
         
-        MainGame.printlnln("\nClass Change: Successful!\n\t" + currentClass.toString() +
-                " <----------> " + otherClass.toString(), 25);
+        MainGame.promptToEnter();
+        MainGame.printlnln("Class Change: Successful!\n\t" + otherClass.toString() +
+                " <----------> " + currentClass.toString(), 25);
         
         MainGame.println(p.getName() + "'s new info:", 25);
         
@@ -923,6 +926,97 @@ public class Game
         
         MainGame.waitForEnter();
         viewTeam();
+    }
+    
+    /**
+     * Helper method that checks if the class to change to isn't a Clerk class. If so, it prompts the player to update the 
+     * character's attack list first IF their current attacks contain any healing moves.
+     * @param p
+     * @param input
+     * @param currentClass
+     * @param otherClass 
+     */
+    private void checkClasses(Player p, PlayerClass currentClass, PlayerClass wantedClass)
+    {
+        // If switching classes from Clerk to Clerk subclasss, return. Else, check for a healing move on the player object.
+        if(currentClass.isClerk() && wantedClass.isClerk())
+        {
+            return;
+        }
+        
+        for(int index = 0; index < p.getCurrentAttacks().size(); index++)
+        {
+            Attack attack = p.getCurrentAttacks().get(index);
+            
+            if(attack instanceof SingleHealingAttack || attack instanceof TeamHealingAttack)
+            {
+                MainGame.promptToEnter();
+                MainGame.printlnln("WARNING: Only Clerk classes can use healing attacks. " + p.getName() + " is currently "
+                        + "using " + attack.getName() + ".\nTo change " + p.getName() + "'s class from " + 
+                        currentClass.getClassName() + " to " + wantedClass.getClassName() + ", please change " +
+                        attack.getName() + " to a different attack.", 25);
+                MainGame.promptToEnter();
+                
+                // If a is a form of healing, prompt player to change attacks first.
+                changeAttackForClass(p, index, attack);
+            }
+        }
+    }
+    
+    /**
+     * Takes the player through a sequence to change their attack list to properly change classes.
+     * @param p
+     * @param input
+     * @param currentClass
+     * @param wantedClass 
+     */
+    private void changeAttackForClass(Player p, int indexOfHealAttack, Attack attackToChange)
+    {
+        MainGame.println("Which move would you like to change " + attackToChange.getName() + " with? Please choose an attack "
+                + "that is not a form of healing.", 25);
+
+        String message = "";
+        int numOfOptions = 0;
+        
+        for(Attack a : p.getOtherAttacks())
+        {
+            message += "\t" + ++numOfOptions + ") " + a.getName() + "\n";
+        }
+        
+        message += "\t" + ++numOfOptions + ") Go Back to Change Class";
+        
+        int indexOfOtherAttack = MenuHelper.displayMenu(message, 1, numOfOptions);
+        
+        if(indexOfOtherAttack == numOfOptions)
+        {
+            changeClass(p);
+        }
+        else
+        {
+            switchAttackForClass(indexOfHealAttack, indexOfOtherAttack, p, attackToChange);
+        }
+    }
+    
+    /**
+     * Finishes the process of changing attacks for changing a character's class.
+     * @param indexOfHealAttack
+     * @param indexOfOtherAttack
+     * @param p 
+     */
+    private void switchAttackForClass(int indexOfHealAttack, int indexOfOtherAttack, Player p, Attack attackToChange)
+    {
+        // decrement the index of indexOfOtherAttack to get the right attack from the list
+        Attack otherAttack = p.getOtherAttacks().get(--indexOfOtherAttack);
+        if(otherAttack instanceof SingleHealingAttack || otherAttack instanceof TeamHealingAttack)
+        {
+            MainGame.printlnln("\nPlease select an attack that isn't a form of healing.", 5);
+            MainGame.promptToEnter();
+            changeAttackForClass(p, indexOfHealAttack, attackToChange);
+        }
+        else
+        {
+            switchAttacksProcess(indexOfHealAttack, indexOfOtherAttack, p);
+        }
     }
     
     private void printMove(Attack attack)
@@ -1001,18 +1095,23 @@ public class Game
     
     private void switchAttacks(int currentAttackInput, int otherAttackInput, Player p)
     {
+//        // Decrement inputs for use in the ArrayLists
+//        --currentAttackInput;
+//        --otherAttackInput;
+//        
+//        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
+//        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+//        
+//        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
+//        p.getOtherAttacks().set(otherAttackInput, currentAttack);
+//        
+//        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
+//                " <----------> " + otherAttack.getName(), 25, 1500);
+        
         // Decrement inputs for use in the ArrayLists
         --currentAttackInput;
         --otherAttackInput;
-        
-        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
-        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
-        
-        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
-        p.getOtherAttacks().set(otherAttackInput, currentAttack);
-        
-        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
-                " <----------> " + otherAttack.getName(), 25, 1500);
+        switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
         MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
         
@@ -1024,6 +1123,30 @@ public class Game
         
         MainGame.waitForEnter();
         viewTeam();
+    }
+    
+    /**
+     * Helper method used to complete the bulk of the process of changing an attack.
+     * @param currentAttackInput
+     * @param otherAttackInput
+     * @param p 
+     */
+    private void switchAttacksProcess(int currentAttackInput, int otherAttackInput, Player p)
+    {
+        // **************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // THE COMMENTED OUT CODE SHOULD NOT BE NECESSARY SINCE IT'S HANDLED IN THE METHOD THAT CALLS THIS ONE
+        // Decrement inputs for use in the ArrayLists
+//        --currentAttackInput;
+//        --otherAttackInput;
+        
+        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
+        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+        
+        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
+        p.getOtherAttacks().set(otherAttackInput, currentAttack);
+        
+        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + otherAttack.getName() +
+                " <----------> " + currentAttack.getName() , 25, 500);
     }
     
     public ArrayList<Location> getKnownLocations() {return knownLocations;}

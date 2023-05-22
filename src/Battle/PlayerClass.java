@@ -119,59 +119,61 @@ public class PlayerClass
     public boolean isPrimaryTank() {return primaryRole.equals("Tank");}
     public boolean isSecondaryTank() {return secondaryRole.equals("Tank");}
     public boolean isMasterTank() {return primaryRole.equals("Tank") && secondaryRole.equals("Tank");}
+    public boolean isTank() {return primaryRole.equals("Tank") || secondaryRole.equals("Tank");}
     
     public boolean isPrimaryClerk() {return primaryRole.equals("Clerk");}
     public boolean isSecondaryClerk() {return secondaryRole.equals("Clerk");}
     public boolean isMasterClerk() {return primaryRole.equals("Clerk") && secondaryRole.equals("Clerk");}
+    public boolean isClerk() {return primaryRole.equals("Clerk") || secondaryRole.equals("Clerk");}
     
     public boolean isPrimaryStriker() {return primaryRole.equals("Striker");}
     public boolean isSecondaryStriker() {return secondaryRole.equals("Striker");}
     public boolean isMasterStriker() {return primaryRole.equals("Striker") && secondaryRole.equals("Striker");}
-    
+    public boolean isStriker() {return primaryRole.equals("Striker") || secondaryRole.equals("Striker");}
     
     private String masterClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: Very Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Very High\n\tSpeed: Low";
+        return className + " Growth Pattern:\n\tHP: Slow\n\tAttack: Very Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Very Fast\n\tSpeed: Slow";
     }
     
     private String hyperClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Average\n\tSpeed: Average";
+        return className + " Growth Pattern:\n\tHP: Slow\n\tAttack: Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Average\n\tSpeed: Average";
     }
     
     private String passiveClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Slow";
     }
     
     private String masterTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Very High\n\tAttack: Average\n\tDefense: Very High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Average\n\tDefense: Very Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Very Slow\n\tSpeed: Very Slow";
     }
     
     private String wildTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Very High\n\tAttack: High\n\tDefense: High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Fast\n\tDefense: Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Very Slow\n\tSpeed: Very Slow";
     }
     
     private String holyTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: High\n\tRanged Attack: Low\n\tRanged Defense: Low\n\tSpeed: Low";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Fast\n\tRanged Attack: Slow\n\tRanged Defense: Slow\n\tSpeed: Slow";
     }
     
     private String masterStrikerStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Very High\n\tDefense: Very Low\n\tRanged Attack: Average\n\tRanged Defense: Very Low\n\tSpeed: Very High";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Very Fast\n\tDefense: Very Slow\n\tRanged Attack: Average\n\tRanged Defense: Very Slow\n\tSpeed: Very Fast";
     }
     
     private String tranquilStrikerStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: High\n\tDefense: Low\n\tRanged Attack: Average\n\tRanged Defense: Low\n\tSpeed: Very High";
+        return className + " Growth Pattern:\n\tHP: Slow\n\tAttack: Fast\n\tDefense: Slow\n\tRanged Attack: Average\n\tRanged Defense: Slow\n\tSpeed: Very Fast";
     }
     
     private String guardianStrikerStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: High\n\tRanged Defense: Average\n\tSpeed: High";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Fast\n\tRanged Defense: Average\n\tSpeed: Fast";
     }
     
     private String allRounderStatSpread()
