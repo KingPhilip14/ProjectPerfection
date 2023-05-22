@@ -26,6 +26,7 @@ public class PlayerClass
         return className;
     }
     
+    public String getClassName() {return this.className;}
     public void setClassName(String value) {className = value;}
     
     public String getPrimaryRole() {return primaryRole;}
@@ -37,6 +38,7 @@ public class PlayerClass
     public void setSecondaryRole(String value) {secondaryRole = value;}
     
     public String getStatSpread() {return this.statSpread;}
+    public String getTabbedStatSpread() {return  "\t" + this.statSpread;}
     
     public static String getClassName(String toLookFor)
     {
@@ -77,10 +79,10 @@ public class PlayerClass
         PlayerClass masterStriker = new PlayerClass("Master Striker", "Striker", "Striker");
         masterStriker.statSpread = masterStriker.masterStrikerStatSpread();
         
-        PlayerClass tranquilStriker = new PlayerClass("Tranquil Striker", "Striker", "Striker");
+        PlayerClass tranquilStriker = new PlayerClass("Tranquil Striker", "Striker", "Clerk");
         tranquilStriker.statSpread = tranquilStriker.tranquilStrikerStatSpread();
         
-        PlayerClass guardianStriker = new PlayerClass("Guardian Striker", "Striker", "Striker");
+        PlayerClass guardianStriker = new PlayerClass("Guardian Striker", "Striker", "Tank");
         guardianStriker.statSpread = guardianStriker.guardianStrikerStatSpread();
         
         
@@ -129,52 +131,52 @@ public class PlayerClass
     
     private String masterClerkStatSpread()
     {
-        return className + ":\n\tHP: Low\n\tAttack: Very Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Very High\n\tSpeed: Low";
+        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: Very Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Very High\n\tSpeed: Low";
     }
     
     private String hyperClerkStatSpread()
     {
-        return className + ":\n\tHP: Low\n\tAttack: Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Average\n\tSpeed: Average";
+        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: Low\n\tDefense: Very Low\n\tRanged Attack: Very High\n\tRanged Defense: Average\n\tSpeed: Average";
     }
     
     private String passiveClerkStatSpread()
     {
-        return className + ":\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Low";
     }
     
     private String masterTankStatSpread()
     {
-        return className + ":\n\tHP: Very High\n\tAttack: Average\n\tDefense: Very High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Very High\n\tAttack: Average\n\tDefense: Very High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
     }
     
     private String wildTankStatSpread()
     {
-        return className + ":\n\tHP: Very High\n\tAttack: High\n\tDefense: High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
+        return className + " Growth Pattern:\n\tHP: Very High\n\tAttack: High\n\tDefense: High\n\tRanged Attack: Very Low\n\tRanged Defense: Very Low\n\tSpeed: Very Low";
     }
     
     private String holyTankStatSpread()
     {
-        return className + ":\n\tHP: Average\n\tAttack: Average\n\tDefense: High\n\tRanged Attack: Low\n\tRanged Defense: Low\n\tSpeed: Low";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: High\n\tRanged Attack: Low\n\tRanged Defense: Low\n\tSpeed: Low";
     }
     
     private String masterStrikerStatSpread()
     {
-        return className + ":\n\tHP: Average\n\tAttack: Very High\n\tDefense: Very Low\n\tRanged Attack: Average\n\tRanged Defense: Very Low\n\tSpeed: Very High";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Very High\n\tDefense: Very Low\n\tRanged Attack: Average\n\tRanged Defense: Very Low\n\tSpeed: Very High";
     }
     
     private String tranquilStrikerStatSpread()
     {
-        return className + ":\n\tHP: Low\n\tAttack: High\n\tDefense: Low\n\tRanged Attack: Average\n\tRanged Defense: Low\n\tSpeed: Very High";
+        return className + " Growth Pattern:\n\tHP: Low\n\tAttack: High\n\tDefense: Low\n\tRanged Attack: Average\n\tRanged Defense: Low\n\tSpeed: Very High";
     }
     
     private String guardianStrikerStatSpread()
     {
-        return className + ":\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: High\n\tRanged Defense: Average\n\tSpeed: High";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: High\n\tRanged Defense: Average\n\tSpeed: High";
     }
     
     private String allRounderStatSpread()
     {
-        return className + ":\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Average";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Average";
     }
     
     @Override
@@ -183,12 +185,35 @@ public class PlayerClass
         return this.className;
     }
     
+    /**
+     * Prints the classes name, roles, and its stat spread.
+     * @return String
+     */
     public String detailedString()
     {
-        return this.className + "\t(Primary Role: " + this.primaryRole + "\t Secondary Role: " + this.secondaryRole + ")";
+        return this.className + " (Primary Role: " + this.primaryRole + ", Secondary Role: " + this.secondaryRole + ")\n" + this.statSpread;
+    }
+    
+    /**
+     * Returns a String with the class name and roles.
+     * @return 
+     */
+    public String classDescription()
+    {
+        return this.className + " (Primary Role: " + this.primaryRole + ", Secondary Role: " + this.secondaryRole + ")";
+    }
+    
+    /**
+     * Prints the classes name, roles, and its stat spread with tabs to format the String when the player changes classes.
+     * @return String
+     */
+    public String tabbedDetailedString()
+    {
+        return "\t" + this.className + " (Primary Role: " + this.primaryRole + ", Secondary Role: " + this.secondaryRole + ")\n" + getTabbedStatSpread();
     }
     
     /*
+        The percentage of a stat increasing determines the growth indicator
             < 35 is very low
             >= 35 and <= 50 is low 
             >= 50 and <= 65 is average

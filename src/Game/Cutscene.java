@@ -30,7 +30,15 @@ public class Cutscene
                 merdaCutscene();
                 break;
             case "Fleur":
-                fleurCutscene();
+                // If in the first phase, play Fleur's first cutscene. Otherwise, play her cutscene for the second phase.
+                if(!Game.getSecondPhase())
+                {
+                    fleurCutscene();
+                }
+                else
+                {
+                    fleurCutscene2();
+                }
                 break;
             case "Caillou":
                 calliouCutscene();
@@ -996,5 +1004,10 @@ public class Cutscene
                 + "Then, select 'Change Class.'/Changing a character's class will allow for different growth patterns and "
                 + "allow some characters to become their strongest./Experiment to see what builds help grow Anahita and the "
                 + "others the best.");
+    }
+    
+    public static void fleurCutscene2()
+    {
+        MainGame.dialoguelnln("Fleur", "My cutscene starts here!");
     }
 }

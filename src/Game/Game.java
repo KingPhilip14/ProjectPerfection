@@ -98,7 +98,13 @@ public class Game
             // Talk to everyone in Zoni objective
             objective.update();
             
-            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            // Start second phase. Everything is taken care of in the method
+            objective.update();
+            startSecondPhase();
+            
+            
+            // Use this for going to the newest location
+//            currentLocation = knownLocations.get(knownLocations.size() - 1);
             
             nextLocation = remainingLocations.remove(0);
             
@@ -106,7 +112,8 @@ public class Game
             forestTutorialDone = true;
             Player anahita = MainGame.makeAnahita();
             Player gaea = MainGame.makeGaea();
-            Player fultra = MainGame.makeFultra();
+//            Player fultra = MainGame.makeFultra();
+            Player calmus = MainGame.makeCalmus();
             
             anahita.setMaxHealth(9999);
             anahita.setCurrentHealth(9999);
@@ -120,7 +127,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(10);
+            anahita.setLevel(11);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -129,30 +136,44 @@ public class Game
             gaea.setRangedAttack(9999);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
-            gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
-            gaea.getDefense().setOriginalValue(anahita.getDefense().getValue());
-            gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
-            gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
-            gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            gaea.setLevel(10);
+            gaea.getAttack().setOriginalValue(calmus.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(calmus.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
+            gaea.setLevel(11);
             
-            fultra.setMaxHealth(9999);
-            fultra.setCurrentHealth(9999);
-            fultra.setAttack(9999);
-            fultra.setDefense(9999);
-            fultra.setRangedAttack(9999);
-            fultra.setRangedDefense(9999);
-            fultra.setSpeed(9999);
-            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
-            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
-            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
-            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
-            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            fultra.setLevel(10);
+//            fultra.setMaxHealth(9999);
+//            fultra.setCurrentHealth(9999);
+//            fultra.setAttack(9999);
+//            fultra.setDefense(9999);
+//            fultra.setRangedAttack(9999);
+//            fultra.setRangedDefense(9999);
+//            fultra.setSpeed(9999);
+//            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
+//            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
+//            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+//            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+//            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+//            fultra.setLevel(10);
+
+            calmus.setMaxHealth(9999);
+            calmus.setCurrentHealth(9999);
+            calmus.setAttack(9999);
+            calmus.setDefense(9999);
+            calmus.setRangedAttack(9999);
+            calmus.setRangedDefense(9999);
+            calmus.setSpeed(9999);
+            calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
+            calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
+            calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+            calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+            calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
+            calmus.setLevel(10);
             
             team.add(anahita);
             team.add(gaea);
-            team.add(fultra);
+            team.add(calmus);
             
             gold = 100000;
         }
@@ -473,18 +494,20 @@ public class Game
         
         inSecondPhase = true;
         
-        // Reduces the population number by an arbitray amount to show that the world has changed
+        // Reduces the population number by an arbitrary amount to show that the world has changed
         pulchraPopulation = (pulchraPopulation / 2) - 576;
         
         // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
         
         /*
-        Adds the new Water Village with less NPCs and adds it to the known locations. Sets it as the current location
-        for the player to start in for the second phase.
+        Adds new Water and Earth Villages with less NPCs and adds it to the known locations. Sets Water Village as the 
+        current location for the player to start in for the second phase.
         */
         knownLocations.set(2, createWaterVillage2());
         currentLocation = knownLocations.get(2);
+        knownLocations.set(3, createEarthVillage2());
+        
         
         // Removes Frigs and Ninlil from the player's team of characters
         removePlayer("Fultra");
@@ -841,19 +864,30 @@ public class Game
     private void changeClass(Player player)
     {
         MainGame.clearScreen();
-        MainGame.printlnlnWait(player.getName() + "'s current class:\n\t" + player.getPlayerClass().toString(), 25, 500);
+        MainGame.printlnlnWait(player.getName() + "'s current class:\n" + player.getPlayerClass().detailedString(), 5, 500);
         promptToChangeClass(player);
     }
     
     private void promptToChangeClass(Player p)
     {
-        MainGame.println("\nWhat would you like to change " + p.getName() + "'s class to?", 25);
+        MainGame.printlnln(p.getName() + "'s other classes:", 25);
+        
+        // Print available classes and their info
+        for(PlayerClass pc : p.getOtherClasses())
+        {
+            MainGame.printlnln(pc.detailedString(), 5);
+        }
+        
+        MainGame.promptToEnter();
+        
+        // Prompt player to select a choice.
+        MainGame.println("What would you like to change " + p.getName() + "'s class to?", 25);
         String message = "";
         int numOfOptions = 0;
         
         for(PlayerClass pc : p.getOtherClasses())
         {
-            message += "\t" + ++numOfOptions + ") " + pc.toString() + "\n";
+            message += "\t" + ++numOfOptions + ") " + pc.getClassName() + "\n";
         }
         
         message += "\t" + ++numOfOptions + ") Go Back to View Team";
@@ -1092,6 +1126,42 @@ public class Game
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(gord);
+        people.add(caillou);
+        people.add(fleur);
+        people.add(roxy);
+        
+        //----------------------------------------------------------------------
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(Item.getHealingItem("Big Cinnamon Roll"));
+        items.add(Item.getHealingItem("Cheesecake"));
+        items.add(Item.getBuffItem("Red Bean"));
+        items.add(Item.getBuffItem("Orange Bean"));
+        items.add(Item.getBuffItem("Purple Bean"));
+        items.add(Item.getBuffItem("Green Bean"));
+        items.add(Item.getBuffItem("Blue Bean"));
+        Shop s = new Shop(items);
+        //----------------------------------------------------------------------
+        
+        Coordinate c = new Coordinate(22, 13);
+        Village v = new Village("Earth Village", "A village located southwest of the Water Village.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        v.setShop(s);
+        return v;
+    }
+    
+    private Village createEarthVillage2()
+    {   
+        NPC caillou = new NPC("Caillou", "i wish beans were good enough to prevent all the casualties that happened.", false);
+        caillou.setDescription("Earth Village resident // Bean Master"); 
+       
+        // Gaea's cousin
+        NPC fleur = new NPC("Fleur", "I wish you all the best on your journey. Be careful out there, please.", true);
+        fleur.setDescription("Gaea's older cousin");
+        
+        Item gift = Item.getBuffItem("Purple Bean");
+        NPC roxy = new NPC("Roxy", "You're all going to be known as heroes. I just know it.", gift, false);
+        roxy.setDescription("Earth Village resident");
+        
+        ArrayList<NPC> people = new ArrayList<>();
         people.add(caillou);
         people.add(fleur);
         people.add(roxy);
