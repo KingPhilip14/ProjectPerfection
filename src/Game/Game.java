@@ -916,8 +916,8 @@ public class Game
         p.getOtherClasses().set(input, currentClass);
         
         MainGame.promptToEnter();
-        MainGame.printlnln("Class Change: Successful!\n\t" + otherClass.toString() +
-                " <----------> " + currentClass.toString(), 25);
+        MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
+                " -----------> " + otherClass.toString(), 25);
         
         MainGame.println(p.getName() + "'s new info:", 25);
         
@@ -1023,23 +1023,23 @@ public class Game
     {
         if(attack instanceof OffensiveAttack)
         {
-            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof BuffAttack)
         {
-            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof DebuffAttack)
         {
-            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof SingleHealingAttack)
         {
-            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof TeamHealingAttack)
         {
-            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 5, 500);
         }
     }
     
@@ -1070,7 +1070,10 @@ public class Game
     
     private void promptForOtherAttack(Player p, int inputForFirstAttack)
     {
-        MainGame.println("\nWhich move would you like to change it with?", 25);
+        MainGame.promptToEnter();
+        Attack wantedAttack = p.getCurrentAttacks().get(inputForFirstAttack - 1);
+        MainGame.println("Which move would you like to change " + wantedAttack.getName() 
+                + " with?\nNOTE: Only Clerk classes can use attacks that heal.", 25);
         String message = "";
         int numOfOptions = 0;
         
@@ -1093,6 +1096,12 @@ public class Game
         }
     }
     
+    /**
+     * Helper method to be used in promptForOtherAttack to guide player in changing attacks of a character.
+     * @param currentAttackInput
+     * @param otherAttackInput
+     * @param p 
+     */
     private void switchAttacks(int currentAttackInput, int otherAttackInput, Player p)
     {
 //        // Decrement inputs for use in the ArrayLists
@@ -1111,6 +1120,18 @@ public class Game
         // Decrement inputs for use in the ArrayLists
         --currentAttackInput;
         --otherAttackInput;
+        
+        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+        if(otherAttack instanceof SingleHealingAttack || otherAttack instanceof TeamHealingAttack)
+        {
+            MainGame.printlnln("\nYou cannot change " + p.getCurrentAttacks().get(currentAttackInput).getName() + " to " 
+                    + otherAttack.getName() + " because " + p.getName() + "'s curernt class is " 
+                    + p.getPlayerClass().getClassName() + ".\nPlease choose a different attack to switch to.", 25);
+            
+            // Take player back to select the other attack they want to change. Increment for the sake of implementation
+            promptForOtherAttack(p, ++currentAttackInput);
+        }
+        
         switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
         MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
@@ -1145,8 +1166,8 @@ public class Game
         p.getCurrentAttacks().set(currentAttackInput, otherAttack);
         p.getOtherAttacks().set(otherAttackInput, currentAttack);
         
-        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + otherAttack.getName() +
-                " <----------> " + currentAttack.getName() , 25, 500);
+        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
+                " -----------> " + otherAttack.getName() , 25, 500);
     }
     
     public ArrayList<Location> getKnownLocations() {return knownLocations;}
