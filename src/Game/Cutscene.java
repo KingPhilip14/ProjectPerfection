@@ -43,6 +43,9 @@ public class Cutscene
             case "Caillou":
                 calliouCutscene();
                 break;
+            case "Elder Vitorem":
+                vitoremCutscene();
+                break;
             case "Calmus":
                 calmusCutscene();
                 break;
@@ -494,6 +497,15 @@ public class Cutscene
                 + "should talk to everyone to see if\n\tanyone needs help. I also see some familar faces, so let's go say hi!");
         
         MainGame.promptToEnter();
+    }
+    
+    /**
+     * A cutscene for when the player talks to Elder Vitorem at Zoni Village.
+     */
+    public static void vitoremCutscene()
+    {
+        print("Vitorem's cutscene will be here. It should introduce the concept of the elders to the player and how the title "
+                + "is passed down.");
     }
     
     /**
@@ -1006,8 +1018,19 @@ public class Cutscene
                 + "others the best.");
     }
     
+    /**
+     * A cutscene that plays when the player talks to fleur in the second phase of the game.
+     */
     public static void fleurCutscene2()
     {
         MainGame.dialoguelnln("Fleur", "My cutscene starts here!");
+    }
+    
+    /**
+     * A cutscene that plays when the player first enters the Wind Village.
+     */
+    public static void windVillageCutscene()
+    {
+        
     }
 }

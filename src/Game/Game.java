@@ -29,6 +29,7 @@ import Exploration.Village;
 import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class for creating Game objects to start the game.
@@ -136,11 +137,11 @@ public class Game
             gaea.setRangedAttack(9999);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
-            gaea.getAttack().setOriginalValue(calmus.getAttack().getValue());
-            gaea.getDefense().setOriginalValue(calmus.getDefense().getValue());
-            gaea.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
-            gaea.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
-            gaea.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
+            gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
             gaea.setLevel(11);
             
 //            fultra.setMaxHealth(9999);
@@ -250,6 +251,7 @@ public class Game
         remainingLocations.add(createIceVillage());
         remainingLocations.add(createForlornDesert());
         remainingLocations.add(createElectricVillage());
+        remainingLocations.add(createZoniVillage2());
         
         if(isTesting)
         {
@@ -568,9 +570,9 @@ public class Game
             battle.start(gold);
         }
         // Second phase - 65% normal battles, 35% RESI battles
-        else if(inSecondPhase)
+        else
         {
-            chooseBattle(gold);
+            chooseBattle(new Random().nextInt(100));
         }
         
         checkForNextLocation();
@@ -1197,7 +1199,7 @@ public class Game
         // Anahita's father
         NPC lac = new NPC("Lac", "It's the Drama Queen Duo and Fearless Thunder! Bahaha! It's a pleasure to see you all. Make sure you're ready\n\tfor the festival later!", gift, 2, false);
         lac.setGiveGiftMessage("I have something I'd like to give you guys. It isn't much, but it might help tame that sweet tooth!");
-        lac.setDescription("Anahita's father");
+        lac.setDescription("Anahita's father | Water Village Elder");
         
         NPC buzi = new NPC("Buzi", "Hey guys! I hope you're ready for the annual festival tonight. It'll be a blast!", false);
         buzi.setDescription("Water Village resident");
@@ -1250,6 +1252,7 @@ public class Game
         Coordinate c = new Coordinate(17, 24);
         Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
+        v.setIsExplored();
         return v;
     }
     
@@ -1259,14 +1262,14 @@ public class Game
         gord.setDescription("Earth Village resident");
         
         NPC caillou = new NPC("Caillou", "ugh... i'm so weak now... the effects of my beans wore off... remember what i said, okay?", true);
-        caillou.setDescription("Earth Village resident // Bean Master"); 
+        caillou.setDescription("Earth Village resident | Bean Master"); 
        
         // Gaea's cousin
         NPC fleur = new NPC("Fleur", "Thank you guys for your help again! But why are you still here? Go to the festival!", true);
         fleur.setDescription("Gaea's older cousin");
         
         NPC roxy = new NPC("Roxy", "Have you guys seen the flowers blooming in Opicon Forest? This is the best time of year to see them if you haven't!", false);
-        roxy.setDescription("Earth Village resident");
+        roxy.setDescription("Earth Village Elder");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(gord);
@@ -1302,8 +1305,8 @@ public class Game
         fleur.setDescription("Gaea's older cousin");
         
         Item gift = Item.getBuffItem("Purple Bean");
-        NPC roxy = new NPC("Roxy", "You're all going to be known as heroes. I just know it.", gift, false);
-        roxy.setDescription("Earth Village resident");
+        NPC roxy = new NPC("Roxy", "You're all going to be known as heroes. I just know it. Do what you can for us all.", gift, false);
+        roxy.setDescription("Earth Village Elder");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(caillou);
@@ -1325,26 +1328,24 @@ public class Game
         Coordinate c = new Coordinate(22, 13);
         Village v = new Village("Earth Village", "A village located southwest of the Water Village.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
         v.setShop(s);
+        v.setIsExplored();
         return v;
     }
     
     private Village createZoniVillage()
     {
-//        Item gift = Item.getHealingItem("Apple Pie");
+        // Add a cutscene for Vitorem
+        NPC vitorem = new NPC("Elder Vitorem", "We'll be starting the festival soon! You don't want miss it.", true);
+        vitorem.setDescription("Zoni Elder | Leader of Pulchra");
+        
         NPC calmus = new NPC("Calmus", "We should catch up more! Let's meet up again after the festival. I'll see you all soon!", true);
-//        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
         calmus.setDescription("Fire Village resident");
         
         NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Ice Village resident");
         
-        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Just go away.", true);
+        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Go away.", true);
         ninlil.setDescription("Wind Village resident");
-        
-//        gift = Item.getHealingItem("Half Cake");
-//        NPC fultra = new NPC("Fultra", "Gaea, Ana! It's great to see you guys. We've got plenty of food and cake here, so tuck in!", gift);
-//        fultra.setGiveGiftMessage("I'll see you guys later. Love you Gaea!");
-//        fultra.setDescription("Electric Village resident and Gaea's boyfriend");
         
         Item gift = Item.getBuffItem("Green Bean");
         NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
@@ -1366,10 +1367,10 @@ public class Game
         verg.setDescription("Ice Village resident and Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();
+        people.add(vitorem);
         people.add(calmus);
         people.add(frigs);
         people.add(ninlil);
-//        people.add(fultra);
         people.add(pheu);
         people.add(ilven);
         people.add(clairdra);
@@ -1394,8 +1395,8 @@ public class Game
     
     private Village createWindVillage()
     {   
-        NPC ilvent = new NPC("Ilvent", "It's good to see you guys. Things... things have been rough since the calamity... We lost so many people... You're looking for Ninlil? She's at the Tempest Tower.", true);
-        ilvent.setDescription("Wind Village resident and Ninlil's training partner");
+        NPC nu = new NPC("Elder Nu", "We lost so many people during the invasion... If you still want Ninlil, she's at Tempest Tower.", true);
+        nu.setDescription("Wind Village Elder");
         
         NPC oura = new NPC("Oura", "(*sniff*) why is this happening... oh goodness... why?", false);
         oura.setDescription("Wind Village resident and newly Widowed");
@@ -1405,7 +1406,7 @@ public class Game
         tem.setGiveGiftMessage("We don't have much right now, but I think you could use this better than us.");
         
         ArrayList<NPC> people = new ArrayList<>();
-        people.add(ilvent);
+        people.add(nu);
         people.add(oura);
         people.add(tem);
         
@@ -1422,7 +1423,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(11, 71);
-        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of any other village.", people, 12, 312, c);
+        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their\nhigh esteem and have the most prestige out of any other village.", people, 12, 312, c);
         v.setShop(s);
         return v;
     }
@@ -1433,10 +1434,10 @@ public class Game
         lyra.setDescription("Fire Village resident and Calmus' little sister");
         
         NPC volca = new NPC("Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
-        volca.setDescription("Fire Village resident and Calmus' grandmother");
+        volca.setDescription("Fire Village Elder and Calmus' grandmother");
         
         NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help. Are you here to help too?", false);
-        mimi.setDescription("Fire Village resident");
+        mimi.setDescription("Water Village resident");
         
         Item gift = Item.getBuffItem("Red Bean");
         NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
@@ -1472,8 +1473,8 @@ public class Game
     {
         // Once player enters village, can find summit of mountain
         
-        NPC zeno = new NPC("Zeno", "Woah! I'm surprised you all made it through the mountain. The weather is at its worst this time of the year. Well, welcome. Like others, we don't have much left, but some of us are holding on to heope.", false);
-        zeno.setDescription("Ice Village Resident");
+        NPC zeno = new NPC("Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
+        zeno.setDescription("Ice Village Elder");
         
         NPC ligian = new NPC("Ligian", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
         ligian.setDescription("Ice Village Resident");
@@ -1500,12 +1501,16 @@ public class Game
     private Village createElectricVillage()
     {
         NPC clairdra = new NPC("Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
+        clairdra.setDescription("Electric Village Elder");
         
         NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our village hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
+        tonnerre.setDescription("Electric Village resident");
         
         Item gift = Item.getHealingItem("Half Cake");
         NPC san = new NPC("San", "Are you guys okay? How are your villages?", gift, false);
+        san.setDescription("Electric Village resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
+        
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(clairdra);
@@ -1591,6 +1596,9 @@ public class Game
         return forlornDessert;
     }
     
+    /**
+     * Plays the necessary cutscene when the player enters a new location and updates their objective.
+     */
     private void checkForCutscene()
     {
         if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
@@ -1610,9 +1618,14 @@ public class Game
             Cutscene.earthVillageCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
         {
             Cutscene.zoniVillageCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.windVillageCutscene();
             objective.update();
         }
         
