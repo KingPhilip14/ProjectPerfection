@@ -21,6 +21,8 @@ public class Player extends Character
     private String deathMessage;
     private String battleReadyMessage;
     private String cheerReadyMessage;
+    private String primaryRole;
+    private String secondaryRole;
     private Player cheerPartner;
     private Player playerToCheer;
     
@@ -30,6 +32,8 @@ public class Player extends Character
         super.description = description;
         super.element = element;
         this.playerClass = playerClass;
+        this.primaryRole = playerClass.getPrimaryRole();
+        this.secondaryRole = playerClass.getSecondaryRole();
         super.level = level;
         this.listOfOtherAttacks = new ArrayList<>();
         super.currentAttacks = new ArrayList<>();
@@ -62,7 +66,20 @@ public class Player extends Character
     public void setAggro(int newAggro) {aggro = newAggro;}
     
     public PlayerClass getPlayerClass() {return playerClass;}
-    public void setPlayerClass(PlayerClass pc) {this.playerClass = pc;}
+    
+    /**
+     * Updates the Player object's PlayerClass reference and updates its primary and secondary roles.
+     * @param pc 
+     */
+    public void setPlayerClass(PlayerClass pc) 
+    {
+        this.playerClass = pc;
+        this.primaryRole = pc.getPrimaryRole();
+        this.secondaryRole = pc.getSecondaryRole();
+    }
+    
+    public String getPrimaryRole() {return this.playerClass.getPrimaryRole();}
+    public String getSecondaryRole() {return this.playerClass.getSecondaryRole();}
     
     public ArrayList<Attack> getOtherAttacks() {return listOfOtherAttacks;}
     public void setListOfOtherAttacks(ArrayList<Attack> newList) {listOfOtherAttacks = newList;}
@@ -79,7 +96,7 @@ public class Player extends Character
     public void printCheerReadyMessage() {MainGame.printlnln("\n" + name + ": " + cheerReadyMessage, 5);}
     
     public String getClassRole() {return playerClass.getPrimaryRole();}
-    public void setClassRole(String roleType) {playerClass.setPrimaryRole(roleType);}
+//    public void setClassRole(String roleType) {playerClass.setPrimaryRole(roleType);}
     
     public Player getCheerPartner() {return cheerPartner;}
     public void setCheerPartner(Player partner) {cheerPartner = partner;}

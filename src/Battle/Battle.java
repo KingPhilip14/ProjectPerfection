@@ -656,13 +656,13 @@ public abstract class Battle
         
         if(chance == 0)
         {
-            String roleType = cheer.getClassRole();
+            PlayerClass pc = cheer.getPlayerClass();
             Player playerToCheer = cheer.getPlayerToCheer();
             
             MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!", 25);
-            MainGame.wait(1000);
+            MainGame.wait(500);
             
-            switch (roleType)
+            switch (pc.getPrimaryRole())
             {
                 case "Clerk":
                     if(!playerToCheer.isHealthy())

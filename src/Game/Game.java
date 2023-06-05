@@ -225,7 +225,12 @@ public class Game
     {
         // Comment out for testing
         MainGame.clearScreen();
+        
+        if(!isTesting)
+        {
 //        gameOpening();
+        }
+
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
@@ -914,7 +919,7 @@ public class Game
         checkClasses(p, currentClass, otherClass);
         
         p.setPlayerClass(otherClass);
-        p.setClassRole(otherClass.getPrimaryRole());
+        
         p.getOtherClasses().set(input, currentClass);
         
         MainGame.promptToEnter();

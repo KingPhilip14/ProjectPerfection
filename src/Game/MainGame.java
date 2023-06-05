@@ -896,7 +896,6 @@ public class MainGame
         anahita.setDeathMessage("Everyone... I'm sorry...");
         anahita.setCheerReadyMessage("I'm right behind you!");
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
-        anahita.setClassRole("Clerk");
         anahita.setMaxHealth(300);
         anahita.setCurrentHealth(300);
         anahita.setAttack(45);
@@ -957,7 +956,6 @@ public class MainGame
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
-        gaea.setClassRole("Clerk");
         gaea.setAggro(5);
         gaea.setMaxHealth(315);
         gaea.setCurrentHealth(315);
@@ -1016,7 +1014,6 @@ public class MainGame
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
         fultra.setCheerReadyMessage("You're in good hands!");
-        fultra.setClassRole("All-Rounder");
         fultra.setMaxHealth(335);
         fultra.setCurrentHealth(335);
         fultra.setAttack(72);
@@ -1068,7 +1065,6 @@ public class MainGame
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setClassRole("Tank");
         calmus.setAggro(10);
         calmus.setMaxHealth(420);
         calmus.setCurrentHealth(420);
@@ -1118,7 +1114,6 @@ public class MainGame
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
-        frigs.setClassRole("Striker");
         frigs.setMaxHealth(370);
         frigs.setCurrentHealth(370);
         frigs.setAttack(180);
@@ -1171,7 +1166,6 @@ public class MainGame
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("Tch! I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("Ugh, fine. I'll help you.");
-        ninlil.setClassRole("Striker");
         ninlil.setAggro(7);
         ninlil.setMaxHealth(395);
         ninlil.setCurrentHealth(395);
