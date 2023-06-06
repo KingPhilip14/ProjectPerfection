@@ -1079,7 +1079,7 @@ public class Game
     {
         MainGame.promptToEnter();
         Attack wantedAttack = p.getCurrentAttacks().get(inputForFirstAttack - 1);
-        MainGame.println("Which move would you like to change " + wantedAttack.getName() 
+        MainGame.println("Which attack would you like to change " + wantedAttack.getName() 
                 + " with?\nNOTE: Only Clerk classes can use attacks that heal.", 25);
         String message = "";
         int numOfOptions = 0;
@@ -1129,7 +1129,8 @@ public class Game
         --otherAttackInput;
         
         Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
-        if(otherAttack instanceof SingleHealingAttack || otherAttack instanceof TeamHealingAttack)
+        if((otherAttack instanceof SingleHealingAttack && !p.getPlayerClass().isClerk()) 
+                || (otherAttack instanceof TeamHealingAttack && !p.getPlayerClass().isClerk()))
         {
             MainGame.printlnln("\nYou cannot change " + p.getCurrentAttacks().get(currentAttackInput).getName() + " to " 
                     + otherAttack.getName() + " because " + p.getName() + "'s curernt class is " 
