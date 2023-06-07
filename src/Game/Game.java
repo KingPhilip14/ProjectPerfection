@@ -103,9 +103,15 @@ public class Game
             objective.update();
             startSecondPhase();
             
+            // Put the player in Wind Village
+            objective.update();  // Talk to Elder Nu objective 
+            knownLocations.add(remainingLocations.remove(0));
+            
+//            // Go to wind tower objective
+//            objective.update();
             
             // Use this for going to the newest location
-//            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            currentLocation = knownLocations.get(knownLocations.size() - 1);
             
             nextLocation = remainingLocations.remove(0);
             
@@ -128,7 +134,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(11);
+            anahita.setLevel(12);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -142,7 +148,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(11);
+            gaea.setLevel(12);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -170,7 +176,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(11);
+            calmus.setLevel(12);
             
             team.add(anahita);
             team.add(gaea);
@@ -362,8 +368,8 @@ public class Game
         {
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-            MainGame.wait(1000);
-            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
+            MainGame.wait(500);
+            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 1000);
             MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
         }
@@ -574,7 +580,7 @@ public class Game
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold);
         }
-        // Second phase - 65% normal battles, 35% RESI battles
+        // Second phase - 60% normal battles, 40% RESI battles
         else
         {
             chooseBattle(new Random().nextInt(100));
@@ -585,7 +591,7 @@ public class Game
     
     private void chooseBattle(int chance)
     {
-        if(chance >= 0 && chance < 65)
+        if(chance >= 0 && chance < 59)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold);
@@ -612,6 +618,11 @@ public class Game
         }
         else if(village.getName().equals("Wind Village") && village.getNPC("Elder Nu").hasBeenTalkedTo())
         {
+            // Unlock Tempest Tower
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
             return true;
         }
         
@@ -659,7 +670,7 @@ public class Game
         Location latestLocation = knownLocations.get(knownLocations.size() - 1);
         
         // While the highest level is >= to the required level AND the newest location was explored, the player unlocks the next location 
-        while(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
+        if(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
         {
             nextLocation.setUnlocked(true);
             locationUnlocked();
@@ -1405,14 +1416,15 @@ public class Game
     
     private Village createWindVillage()
     {   
-        NPC nu = new NPC("Elder Nu", "We lost so many people during the invasion... If you still want Ninlil, she's at Tempest Tower.", true);
+        NPC nu = new NPC("Elder Nu", "(*smack*) If you need anything, do come back. We will do what we can to help you.", true);
         nu.setDescription("Wind Village Elder");
         
         NPC oura = new NPC("Oura", "(*sniff*) why is this happening... oh goodness... why?", false);
-        oura.setDescription("Wind Village resident and newly Widowed");
+        oura.setDescription("Wind Village resident and newly widowed");
         
         Item gift = Item.getBuffItem("Purple Bean");
-        NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it, but I don't think there's much you can do for us.", gift, 3, false);
+        NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it. Hopefully we can recover from everything.", gift, 3, false);
+        tem.setDescription("Wind Village resident");
         tem.setGiveGiftMessage("We don't have much right now, but I think you could use this better than us.");
         
         ArrayList<NPC> people = new ArrayList<>();

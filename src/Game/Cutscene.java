@@ -1049,27 +1049,27 @@ public class Cutscene
     {
         MainGame.dialoguelnln("Anahita", "I see Elder Nu over there. Let's ask him if he knows where Ninlil is.");
         
-        print("The group walked over to a short man. He was bald, short, and hunched over with his hands behind his back. "
-                + "He only had a few/strands of hair left on his head.");
+        print("The group walked over to a short man. He was bald and hunched over with his hands behind his back. "
+                + "He only had a few strands of/hair left on his head.");
         
         MainGame.dialoguelnln("Anahita", "Elder Nu?");
         
         print("The Elder turned around to address the group. He greeted them with a warm yet slightly pained smile. He "
                 + "smacked his lips/before speaking.");
         
-        MainGame.dialoguelnln("Elder Nu", "Ah, hello children. How are you all doing? I hope better than we are.");
+        MainGame.dialoguelnln("Elder Nu", "(*smack*) Ah, hello children. How are you all doing? I hope better than we are.");
         
         MainGame.dialoguelnln("Gaea", "We're doing the best we can, Elder. This place definitely took a hit.");
         
-        MainGame.dialoguelnln("Elder Nu", "Indeed it did... but do you all need anything? I don't know how much we can offer, "
-                + "but we can do our best.");
+        MainGame.dialoguelnln("Elder Nu", "Indeed it did... but do you all need anything? I don't know how much we "
+                + "can offer, but we can do our best.");
         
         print("The group explained their goals in saving Pulchra to Elder Nu and the importance of their journey.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        MainGame.dialoguelnln("Elder Nu", "Ah, I see... You all have a strenuous journey ahead of you then. You will have our "
+        MainGame.dialoguelnln("Elder Nu", "(*smack*) Ah, I see... You all have a strenuous journey ahead of you. You will have our "
                 + "support then.");
         
         MainGame.dialoguelnln("Calmus", "Thank you so much, Elder. We appreciate it. We do need Ninlil to join us, however. "
@@ -1077,7 +1077,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Anahita", "Do you know where she is?");
         
-        MainGame.dialoguelnln("Elder Nu", "Yes, actually. She's at Tempest Tower. It's just south of here. She's been "
+        MainGame.dialoguelnln("Elder Nu", "Yes, actually. She's at Tempest Tower, just south of here. (*smack*) She's been "
                 + "greiving since we lost\n\tIlven... He was one of our best and the closest person to her... When you "
                 + "see her, be careful.\n\tI doubt she's in the right headspace -- she may need some convincing and "
                 + "consolation.");
@@ -1088,5 +1088,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Thank you so much, Elder. We'll go over there to see if we can find her.");
         
         MainGame.dialoguelnln("Elder Nu", "I wish you all the best, children. Be strong.");
+        
+        MainGame.promptToEnter();
     }
 }

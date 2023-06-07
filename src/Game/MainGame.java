@@ -348,7 +348,7 @@ public class MainGame
         Item.populateAllHealItems();
         PlayerClass.createClasses();
 
-        Game game = new Game(false);
+        Game game = new Game(true);
         playerTeam = game.getTeam();
         game.startGame();
 
@@ -1075,14 +1075,14 @@ public class MainGame
         calmus.setSpeed(80);
         
         ArrayList<Attack> calmusAllAttacks = new ArrayList<>(6);
-        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 95, "Attack"));
+        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack"));
         calmusAllAttacks.get(0).setAccuracy(80);
         calmusAllAttacks.add(new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3));
         calmusAllAttacks.add(new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2));
         calmusAllAttacks.add(new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack"));
         calmusAllAttacks.add(new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3));
-        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 100, "Attack"));
-        calmusAllAttacks.get(5).setAccuracy(80);
+        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack"));
+        calmusAllAttacks.get(5).setAccuracy(75);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
         calmusCurrentAttacks.add(calmusAllAttacks.get(0));
