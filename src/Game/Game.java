@@ -170,7 +170,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(10);
+            calmus.setLevel(11);
             
             team.add(anahita);
             team.add(gaea);
@@ -228,7 +228,7 @@ public class Game
         
         if(!isTesting)
         {
-//        gameOpening();
+            gameOpening();
         }
 
         
@@ -607,6 +607,10 @@ public class Game
             return true;
         }
         else if(village.getName().equals("Earth Village") && village.getNPC("Fleur").hasBeenTalkedTo())
+        {
+            return true;
+        }
+        else if(village.getName().equals("Wind Village") && village.getNPC("Elder Nu").hasBeenTalkedTo())
         {
             return true;
         }
@@ -1429,7 +1433,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(11, 71);
-        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their\nhigh esteem and have the most prestige out of any other village.", people, 12, 312, c);
+        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of\nany other village.", people, 12, 312, c);
         v.setShop(s);
         return v;
     }
@@ -1439,7 +1443,7 @@ public class Game
         NPC lyra = new NPC("Lyra", "Brother! Grandma needs your help. If you can defeat <Enemy Boss Name Here>, that should help. Please! She's not feeling well...", true);
         lyra.setDescription("Fire Village resident and Calmus' little sister");
         
-        NPC volca = new NPC("Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
+        NPC volca = new NPC("Elder Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
         volca.setDescription("Fire Village Elder and Calmus' grandmother");
         
         NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help. Are you here to help too?", false);
@@ -1479,7 +1483,7 @@ public class Game
     {
         // Once player enters village, can find summit of mountain
         
-        NPC zeno = new NPC("Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
+        NPC zeno = new NPC("Elder Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
         zeno.setDescription("Ice Village Elder");
         
         NPC ligian = new NPC("Ligian", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
@@ -1506,7 +1510,7 @@ public class Game
     
     private Village createElectricVillage()
     {
-        NPC clairdra = new NPC("Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
+        NPC clairdra = new NPC("Elder Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
         clairdra.setDescription("Electric Village Elder");
         
         NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our village hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
@@ -1610,13 +1614,14 @@ public class Game
         if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
         {
             objective.update();
-            
+            Cutscene.opiconCutscene();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
             MainGame.setPlayerTeam(team);
         }
         else if(currentLocation.getName().equals("Water Village") && (!currentLocation.isExplored()))
         {
+            Cutscene.waterVillageCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))

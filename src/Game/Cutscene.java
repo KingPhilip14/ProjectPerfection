@@ -55,6 +55,8 @@ public class Cutscene
             case "Ninlil":
                 ninlilCutscene();
                 break;
+            case "Elder Nu":
+                elderNuCutscene();
         }
     }
     
@@ -1031,6 +1033,60 @@ public class Cutscene
      */
     public static void windVillageCutscene()
     {
+        print("Anahita and the others safely arrived to the Wind Village. There were only a handful of homes that were fully "
+                + "intact. Others/were either damaged, burned, or completely missing. Debris was everywhere, with only a "
+                + "few residents cleaning up.");
         
+        MainGame.dialoguelnln("Calmus", "This place is a mess... I wouldn't have expected it to be *this* bad.");
+        MainGame.dialoguelnln("Gaea", "I know, it's awful. This place was always so pretty too.");
+        MainGame.dialoguelnln("Anahita", "Yeah...Let's see if we can find Ninlil. Hopefully we find her quickly.");
+    }
+    
+    /**
+     * A cutscene that plays when the player talks to Elder Nu for the first time.
+     */
+    public static void elderNuCutscene()
+    {
+        MainGame.dialoguelnln("Anahita", "I see Elder Nu over there. Let's ask him if he knows where Ninlil is.");
+        
+        print("The group walked over to a short man. He was bald, short, and hunched over with his hands behind his back. "
+                + "He only had a few/strands of hair left on his head.");
+        
+        MainGame.dialoguelnln("Anahita", "Elder Nu?");
+        
+        print("The Elder turned around to address the group. He greeted them with a warm yet slightly pained smile. He "
+                + "smacked his lips/before speaking.");
+        
+        MainGame.dialoguelnln("Elder Nu", "Ah, hello children. How are you all doing? I hope better than we are.");
+        
+        MainGame.dialoguelnln("Gaea", "We're doing the best we can, Elder. This place definitely took a hit.");
+        
+        MainGame.dialoguelnln("Elder Nu", "Indeed it did... but do you all need anything? I don't know how much we can offer, "
+                + "but we can do our best.");
+        
+        print("The group explained their goals in saving Pulchra to Elder Nu and the importance of their journey.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Nu", "Ah, I see... You all have a strenuous journey ahead of you then. You will have our "
+                + "support then.");
+        
+        MainGame.dialoguelnln("Calmus", "Thank you so much, Elder. We appreciate it. We do need Ninlil to join us, however. "
+                + "She's strong. We\n\tthink she would be perfect to aid us.");
+        
+        MainGame.dialoguelnln("Anahita", "Do you know where she is?");
+        
+        MainGame.dialoguelnln("Elder Nu", "Yes, actually. She's at Tempest Tower. It's just south of here. She's been "
+                + "greiving since we lost\n\tIlven... He was one of our best and the closest person to her... When you "
+                + "see her, be careful.\n\tI doubt she's in the right headspace -- she may need some convincing and "
+                + "consolation.");
+        
+        print("Gaea's heart is normally hardened toward Ninlil, but hearing Elder Nu speak softened her. She felt herself "
+                + "start to gain compassion/and empathy for her. Now knowing the pain of loss is a strong factor for this.");
+        
+        MainGame.dialoguelnln("Anahita", "Thank you so much, Elder. We'll go over there to see if we can find her.");
+        
+        MainGame.dialoguelnln("Elder Nu", "I wish you all the best, children. Be strong.");
     }
 }

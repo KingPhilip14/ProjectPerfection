@@ -719,9 +719,10 @@ public abstract class Battle
      */
     private void wantToAttack(String message, int response, Player player)
     {
-        message = "\nSelect an attack:\n\t1) " + player.getCurrentAttacks().get(0).getName() + "\n\t2) " + 
-                    player.getCurrentAttacks().get(1).getName() + "\n\t3) " + player.getCurrentAttacks().get(2).getName() + 
-                    "\n\t4) " + player.getCurrentAttacks().get(3).getName() + "\n\t5) Back";
+        message = "\nSelect an attack:\n\t1) " + player.getCurrentAttacks().get(0).getNameWithAttackType() + "\n\t2) " + 
+                    player.getCurrentAttacks().get(1).getNameWithAttackType()+ "\n\t3) " + 
+                    player.getCurrentAttacks().get(2).getNameWithAttackType()+ "\n\t4) " + 
+                    player.getCurrentAttacks().get(3).getNameWithAttackType()+ "\n\t5) Back";
         response = MenuHelper.displayMenu(message, 1, 5);
         
         if(response != 5)

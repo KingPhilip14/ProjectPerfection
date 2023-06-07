@@ -30,13 +30,17 @@ public class Objective
         unfinsihedTasks.enqueue(("Go to Zoni Village (Required Level: 10)"));
         unfinsihedTasks.enqueue(("Enjoy the festival and talk to everyone!"));
         unfinsihedTasks.enqueue(("Go to the Wind Village (Required Level: 12)"));
+        unfinsihedTasks.enqueue(("Talk to Elder Nu."));
         unfinsihedTasks.enqueue(("Go to Tempest Tower (Required Level: 13)"));
         unfinsihedTasks.enqueue(("Go to the Fire Village (Required Level: 15)"));
+        unfinsihedTasks.enqueue(("Talk to Elder Vulca."));
         unfinsihedTasks.enqueue(("Go to Mount Volcan (Required Level: 16)"));
         unfinsihedTasks.enqueue(("Go to Mount Zoni (Required Level: 18)"));
         unfinsihedTasks.enqueue(("Go to the Ice Village (Required Level: 19)"));
+        unfinsihedTasks.enqueue(("Talk to Elder Zeno."));
         unfinsihedTasks.enqueue(("Go to the Forlorn Desert (Required Level: 22)"));
         unfinsihedTasks.enqueue(("Go to the Electric Village (Required Level: 23)"));
+        unfinsihedTasks.enqueue(("Talk to Elder Clairdra."));
         unfinsihedTasks.enqueue(("Return to Zoni Village (Required Level: 25)"));
         unfinsihedTasks.enqueue(("Defeat Irwin."));
     }

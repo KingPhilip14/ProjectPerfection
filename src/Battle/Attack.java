@@ -86,4 +86,31 @@ public abstract class Attack extends GameProperty
     }
     
     public boolean getAttackHit() {return attackHit;}
+    
+    public String getNameWithAttackType() 
+    {
+        String result = name + " ";
+        if(this instanceof OffensiveAttack)
+        {
+            result += "(Offensive Attack)";
+        }
+        else if(this instanceof BuffAttack)
+        {
+            result += "(Buff Attack)";
+        }
+        else if(this instanceof DebuffAttack)
+        {
+            result += "(Debuff Attack)";
+        }
+        else if(this instanceof SingleHealingAttack)
+        {
+            result += "(Single Heal Attack)";
+        }
+        else if(this instanceof TeamHealingAttack)
+        {
+            result += "(Team Heal Attack)";
+        }
+        
+        return result;
+    }
 }
