@@ -43,6 +43,7 @@ public class Game
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
     private boolean isTesting;
+    private boolean towerBossAttempted;
     private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
@@ -108,8 +109,13 @@ public class Game
             objective.update();  // Talk to Elder Nu objective 
             knownLocations.add(remainingLocations.remove(0));
             
-//            // Go to wind tower objective
-//            objective.update();
+            // Go to wind tower objective
+            objective.update();
+            
+            
+            // Find Ninlil objective
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
             
             // Use this for going to the newest location
             currentLocation = knownLocations.get(knownLocations.size() - 1);
@@ -135,7 +141,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(12);
+            anahita.setLevel(13);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -149,7 +155,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(12);
+            gaea.setLevel(13);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -177,7 +183,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(12);
+            calmus.setLevel(13);
             
             team.add(anahita);
             team.add(gaea);
@@ -431,9 +437,16 @@ public class Game
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
             MainGame.wait(500);
-            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 1000);
+            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 500);
             MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
+        }
+        
+        // Set the Ninlil boss battle for Tempest Tower
+        if(currentLocation.getName().equals("Tempest Tower"))
+        {
+            BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+            ((Wilderness)currentLocation).setBossBattle(battle, 14);
         }
         
         checkForCutscene();
@@ -669,10 +682,15 @@ public class Game
     {   
         if(currentLocation.getName().equals("Tempest Tower"))
         {
-            Cutscene.foundNinlilCutscene();
+            // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
+            if(!towerBossAttempted) 
+            {
+                Cutscene.foundNinlilCutscene();
+            }
             
             Wilderness tempestTower = ((Wilderness)currentLocation);
-            tempestTower.getBossBattle();
+            tempestTower.getBossBattle().start(gold);
+            towerBossAttempted = true;
             
             // If the player wins the boss fight, remove it from Tempest Tower.
             if(tempestTower.getBossBattle().isWon())
@@ -1663,8 +1681,8 @@ public class Game
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
         
-        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), team);
-        tempestTower.setBossBattle(battle, 14);
+//        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), team);
+//        tempestTower.setBossBattle(battle, 14);
         
         return tempestTower;
     }
@@ -1769,6 +1787,27 @@ public class Game
         {
             p.setLevel(level);
         }
+    }
+    
+    /**
+     * Helper method that returns an ArrayList containing the player the Player given.
+     * @param name
+     * @return 
+     */
+    private ArrayList<Player> makePlayerTeam(String name)
+    {
+        ArrayList<Player> team = new ArrayList<>();
+        
+        for(Player p : team)
+        {
+            if(p.getName().equals(name))
+            {
+                team.add(p);
+                break;
+            }
+        }
+        
+        return team;
     }
     
     
