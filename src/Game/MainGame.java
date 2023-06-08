@@ -1164,8 +1164,8 @@ public class MainGame
         // Instantiating Ninlil and her moveset--------------------------
         Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
-        ninlil.setBattleReadyMessage("Tch! I'll show you all how it's done.");
-        ninlil.setCheerReadyMessage("Ugh, fine. I'll help you.");
+        ninlil.setBattleReadyMessage("I'll show you all how it's done.");
+        ninlil.setCheerReadyMessage("... Okay. I'll help you.");
         ninlil.setAggro(7);
         ninlil.setMaxHealth(395);
         ninlil.setCurrentHealth(395);
@@ -1178,13 +1178,13 @@ public class MainGame
         ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
         ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
         ninlilAllAttacks.get(0).setAccuracy(90);
-        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 70, "R. Attack");
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 80, "R. Attack");
         tornado.setCritRate(0.5);
         ninlilAllAttacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
         ninlilAllAttacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
-        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 85, "R. Attack"));
-        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 90, "Attack");
-        tempestBlade.setAccuracy(90);
+        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack"));
+        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 85, "Attack");
+        tempestBlade.setAccuracy(85);
         tempestBlade.setCritRate(0.35);
         ninlilAllAttacks.add(tempestBlade);
         

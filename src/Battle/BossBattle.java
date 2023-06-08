@@ -12,6 +12,6 @@ public class BossBattle extends Battle
     {
         super(enemyTeam, playerTeam);
         baseGoldAmt = 250;
-        startingText = "The outcome of this battle could change everything...!\n\n Battle: S T A R T";
+        startingText = "The outcome of this battle could change everything...!\n\n Boss SBattle: S T A R T";
     }   
 }

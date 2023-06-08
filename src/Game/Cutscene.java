@@ -1091,4 +1091,87 @@ public class Cutscene
         
         MainGame.promptToEnter();
     }
+    
+    /**
+     * A custcene that plays when entering Tempest Tower for the first time.
+     */
+    public static void tempestTowerCutscene()
+    {
+        print("The group arrived to the entrance of Tempest Tower. Its shadow loomed over them. Its peak pierced the sky, as "
+                + "clouds/circled it. It exuded an air of majesty and power. Anahita and Gaea were too breath taken to speak.");
+        
+        MainGame.dialoguelnln("Calmus", "This is a lot larger than I thought it would be... It's amazing though.");
+        
+        print("Still flabergasted, Anahita and Gaea slowly nodded.");
+        
+        MainGame.dialoguelnln("Gaea", "And we have to climb this *entire* thing? Ugh, I'm gonna get all sweaty!");
+        
+        MainGame.dialoguelnln("Calmus", "It's better for us to get sweaty than lose the peace we once had forever.");
+        
+        MainGame.dialoguelnln("Gaea", "... Yeah, you're right... (*sigh*) Let's start climbing then.");
+        
+        print("Gaea and Calmus opened the two giant doors that lead into the tower and stepped inside. Anahita was still "
+                + "outside gawking at/the sheer size of it. Gaea quickly popped backed out and dragged her inside.");
+        
+        MainGame.dialoguelnln("Gaea", "Come on, Ana. I'm not a fan either.");
+    }
+    
+    /**
+     * A cutscene that plays before starting the Ninlil Boss fight.
+     */
+    public static void foundNinlilCutscene()
+    {
+        MainGame.dialoguelnln("Gaea", "(*pant*) (*pant*) UGH. How much further do we have until we find Ninlil? This is "
+                + "ridiculous.\n\tI *really* need a shower, and it's so COLD up here.");
+        
+        print("The group had been climbing up the tower's floors for about an hour. They were sweaty, cold, and tired.");
+        
+        MainGame.dialoguelnln("Anahita", "(*huff*) We have to be close. And the creatures here haven't been the easiest to "
+                + "fight against either.");
+        
+        MainGame.dialoguelnln("Calmus", "Don't worry guys - I think I see exit at the top of this staircase!");
+        
+        print("The group finally made it to the climax of the tower. They were surrounded by the crescent clouds and a cold "
+                + "breeze./Gaea and Anahita shivered, so Calmus supplied a small flame to keep them warm.");
+        
+        print("The peak of the tower was a giant platform. At it's center, there was a bell, and Ninlil was in front of it. "
+                + "She was/occasionally ringing the bell, and slight sobbing could be heard between the silence.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The group slowly approached Ninlil, with Anahtia being at the front. Despite her being exhausted, she was "
+                + "determined/to talk to Ninlil and be there for her.");
+        
+        print("Ninlil heard their footsteps behind her. She caused a breeze to blow only in front of her to dry her tears "
+                + "before/she spoke. She still had her back turned to the group");
+        
+        MainGame.dialoguelnln("Ninlil", "(*sniff*) What do you guys *want*? Please, just leave me alone.");
+                
+        print("Gaea quickly whispered to Anahita before Anahita said anything.");
+        
+        MainGame.dialoguelnln("Gaea", "Remember -- we need to be careful of how we say things. She's still grieving.");
+        
+        print("Anahita nodded and looked at Calmus to see him give a look of reassurance. She took a breath before speaking.");
+        
+        MainGame.dialoguelnln("Anahita", "Ninlil, we aren't here to irriate you. We just want to talk to you, to be here for "
+                + "you. *I* am here for you.");
+        
+        print("Gaea's heart was softened, yes, but she still couldn't believe how kind Anahita had treated Ninlil. She "
+                + "always had/a kind heart, and Gaea couldn't understand it all the time, even when the other person "
+                + "treated Anahita terribly./However, Gaea admired it from time to time.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Ninlil turned around acutely after hearing Anahita.");
+        
+        MainGame.dialoguelnln("Ninlil", "What is there to talk about? I lost the ONLY person that meant so much to me! And "
+                + "now he's gone.\n\t(*sniff*) So what am I supposed to do?? I have *no one* now.");
+        
+        // Look at notes on phone for how conversation needs to progress. Will need to make second cutscene for after where
+        // Anahita and Ninlil have a moment, Gaea comes in, and the freindship starts. Calmus will show his appreciation
+        
+        MainGame.dialoguelnln("Anahita", "I understand that ");
+    }
 }

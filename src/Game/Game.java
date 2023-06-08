@@ -2,6 +2,7 @@ package Game;
 
 import Battle.Attack;
 import Battle.BeachTutorialBattle;
+import Battle.BossBattle;
 import Battle.BuffAttack;
 import Battle.DebuffAttack;
 import Battle.EarthEnemy;
@@ -293,7 +294,7 @@ public class Game
         
         MainGame.println("What would you like to do?", 5);
         String message = "\t1) Travel\n\t2) ";
-        int input;
+        int input = 0;
         
         if(currentLocation instanceof Village)
         {
@@ -327,6 +328,44 @@ public class Game
         // If the current location is of type Wildnerness
         else
         {
+            wildernessOptions(message, input);
+//            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
+//            input = MenuHelper.displayMenu(message, 1, 5);
+//            
+//            switch(input)
+//            {
+//                case 1:
+//                    askForLocation();
+//                    break;
+//                case 2:
+//                    battle();
+//                    break;
+//                case 3:
+//                    findWildnernessChest();
+//                    break;
+//                case 4:
+//                    viewInventory();
+//                    break;
+//                case 5:
+//                    optionsMenu();
+//                    break;
+//            }
+            
+            MainGame.waitForEnter();
+        }
+        
+//        MainGame.waitForEnter();
+    }
+    
+    /**
+     * Helper method to help display the options for the Wilderness areas.
+     * @param message 
+     */
+    private void wildernessOptions(String message, int input)
+    {
+        // If the requirements to start the boss battle aren't met, don't give the option.
+        if(!((Wilderness)currentLocation).canDoBossBattle(team))
+        {
             message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
             input = MenuHelper.displayMenu(message, 1, 5);
             
@@ -348,11 +387,34 @@ public class Game
                     optionsMenu();
                     break;
             }
-            
-            MainGame.waitForEnter();
         }
-        
-//        MainGame.waitForEnter();
+        else
+        {
+            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            input = MenuHelper.displayMenu(message, 1, 5);
+            
+            switch(input)
+            {
+                case 1:
+                    askForLocation();
+                    break;
+                case 2:
+                    battle();
+                    break;
+                case 3:
+                    bossBattle();
+                    break;
+                case 4:
+                    findWildnernessChest();
+                    break;
+                case 5:
+                    viewInventory();
+                    break;
+                case 6:
+                    optionsMenu();
+                    break;
+            }
+        }
     }
     
     private void transition(Location newLocation)
@@ -545,7 +607,7 @@ public class Game
     {
         MainGame.clearScreen();
         
-        // If the player is in Purity Beach and they haven't done it's tutorial, do it
+        // If the player is in Purity Beach and they haven't done its tutorial, do it
         if(!beachTutorialDone && currentLocation.getName().equals("Purity Beach"))
         {
             BeachTutorialBattle battle = ((Wilderness)currentLocation).makeBeachTutorial(team.get(0));
@@ -600,6 +662,23 @@ public class Game
         {
             RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
             battle.start(gold);
+        }
+    }
+    
+    private void bossBattle()
+    {   
+        if(currentLocation.getName().equals("Tempest Tower"))
+        {
+            Cutscene.foundNinlilCutscene();
+            
+            Wilderness tempestTower = ((Wilderness)currentLocation);
+            tempestTower.getBossBattle();
+            
+            // If the player wins the boss fight, remove it from Tempest Tower.
+            if(tempestTower.getBossBattle().isWon())
+            {
+                tempestTower.removeBossBattle();
+            }
         }
     }
     
@@ -1583,6 +1662,10 @@ public class Game
         Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 13, c);
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
+        
+        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), team);
+        tempestTower.setBossBattle(battle, 14);
+        
         return tempestTower;
     }
     
@@ -1649,6 +1732,11 @@ public class Game
         else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
         {
             Cutscene.windVillageCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
+        {
+            Cutscene.tempestTowerCutscene();
             objective.update();
         }
         

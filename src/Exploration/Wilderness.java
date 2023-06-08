@@ -1,21 +1,23 @@
 package Exploration;
 
+import Battle.Attack;
 import Battle.BeachTutorialBattle;
 import Battle.BossBattle;
 import Battle.BossEnemy;
+import Battle.BuffAttack;
 import Battle.EarthEnemy;
 import Battle.ElectricEnemy;
 import Battle.Enemy;
 import Battle.FireEnemy;
 import Battle.IceEnemy;
 import Battle.NormalBattle;
+import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
 import Battle.RESIBattle;
 import Battle.RESIEnemy;
 import Battle.WaterEnemy;
 import Battle.WindEnemy;
-import Game.MainGame;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,6 +30,8 @@ public class Wilderness extends Location
     private final ArrayList<String> LOCAL_ELEMENTS = new ArrayList<>(3);
     private final int MAX_ENEMY_LV;
     private final int MIN_ENEMY_LV;
+    private BossBattle bossBattle;
+    private int requiredBossLevel;
     
     public Wilderness(String name, String description, int requiredLevel, Coordinate coordinate)
     {
@@ -35,7 +39,35 @@ public class Wilderness extends Location
         MAX_ENEMY_LV = requiredLevel + 4;
         MIN_ENEMY_LV = requiredLevel - 1;
         this.coordinate = coordinate;
+        bossBattle = null;
     }
+    
+    public BossBattle getBossBattle() {return this.bossBattle;}
+    
+    /**
+     * Sets the boss battle by giving a BossBattle Object and its required level.
+     * @param battle
+     * @param requiredLevel 
+     */
+    public void setBossBattle(BossBattle battle, int requiredLevel) 
+    {
+        this.bossBattle = battle;
+        this.requiredBossLevel = requiredLevel;
+    }
+    
+    public boolean hasBossBattle() {return this.bossBattle != null;}
+    
+    /**
+     * Returns true if the boss battle is not null and if the player is at the required level.
+     * @param playerTeam
+     * @return true or false
+     */
+    public boolean canDoBossBattle(ArrayList<Player> playerTeam) 
+    {
+        return hasBossBattle() && Player.highestPlayerLV(playerTeam) == requiredBossLevel;
+    }
+    public void removeBossBattle() {this.bossBattle = null;}
+    
     
     public int getMAX_ENEMY_LV() {return MAX_ENEMY_LV;}
     public int getMIN_ENEMY_LV() {return MIN_ENEMY_LV;}
@@ -392,6 +424,35 @@ public class Wilderness extends Location
     {
         return new RESIEnemy(level, this);
     }
+    
+    public ArrayList<Enemy> makeNinlilBoss()
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
+        attacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
+        attacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
+        attacks.get(2).setAccuracy(90);
+        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 85, "Attack");
+        tempestBlade.setAccuracy(85);
+        tempestBlade.setCritRate(0.35);
+        attacks.add(tempestBlade);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(630); // HP
+        stats.add(120); // Attack
+        stats.add(120); // Defense
+        stats.add(350); // R Attack
+        stats.add(125); // R Defense
+        stats.add(125); // Speed
+        
+        Enemy ninlil = new BossEnemy("Ninlil", "A currently grieving master of Wind in need of a friend.", "Wind", 14, 
+                                    attacks, stats);
+        
+        ArrayList<Enemy> team = new ArrayList<>(1);
+        team.add(ninlil);
+        
+        return team;
+    }    
     
     @Override
     public String toString()

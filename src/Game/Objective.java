@@ -32,6 +32,7 @@ public class Objective
         unfinsihedTasks.enqueue(("Go to the Wind Village (Required Level: 12)"));
         unfinsihedTasks.enqueue(("Talk to Elder Nu."));
         unfinsihedTasks.enqueue(("Go to Tempest Tower."));
+        unfinsihedTasks.enqueue(("Find Ninlil in Tempest Tower (Required Level: 14)"));
         unfinsihedTasks.enqueue(("Go to the Fire Village (Required Level: 15)"));
         unfinsihedTasks.enqueue(("Talk to Elder Vulca."));
         unfinsihedTasks.enqueue(("Go to Mount Volcan (Required Level: 16)"));
