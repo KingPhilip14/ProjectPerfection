@@ -445,8 +445,9 @@ public class Wilderness extends Location
         stats.add(125); // R Defense
         stats.add(125); // Speed
         
-        Enemy ninlil = new BossEnemy("Ninlil", "A currently grieving master of Wind in need of a friend.", "Wind", 14, 
+        BossEnemy ninlil = new BossEnemy("Ninlil", "Someone with a broken, grieving heart who needs a friend.", "Wind", 14, 
                                     attacks, stats);
+        ninlil.setStatDescription("A currently grieving master of Wind.");
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(ninlil);

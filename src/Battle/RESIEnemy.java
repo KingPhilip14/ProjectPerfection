@@ -55,7 +55,43 @@ public class RESIEnemy extends Enemy
     
     private String createName()
     {
-        return "R.E.S.I. Bot " + createElementDescriptor();
+        String result;
+        
+        switch(new Random().nextInt(10))
+        {
+            case 0:
+                result = "Alpha";
+                break;
+            case 1:
+                result = "Beta";
+                break;
+            case 2:
+                result = "Gamma";
+                break;
+            case 3:
+                result = "Delta";
+                break;
+            case 4:
+                result = "Zeta";
+                break;
+            case 5:
+                result = "Mu";
+                break;
+            case 6:
+                result = "Phi";
+                break;
+            case 7:
+                result = "Chi";
+                break;
+            case 8:
+                result = "Psi";
+                break;
+            default:
+                result = "Omicron";
+                break;
+        }
+        
+        return "R.E.S.I. Bot " + result + " " + createElementDescriptor();
     }
 
     private void setDescription()

@@ -42,7 +42,7 @@ public class Game
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
-    private boolean isTesting;
+    private boolean testing;
     private boolean towerBossAttempted;
     private int resiTutorialAttempts;
     private Cutscene startingCutscene;
@@ -62,7 +62,7 @@ public class Game
     
     public Game(boolean isTesting)
     {
-        this.isTesting = isTesting;
+        this.testing = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -112,13 +112,12 @@ public class Game
             // Go to wind tower objective
             objective.update();
             
-            
             // Find Ninlil objective
-            objective.update();
+//            objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
             // Use this for going to the newest location
-            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            currentLocation = knownLocations.get(knownLocations.size() - 2); // Is -2 to stay in Wind Village. Change to 1 after Tempest Tower test
             
             nextLocation = remainingLocations.remove(0);
             
@@ -141,7 +140,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(13);
+            anahita.setLevel(14);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -155,7 +154,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(13);
+            gaea.setLevel(14);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -183,7 +182,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(13);
+            calmus.setLevel(14);
             
             team.add(anahita);
             team.add(gaea);
@@ -239,7 +238,7 @@ public class Game
         // Comment out for testing
         MainGame.clearScreen();
         
-        if(!isTesting)
+        if(!testing)
         {
             gameOpening();
         }
@@ -271,7 +270,7 @@ public class Game
         remainingLocations.add(createElectricVillage());
         remainingLocations.add(createZoniVillage2());
         
-        if(isTesting)
+        if(testing)
         {
             remainingLocations.get(0).setIsExplored();
             remainingLocations.get(1).setIsExplored();
@@ -512,7 +511,7 @@ public class Game
     {
         Village village = ((Village)currentLocation);
         
-        if(isTesting && village.getName().equals("Zoni Village"))
+        if(testing && village.getName().equals("Zoni Village"))
         {
             village.getVillagePeople().forEach(p -> {
                 p.setTalkedTo(true);
@@ -536,7 +535,7 @@ public class Game
         {
             MainGame.promptToEnter();
             
-            if(isTesting)
+            if(testing)
             {
                 resiTutorialAttempts = 1;
                 
@@ -549,7 +548,7 @@ public class Game
             }
             
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
-            if(resiTutorialAttempts == 0 && !isTesting)
+            if(resiTutorialAttempts == 0 && !testing)
             {
                 Cutscene.warCutscene();
                 
@@ -575,7 +574,7 @@ public class Game
     
     private void startSecondPhase()
     {
-        if(!isTesting)
+        if(!testing)
         {
             Cutscene.warCutscene2();
         }   
@@ -602,12 +601,12 @@ public class Game
         removePlayer("Frigs");
         removePlayer("Ninlil");
         
-        if(isTesting)
+        if(testing)
         {
             setPlayerLevels(11);
         }
         
-        if(!isTesting)
+        if(!testing)
         {
             Cutscene.postWarCutscene();
         }
@@ -682,8 +681,10 @@ public class Game
     {   
         if(currentLocation.getName().equals("Tempest Tower"))
         {
+            MainGame.clearScreen();
+            
             // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
-            if(!towerBossAttempted) 
+            if(!towerBossAttempted && !testing) 
             {
                 Cutscene.foundNinlilCutscene();
             }
@@ -695,7 +696,9 @@ public class Game
             // If the player wins the boss fight, remove it from Tempest Tower.
             if(tempestTower.getBossBattle().isWon())
             {
+                Cutscene.defeatedNinlilCutscene();
                 tempestTower.removeBossBattle();
+                objective.update();
             }
         }
     }
@@ -1757,6 +1760,11 @@ public class Game
             Cutscene.tempestTowerCutscene();
             objective.update();
         }
+        else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.fireVillageCutscene();
+            objective.update();
+        }
         
         currentLocation.setIsExplored();
     }
@@ -1796,18 +1804,18 @@ public class Game
      */
     private ArrayList<Player> makePlayerTeam(String name)
     {
-        ArrayList<Player> team = new ArrayList<>();
+        ArrayList<Player> list = new ArrayList<>();
         
         for(Player p : team)
         {
             if(p.getName().equals(name))
             {
-                team.add(p);
+                list.add(p);
                 break;
             }
         }
         
-        return team;
+        return list;
     }
     
     

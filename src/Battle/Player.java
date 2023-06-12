@@ -174,7 +174,7 @@ public class Player extends Character
         if(player.getCheerPartner() != null)
         {
             MainGame.printlnln(player.getName() + " received " + amt + " XP!", 25);
-            MainGame.wait(500);
+            MainGame.wait(200);
             player.currentXP += amt;
             player.updateXP(amt);
 //            MainGame.printlnlnWait(player.getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
@@ -183,7 +183,7 @@ public class Player extends Character
 //            player.getCheerPartner().updateXPToLevelUp(amt);
             
             MainGame.printlnln(player.getCheerPartner().getName() + " received " +  amt + " XP!", 25);
-            MainGame.wait(500);
+            MainGame.wait(200);
             player.getCheerPartner().currentXP += amt;
             player.getCheerPartner().updateXP(amt);
 //            MainGame.printlnlnWait(player.getCheerPartner().getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
@@ -205,7 +205,7 @@ public class Player extends Character
     
     private void updateXP(int xpAmt)
     {
-        if(xpToLevelUp - xpAmt < 0)
+        if(xpToLevelUp - xpAmt <= 0)
         {
             int remaining = xpAmt - xpToLevelUp;
 //            xpToLevelUp -= xpToLevelUp;
@@ -261,7 +261,7 @@ public class Player extends Character
     private void levelUp(int remainingXP)
     {
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
-        MainGame.wait(1250);
+        MainGame.wait(500);
         MainGame.printlnln("Stats before:", 5);
         MainGame.printlnln(toStringOriginalStats(), 25);
 
@@ -287,11 +287,11 @@ public class Player extends Character
     public void forcedLevelUp()
     {
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         MainGame.printlnln("Stats before:", 5);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         MainGame.printlnln(toStringOriginalStats(), 25);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         
         level++;
         currentXP = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4);
