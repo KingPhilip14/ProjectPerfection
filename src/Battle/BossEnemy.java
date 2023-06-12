@@ -18,6 +18,11 @@ public class BossEnemy extends Enemy
         addElementDescriptor();
     }
     
+    public void setStatDescription(String desc)
+    {
+        this.statSpreadDescription = desc;
+    }
+    
     private void setStats(ArrayList<Integer> stats) throws IllegalArgumentException
     {
         if(stats.size() < 6 || stats.size() > 6)
@@ -29,19 +34,17 @@ public class BossEnemy extends Enemy
         this.maxHealth = stats.remove(0);
         this.currentHealth = maxHealth;
         
-        Stat stat;
         // Loops to add the stats to the Boss enemy
         for(int i = 0; i < stats.size(); i++)
         {
-            stat = this.listOfStats.get(i);
-            stat.setValue(stats.remove(i));
+            this.listOfStats.get(i).setValue(stats.get(i));
         }
     }
     
     @Override
     protected String createElementDescriptor()
     {
-        String desc = "It's capable of powerfully using " + element.toLowerCase() + "!";
+        String desc = "They are capable of powerfully using " + element.toLowerCase() + "!";
         return desc;
     }
     
@@ -49,6 +52,12 @@ public class BossEnemy extends Enemy
     protected String createDescription()
     {
         return "It's a " + name + "! " + statSpreadDescription;
+    }
+    
+    @Override
+    public String toBattleString()
+    {
+        return name + "'s level: " + level + "\n\t" + description; 
     }
     
     private void addElementDescriptor()

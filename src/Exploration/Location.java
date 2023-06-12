@@ -38,6 +38,9 @@ public abstract class Location extends GameProperty
     
     public int getYCoordinate() {return coordinate.getYCoordinate();}
     
+    /**
+     * Automatically sets explored to be true.
+     */
     public void setIsExplored() 
     {
         if(!explored)

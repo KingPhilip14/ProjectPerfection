@@ -896,7 +896,6 @@ public class MainGame
         anahita.setDeathMessage("Everyone... I'm sorry...");
         anahita.setCheerReadyMessage("I'm right behind you!");
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
-        anahita.setClassRole("Clerk");
         anahita.setMaxHealth(300);
         anahita.setCurrentHealth(300);
         anahita.setAttack(45);
@@ -937,6 +936,14 @@ public class MainGame
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
         
+        
+        ArrayList<PlayerClass> anahitaOtherClasses = new ArrayList<>(3);
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Holy Tank"));
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        anahitaOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
+        
+        anahita.setOtherClasses(anahitaOtherClasses);
+        
         return anahita;
     }
     
@@ -949,7 +956,6 @@ public class MainGame
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
-        gaea.setClassRole("Clerk");
         gaea.setAggro(5);
         gaea.setMaxHealth(315);
         gaea.setCurrentHealth(315);
@@ -969,9 +975,9 @@ public class MainGame
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
         DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
-        OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 85, "Attack");
+        OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
         terraForce.setAccuracy(90);
-        OffensiveAttack earthsWrath = new OffensiveAttack("Earth's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
+        OffensiveAttack naturesAnger = new OffensiveAttack("Nature's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
@@ -983,10 +989,17 @@ public class MainGame
         
         ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(2);
         gaeaOtherAttacks.add(overgrowth);
-        gaeaOtherAttacks.add(earthsWrath);
+        gaeaOtherAttacks.add(naturesAnger);
         
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
         gaea.setListOfOtherAttacks(gaeaOtherAttacks);
+        
+        ArrayList<PlayerClass> gaeaOtherClasses = new ArrayList<>(3);
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
+        gaeaOtherClasses.add(PlayerClass.getPlayerClass("Guardian Striker"));
+        
+        gaea.setOtherClasses(gaeaOtherClasses);
         
         return gaea;
     }
@@ -1001,7 +1014,6 @@ public class MainGame
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
         fultra.setCheerReadyMessage("You're in good hands!");
-        fultra.setClassRole("All-Rounder");
         fultra.setMaxHealth(335);
         fultra.setCurrentHealth(335);
         fultra.setAttack(72);
@@ -1053,7 +1065,6 @@ public class MainGame
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setClassRole("Tank");
         calmus.setAggro(10);
         calmus.setMaxHealth(420);
         calmus.setCurrentHealth(420);
@@ -1064,14 +1075,14 @@ public class MainGame
         calmus.setSpeed(80);
         
         ArrayList<Attack> calmusAllAttacks = new ArrayList<>(6);
-        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 95, "Attack"));
+        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack"));
         calmusAllAttacks.get(0).setAccuracy(80);
         calmusAllAttacks.add(new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3));
         calmusAllAttacks.add(new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2));
         calmusAllAttacks.add(new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack"));
         calmusAllAttacks.add(new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3));
-        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 100, "Attack"));
-        calmusAllAttacks.get(5).setAccuracy(80);
+        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack"));
+        calmusAllAttacks.get(5).setAccuracy(75);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
         calmusCurrentAttacks.add(calmusAllAttacks.get(0));
@@ -1083,6 +1094,13 @@ public class MainGame
         
         calmus.setCurrentAttacks(calmusCurrentAttacks);
         calmus.setListOfOtherAttacks(calmusAllAttacks);
+        
+        ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
+        
+        calmus.setOtherClasses(calmusOtherClasses);
         
         return calmus;
     }
@@ -1096,7 +1114,6 @@ public class MainGame
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
-        frigs.setClassRole("Striker");
         frigs.setMaxHealth(370);
         frigs.setCurrentHealth(370);
         frigs.setAttack(180);
@@ -1130,6 +1147,13 @@ public class MainGame
         frigs.setCurrentAttacks(frigsCurrentAttacks);
         frigs.setListOfOtherAttacks(frigsAllAttacks);
         
+        ArrayList<PlayerClass> frigsOtherClasses = new ArrayList<>(3);
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Guardian Striker"));
+        frigsOtherClasses.add(PlayerClass.getPlayerClass("Wild Tank"));
+        
+        frigs.setOtherClasses(frigsOtherClasses);
+        
         return frigs;
     }
     
@@ -1140,9 +1164,8 @@ public class MainGame
         // Instantiating Ninlil and her moveset--------------------------
         Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
-        ninlil.setBattleReadyMessage("Tch! I'll show you all how it's done.");
-        ninlil.setCheerReadyMessage("Ugh, fine. I'll help you.");
-        ninlil.setClassRole("Striker");
+        ninlil.setBattleReadyMessage("I'll show you all how it's done.");
+        ninlil.setCheerReadyMessage("... Okay. I'll help you.");
         ninlil.setAggro(7);
         ninlil.setMaxHealth(395);
         ninlil.setCurrentHealth(395);
@@ -1155,12 +1178,13 @@ public class MainGame
         ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
         ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
         ninlilAllAttacks.get(0).setAccuracy(90);
-        ninlilAllAttacks.add(new OffensiveAttack("Tornado", "The user causes a tornado to cause damage.", 70, "R. Attack"));
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 80, "R. Attack");
+        tornado.setCritRate(0.5);
         ninlilAllAttacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
         ninlilAllAttacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
-        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 75, "R. Attack"));
-        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 90, "Attack");
-        tempestBlade.setAccuracy(90);
+        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack"));
+        OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 85, "Attack");
+        tempestBlade.setAccuracy(85);
         tempestBlade.setCritRate(0.35);
         ninlilAllAttacks.add(tempestBlade);
         
@@ -1174,6 +1198,13 @@ public class MainGame
         
         ninlil.setCurrentAttacks(ninlilCurrentAttacks);
         ninlil.setListOfOtherAttacks(ninlilAllAttacks);
+        
+        ArrayList<PlayerClass> ninlilOtherClasses = new ArrayList<>(3);
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Clerk"));
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
+        
+        ninlil.setOtherClasses(ninlilOtherClasses);
         
         return ninlil;
     }

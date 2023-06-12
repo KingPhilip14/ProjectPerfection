@@ -12,6 +12,7 @@ public class Player extends Character
 {
     private ArrayList<Attack> listOfOtherAttacks;
     private ArrayList<ComboAttack> comboAttacks = new ArrayList<>();
+    private ArrayList<PlayerClass> otherClasses = new ArrayList<>();
     private int currentXP;
     private int xpToLevelUp;
     private int aggro;
@@ -20,6 +21,8 @@ public class Player extends Character
     private String deathMessage;
     private String battleReadyMessage;
     private String cheerReadyMessage;
+    private String primaryRole;
+    private String secondaryRole;
     private Player cheerPartner;
     private Player playerToCheer;
     
@@ -29,6 +32,8 @@ public class Player extends Character
         super.description = description;
         super.element = element;
         this.playerClass = playerClass;
+        this.primaryRole = playerClass.getPrimaryRole();
+        this.secondaryRole = playerClass.getSecondaryRole();
         super.level = level;
         this.listOfOtherAttacks = new ArrayList<>();
         super.currentAttacks = new ArrayList<>();
@@ -62,6 +67,20 @@ public class Player extends Character
     
     public PlayerClass getPlayerClass() {return playerClass;}
     
+    /**
+     * Updates the Player object's PlayerClass reference and updates its primary and secondary roles.
+     * @param pc 
+     */
+    public void setPlayerClass(PlayerClass pc) 
+    {
+        this.playerClass = pc;
+        this.primaryRole = pc.getPrimaryRole();
+        this.secondaryRole = pc.getSecondaryRole();
+    }
+    
+    public String getPrimaryRole() {return this.playerClass.getPrimaryRole();}
+    public String getSecondaryRole() {return this.playerClass.getSecondaryRole();}
+    
     public ArrayList<Attack> getOtherAttacks() {return listOfOtherAttacks;}
     public void setListOfOtherAttacks(ArrayList<Attack> newList) {listOfOtherAttacks = newList;}
     
@@ -77,7 +96,7 @@ public class Player extends Character
     public void printCheerReadyMessage() {MainGame.printlnln("\n" + name + ": " + cheerReadyMessage, 5);}
     
     public String getClassRole() {return playerClass.getPrimaryRole();}
-    public void setClassRole(String roleType) {playerClass.setPrimaryRole(roleType);}
+//    public void setClassRole(String roleType) {playerClass.setPrimaryRole(roleType);}
     
     public Player getCheerPartner() {return cheerPartner;}
     public void setCheerPartner(Player partner) {cheerPartner = partner;}
@@ -86,6 +105,9 @@ public class Player extends Character
     public Player getPlayerToCheer() {return playerToCheer;}
     public void setPlayerToCheer(Player player) {playerToCheer = player;}
     public void resetPlayerToCheer() {playerToCheer = null;}
+    
+    public ArrayList<PlayerClass> getOtherClasses() {return this.otherClasses;}
+    public void setOtherClasses(ArrayList<PlayerClass> list) {otherClasses = list;}
     
     public void resetStats()
     {
@@ -152,7 +174,7 @@ public class Player extends Character
         if(player.getCheerPartner() != null)
         {
             MainGame.printlnln(player.getName() + " received " + amt + " XP!", 25);
-            MainGame.wait(500);
+            MainGame.wait(200);
             player.currentXP += amt;
             player.updateXP(amt);
 //            MainGame.printlnlnWait(player.getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
@@ -161,7 +183,7 @@ public class Player extends Character
 //            player.getCheerPartner().updateXPToLevelUp(amt);
             
             MainGame.printlnln(player.getCheerPartner().getName() + " received " +  amt + " XP!", 25);
-            MainGame.wait(500);
+            MainGame.wait(200);
             player.getCheerPartner().currentXP += amt;
             player.getCheerPartner().updateXP(amt);
 //            MainGame.printlnlnWait(player.getCheerPartner().getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
@@ -183,7 +205,7 @@ public class Player extends Character
     
     private void updateXP(int xpAmt)
     {
-        if(xpToLevelUp - xpAmt < 0)
+        if(xpToLevelUp - xpAmt <= 0)
         {
             int remaining = xpAmt - xpToLevelUp;
 //            xpToLevelUp -= xpToLevelUp;
@@ -239,7 +261,7 @@ public class Player extends Character
     private void levelUp(int remainingXP)
     {
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
-        MainGame.wait(1250);
+        MainGame.wait(500);
         MainGame.printlnln("Stats before:", 5);
         MainGame.printlnln(toStringOriginalStats(), 25);
 
@@ -265,11 +287,11 @@ public class Player extends Character
     public void forcedLevelUp()
     {
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         MainGame.printlnln("Stats before:", 5);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         MainGame.printlnln(toStringOriginalStats(), 25);
-        MainGame.wait(1000);
+        MainGame.wait(250);
         
         level++;
         currentXP = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4);

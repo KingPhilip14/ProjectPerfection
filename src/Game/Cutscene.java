@@ -30,10 +30,21 @@ public class Cutscene
                 merdaCutscene();
                 break;
             case "Fleur":
-                fleurCutscene();
+                // If in the first phase, play Fleur's first cutscene. Otherwise, play her cutscene for the second phase.
+                if(!Game.getSecondPhase())
+                {
+                    fleurCutscene();
+                }
+                else
+                {
+                    fleurCutscene2();
+                }
                 break;
             case "Caillou":
                 calliouCutscene();
+                break;
+            case "Elder Vitorem":
+                vitoremCutscene();
                 break;
             case "Calmus":
                 calmusCutscene();
@@ -44,6 +55,8 @@ public class Cutscene
             case "Ninlil":
                 ninlilCutscene();
                 break;
+            case "Elder Nu":
+                elderNuCutscene();
         }
     }
     
@@ -52,44 +65,81 @@ public class Cutscene
      */
     public static void startingCutscene()
     {
-        MainGame.printlnlnWait("The year is 2XXX.", 25, 1500);
-        MainGame.printWait("The world", 25, 100);
+        MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
+        MainGame.printWait("The world is", 25, 100);
         MainGame.ellipsis();
-        MainGame.printlnlnWait("a place of war. A constant place of distress.", 25, 1500);
-        MainGame.printlnlnWait("A place of loss. A place where peace is seldom found.", 25, 2000);
+        MainGame.printWait("a place of war. ", 25, 1000);
+        MainGame.printWait("A constant place of distress.", 25, 1000);
+        MainGame.printlnlnWait("A place of loss. A place where peace is... seldom found.", 25, 1500);
+        MainGame.printlnlnWait("Very, very few can say that they *truly* have peace...", 50, 1000);
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "
-                + "that he can somehow fix things./With his capabilities, he has made great advancements and "
-                + "improved the world in some ways./However, one thing he cannot do is stop all wars.");
+        print("This world, however, has someone they look up to. A man.");
+        
+        print("A man with money. A man with influence. A man with power. A man with intellect.");
+        
+        print("People look up to him. They believe that *he* can fix the world. All that's wrong, he can find a solution to it, "
+                + "surely.");
+        
+        print("He has accomplished so many things in the past. He's done so much for humanity. Surely, he can save them from "
+                + "this pain. This suffering. This nightmare.");
+        
+//        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "
+//                + "that he can somehow fix things./With his capabilities, he has made great advancements and "
+//                + "improved the world in some ways./However, one thing he cannot do is stop all wars.");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.printlnlnWait("After a conference meeting that took place with people buzzing around:", 25, 1000);
-        MainGame.dialoguelnln("Newscaster", "And I'm here today trying to ask Irwin Krov about his plans for the future after "
-                + "his meeting with goverment officials.");
-        MainGame.dialoguelnln("Newscaster", "There he is! Mr. Krov, Mr. Krov! What do you plan to do to help with all the "
-                + "wars currently taking place?\n\tWill you be providing tools for the governemnt to use?");
-        MainGame.dialoguelnln("Irwin", "What I plan on doing is not to be said to the press.\n\tJust know that in due time, "
-                + "a solution will be found. We will be working ever so diligently to bring peace.\n\tYou can depend on that. "
-                + "The imperfections we as humans have is what caused the world to fall to ruin.\n\tThe way to combat this is "
-                + "perfection.");
+        MainGame.printlnlnWait("(After a conference meeting that took place with people buzzing around):", 25, 1000);
+        
+        MainGame.dialoguelnln("Newscaster", "I'm here to today at the highly anticipated government meeting that hosted "
+                + "special guest,\n\tIrwin Krov. He has been discussing and planning ways to save our corrupted world with "
+                + "government officials. It's\n\tonly a matter of time before they finish...");
+        
+        MainGame.ellipsislnln();
+        MainGame.promptToEnter();
+        //-----------------------------------------------------------------------------------------------------------------------
+        
+        print("The doors to a large building open. A man in a suit emerges from the threashold. He has a solid build with "
+                + "peppered hair./Following him are 3 bodyguards. Once he's outside, cameras flash and people with microphones "
+                + "start crowding the door./The bodyguards start to push a few people back to give the man space. The man "
+                + "sighs out of annoyance and shakes his head.");
+        
+        print("The newscaster surprisingly pushes her way past through the crowd and slips past the bodyguards. "
+                + "She then finds/herself face to face with the man. She clears her throat before quickly speaking.");
+        
+        MainGame.dialoguelnln("Newscaster", "Mr. Krov! If I may take a minute of your time, what do you plan to do to help "
+                + "with all the wars and\n\tcorruption currently taking place? Will you be providing tools for the "
+                + "governemnt to use?\n\tWhat can we expect from you to bring back hope to those that look up to you?");
+        
+        print("The newscaster prompts him by moving her microphone in front of him. Irwin sighs again before speaking.");
+        
+        MainGame.promptToEnter();
+        //-----------------------------------------------------------------------------------------------------------------------
+        MainGame.dialoguelnln("Irwin", "What I plan on doing is not to be said to the press. However, know that a solution "
+                + "has been found.\n\tWe will be working ever so diligently to bring peace. You can depend on that. The "
+                + "imperfections we as humans\n\thave is what caused the world to fall into ruin in the first place. Thus, "
+                + "the way to combat this is perfection.\n\tYou will all understand soon.");
+        
+        print("Perplexed, the newscaster turns to the cameraman that accompanied her to finish her broadcast.");
+        
         MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
-                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed 'perfection' needed "
-                + "help us?\n\tI'm Natasha Green with 10PM News, signing off.");
+                + "restored?\n\tWill we have peace once - or ever - again? Will the supposed 'perfection' needed help us?"
+                + "\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------
         
         MainGame.ellipsis();
         MainGame.wait(1000);
         MainGame.clearScreen();
         
-        print("Amidst the blue terror called the ocean, there is a special island./On this island, there is a special people with "
-                + "the ability to control the elements./Using these powers, the people have kept themselves hidden from the rest "
-                + "of the world for their safety./With some having the ability to control water, wind, and electricity, "
-                + "the island is surrounded by violent storms,/preventing anyone and anything from getting through.");
+        print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
+                + "with the ability to control the elements./Using these powers, the people have kept themselves hidden from "
+                + "the rest of the world for their own safety./With some having the ability to control water, wind, and "
+                + "electricity, the island is surrounded by violent storms,/preventing anyone and anything from getting "
+                + "through.");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
@@ -97,7 +147,7 @@ public class Cutscene
         print("Despite the violent storms, the people are extremely tranquil./They all live in harmony, helping others when "
                 + "needed and ensuring that life together is peaceful.");
         print("This island is called Pulchra. It's full of beauty, vast creatures, and a substance called ethrellium./"
-                + "This substance is only found on the island and is the source of the elemental powers./It's found in the "
+                + "This substance is only found here and is the source of the elemental powers./It's found in the "
                 + "vegetation and wildlife, allowing the creatures to have powers themselves.");
         
         MainGame.promptToEnter();
@@ -106,8 +156,8 @@ public class Cutscene
         print("A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
                 + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./She realizes that she let the "
                 + "time slip past her, however, and that she's close to being late.");
-        MainGame.dialoguelnln("Anahita", "*sigh* I wish I could stay here forever...\n\t"
-                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival!\n\tYou've gone and done it "
+        MainGame.dialoguelnln("Anahita", "(*sigh*) I wish I could stay here forever...\n\t"
+                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival! Oh, you've gone and done it "
                 + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest...");
         
         MainGame.promptToEnter();
@@ -129,7 +179,7 @@ public class Cutscene
         
         MainGame.printlnlnWait("Anahita screamed in terror by the sudden voice and used her Tsunami Shot attack where the "
                 + "voice came from.\nShe then cowered and held her fingers out for another blind shot.", 25, 1500);
-        MainGame.dialoguelnln("Strange Voice 1", "Ow! Was that necess- *gasp* my *hair*!");
+        MainGame.dialoguelnln("Strange Voice 1", "Ow! Was that necess- (*gasp*) my *hair*!");
         MainGame.dialoguelnln("Strange Voice 2", "Haha! It's a step up from what it was before.");
         MainGame.dialoguelnln("Strange Voice 1", "Oh shut it, Fultra. I spent so long on it today for the festival...");
         MainGame.printlnlnWait("Anahita realized who the voices belonged to: her best friend Gaea and her boyfriend, Fultra.", 25, 1500);
@@ -139,7 +189,7 @@ public class Cutscene
         
         MainGame.printlnlnWait("She ran up to them, her hands covering her mouth and a guilty expression.", 25, 1500);
         MainGame.dialoguelnln("Anahita", "Oh my gosh! I'm so sorry Gaea. Are you okay?");
-        MainGame.dialoguelnln("Gaea", "*sniff* I'll be fine... I guess...");
+        MainGame.dialoguelnln("Gaea", "(*sniff*) I'll be fine... I guess...");
         MainGame.dialoguelnln("Fultra", "You'll know she'll be okay, Ana. She's more concerned about her hair than anything else.");
         MainGame.dialoguelnln("Gaea", "Don't down play it like it's nothing! I have to redo it all before the festival now!");
         MainGame.dialoguelnln("Anahita", "I promise I'll help you clean up a bit, okay? What're you guys doing here though?");
@@ -154,7 +204,7 @@ public class Cutscene
         MainGame.printlnlnWait("Gaea then playfully punched Fultra's arm, making Anahita laugh a little.", 25, 1000);
         MainGame.dialoguelnln("Anahita", "I'd love if you guys could help me! Thank you so much.");
         MainGame.dialoguelnln("Fultra", "Not a problem. You have 'Fearless Thunder' with you, so there's nothing to fear!");
-        MainGame.dialoguelnln("Gaea", "*sigh* There he goes again, boosting that ego. Come on, Ana. Let's go!");
+        MainGame.dialoguelnln("Gaea", "(*sigh*) There he goes again, boosting that ego. Come on, Ana. Let's go!");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
@@ -437,7 +487,7 @@ public class Cutscene
         print("The group stared in amazement at the beauty of the village. Gaea then started to sniff the air, a sweet aroma "
                 + "captivating her.");
         
-        MainGame.dialoguelnln("Gaea", "*sniff sniff* I can smell... Cinnamon Rolls... Triple Chocolate Meltdown... Apple "
+        MainGame.dialoguelnln("Gaea", "(*sniff sniff*) I can smell... Cinnamon Rolls... Triple Chocolate Meltdown... Apple "
                 + "Pies... Oh, today is gonna be amazing!\n\tThere's desserts galore!");
         
         print("Fultra laughed at the enthusiasm of Gaea's sleuthing nose and attitude.");
@@ -449,6 +499,15 @@ public class Cutscene
                 + "should talk to everyone to see if\n\tanyone needs help. I also see some familar faces, so let's go say hi!");
         
         MainGame.promptToEnter();
+    }
+    
+    /**
+     * A cutscene for when the player talks to Elder Vitorem at Zoni Village.
+     */
+    public static void vitoremCutscene()
+    {
+        print("Vitorem's cutscene will be here. It should introduce the concept of the elders to the player and how the title "
+                + "is passed down.");
     }
     
     /**
@@ -737,7 +796,7 @@ public class Cutscene
                 + "was filled with red, blinding/lights. A loud, collective roar was coming the robots as they flew in the "
                 + "air.");
         
-        MainGame.dialoguelnln("Calmus", "*huff* Is... is everyone okay?");
+        MainGame.dialoguelnln("Calmus", "(*huff*) Is... is everyone okay?");
         
         MainGame.dialoguelnln("Gaea", "Yeah, I think so. If anyone needs to be healed, Ana and I can help you.");
         
@@ -882,7 +941,7 @@ public class Cutscene
                 + "Anahita's/house in the Water Village. The trio and Merda were having conversation as Brinlee laid across "
                 + "Merda's lap.");
         
-        MainGame.dialoguelnln("Merda", "*sniff* Oh, Lac... I can't believe he died... It's too soon... too soon...");
+        MainGame.dialoguelnln("Merda", "(*sniff*) Oh, Lac... I can't believe he died... It's too soon... too soon...");
         
         MainGame.dialoguelnln("Anahita", "I... I couldn't heal him... His wounds were too severe once I got to him... The "
                 + "look he\n\tgave me before he died... I...");
@@ -950,6 +1009,299 @@ public class Cutscene
         print("Anahita and Gaea nodded. The group left Merda's house, saying goodbye. Anahita's eyes watered as they left. "
                 + "She quickly wiped her face before muttering to herself.");
         
-        MainGame.dialoguelnln("Anahita", "We'll be back, Mom... And I'll make Dad proud.");
+        MainGame.dialoguelnln("Anahita", "We'll be back, Mom... And I'll make Dad proud. I promise.");
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("You can now change a character's class./In the menu, select Options > View Team and select a character. "
+                + "Then, select 'Change Class.'/Changing a character's class will allow for different growth patterns and "
+                + "allow some characters to become their strongest./Experiment to see what builds help grow Anahita and the "
+                + "others the best.");
+    }
+    
+    /**
+     * A cutscene that plays when the player talks to fleur in the second phase of the game.
+     */
+    public static void fleurCutscene2()
+    {
+        MainGame.dialoguelnln("Fleur", "My cutscene starts here!");
+    }
+    
+    /**
+     * A cutscene that plays when the player first enters the Wind Village.
+     */
+    public static void windVillageCutscene()
+    {
+        print("Anahita and the others safely arrived to the Wind Village. There were only a handful of homes that were fully "
+                + "intact. Others/were either damaged, burned, or completely missing. Debris was everywhere, with only a "
+                + "few residents cleaning up.");
+        
+        MainGame.dialoguelnln("Calmus", "This place is a mess... I wouldn't have expected it to be *this* bad.");
+        MainGame.dialoguelnln("Gaea", "I know, it's awful. This place was always so pretty too.");
+        MainGame.dialoguelnln("Anahita", "Yeah...Let's see if we can find Ninlil. Hopefully we find her quickly.");
+    }
+    
+    /**
+     * A cutscene that plays when the player talks to Elder Nu for the first time.
+     */
+    public static void elderNuCutscene()
+    {
+        MainGame.dialoguelnln("Anahita", "I see Elder Nu over there. Let's ask him if he knows where Ninlil is.");
+        
+        print("The group walked over to a short man. He was bald and hunched over with his hands behind his back. "
+                + "He only had a few strands of/hair left on his head.");
+        
+        MainGame.dialoguelnln("Anahita", "Elder Nu?");
+        
+        print("The Elder turned around to address the group. He greeted them with a warm yet slightly pained smile. He "
+                + "smacked his lips/before speaking.");
+        
+        MainGame.dialoguelnln("Elder Nu", "(*smack*) Ah, hello children. How are you all doing? I hope better than we are.");
+        
+        MainGame.dialoguelnln("Gaea", "We're doing the best we can, Elder. This place definitely took a hit.");
+        
+        MainGame.dialoguelnln("Elder Nu", "Indeed it did... but do you all need anything? I don't know how much we "
+                + "can offer, but we can do our best.");
+        
+        print("The group explained their goals in saving Pulchra to Elder Nu and the importance of their journey.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Nu", "(*smack*) Ah, I see... You all have a strenuous journey ahead of you. You will have our "
+                + "support then.");
+        
+        MainGame.dialoguelnln("Calmus", "Thank you so much, Elder. We appreciate it. We do need Ninlil to join us, however. "
+                + "She's strong. We\n\tthink she would be perfect to aid us.");
+        
+        MainGame.dialoguelnln("Anahita", "Do you know where she is?");
+        
+        MainGame.dialoguelnln("Elder Nu", "Yes, actually. She's at Tempest Tower, just south of here. (*smack*) She's been "
+                + "greiving since we lost\n\tIlven... He was one of our best and the closest person to her... When you "
+                + "see her, be careful.\n\tI doubt she's in the right headspace -- she may need some convincing and "
+                + "consolation.");
+        
+        print("Gaea's heart is normally hardened toward Ninlil, but hearing Elder Nu speak softened her. She felt herself "
+                + "start to gain compassion/and empathy for her. Now knowing the pain of loss is a strong factor for this.");
+        
+        MainGame.dialoguelnln("Anahita", "Thank you so much, Elder. We'll go over there to see if we can find her.");
+        
+        MainGame.dialoguelnln("Elder Nu", "I wish you all the best, children. Be strong.");
+        
+        MainGame.promptToEnter();
+    }
+    
+    /**
+     * A custcene that plays when entering Tempest Tower for the first time.
+     */
+    public static void tempestTowerCutscene()
+    {
+        print("The group arrived to the entrance of Tempest Tower. Its shadow loomed over them. Its peak pierced the sky as "
+                + "clouds/encircled it. It exuded an air of majesty and power. Anahita and Gaea were too breath taken to speak.");
+        
+        MainGame.dialoguelnln("Calmus", "This is a lot larger than I thought it would be... It is amazing though.");
+        
+        print("Still flabergasted, Anahita and Gaea slowly nodded.");
+        
+        MainGame.dialoguelnln("Gaea", "And we have to climb this *entire* thing? Ugh, I'm gonna get all sweaty!");
+        
+        MainGame.dialoguelnln("Calmus", "It's better for us to get sweaty than forever lose the peace we once had.");
+        
+        MainGame.dialoguelnln("Gaea", "... Yeah, you're right... (*sigh*) Let's start climbing this thing, then.");
+        
+        print("Gaea and Calmus opened the two giant doors that lead into the tower and stepped inside. Anahita was still "
+                + "outside gawking at/the sheer size of it. Gaea quickly popped backed out and dragged her inside.");
+    }
+    
+    /**
+     * A cutscene that plays before starting the Ninlil Boss fight.
+     */
+    public static void foundNinlilCutscene()
+    {
+        MainGame.dialoguelnln("Gaea", "(*pant*) (*pant*) UGH. How much further do we have until we find Ninlil? This is "
+                + "ridiculous.\n\tI *really* need a shower, and it's so COLD up here.");
+        
+        print("The group had been climbing up the tower's floors for about an hour. They were sweaty, cold, and tired.");
+        
+        MainGame.dialoguelnln("Anahita", "(*huff*) We have to be close. And the creatures here haven't been the easiest to "
+                + "fight against either.");
+        
+        MainGame.dialoguelnln("Calmus", "Don't worry guys - I think I see the exit at the top of this staircase!");
+        
+        print("The group finally made it to the climax of the tower. They were surrounded by the crescent clouds and a cold "
+                + "breeze./Gaea and Anahita shivered, so Calmus supplied a small flame to keep them warm.");
+        
+        print("The peak of the tower was a giant platform. At its center, there was a bell, and Ninlil was in front of it. "
+                + "She was/occasionally ringing the bell, and slight sobbing could be heard between the ringing.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The group slowly approached Ninlil, with Anahtia being at the front. Despite her being exhausted, she was "
+                + "determined/to talk to Ninlil and be there for her.");
+        
+        print("Ninlil heard their footsteps behind her. She caused a breeze to blow only in front of her to dry her tears "
+                + "before/she spoke. She still had her back turned to the group.");
+        
+        MainGame.dialoguelnln("Ninlil", "(*sniff*) What do you guys *want*? Please, just leave me alone.");
+                
+        print("Gaea quickly whispered to Anahita before Anahita said anything.");
+        
+        MainGame.dialoguelnln("Gaea", "Remember -- we need to be careful of how we say things. She's still grieving.");
+        
+        print("Anahita nodded and looked at Calmus to see him give a look of reassurance. She took a breath before speaking.");
+        
+        MainGame.dialoguelnln("Anahita", "Ninlil, we aren't here to irriate you; we just want to talk to you, to be here for "
+                + "you.");
+        
+        print("Gaea's heart was softened, yes, but she still couldn't believe how kind Anahita had treated Ninlil. She "
+                + "always had/a kind heart, and Gaea couldn't understand it all the time, even when the other person "
+                + "treated Anahita terribly./However, Gaea admired it.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Ninlil turned around acutely after hearing Anahita.");
+        
+        MainGame.dialoguelnln("Ninlil", "What is there to talk about? I lost the ONLY person that meant so much to me! And "
+                + "now he's gone.\n\t(*sniff*) So what am I supposed to do?? I have *no one* now.");
+        
+        print("Gaea grimmaced after hearing this. Calmus saw this and put a hand on her shoulder to comfort her. She looked "
+                + "at him/and gaved a pained smile.");
+        
+        MainGame.dialoguelnln("Anahita", "I understand that, Ninlil, trust me, I-");
+        
+        MainGame.dialoguelnln("Ninlil", "No, Anahita... You know what, I could've saved him. Instead of fighting with you guys, "
+                + "I could've been\n\tby his side to help him. If I was there for him like he's been there for me, *I could "
+                + "have saved\n\thim*. Instead, I was there with you all...");
+        
+        print("Ninlil didn't know how to feel, so she started putting the blame on Anahita and the others.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Ninlil", "I'm strong. I'm a strong warrior. I know I could've saved him...!");
+        
+        MainGame.dialoguelnln("Anahita", "No one is saying you aren't strong Ninlil! It's a difficult, confusing time right "
+                + "now. I just-");
+        
+        MainGame.dialoguelnln("Ninlil", "No, it's *your* fault. You should've just left me alone that day. Then everything "
+                + "would be\n\tfine!");
+        
+        print("Ninlil's voice started breaking as she spoke.");
+        
+        MainGame.dialoguelnln("Ninlil", "I just want him back...");
+        
+        MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Ninlil", "... you know what, no. Anahita, fight me right now. I'll prove that I could've done "
+                + "it. I know I could've.");
+        
+        MainGame.dialoguelnln("Gaea", "Wait, what's fighitng going to sol-");
+        
+        print("Calmus immediately tapped her to let her know not to say anything. She then covered her mouth to keep quiet.");
+        
+        MainGame.dialoguelnln("Anahita", "No, that's okay. I understand. If it helps, I will fight you.");
+        
+        MainGame.dialoguelnln("Ninlil", "Then let's fight. I'll prove myself here.");
+        
+        MainGame.promptToEnter();
+    }
+    
+    /**
+     * A cutscene that plays after defeating the Ninlil boss at Tempest Tower.
+     */
+    public static void defeatedNinlilCutscene()
+    {
+        print("After a fierce fight, Anahita was claimed the victor. Both Anahita and Ninlil were panting from the fight as "
+                + "Gaea and Calmus/smiled at the victory. However, their smiles quickly dropped as Ninlil fell to her knees "
+                + "and started sobbing./Between tears and gasps of air, she spoke.");
+        
+        MainGame.dialoguelnln("Ninlil", "how is any of this fair...? i just want him back. what am i doing wrong...?");
+        
+        print("Anahita knelt down beside Ninlil and consoled her. Gaea and Calmus also approached the two girls on the "
+                + "ground.");
+        
+        MainGame.dialoguelnln("Anahita", "Ninlil, it's not fair to anyone, and it's not your fault he's gone. Trust me, I'm "
+                + "dealing with the\n\tsame thing... My father, he...");
+        
+        print("Anahita paused for a second, the high winds filling the silence.");
+        
+        MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Anahita", "My father died that day too. I wasn't able to get to him in time. I still think "
+                + "about him everyday,\n\tbut I know that it isn't my fault.");
+        
+        print("Through teary eyes, Ninlil looked at Anahita with a look of empathy and slight shock.");
+        
+        MainGame.dialoguelnln("Ninlil", "I... I had no idea. I'm so sorry for your loss...");
+        
+        print("Ninlil was already showing a change of heart. Knowing that someone else experienced something similar was "
+                + "comforting to her;/knowing that there's someone else to connect to was soothing to her.");
+        
+        print("Gaea felt prompted to share her pains with Ninlil in the hopes that it would also help.");
+        
+        MainGame.dialoguelnln("Gaea", "Yeah... It really isn't easy. Fultra, he... he also...");
+        
+        print("Calmus again comforted Gaea as she choked on her words. Her eyes started to water too.");
+        
+        MainGame.dialoguelnln("Anahita", "We also lost him during the fight...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Ninlil", "O-oh... I had no idea... I'm truly sorry to you both...");
+        
+        print("Ninlil was starting to feel regretful for blaming the group for the death of Ilven. She was starting to "
+                + "realize that/they - the group she always found annoying since childhood - was never her enemy. Instead, "
+                + "she has the same/enemy as they do.");
+        
+        print("Ninlil wipes the tears from her eyes and stood up. Anahita followed suit.");
+        
+        MainGame.dialoguelnln("Ninlil", "I'm sorry for any trouble I caused you guys. I really do mean it, and I hope you can "
+                + "all forgive me.");
+        
+        MainGame.dialoguelnln("Anahita", "Don't worry, Ninlil. I forgive you. I've always tried to be there for you, even "
+                + "when\n\tyou pushed me away.");
+        
+        MainGame.dialoguelnln("Calmus", "The same here. I knew you were going through your own tribulations, but we appreciate "
+                + "the apology, really.");
+        
+        print("Anahita, Calmus, and Ninlil all looked at Gaea. She folded arms and turned away after they all looked at her at "
+                + "once.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Gaea", "Hey, there's no need to direct *all* attention towards me at once! But... (*sigh*) "
+                + "yeah, I forgive\n\tyou, Ninlil. Life isn't easy... especialy when we lose those we love... Hopefully "
+                + "we can\n\twork together and move beyond our past, though.");
+        
+        print("Calmus and Anahita looked at each other and smiled. Ninlil smiled slightly too.");
+        
+        MainGame.dialoguelnln("Ninlil", "We won't be perfect, but we'll see how we work together.");
+        
+        print("Anahita, Gaea, and Calmus all explained what their goals were in hopes of defeating Iwrin. Ninlil agreed to "
+                + "join them/and they prepared to leave.");
+        
+        MainGame.dialoguelnln("Calmus", "Before we leave to find Frigs, can we go to the Fire Village? I need to check on "
+                + "my family first\n\tbefore we do that. I haven't been able to see them since I've been with you guys. I "
+                + "don't want\n\tmy little sister to be overwhelemed on her own.");
+        
+        MainGame.dialoguelnln("Gaea", "Of course we can! It's on the way there, anyway. I hope they're doing okay.");
+        
+        MainGame.dialoguelnln("Calmus", "... me too...");
+    }
+    
+    public static void fireVillageCutscene()
+    {
+        print("Fire Village cutscene here");
     }
 }

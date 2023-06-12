@@ -2,6 +2,7 @@ package Game;
 
 import Battle.Attack;
 import Battle.BeachTutorialBattle;
+import Battle.BossBattle;
 import Battle.BuffAttack;
 import Battle.DebuffAttack;
 import Battle.EarthEnemy;
@@ -13,6 +14,7 @@ import Battle.NormalBattle;
 import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
+import Battle.PlayerClass;
 import Battle.RESIBattle;
 import Battle.RESITutorialBattle;
 import Battle.SingleHealingAttack;
@@ -28,6 +30,7 @@ import Exploration.Village;
 import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class for creating Game objects to start the game.
@@ -39,7 +42,8 @@ public class Game
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
-    private boolean isTesting;
+    private boolean testing;
+    private boolean towerBossAttempted;
     private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
@@ -58,7 +62,7 @@ public class Game
     
     public Game(boolean isTesting)
     {
-        this.isTesting = isTesting;
+        this.testing = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -97,7 +101,23 @@ public class Game
             // Talk to everyone in Zoni objective
             objective.update();
             
-            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            // Start second phase. Everything is taken care of in the method
+            objective.update();
+            startSecondPhase();
+            
+            // Put the player in Wind Village
+            objective.update();  // Talk to Elder Nu objective 
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Go to wind tower objective
+            objective.update();
+            
+            // Find Ninlil objective
+//            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Use this for going to the newest location
+            currentLocation = knownLocations.get(knownLocations.size() - 2); // Is -2 to stay in Wind Village. Change to 1 after Tempest Tower test
             
             nextLocation = remainingLocations.remove(0);
             
@@ -105,7 +125,8 @@ public class Game
             forestTutorialDone = true;
             Player anahita = MainGame.makeAnahita();
             Player gaea = MainGame.makeGaea();
-            Player fultra = MainGame.makeFultra();
+//            Player fultra = MainGame.makeFultra();
+            Player calmus = MainGame.makeCalmus();
             
             anahita.setMaxHealth(9999);
             anahita.setCurrentHealth(9999);
@@ -119,7 +140,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(10);
+            anahita.setLevel(14);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -128,30 +149,44 @@ public class Game
             gaea.setRangedAttack(9999);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
-            gaea.getAttack().setOriginalValue(anahita.getAttack().getValue());
-            gaea.getDefense().setOriginalValue(anahita.getDefense().getValue());
-            gaea.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
-            gaea.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
-            gaea.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            gaea.setLevel(10);
+            gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
+            gaea.setLevel(14);
             
-            fultra.setMaxHealth(9999);
-            fultra.setCurrentHealth(9999);
-            fultra.setAttack(9999);
-            fultra.setDefense(9999);
-            fultra.setRangedAttack(9999);
-            fultra.setRangedDefense(9999);
-            fultra.setSpeed(9999);
-            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
-            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
-            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
-            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
-            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            fultra.setLevel(10);
+//            fultra.setMaxHealth(9999);
+//            fultra.setCurrentHealth(9999);
+//            fultra.setAttack(9999);
+//            fultra.setDefense(9999);
+//            fultra.setRangedAttack(9999);
+//            fultra.setRangedDefense(9999);
+//            fultra.setSpeed(9999);
+//            fultra.getAttack().setOriginalValue(anahita.getAttack().getValue());
+//            fultra.getDefense().setOriginalValue(anahita.getDefense().getValue());
+//            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+//            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+//            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+//            fultra.setLevel(10);
+
+            calmus.setMaxHealth(9999);
+            calmus.setCurrentHealth(9999);
+            calmus.setAttack(9999);
+            calmus.setDefense(9999);
+            calmus.setRangedAttack(9999);
+            calmus.setRangedDefense(9999);
+            calmus.setSpeed(9999);
+            calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
+            calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
+            calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+            calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+            calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
+            calmus.setLevel(14);
             
             team.add(anahita);
             team.add(gaea);
-            team.add(fultra);
+            team.add(calmus);
             
             gold = 100000;
         }
@@ -202,7 +237,12 @@ public class Game
     {
         // Comment out for testing
         MainGame.clearScreen();
-//        gameOpening();
+        
+        if(!testing)
+        {
+            gameOpening();
+        }
+
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
@@ -228,8 +268,9 @@ public class Game
         remainingLocations.add(createIceVillage());
         remainingLocations.add(createForlornDesert());
         remainingLocations.add(createElectricVillage());
+        remainingLocations.add(createZoniVillage2());
         
-        if(isTesting)
+        if(testing)
         {
             remainingLocations.get(0).setIsExplored();
             remainingLocations.get(1).setIsExplored();
@@ -258,7 +299,7 @@ public class Game
         
         MainGame.println("What would you like to do?", 5);
         String message = "\t1) Travel\n\t2) ";
-        int input;
+        int input = 0;
         
         if(currentLocation instanceof Village)
         {
@@ -292,6 +333,44 @@ public class Game
         // If the current location is of type Wildnerness
         else
         {
+            wildernessOptions(message, input);
+//            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
+//            input = MenuHelper.displayMenu(message, 1, 5);
+//            
+//            switch(input)
+//            {
+//                case 1:
+//                    askForLocation();
+//                    break;
+//                case 2:
+//                    battle();
+//                    break;
+//                case 3:
+//                    findWildnernessChest();
+//                    break;
+//                case 4:
+//                    viewInventory();
+//                    break;
+//                case 5:
+//                    optionsMenu();
+//                    break;
+//            }
+            
+            MainGame.waitForEnter();
+        }
+        
+//        MainGame.waitForEnter();
+    }
+    
+    /**
+     * Helper method to help display the options for the Wilderness areas.
+     * @param message 
+     */
+    private void wildernessOptions(String message, int input)
+    {
+        // If the requirements to start the boss battle aren't met, don't give the option.
+        if(!((Wilderness)currentLocation).canDoBossBattle(team))
+        {
             message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
             input = MenuHelper.displayMenu(message, 1, 5);
             
@@ -313,11 +392,34 @@ public class Game
                     optionsMenu();
                     break;
             }
-            
-            MainGame.waitForEnter();
         }
-        
-//        MainGame.waitForEnter();
+        else
+        {
+            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            input = MenuHelper.displayMenu(message, 1, 5);
+            
+            switch(input)
+            {
+                case 1:
+                    askForLocation();
+                    break;
+                case 2:
+                    battle();
+                    break;
+                case 3:
+                    bossBattle();
+                    break;
+                case 4:
+                    findWildnernessChest();
+                    break;
+                case 5:
+                    viewInventory();
+                    break;
+                case 6:
+                    optionsMenu();
+                    break;
+            }
+        }
     }
     
     private void transition(Location newLocation)
@@ -333,10 +435,17 @@ public class Game
         {
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-            MainGame.wait(1000);
-            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 4000);
+            MainGame.wait(500);
+            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 500);
             MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
+        }
+        
+        // Set the Ninlil boss battle for Tempest Tower
+        if(currentLocation.getName().equals("Tempest Tower"))
+        {
+            BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+            ((Wilderness)currentLocation).setBossBattle(battle, 14);
         }
         
         checkForCutscene();
@@ -402,7 +511,7 @@ public class Game
     {
         Village village = ((Village)currentLocation);
         
-        if(isTesting && village.getName().equals("Zoni Village"))
+        if(testing && village.getName().equals("Zoni Village"))
         {
             village.getVillagePeople().forEach(p -> {
                 p.setTalkedTo(true);
@@ -426,7 +535,7 @@ public class Game
         {
             MainGame.promptToEnter();
             
-            if(isTesting)
+            if(testing)
             {
                 resiTutorialAttempts = 1;
                 
@@ -439,7 +548,7 @@ public class Game
             }
             
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
-            if(resiTutorialAttempts == 0 && !isTesting)
+            if(resiTutorialAttempts == 0 && !testing)
             {
                 Cutscene.warCutscene();
                 
@@ -465,37 +574,39 @@ public class Game
     
     private void startSecondPhase()
     {
-        if(!isTesting)
+        if(!testing)
         {
             Cutscene.warCutscene2();
         }   
         
         inSecondPhase = true;
         
-        // Reduces the population number by an arbitray amount to show that the world has changed
+        // Reduces the population number by an arbitrary amount to show that the world has changed
         pulchraPopulation = (pulchraPopulation / 2) - 576;
         
         // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
         
         /*
-        Adds the new Water Village with less NPCs and adds it to the known locations. Sets it as the current location
-        for the player to start in for the second phase.
+        Adds new Water and Earth Villages with less NPCs and adds it to the known locations. Sets Water Village as the 
+        current location for the player to start in for the second phase.
         */
         knownLocations.set(2, createWaterVillage2());
         currentLocation = knownLocations.get(2);
+        knownLocations.set(3, createEarthVillage2());
+        
         
         // Removes Frigs and Ninlil from the player's team of characters
         removePlayer("Fultra");
         removePlayer("Frigs");
         removePlayer("Ninlil");
         
-        if(isTesting)
+        if(testing)
         {
             setPlayerLevels(11);
         }
         
-        if(!isTesting)
+        if(!testing)
         {
             Cutscene.postWarCutscene();
         }
@@ -508,7 +619,7 @@ public class Game
     {
         MainGame.clearScreen();
         
-        // If the player is in Purity Beach and they haven't done it's tutorial, do it
+        // If the player is in Purity Beach and they haven't done its tutorial, do it
         if(!beachTutorialDone && currentLocation.getName().equals("Purity Beach"))
         {
             BeachTutorialBattle battle = ((Wilderness)currentLocation).makeBeachTutorial(team.get(0));
@@ -543,10 +654,10 @@ public class Game
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold);
         }
-        // Second phase - 65% normal battles, 35% RESI battles
-        else if(inSecondPhase)
+        // Second phase - 60% normal battles, 40% RESI battles
+        else
         {
-            chooseBattle(gold);
+            chooseBattle(new Random().nextInt(100));
         }
         
         checkForNextLocation();
@@ -554,7 +665,7 @@ public class Game
     
     private void chooseBattle(int chance)
     {
-        if(chance >= 0 && chance < 65)
+        if(chance >= 0 && chance < 59)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold);
@@ -563,6 +674,32 @@ public class Game
         {
             RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
             battle.start(gold);
+        }
+    }
+    
+    private void bossBattle()
+    {   
+        if(currentLocation.getName().equals("Tempest Tower"))
+        {
+            MainGame.clearScreen();
+            
+            // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
+            if(!towerBossAttempted && !testing) 
+            {
+                Cutscene.foundNinlilCutscene();
+            }
+            
+            Wilderness tempestTower = ((Wilderness)currentLocation);
+            tempestTower.getBossBattle().start(gold);
+            towerBossAttempted = true;
+            
+            // If the player wins the boss fight, remove it from Tempest Tower.
+            if(tempestTower.getBossBattle().isWon())
+            {
+                Cutscene.defeatedNinlilCutscene();
+                tempestTower.removeBossBattle();
+                objective.update();
+            }
         }
     }
     
@@ -577,6 +714,15 @@ public class Game
         }
         else if(village.getName().equals("Earth Village") && village.getNPC("Fleur").hasBeenTalkedTo())
         {
+            return true;
+        }
+        else if(village.getName().equals("Wind Village") && village.getNPC("Elder Nu").hasBeenTalkedTo())
+        {
+            // Unlock Tempest Tower
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
             return true;
         }
         
@@ -624,7 +770,7 @@ public class Game
         Location latestLocation = knownLocations.get(knownLocations.size() - 1);
         
         // While the highest level is >= to the required level AND the newest location was explored, the player unlocks the next location 
-        while(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
+        if(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
         {
             nextLocation.setUnlocked(true);
             locationUnlocked();
@@ -731,7 +877,7 @@ public class Game
         if(MainGame.getInventory().isEmpty())
         {
             System.out.println("");
-            MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything!");
+            MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything.");
         }
         else
         {
@@ -742,7 +888,8 @@ public class Game
     
     private void viewTeam()
     {
-        MainGame.println("\nWho would you like to view?", 25);
+        MainGame.clearScreen();
+        MainGame.println("Who would you like to view?", 25);
         String message = "";
         int numOfOptions = 0;
         
@@ -769,33 +916,55 @@ public class Game
     private void viewPlayer(Player player)
     {
         MainGame.println("\nWhat would you like to do with " + player.getName() + "?", 25);
-        String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
-        int input = MenuHelper.displayMenu(message, 1, 4);
         
-        switch(input)
+        // The player has access to changing classes when they're in the second phase
+        if(inSecondPhase)
         {
-            case 2:
-                changeMoves(player);
-                break;
-            case 3:
-                // MAKE MEEEEE **********------------------*************
-//                changeClass();
-                break;
-            case 4:
-                viewTeam();
-                break;
-            default:
-                MainGame.printlnln("\n" + player.toOverallString(), 25);
-                MainGame.waitForEnter();
-                break;
+            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
+            int input = MenuHelper.displayMenu(message, 1, 4);
+
+            switch(input)
+            {
+                case 2:
+                    changeMoves(player);
+                    break;
+                case 3:
+                    changeClass(player);
+                    break;
+                case 4:
+                    viewTeam();
+                    break;
+                default:
+                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.waitForEnter();
+                    break;
+            }
         }
-        
-        viewTeam();
+        else
+        {
+            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Back";
+            int input = MenuHelper.displayMenu(message, 1, 3);
+
+            switch(input)
+            {
+                case 2:
+                    changeMoves(player);
+                    break;
+                case 3:
+                    viewTeam();
+                    break;
+                default:
+                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.waitForEnter();
+                    break;
+            }
+        }
     }
     
     private void changeMoves(Player player)
     {
-        MainGame.printlnWait("\n" + player.getName() + "'s current moves:", 25, 1500);
+        MainGame.clearScreen();
+        MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);
         
         // Prints out the four moves the character can use
         for(Attack attack : player.getCurrentAttacks())
@@ -803,7 +972,7 @@ public class Game
             printMove(attack);
         }
         
-        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 1500);
+        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 500);
         
         // Prints out the other two moves the character can use
         for(Attack attack : player.getOtherAttacks())
@@ -814,27 +983,185 @@ public class Game
         promptToChangeMove(player);
     }
     
+    private void changeClass(Player player)
+    {
+        MainGame.clearScreen();
+        MainGame.printlnlnWait(player.getName() + "'s current class:\n" + player.getPlayerClass().detailedString(), 5, 500);
+        promptToChangeClass(player);
+    }
+    
+    private void promptToChangeClass(Player p)
+    {
+        MainGame.printlnln(p.getName() + "'s other classes:", 25);
+        
+        // Print available classes and their info
+        for(PlayerClass pc : p.getOtherClasses())
+        {
+            MainGame.printlnln(pc.detailedString(), 5);
+        }
+        
+        MainGame.promptToEnter();
+        
+        // Prompt player to select a choice.
+        MainGame.println("What would you like to change " + p.getName() + "'s class to?", 25);
+        String message = "";
+        int numOfOptions = 0;
+        
+        for(PlayerClass pc : p.getOtherClasses())
+        {
+            message += "\t" + ++numOfOptions + ") " + pc.getClassName() + "\n";
+        }
+        
+        message += "\t" + ++numOfOptions + ") Go Back to View Team";
+        
+        int input = MenuHelper.displayMenu(message, 1, numOfOptions);
+        
+        if(input == numOfOptions)
+        {
+            viewTeam();
+        }
+        else
+        {
+            switchClasses(p, input);
+        }
+    }
+    
+    private void switchClasses(Player p, int input)
+    {
+        PlayerClass currentClass = p.getPlayerClass();
+        PlayerClass otherClass = p.getOtherClasses().get(--input);
+        
+        checkClasses(p, currentClass, otherClass);
+        
+        p.setPlayerClass(otherClass);
+        
+        p.getOtherClasses().set(input, currentClass);
+        
+        MainGame.promptToEnter();
+        MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
+                " -----------> " + otherClass.toString(), 25);
+        
+        MainGame.println(p.getName() + "'s new info:", 25);
+        
+        // Prints out the updated character's info
+        MainGame.printlnln(p.toOverallString(), 5);
+        
+        MainGame.waitForEnter();
+        viewTeam();
+    }
+    
+    /**
+     * Helper method that checks if the class to change to isn't a Clerk class. If so, it prompts the player to update the 
+     * character's attack list first IF their current attacks contain any healing moves.
+     * @param p
+     * @param input
+     * @param currentClass
+     * @param otherClass 
+     */
+    private void checkClasses(Player p, PlayerClass currentClass, PlayerClass wantedClass)
+    {
+        // If switching classes from Clerk to Clerk subclasss, return. Else, check for a healing move on the player object.
+        if(currentClass.isClerk() && wantedClass.isClerk())
+        {
+            return;
+        }
+        
+        for(int index = 0; index < p.getCurrentAttacks().size(); index++)
+        {
+            Attack attack = p.getCurrentAttacks().get(index);
+            
+            if(attack instanceof SingleHealingAttack || attack instanceof TeamHealingAttack)
+            {
+                MainGame.promptToEnter();
+                MainGame.printlnln("WARNING: Only Clerk classes can use healing attacks. " + p.getName() + " is currently "
+                        + "using " + attack.getName() + ".\nTo change " + p.getName() + "'s class from " + 
+                        currentClass.getClassName() + " to " + wantedClass.getClassName() + ", please change " +
+                        attack.getName() + " to a different attack.", 25);
+                MainGame.promptToEnter();
+                
+                // If a is a form of healing, prompt player to change attacks first.
+                changeAttackForClass(p, index, attack);
+            }
+        }
+    }
+    
+    /**
+     * Takes the player through a sequence to change their attack list to properly change classes.
+     * @param p
+     * @param input
+     * @param currentClass
+     * @param wantedClass 
+     */
+    private void changeAttackForClass(Player p, int indexOfHealAttack, Attack attackToChange)
+    {
+        MainGame.println("Which move would you like to change " + attackToChange.getName() + " with? Please choose an attack "
+                + "that is not a form of healing.", 25);
+
+        String message = "";
+        int numOfOptions = 0;
+        
+        for(Attack a : p.getOtherAttacks())
+        {
+            message += "\t" + ++numOfOptions + ") " + a.getName() + "\n";
+        }
+        
+        message += "\t" + ++numOfOptions + ") Go Back to Change Class";
+        
+        int indexOfOtherAttack = MenuHelper.displayMenu(message, 1, numOfOptions);
+        
+        if(indexOfOtherAttack == numOfOptions)
+        {
+            changeClass(p);
+        }
+        else
+        {
+            switchAttackForClass(indexOfHealAttack, indexOfOtherAttack, p, attackToChange);
+        }
+    }
+    
+    /**
+     * Finishes the process of changing attacks for changing a character's class.
+     * @param indexOfHealAttack
+     * @param indexOfOtherAttack
+     * @param p 
+     */
+    private void switchAttackForClass(int indexOfHealAttack, int indexOfOtherAttack, Player p, Attack attackToChange)
+    {
+        // decrement the index of indexOfOtherAttack to get the right attack from the list
+        Attack otherAttack = p.getOtherAttacks().get(--indexOfOtherAttack);
+        if(otherAttack instanceof SingleHealingAttack || otherAttack instanceof TeamHealingAttack)
+        {
+            MainGame.printlnln("\nPlease select an attack that isn't a form of healing.", 5);
+            MainGame.promptToEnter();
+            changeAttackForClass(p, indexOfHealAttack, attackToChange);
+        }
+        else
+        {
+            switchAttacksProcess(indexOfHealAttack, indexOfOtherAttack, p);
+        }
+    }
+    
     private void printMove(Attack attack)
     {
         if(attack instanceof OffensiveAttack)
         {
-            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof BuffAttack)
         {
-            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof DebuffAttack)
         {
-            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof SingleHealingAttack)
         {
-            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 5, 500);
         }
         else if(attack instanceof TeamHealingAttack)
         {
-            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 25, 2000);
+            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 5, 500);
         }
     }
     
@@ -865,7 +1192,10 @@ public class Game
     
     private void promptForOtherAttack(Player p, int inputForFirstAttack)
     {
-        MainGame.println("\nWhich move would you like to change it with?", 25);
+        MainGame.promptToEnter();
+        Attack wantedAttack = p.getCurrentAttacks().get(inputForFirstAttack - 1);
+        MainGame.println("Which attack would you like to change " + wantedAttack.getName() 
+                + " with?\nNOTE: Only Clerk classes can use attacks that heal.", 25);
         String message = "";
         int numOfOptions = 0;
         
@@ -888,20 +1218,44 @@ public class Game
         }
     }
     
+    /**
+     * Helper method to be used in promptForOtherAttack to guide player in changing attacks of a character.
+     * @param currentAttackInput
+     * @param otherAttackInput
+     * @param p 
+     */
     private void switchAttacks(int currentAttackInput, int otherAttackInput, Player p)
     {
+//        // Decrement inputs for use in the ArrayLists
+//        --currentAttackInput;
+//        --otherAttackInput;
+//        
+//        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
+//        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+//        
+//        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
+//        p.getOtherAttacks().set(otherAttackInput, currentAttack);
+//        
+//        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
+//                " <----------> " + otherAttack.getName(), 25, 1500);
+        
         // Decrement inputs for use in the ArrayLists
         --currentAttackInput;
         --otherAttackInput;
         
-        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
         Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+        if((otherAttack instanceof SingleHealingAttack && !p.getPlayerClass().isClerk()) 
+                || (otherAttack instanceof TeamHealingAttack && !p.getPlayerClass().isClerk()))
+        {
+            MainGame.printlnln("\nYou cannot change " + p.getCurrentAttacks().get(currentAttackInput).getName() + " to " 
+                    + otherAttack.getName() + " because " + p.getName() + "'s curernt class is " 
+                    + p.getPlayerClass().getClassName() + ".\nPlease choose a different attack to switch to.", 25);
+            
+            // Take player back to select the other attack they want to change. Increment for the sake of implementation
+            promptForOtherAttack(p, ++currentAttackInput);
+        }
         
-        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
-        p.getOtherAttacks().set(otherAttackInput, currentAttack);
-        
-        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
-                " <----------> " + otherAttack.getName(), 25, 1500);
+        switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
         MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
         
@@ -913,6 +1267,30 @@ public class Game
         
         MainGame.waitForEnter();
         viewTeam();
+    }
+    
+    /**
+     * Helper method used to complete the bulk of the process of changing an attack.
+     * @param currentAttackInput
+     * @param otherAttackInput
+     * @param p 
+     */
+    private void switchAttacksProcess(int currentAttackInput, int otherAttackInput, Player p)
+    {
+        // **************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // THE COMMENTED OUT CODE SHOULD NOT BE NECESSARY SINCE IT'S HANDLED IN THE METHOD THAT CALLS THIS ONE
+        // Decrement inputs for use in the ArrayLists
+//        --currentAttackInput;
+//        --otherAttackInput;
+        
+        Attack currentAttack = p.getCurrentAttacks().get(currentAttackInput);
+        Attack otherAttack = p.getOtherAttacks().get(otherAttackInput);
+        
+        p.getCurrentAttacks().set(currentAttackInput, otherAttack);
+        p.getOtherAttacks().set(otherAttackInput, currentAttack);
+        
+        MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
+                " -----------> " + otherAttack.getName() , 25, 500);
     }
     
     public ArrayList<Location> getKnownLocations() {return knownLocations;}
@@ -942,7 +1320,7 @@ public class Game
         // Anahita's father
         NPC lac = new NPC("Lac", "It's the Drama Queen Duo and Fearless Thunder! Bahaha! It's a pleasure to see you all. Make sure you're ready\n\tfor the festival later!", gift, 2, false);
         lac.setGiveGiftMessage("I have something I'd like to give you guys. It isn't much, but it might help tame that sweet tooth!");
-        lac.setDescription("Anahita's father");
+        lac.setDescription("Anahita's father | Water Village Elder");
         
         NPC buzi = new NPC("Buzi", "Hey guys! I hope you're ready for the annual festival tonight. It'll be a blast!", false);
         buzi.setDescription("Water Village resident");
@@ -995,6 +1373,7 @@ public class Game
         Coordinate c = new Coordinate(17, 24);
         Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
+        v.setIsExplored();
         return v;
     }
     
@@ -1004,14 +1383,14 @@ public class Game
         gord.setDescription("Earth Village resident");
         
         NPC caillou = new NPC("Caillou", "ugh... i'm so weak now... the effects of my beans wore off... remember what i said, okay?", true);
-        caillou.setDescription("Earth Village resident // Bean Master"); 
+        caillou.setDescription("Earth Village resident | Bean Master"); 
        
         // Gaea's cousin
         NPC fleur = new NPC("Fleur", "Thank you guys for your help again! But why are you still here? Go to the festival!", true);
         fleur.setDescription("Gaea's older cousin");
         
         NPC roxy = new NPC("Roxy", "Have you guys seen the flowers blooming in Opicon Forest? This is the best time of year to see them if you haven't!", false);
-        roxy.setDescription("Earth Village resident");
+        roxy.setDescription("Earth Village Elder");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(gord);
@@ -1037,23 +1416,57 @@ public class Game
         return v;
     }
     
+    private Village createEarthVillage2()
+    {   
+        NPC caillou = new NPC("Caillou", "i wish beans were good enough to prevent all the casualties that happened.", false);
+        caillou.setDescription("Earth Village resident // Bean Master"); 
+       
+        // Gaea's cousin
+        NPC fleur = new NPC("Fleur", "I wish you all the best on your journey. Be careful out there, please.", true);
+        fleur.setDescription("Gaea's older cousin");
+        
+        Item gift = Item.getBuffItem("Purple Bean");
+        NPC roxy = new NPC("Roxy", "You're all going to be known as heroes. I just know it. Do what you can for us all.", gift, false);
+        roxy.setDescription("Earth Village Elder");
+        
+        ArrayList<NPC> people = new ArrayList<>();
+        people.add(caillou);
+        people.add(fleur);
+        people.add(roxy);
+        
+        //----------------------------------------------------------------------
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(Item.getHealingItem("Big Cinnamon Roll"));
+        items.add(Item.getHealingItem("Cheesecake"));
+        items.add(Item.getBuffItem("Red Bean"));
+        items.add(Item.getBuffItem("Orange Bean"));
+        items.add(Item.getBuffItem("Purple Bean"));
+        items.add(Item.getBuffItem("Green Bean"));
+        items.add(Item.getBuffItem("Blue Bean"));
+        Shop s = new Shop(items);
+        //----------------------------------------------------------------------
+        
+        Coordinate c = new Coordinate(22, 13);
+        Village v = new Village("Earth Village", "A village located southwest of the Water Village.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        v.setShop(s);
+        v.setIsExplored();
+        return v;
+    }
+    
     private Village createZoniVillage()
     {
-//        Item gift = Item.getHealingItem("Apple Pie");
+        // Add a cutscene for Vitorem
+        NPC vitorem = new NPC("Elder Vitorem", "We'll be starting the festival soon! You don't want miss it.", true);
+        vitorem.setDescription("Zoni Elder | Leader of Pulchra");
+        
         NPC calmus = new NPC("Calmus", "We should catch up more! Let's meet up again after the festival. I'll see you all soon!", true);
-//        calmus.setGiveGiftMessage("Before you go -- my grandma made a little to many pastries for the festival. I'd like you to take one.");
         calmus.setDescription("Fire Village resident");
         
         NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Ice Village resident");
         
-        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Just go away.", true);
+        NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Go away.", true);
         ninlil.setDescription("Wind Village resident");
-        
-//        gift = Item.getHealingItem("Half Cake");
-//        NPC fultra = new NPC("Fultra", "Gaea, Ana! It's great to see you guys. We've got plenty of food and cake here, so tuck in!", gift);
-//        fultra.setGiveGiftMessage("I'll see you guys later. Love you Gaea!");
-//        fultra.setDescription("Electric Village resident and Gaea's boyfriend");
         
         Item gift = Item.getBuffItem("Green Bean");
         NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
@@ -1075,10 +1488,10 @@ public class Game
         verg.setDescription("Ice Village resident and Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();
+        people.add(vitorem);
         people.add(calmus);
         people.add(frigs);
         people.add(ninlil);
-//        people.add(fultra);
         people.add(pheu);
         people.add(ilven);
         people.add(clairdra);
@@ -1103,18 +1516,19 @@ public class Game
     
     private Village createWindVillage()
     {   
-        NPC ilvent = new NPC("Ilvent", "It's good to see you guys. Things... things have been rough since the calamity... We lost so many people... You're looking for Ninlil? She's at the Tempest Tower.", true);
-        ilvent.setDescription("Wind Village resident and Ninlil's training partner");
+        NPC nu = new NPC("Elder Nu", "(*smack*) If you need anything, do come back. We will do what we can to help you.", true);
+        nu.setDescription("Wind Village Elder");
         
         NPC oura = new NPC("Oura", "(*sniff*) why is this happening... oh goodness... why?", false);
-        oura.setDescription("Wind Village resident and newly Widowed");
+        oura.setDescription("Wind Village resident and newly widowed");
         
         Item gift = Item.getBuffItem("Purple Bean");
-        NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it, but I don't think there's much you can do for us.", gift, 3, false);
+        NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it. Hopefully we can recover from everything.", gift, 3, false);
+        tem.setDescription("Wind Village resident");
         tem.setGiveGiftMessage("We don't have much right now, but I think you could use this better than us.");
         
         ArrayList<NPC> people = new ArrayList<>();
-        people.add(ilvent);
+        people.add(nu);
         people.add(oura);
         people.add(tem);
         
@@ -1131,7 +1545,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(11, 71);
-        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of any other village.", people, 12, 312, c);
+        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of\nany other village.", people, 12, 312, c);
         v.setShop(s);
         return v;
     }
@@ -1141,11 +1555,11 @@ public class Game
         NPC lyra = new NPC("Lyra", "Brother! Grandma needs your help. If you can defeat <Enemy Boss Name Here>, that should help. Please! She's not feeling well...", true);
         lyra.setDescription("Fire Village resident and Calmus' little sister");
         
-        NPC volca = new NPC("Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
-        volca.setDescription("Fire Village resident and Calmus' grandmother");
+        NPC volca = new NPC("Elder Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
+        volca.setDescription("Fire Village Elder and Calmus' grandmother");
         
         NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help. Are you here to help too?", false);
-        mimi.setDescription("Fire Village resident");
+        mimi.setDescription("Water Village resident");
         
         Item gift = Item.getBuffItem("Red Bean");
         NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
@@ -1181,8 +1595,8 @@ public class Game
     {
         // Once player enters village, can find summit of mountain
         
-        NPC zeno = new NPC("Zeno", "Woah! I'm surprised you all made it through the mountain. The weather is at its worst this time of the year. Well, welcome. Like others, we don't have much left, but some of us are holding on to heope.", false);
-        zeno.setDescription("Ice Village Resident");
+        NPC zeno = new NPC("Elder Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
+        zeno.setDescription("Ice Village Elder");
         
         NPC ligian = new NPC("Ligian", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
         ligian.setDescription("Ice Village Resident");
@@ -1208,13 +1622,17 @@ public class Game
     
     private Village createElectricVillage()
     {
-        NPC clairdra = new NPC("Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
+        NPC clairdra = new NPC("Elder Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
+        clairdra.setDescription("Electric Village Elder");
         
         NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our village hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
+        tonnerre.setDescription("Electric Village resident");
         
         Item gift = Item.getHealingItem("Half Cake");
         NPC san = new NPC("San", "Are you guys okay? How are your villages?", gift, false);
+        san.setDescription("Electric Village resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
+        
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(clairdra);
@@ -1265,6 +1683,10 @@ public class Game
         Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 13, c);
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
+        
+//        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), team);
+//        tempestTower.setBossBattle(battle, 14);
+        
         return tempestTower;
     }
     
@@ -1300,18 +1722,22 @@ public class Game
         return forlornDessert;
     }
     
+    /**
+     * Plays the necessary cutscene when the player enters a new location and updates their objective.
+     */
     private void checkForCutscene()
     {
         if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
         {
             objective.update();
-            
+            Cutscene.opiconCutscene();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
             MainGame.setPlayerTeam(team);
         }
         else if(currentLocation.getName().equals("Water Village") && (!currentLocation.isExplored()))
         {
+            Cutscene.waterVillageCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
@@ -1319,9 +1745,24 @@ public class Game
             Cutscene.earthVillageCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
         {
             Cutscene.zoniVillageCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.windVillageCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
+        {
+            Cutscene.tempestTowerCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.fireVillageCutscene();
             objective.update();
         }
         
@@ -1354,6 +1795,27 @@ public class Game
         {
             p.setLevel(level);
         }
+    }
+    
+    /**
+     * Helper method that returns an ArrayList containing the player the Player given.
+     * @param name
+     * @return 
+     */
+    private ArrayList<Player> makePlayerTeam(String name)
+    {
+        ArrayList<Player> list = new ArrayList<>();
+        
+        for(Player p : team)
+        {
+            if(p.getName().equals(name))
+            {
+                list.add(p);
+                break;
+            }
+        }
+        
+        return list;
     }
     
     
