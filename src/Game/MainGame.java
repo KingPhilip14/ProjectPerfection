@@ -1162,18 +1162,18 @@ public class MainGame
         PlayerClass pc = PlayerClass.getPlayerClass("Guardian Striker");
         
         // Instantiating Ninlil and her moveset--------------------------
-        Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
+        Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
         ninlil.setAggro(7);
-        ninlil.setMaxHealth(395);
-        ninlil.setCurrentHealth(395);
-        ninlil.setAttack(60);
-        ninlil.setDefense(60);
-        ninlil.setRangedAttack(200);
-        ninlil.setRangedDefense(65);
-        ninlil.setSpeed(65);
+        ninlil.setMaxHealth(630);
+        ninlil.setCurrentHealth(630);
+        ninlil.setAttack(120);
+        ninlil.setDefense(120);
+        ninlil.setRangedAttack(350);
+        ninlil.setRangedDefense(125);
+        ninlil.setSpeed(125);
         
         ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
         ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
@@ -1189,10 +1189,10 @@ public class MainGame
         ninlilAllAttacks.add(tempestBlade);
         
         ArrayList<Attack> ninlilCurrentAttacks = new ArrayList<>(4);
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(0));
         ninlilCurrentAttacks.add(ninlilAllAttacks.get(1));
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(2));
+        ninlilCurrentAttacks.add(ninlilAllAttacks.get(0));
         ninlilCurrentAttacks.add(ninlilAllAttacks.get(3));
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(4));
         
         ComboAttack.getComboAttacks(ninlil);
         

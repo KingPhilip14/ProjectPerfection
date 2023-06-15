@@ -91,7 +91,7 @@ public class RESIEnemy extends Enemy
                 break;
         }
         
-        return "R.E.S.I. Bot " + result + " " + createElementDescriptor();
+        return "R.E.S.I. Bot " + result;
     }
 
     private void setDescription()

@@ -44,6 +44,7 @@ public class Game
     private boolean talkedToMerda;
     private boolean testing;
     private boolean towerBossAttempted;
+    private boolean volcanBossAttempted;
     private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
@@ -57,6 +58,7 @@ public class Game
 //    private static boolean levelUpOccurred;
     private static int gold;
     private static boolean inSecondPhase;
+    private static boolean defeatedOmegaBoss;
     private int pulchraPopulation = 43452;
     private Map map = new Map();
     
@@ -106,18 +108,38 @@ public class Game
             startSecondPhase();
             
             // Put the player in Wind Village
-            objective.update();  // Talk to Elder Nu objective 
             knownLocations.add(remainingLocations.remove(0));
+            objective.update();  // Talk to Elder Nu objective 
             
-            // Go to wind tower objective
+            // Go to tempest tower objective
+            knownLocations.add(remainingLocations.remove(0));
+            ((Wilderness)knownLocations.get(knownLocations.size() - 1)).removeBossBattle();
             objective.update();
             
             // Find Ninlil objective
-//            objective.update();
+            objective.update();
+
+            // Go to fire village
+            objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
+            // Talk to Vulca objective
+            objective.update();
+            
+            // Go to Mount Vulca 
+//            objective.update();
+//            
+//            // Find minerals
+//            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+            
             // Use this for going to the newest location
-            currentLocation = knownLocations.get(knownLocations.size() - 2); // Is -2 to stay in Wind Village. Change to 1 after Tempest Tower test
+            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            
+            for(Location l : knownLocations)
+            {
+                l.setIsExplored();
+            }
             
             nextLocation = remainingLocations.remove(0);
             
@@ -140,7 +162,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(14);
+            anahita.setLevel(17);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -154,7 +176,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(14);
+            gaea.setLevel(17);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -182,11 +204,27 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(14);
+            calmus.setLevel(17);
+            
+            Player ninlil = MainGame.makeNinlil();
+            ninlil.setMaxHealth(9999);
+            ninlil.setCurrentHealth(9999);
+            ninlil.setAttack(9999);
+            ninlil.setDefense(9999);
+            ninlil.setRangedAttack(9999);
+            ninlil.setRangedDefense(9999);
+            ninlil.setSpeed(9999);
+            ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
+            ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
+            ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
+            ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
+            ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
+            ninlil.setLevel(17);
             
             team.add(anahita);
             team.add(gaea);
             team.add(calmus);
+            team.add(ninlil);
             
             gold = 100000;
         }
@@ -204,7 +242,8 @@ public class Game
     public boolean inSecondPhase() {return inSecondPhase;}
     
     public static boolean getSecondPhase() {return inSecondPhase;}
-//    public static void setLevelUpOccurred() {levelUpOccurred = true;}
+    
+    public static boolean getDefeatedOmega() {return defeatedOmegaBoss;}
     
     public ArrayList<Player> getTeam() {return team;}
     
@@ -242,7 +281,6 @@ public class Game
         {
             gameOpening();
         }
-
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
@@ -396,7 +434,7 @@ public class Game
         else
         {
             message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
-            input = MenuHelper.displayMenu(message, 1, 5);
+            input = MenuHelper.displayMenu(message, 1, 6);
             
             switch(input)
             {
@@ -446,6 +484,11 @@ public class Game
         {
             BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
             ((Wilderness)currentLocation).setBossBattle(battle, 14);
+        }
+        else if(currentLocation.getName().equals("Mount Volcan"))
+        {
+            BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+            ((Wilderness)currentLocation).setBossBattle(battle, 17);
         }
         
         checkForCutscene();
@@ -699,6 +742,40 @@ public class Game
                 Cutscene.defeatedNinlilCutscene();
                 tempestTower.removeBossBattle();
                 objective.update();
+                team.add(MainGame.makeNinlil());
+            }
+        }
+        else if(currentLocation.getName().equals("Mount Volcan"))
+        {
+            MainGame.clearScreen();
+            
+            // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
+            if(!volcanBossAttempted) // add !testing 
+            {
+                Cutscene.foundOmegaCutscene();
+            }
+            
+            Wilderness volcan = ((Wilderness)currentLocation);
+            volcan.getBossBattle().start(gold);
+            volcanBossAttempted = true;
+            
+            // If the player wins the boss fight, remove it from Mount Volcan.
+            if(volcan.getBossBattle().isWon())
+            {
+                defeatedOmegaBoss = true;
+                Cutscene.defeatedOmegaCutscene();
+                volcan.removeBossBattle();
+                objective.update();
+                team.add(MainGame.makeNinlil());
+                
+                NPC lyra = ((Village)getLocation("Fire Village")).getNPC("Lyra");
+                lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
+                lyra.setTalkedTo(false);
+                lyra.setHasCutscene(true);
+                
+                NPC vulca = ((Village)getLocation("Fire Village")).getNPC("Elder Vulca");
+                vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
+                vulca.setTalkedTo(false);
             }
         }
     }
@@ -719,6 +796,23 @@ public class Game
         else if(village.getName().equals("Wind Village") && village.getNPC("Elder Nu").hasBeenTalkedTo())
         {
             // Unlock Tempest Tower
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
+            return true;
+        }
+        else if(village.getName().equals("Fire Village") && village.getNPC("Elder Vulca").hasBeenTalkedTo())
+        {
+            // Unlock Mount Volcan
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
+            return true;
+        }
+        else if(village.getName().equals("Fire Village") && village.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
+        {
             MainGame.clearScreen();
             nextLocation.setUnlocked(true);
             locationUnlocked();
@@ -1472,20 +1566,20 @@ public class Game
         NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
                 + "with the loss of his parents from a few years ago. The poor boy needs a break from all he's doing.", gift, 2, false);
         pheu.setGiveGiftMessage("Take this in advance as a thank you. I know you'll keep my word.");
-        pheu.setDescription("Fire Village Resident and Calmus' aunt");
+        pheu.setDescription("Fire Village Resident | Calmus' aunt");
         
         NPC ilven = new NPC("Ilven", "Hey! I hope you're all ready for the festival! Also, I have a request: be patient with Ninlil.\n\tI know she can be pretentious at times, "
                 + "but she's not always like that. I know it's hard to believe, but trust me.", false);
-        ilven.setDescription("Wind Village resident and Ninlil's training partner");
+        ilven.setDescription("Wind Village resident | Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
         NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
         clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
-        clairdra.setDescription("Electric Village resident and Fultra's grandma");
+        clairdra.setDescription("Electric Village resident | Fultra's grandma");
         
         NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
                 + "amazing\n\tpeople to back him up when I'm not there. I hope you enjoy the rest of the night!", false);
-        verg.setDescription("Ice Village resident and Frigs' older brother");
+        verg.setDescription("Ice Village resident | Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(vitorem);
@@ -1511,7 +1605,7 @@ public class Game
     private Village createZoniVillage2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Village("Zoni Village", "What was once a bustling, animated village is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 25, 0, c);
+        return new Village("Zoni Village", "What was once a bustling, animated village is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
     }    
     
     private Village createWindVillage()
@@ -1520,7 +1614,7 @@ public class Game
         nu.setDescription("Wind Village Elder");
         
         NPC oura = new NPC("Oura", "(*sniff*) why is this happening... oh goodness... why?", false);
-        oura.setDescription("Wind Village resident and newly widowed");
+        oura.setDescription("Wind Village resident | Newly widowed");
         
         Item gift = Item.getBuffItem("Purple Bean");
         NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it. Hopefully we can recover from everything.", gift, 3, false);
@@ -1552,13 +1646,13 @@ public class Game
     
     private Village createFireVillage()
     {
-        NPC lyra = new NPC("Lyra", "Brother! Grandma needs your help. If you can defeat <Enemy Boss Name Here>, that should help. Please! She's not feeling well...", true);
-        lyra.setDescription("Fire Village resident and Calmus' little sister");
+        NPC lyra = new NPC("Lyra", "Calmus! Please do what you can to help!", false);
+        lyra.setDescription("Fire Village resident | Calmus' little sister");
         
-        NPC volca = new NPC("Elder Vulca", "(*cough*) Hello, grandson, Ana, Gaea, Ninlil... (*cough cough*)", true);
-        volca.setDescription("Fire Village Elder and Calmus' grandmother");
+        NPC volca = new NPC("Elder Vulca", "(*cough*) Thank you for helping, grandson. (*cough cough*)", true);
+        volca.setDescription("Fire Village Elder | Calmus' grandmother");
         
-        NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help. Are you here to help too?", false);
+        NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help.\n\tAre you here to help too?", false);
         mimi.setDescription("Water Village resident");
         
         Item gift = Item.getBuffItem("Red Bean");
@@ -1578,7 +1672,6 @@ public class Game
         items.add(Item.getHealingItem("Apple Pie"));
         items.add(Item.getHealingItem("Cheesecake"));
         items.add(Item.getHealingItem("Whole Cake"));
-        items.add(Item.getHealingItem("Lasagna"));
         items.add(Item.getBuffItem("Red Bean"));
         items.add(Item.getBuffItem("Orange Bean"));
         items.add(Item.getBuffItem("Green Bean"));
@@ -1586,7 +1679,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(5, 53);
-        Village v = new Village("Fire Village", "Located in the northeast of Pulchra, the Fire Village has a group of people rich in culture, community, and humblness.", people, 15, 201, c);
+        Village v = new Village("Fire Village", "Located in the northeast of Pulchra, the Fire Village has a group of people rich in culture, community, and humblness.", people, 16, 201, c);
         v.setShop(s);
         return v;
     }
@@ -1598,7 +1691,7 @@ public class Game
         NPC zeno = new NPC("Elder Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
         zeno.setDescription("Ice Village Elder");
         
-        NPC ligian = new NPC("Ligian", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
+        NPC ligian = new NPC("Ligan", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
         ligian.setDescription("Ice Village Resident");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -1610,12 +1703,11 @@ public class Game
         items.add(Item.getHealingItem("Choco Bar"));
         items.add(Item.getHealingItem("Apple Pie"));
         items.add(Item.getHealingItem("Cheesecake"));
-        items.add(Item.getHealingItem("Lasagna"));
         Shop s = new Shop(items);
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(2, 31);
-        Village v = new Village("Ice Village", "Near the peak of Zoni Mountain, the Ice Village hosts a group of nonchalant yet powerful and honorable people.", people, 19, 56, c);
+        Village v = new Village("Ice Village", "Near the peak of Zoni Mountain, the Ice Village hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
         v.setShop(s);
         return v;
     }
@@ -1633,11 +1725,14 @@ public class Game
         san.setDescription("Electric Village resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
         
+        NPC pheu = new NPC("Pheu", "MAKE ME HAVE DEFAULT TEXT", true);
+        pheu.setDescription("Fire Village Resident | Calmus' aunt");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(clairdra);
         people.add(tonnerre);
         people.add(san);
+        people.add(pheu);
         
         //----------------------------------------------------------------------
         ArrayList<Item> items = new ArrayList<>();
@@ -1649,7 +1744,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(10, 9);
-        Village v = new Village("Electric Village", "Located to the east, the Electric Village is known for having the strongest fighters on Pulchra.", people, 23, 101, c);
+        Village v = new Village("Electric Village", "Located to the east, the Electric Village is known for having the strongest fighters on Pulchra.", people, 25, 101, c);
         v.setShop(s);
         return v;
     }
@@ -1693,7 +1788,7 @@ public class Game
     private Wilderness createMountVolcan()
     {
         Coordinate c = new Coordinate(4, 48);
-        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Fire Village residents come here frequently to train and hone their abilities,", 16, c);
+        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Fire Village residents come here frequently to train and hone their abilities.", 17, c);
         mountVolcan.addLocalElement("Fire");
         mountVolcan.addLocalElement("Earth");
         mountVolcan.addLocalElement("Wind");
@@ -1703,7 +1798,7 @@ public class Game
     private Wilderness createMountZoni()
     {
         Coordinate c = new Coordinate(4, 31);
-        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 18, c);
+        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 19, c);
         mountZoni.addLocalElement("Ice");
         mountZoni.addLocalElement("Wind");
         mountZoni.addLocalElement("Earth");
@@ -1714,7 +1809,7 @@ public class Game
     private Wilderness createForlornDesert()
     {
         Coordinate c = new Coordinate(9, 15);
-        Wilderness forlornDessert = new Wilderness("Forlorn Desert", "A dry and sandy area. It's covered in a dense fog that almost seems sentient. Those that go in rarely come out...", 22, c);
+        Wilderness forlornDessert = new Wilderness("Forlorn Desert", "A dry and sandy area. It's covered in a dense fog that almost seems sentient. Those that go in rarely come out...", 23, c);
         forlornDessert.addLocalElement("Electric");
         forlornDessert.addLocalElement("Earth");
         forlornDessert.addLocalElement("Wind");
@@ -1729,7 +1824,7 @@ public class Game
     {
         if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
         {
-            objective.update();
+//            objective.update();
             Cutscene.opiconCutscene();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
@@ -1738,34 +1833,39 @@ public class Game
         else if(currentLocation.getName().equals("Water Village") && (!currentLocation.isExplored()))
         {
             Cutscene.waterVillageCutscene();
-            objective.update();
+//            objective.update();
         }
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
         {
             Cutscene.earthVillageCutscene();
-            objective.update();
+//            objective.update();
         }
         else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
         {
             Cutscene.zoniVillageCutscene();
-            objective.update();
+//            objective.update();
         }
         else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
         {
             Cutscene.windVillageCutscene();
-            objective.update();
+//            objective.update();
         }
         else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
         {
             Cutscene.tempestTowerCutscene();
-            objective.update();
+//            objective.update();
         }
         else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
         {
             Cutscene.fireVillageCutscene();
-            objective.update();
+//            objective.update();
+        }
+        else if(currentLocation.getName().equals("Mount Volcan") && (!currentLocation.isExplored()))
+        {
+            Cutscene.mountVulcaCutscene();
         }
         
+        objective.update();
         currentLocation.setIsExplored();
     }
     
@@ -1818,7 +1918,23 @@ public class Game
         return list;
     }
     
-    
+    /**
+     * Helper method to get the object of a known location given the name.
+     * @param name
+     * @return Location
+     */
+    private Location getLocation(String name)
+    {
+        for(Location l : knownLocations)
+        {
+            if(l.getName().equals(name))
+            {
+                return l;
+            }
+        }
+        
+        return null;
+    }
     
     
     
