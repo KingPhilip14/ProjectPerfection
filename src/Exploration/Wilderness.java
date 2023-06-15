@@ -455,6 +455,37 @@ public class Wilderness extends Location
         return team;
     }    
     
+    public ArrayList<Enemy> makeOmegaBoss()
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("System Restart", "The user restarts its systems to refresh itself, raising all stats.", "All", 2.0, 5, 2));
+        OffensiveAttack deathClaw = new OffensiveAttack("Death Claw", "The user flies into the air and launches a claw that captures the target and applies pressure to deal damage.", 130, "Attack");
+        deathClaw.setAccuracy(70);
+        attacks.add(deathClaw);
+        attacks.add(new OffensiveAttack("Omega Laser", "The user blasts a highly concentrated laser that destroys everyting in its path.", 100, "R. Attack"));
+        attacks.get(2).setAccuracy(90);
+        OffensiveAttack protocal = new OffensiveAttack("RESI Protocal: Omega", "The user fires lasers, missles, claws and explosives in every direction. Those hit rarely live to tell the tale.", 150, "Attack");
+        protocal.setAccuracy(55);
+        attacks.add(protocal);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(2480); // HP
+        stats.add(204); // Attack
+        stats.add(234); // Defense
+        stats.add(204); // R Attack
+        stats.add(204); // R Defense
+        stats.add(174); // Speed
+        
+        BossEnemy omega = new BossEnemy("R.E.S.I. Omega", "The first -- and only -- of its kind. Irwin's best R.E.S.I. Bot.", "Fire", 17, 
+                                    attacks, stats);
+        omega.setStatDescription("This R.E.S.I. Bot is more than 3 times the size of a normal one. Be careful!");
+        
+        ArrayList<Enemy> team = new ArrayList<>(1);
+        team.add(omega);
+        
+        return team;
+    }
+    
     @Override
     public String toString()
     {
