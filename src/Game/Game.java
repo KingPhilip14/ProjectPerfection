@@ -42,7 +42,7 @@ public class Game
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
     private boolean talkedToMerda;
-    private boolean testing;
+    private static boolean testing;
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
     private int resiTutorialAttempts;
@@ -64,7 +64,7 @@ public class Game
     
     public Game(boolean isTesting)
     {
-        this.testing = isTesting;
+        testing = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
 //                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
@@ -127,11 +127,25 @@ public class Game
             objective.update();
             
             // Go to Mount Vulca 
-//            objective.update();
-//            
-//            // Find minerals
-//            objective.update();
+            objective.update();
+            
+            // Find minerals
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Talk To Lyra
+            objective.update();
+            
+            // Put the player in Mount Zoni
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Put the player in Ice Village
+            objective.update();
 //            knownLocations.add(remainingLocations.remove(0));
+            
+            // Talk to Elder Zeno
+//            objective.update();
             
             // Use this for going to the newest location
             currentLocation = knownLocations.get(knownLocations.size() - 1);
@@ -162,7 +176,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(17);
+            anahita.setLevel(19);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -176,7 +190,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(17);
+            gaea.setLevel(19);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -204,7 +218,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(17);
+            calmus.setLevel(19);
             
             Player ninlil = MainGame.makeNinlil();
             ninlil.setMaxHealth(9999);
@@ -219,7 +233,7 @@ public class Game
             ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
             ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
             ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
-            ninlil.setLevel(17);
+            ninlil.setLevel(19);
             
             team.add(anahita);
             team.add(gaea);
@@ -240,6 +254,8 @@ public class Game
     }
     
     public boolean inSecondPhase() {return inSecondPhase;}
+    
+    public static boolean isTesting() {return testing;}
     
     public static boolean getSecondPhase() {return inSecondPhase;}
     
@@ -474,7 +490,7 @@ public class Game
             MainGame.clearScreen();
             MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
             MainGame.wait(500);
-            MainGame.printlnlnWait("\n" + currentLocation.getDescription(), 25, 500);
+            MainGame.printlnln("\n" + currentLocation.getDescription(), 25);
             MainGame.promptToEnter();
 //            currentLocation.setIsExplored();
         }
@@ -766,7 +782,6 @@ public class Game
                 Cutscene.defeatedOmegaCutscene();
                 volcan.removeBossBattle();
                 objective.update();
-                team.add(MainGame.makeNinlil());
                 
                 NPC lyra = ((Village)getLocation("Fire Village")).getNPC("Lyra");
                 lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
@@ -1824,7 +1839,7 @@ public class Game
     {
         if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
         {
-//            objective.update();
+            objective.update();
             Cutscene.opiconCutscene();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
@@ -1833,39 +1848,50 @@ public class Game
         else if(currentLocation.getName().equals("Water Village") && (!currentLocation.isExplored()))
         {
             Cutscene.waterVillageCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
         {
             Cutscene.earthVillageCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
         {
             Cutscene.zoniVillageCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
         {
             Cutscene.windVillageCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
         {
             Cutscene.tempestTowerCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
         {
             Cutscene.fireVillageCutscene();
-//            objective.update();
+            objective.update();
         }
         else if(currentLocation.getName().equals("Mount Volcan") && (!currentLocation.isExplored()))
         {
             Cutscene.mountVulcaCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Mount Zoni") && (!currentLocation.isExplored()))
+        {
+            Cutscene.mountZoniCutscene();
+            objective.update();
+        }
+        else if(currentLocation.getName().equals("Ice Village") && (!currentLocation.isExplored()))
+        {
+            Cutscene.iceVillageCutscene();
+            objective.update();
         }
         
-        objective.update();
+//        objective.update();
         currentLocation.setIsExplored();
     }
     

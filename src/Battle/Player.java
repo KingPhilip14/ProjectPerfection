@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.Game;
 import Game.MainGame;
 import java.util.ArrayList;
 import java.util.Random;
@@ -141,6 +142,11 @@ public class Player extends Character
     public void increaseXP(Player player, ArrayList<Player> fighitngTeam, Enemy defeatedEnemy)
     {
         MainGame.clearScreen();
+        
+        if(Game.isTesting())
+        {
+            xpToLevelUp = 1500;
+        }
         
         // Calculates the XP gained by rounding the amount
         int amt = (int)Math.round(BASE_XP * ((15 * defeatedEnemy.getLevel()) / player.getLevel()));

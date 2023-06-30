@@ -581,7 +581,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Gaea", "It might be! Let's go say hi!");
         
-        print("The group approaches Frigs, a thin-looking young man. He was watching people put the decorations up as he "
+        print("The group approaches Frigs, a thin-looking, young man. He was watching people put the decorations up as he "
                 + "played with a snowflake on/his finger. Anahita snuck up behind him and poked him with her fingers ready "
                 + "to use Tsunami Shot.");
 
@@ -595,7 +595,7 @@ public class Cutscene
         print("Frigs tried to be angry but couldn't help but laugh with the group.");
         
         print("Frigs, a normally witty, yet collected person is another childhood friend of Anahita's. They couldn't visit "
-                + "each other often, so they/would talk long into the night after the Annual Festival.");
+                + "each other too often, so/they would talk long into the night after the Annual Festival.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -1631,5 +1631,98 @@ public class Cutscene
                 + "stand the cold...");
         
         MainGame.dialoguelnln("Calmus", "I'll do whatever I need to for you guys. You've all done what you could for me.");
+    }
+    
+    /**
+     * A cutscene for when the player first gets to Mount Zoni.
+     */
+    public static void mountZoniCutscene()
+    {
+        print("As the group arrived to the base of Mount Zoni, Gaea sulked just looking at the size of it and its frozen "
+                + "peak./The wind started to pick up, causing her to shiver.");
+        
+        MainGame.dialoguelnln("Gaea", "This is going to suck...");
+        
+        MainGame.dialoguelnln("Ninlil", "You'll have to stop complaining eventually, Gaea. Calmus is still here to keep us "
+                + "warm.");
+        
+        MainGame.dialoguelnln("Gaea", "Ugh, I know, but still. I miss the warmth of the Earth Village.");
+        
+        MainGame.dialoguelnln("Calmus", "I'll do the best I can for you, don't worry. We can stop periodically for breaks and "
+                + "to setup camp.");
+        
+        MainGame.dialoguelnln("Anahita", "Sounds like a plan! Are we all good to go?");
+        
+        MainGame.dialoguelnln("Gaea", "No... But we might as well start climbing... *again*. I better be ripped at the "
+                + "end of this expedition.");   
+    }
+    
+    /**
+     * A cutscene that plays when the player first enters the Ice Village
+     */
+    public static void iceVillageCutscene()
+    {
+        print("The group finally made it to the summit of Mount Zoni -- the Ice Village. Everyone was crowded against Calmus "
+                + "who was a/human heat generator at this point.");
+        
+        MainGame.dialoguelnln("Calmus", "Do you guys think you'll be okay to give me space now, or--");
+        
+        MainGame.dialoguelnln("Anahita, Gaea, and Ninlil", "NO!");
+        
+        MainGame.dialoguelnln("Calmus", "Okay, okay. Figured I'd just ask.");
+        
+        print("The cold was bitter and sharp, causing discomfort with every step. THe group scanned the area to see some "
+                + "destruction, but/not nearly as much as they've seen before.");
+        
+        MainGame.dialoguelnln("Anahita", "Well, we might as well look for Frigs. Let's see if anyone has seen him lately.");
+    }
+    
+    public static void elderZenoCutscene()
+    {
+        MainGame.dialoguelnln("Anahita", "Hello, Elder Zeno!");
+        
+        print("The group approached Elder Zeno, a tall, slender man with a pointed nose and peppered hair.");
+        
+        MainGame.dialoguelnln("Elder Zeno", "Ah, hello Anahita!");
+        
+        print("The two exchanged a brief hug. Anahita could come to visit Frigs if she had extra time in the year, so she "
+                + "was well/acquainted with the Elder.");
+        
+        MainGame.dialoguelnln("Elder Zeno", "And a warm -- er, cold -- hello to the rest of you too.");
+        
+        print("Gaea rolled her eyes at the remark but smiled afterward.");
+        
+        print("The Ice Village, just like the other villages that were visited, were destroyed. The population here is "
+                + "normally/a lot less the other villages, but the invasion has decreased it even more. Barely any one was "
+                + "there/when the group arrived.");
+        
+        MainGame.dialoguelnln("Ninlil", "It's... so desolate here. It's so depressing to see...");
+        
+        MainGame.dialoguelnln("Elder Zeno", "I know. It's been difficult all around, I'm sure, but the few of us here are "
+                + "holding our\n\town. I digress. What are you all doing here?");
+        
+        MainGame.dialoguelnln("Anahita", "We were looking for Frigs. Do you have any idea of where he is?");
+        
+        MainGame.dialoguelnln("Elder Zeno", "Hm... I haven't seen him in a while, actually. I would recommend you check the "
+                + "summit of\n\tMount Zoni. I know that he goes there occasionally. He... he lost his brother during the "
+                + "invasion.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Everyone in the group felt their heart sink as they heard the news. They could all relate. Despite them all "
+                + "losing/someone, hearing someone else go through that pain was still saddening.");
+        
+        MainGame.dialoguelnln("Anahita", "I see... We'll see if we can find and hopefully help him too.");
+        
+        MainGame.dialoguelnln("Elder Zeno", "Please -- do whatever you can for the boy if you find him. There's no point in "
+                + "being alone.\n\tEspecially now.");
+        
+        MainGame.dialoguelnln("Anahita", "Will do, Elder. Thank you.");
+        
+        print("The group started to get ready to trek higher in the mountain. All the girls clung to Calmus again for heat, "
+                + "and he sighed.");
+        
+        MainGame.dialoguelnln("Calmus", "Here we go again...");
     }
 }

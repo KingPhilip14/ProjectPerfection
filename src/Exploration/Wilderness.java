@@ -476,7 +476,7 @@ public class Wilderness extends Location
         stats.add(204); // R Defense
         stats.add(174); // Speed
         
-        BossEnemy omega = new BossEnemy("R.E.S.I. Omega", "The first -- and only -- of its kind. Irwin's best R.E.S.I. Bot.", "Fire", 17, 
+        BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first -- and only -- of its kind. Irwin's best R.E.S.I. Bot.", "Fire", 17, 
                                     attacks, stats);
         omega.setStatDescription("This R.E.S.I. Bot is more than 3 times the size of a normal one. Be careful!");
         
