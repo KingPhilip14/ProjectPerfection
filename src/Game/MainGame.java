@@ -1128,7 +1128,8 @@ public class MainGame
         fimblevetr.setAccuracy(90);
         frigsAllAttacks.add(fimblevetr);
         frigsAllAttacks.get(0).setAccuracy(70);
-        frigsAllAttacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 85, "Attack"));
+        frigsAllAttacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 95, "Attack"));
+        frigsAllAttacks.get(1).setAccuracy(95);
         frigsAllAttacks.add(new OffensiveAttack("Hailstorm", "The user damages the target with a harsh hailstorm.", 100, "R. Attack"));
         frigsAllAttacks.get(2).setAccuracy(85);
         frigsAllAttacks.add(new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3));

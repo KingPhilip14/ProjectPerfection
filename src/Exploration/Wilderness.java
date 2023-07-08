@@ -453,7 +453,7 @@ public class Wilderness extends Location
         team.add(ninlil);
         
         return team;
-    }    
+    }
     
     public ArrayList<Enemy> makeOmegaBoss()
     {
@@ -482,6 +482,36 @@ public class Wilderness extends Location
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(omega);
+        
+        return team;
+    }
+    
+    public ArrayList<Enemy> makeFrigsBoss()
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3));
+        attacks.add(new OffensiveAttack("Avalanche", "The user attacks by causing an avalanche to fall on the target.", 85, "Attack"));
+        attacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 95, "Attack"));
+        attacks.get(2).setAccuracy(95);
+        OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
+        fimblevetr.setCritRate(0.35);
+        fimblevetr.setAccuracy(90);
+        attacks.add(fimblevetr);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(1260); // HP
+        stats.add(320); // Attack
+        stats.add(190); // Defense
+        stats.add(290); // R Attack
+        stats.add(190); // R Defense
+        stats.add(270); // Speed
+        
+        BossEnemy frigs = new BossEnemy("Frigs", "A greiving friend who needs friends that'll stick closer than a lost brother.", "Ice", 21, 
+                                    attacks, stats);
+        frigs.setStatDescription("A currently grieving master of Ice.");
+        
+        ArrayList<Enemy> team = new ArrayList<>(1);
+        team.add(frigs);
         
         return team;
     }

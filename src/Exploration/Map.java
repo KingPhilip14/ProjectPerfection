@@ -28,7 +28,6 @@ public class Map
         {
             Scanner scan = new Scanner(gameMap);
             int row = 0;
-            int col = 0;
             
             // While the file has another line
             while(scan.hasNextLine())
@@ -52,7 +51,6 @@ public class Map
             {
                 
                 MainGame.print(map[row][col], 1);
-//                System.out.print(map[row][col]);
             }
             
             System.out.println("");
@@ -63,8 +61,6 @@ public class Map
     {
         int xCoordinate = currentLocation.getXCoordinate();
         int yCoordinate = currentLocation.getYCoordinate();
-        
-        char marker = getMapChar(currentLocation);
         
         map[xCoordinate][yCoordinate] = 'O';
         

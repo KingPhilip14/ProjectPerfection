@@ -320,6 +320,7 @@ public class Game
         remainingLocations.add(createMountVolcan());
         remainingLocations.add(createMountZoni());
         remainingLocations.add(createIceVillage());
+        remainingLocations.add(createMountZoniSummit());
         remainingLocations.add(createForlornDesert());
         remainingLocations.add(createElectricVillage());
         remainingLocations.add(createZoniVillage2());
@@ -496,15 +497,28 @@ public class Game
         }
         
         // Set the Ninlil boss battle for Tempest Tower
-        if(currentLocation.getName().equals("Tempest Tower"))
+        switch (currentLocation.getName()) 
         {
-            BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
-            ((Wilderness)currentLocation).setBossBattle(battle, 14);
-        }
-        else if(currentLocation.getName().equals("Mount Volcan"))
-        {
-            BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
-            ((Wilderness)currentLocation).setBossBattle(battle, 17);
+            case "Tempest Tower":
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                    break;
+                }
+            case "Mount Volcan":
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                    break;
+                }
+            case "Mount Zoni Summit":
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                    break;
+                }
+            default:
+                break;
         }
         
         checkForCutscene();
@@ -828,6 +842,15 @@ public class Game
         }
         else if(village.getName().equals("Fire Village") && village.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
         {
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
+            return true;
+        }
+        else if(village.getName().equals("Ice Village") && village.getNPC("Elder Zeno").hasBeenTalkedTo())
+        {
+            // Unlock Mount Zoni Summit
             MainGame.clearScreen();
             nextLocation.setUnlocked(true);
             locationUnlocked();
@@ -1721,7 +1744,7 @@ public class Game
         Shop s = new Shop(items);
         //----------------------------------------------------------------------
         
-        Coordinate c = new Coordinate(2, 31);
+        Coordinate c = new Coordinate(3, 31);
         Village v = new Village("Ice Village", "Near the peak of Zoni Mountain, the Ice Village hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
         v.setShop(s);
         return v;
@@ -1812,13 +1835,22 @@ public class Game
     
     private Wilderness createMountZoni()
     {
-        Coordinate c = new Coordinate(4, 31);
+        Coordinate c = new Coordinate(2, 31);
         Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 19, c);
         mountZoni.addLocalElement("Ice");
         mountZoni.addLocalElement("Wind");
         mountZoni.addLocalElement("Earth");
         mountZoni.addLocalElement("Electric");
         return mountZoni;
+    }
+    
+    private Wilderness createMountZoniSummit()
+    {
+        Coordinate c = new Coordinate(5, 31);
+        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 20, c);
+        mountZoniSummit.addLocalElement("Ice");
+        mountZoniSummit.addLocalElement("Wind");
+        return mountZoniSummit;
     }
     
     private Wilderness createForlornDesert()
@@ -2000,9 +2032,4 @@ public class Game
     **If one objective is not complete, the objective class will not check for another until it's completed.**
     **Therefore, the game CANNOT go on until the player meets the requirements**
     */
-    
-    
-    
-    
-    
 }

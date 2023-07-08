@@ -1725,4 +1725,6 @@ public class Cutscene
         
         MainGame.dialoguelnln("Calmus", "Here we go again...");
     }
+    
+    
 }
