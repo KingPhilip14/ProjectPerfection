@@ -66,6 +66,9 @@ public class Cutscene
                 {
                     helpedLyraCutscene();
                 }
+                break;
+            case "Elder Zeno":
+                elderZenoCutscene();
         }
     }
     
@@ -1308,6 +1311,13 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "Of course we can! It's on the way there, anyway. I hope they're doing okay.");
         
         MainGame.dialoguelnln("Calmus", "... me too...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Congratulations! Ninlil joined your party!");
+        
+        MainGame.promptToEnter();
     }
     
     public static void fireVillageCutscene()
@@ -1570,6 +1580,8 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Could be! But we have it all now, so let's turn back to help Lyra and the Elder!");
         
         print("The group nodded and turned around to get back to the Fire Village.");
+        
+        MainGame.promptToEnter();
     }
     
     /**
@@ -1631,6 +1643,8 @@ public class Cutscene
                 + "stand the cold...");
         
         MainGame.dialoguelnln("Calmus", "I'll do whatever I need to for you guys. You've all done what you could for me.");
+        
+        MainGame.promptToEnter();
     }
     
     /**
@@ -1654,7 +1668,9 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Sounds like a plan! Are we all good to go?");
         
         MainGame.dialoguelnln("Gaea", "No... But we might as well start climbing... *again*. I better be ripped at the "
-                + "end of this expedition.");   
+                + "end of this expedition.");
+        
+        MainGame.promptToEnter();
     }
     
     /**
@@ -1662,7 +1678,7 @@ public class Cutscene
      */
     public static void iceVillageCutscene()
     {
-        print("The group finally made it to the summit of Mount Zoni -- the Ice Village. Everyone was crowded against Calmus "
+        print("The group finally made it near the summit of Mount Zoni -- the Ice Village. Everyone was crowded against Calmus "
                 + "who was a/human heat generator at this point.");
         
         MainGame.dialoguelnln("Calmus", "Do you guys think you'll be okay to give me space now, or--");
@@ -1724,7 +1740,167 @@ public class Cutscene
                 + "and he sighed.");
         
         MainGame.dialoguelnln("Calmus", "Here we go again...");
+        
+        MainGame.promptToEnter();
     }
     
+    public static void foundFrigsCutscene()
+    {
+        print("The girls were still huddled around Calmus as they ascended to the peak of the mountain. Shivering, red in the "
+                + "face, and cold,/the group rejoiced at their accomplishment. They then saw Frigs not too far off and "
+                + "approached him.");
+        
+        print("The girls painstakingly separated from Calmus so that they could all address Frigs properly. Frigs was "
+                + "standing, looking/far off at the bottom of the mountain and cloudy sky.");
+        
+        MainGame.dialoguelnln("Gaea", "Hey, Frigs?");
+        
+        print("He turned around to reveal frozen snot and tears on his face. He quickly brushed it all off and gave a slight "
+                + "smile before\n\tanother tear started to run down his cheek.");
+        
+        MainGame.dialoguelnln("Frigs", "You could've knocked first. Can't you see I'm not doing too hot right now?");
+        
+        MainGame.dialoguelnln("Gaea", "We know, Frigs, and it's okay. We're here for you.");
+        
+        MainGame.dialoguelnln("Frigs", "And my brother said the same. Look at where he's at now.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Frigs' voice cracked slightly. Ninlil and Gaea looked at each other and nodded slightly. Ninlil had hope for "
+                + "Frigs. She/knew exactly how he felt and wanted him to console him.");
+        
+        MainGame.dialoguelnln("Ninlil", "I know how you feel Frigs. It really isn't an easy thing, but it will be okay! "
+                + "I lost\n\tsomeone too recently...");
+        
+        MainGame.dialoguelnln("Frigs", "But where they the only family that you had left? Were they the person you looked up "
+                + "to most?\n\tWhere they the only one you knew you could depend on no matter what?");
+        
+        MainGame.dialoguelnln("Ninlil", "Frigs, I...");
+        
+        print("The groups hearts were collectively devastated. Frigs and his brother, Verg, were orphans. They had no "
+                + "extended family,/so they took care of each other. The loss made him feel *truly* alone.");
+        
+        MainGame.dialoguelnln("Frigs", "there's simply no one left in my family now... i'm the only one that's left. do you "
+                + "know how that feels??");
+        
+        MainGame.dialoguelnln("Calmus", "Frigs, I know. It's terrible... But know that you aren't really alone. You still "
+                + "have people\n\there that care for you.");
+        
+        MainGame.dialoguelnln("Frigs", "Calmus, the difference between you and me is that you at least have your grandmother, "
+                + "an aunt.\n\tI have *nobody*. They... they're all gone.");
+        
+        print("Frigs wiped the now frozen tear from his cheek as more started to stream down. Anahita's heart was broken for "
+                + "her dear friend./Before she could speak, Frigs did.");
+        
+        MainGame.dialoguelnln("Frigs", "How about a little challenge? I've beens sitting here too long anyway, haha.");
+        
+        print("Frigs was trying to make himself laugh to cope with his pain. That was always how he coped with things since "
+                + "he never/learned how to confront his emotions healthily.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Ninlil saw a piece of herself reflected in Frigs. The way he wanted to challenge the group despite his current "
+                + "state was/just how she acted. She hoped that he would be able to overcome this pain.");
+        
+        MainGame.dialoguelnln("Ninlil", "You know what, sure thing, Frigs. I'll accept your challenge.");
+        
+        MainGame.dialoguelnln("Anahita", "Be careful you two!");
+        
+        MainGame.dialoguelnln("Frigs", "... thank you.");
+        
+        MainGame.promptToEnter();
+    }
     
+    public static void defeatedFrigsCutscene()
+    {
+        print("Ninlil and Frigs were both panting from the fight, Ninlil the victor. Frigs looked at the sky and smiled, the "
+                + "cold winds/making his hair blow around. More tears came.");
+        
+        MainGame.dialoguelnln("Frigs", "I miss you so much, Verg...");
+        
+        print("Anahita rushed over to Frigs and embraced him in a hug. Despite the cold, he was slightly warm. After a few "
+                + "seconds,/Frigs hugged her back, making Gaea smile.");
+        
+        print("Anahita looked at her friend. There was sadness in his eyes, and she wished it all away from him.");
+        
+        MainGame.dialoguelnln("Anahita", "We are here for you, Frigs. Verg may be gone, but he was very proud of you and loved "
+                + "you so much.\n\tHe would want you to keep pushing on and not dwell too much on the past.");
+        
+        print("Frigs chuckled slightly at the thought of his brother.");
+        
+        MainGame.dialoguelnln("Frigs", "Yeah... yeah, you're right. I guess I'll have to move on from here...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Calmus came by and put a hand on Frigs' shoulder.");
+        
+        MainGame.dialoguelnln("Calmus", "We love you Frigs. Depsite him being gone, 'there is a friend that sticks closer "
+                + "than a\n\tbrother.' In this case, we are -- and always will be -- your brothers and sisters.");
+        
+        print("Anahtia, Gaea, and Ninlil all smiled at the comment because it was true. The group, despite the distance from "
+                + "where they/lived, and any conflict they may have had, they've all grown -- individually and together. There "
+                + "was a/great strength in their unity.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Frigs smiled and felt his heart slowly mend back to being whole. He realized that he will never be alone, and "
+                + "that brought/him peace.");
+        
+        MainGame.dialoguelnln("Frigs", "Thank you all... The words you've all said... they're true, and I'm thankful you've "
+                + "shown me this.");
+        
+        MainGame.dialoguelnln("Calmus", "Anytime, Frigs. You will always have our support.");
+        
+        MainGame.dialoguelnln("Ninlil", "It would be great if you were to join us, too. We'd love to have your strength "
+                + "with us.");
+        
+        print("The group informed Frigs of their goals and how close they are to accomplishing them if he joins.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Frigs", "Of course I'm in. After all that's happened, we need restoration. I'll be with you "
+                + "all through and through.");
+        
+        print("The group cheered at the news.");
+        
+        MainGame.dialoguelnln("Gaea", "Before we talk any longer, can we PLEASE leave this mountain? I cannot feel my legs "
+                + "at all!");
+        
+        print("Anahita and Ninlil nodded vigorously in agreement while Calmus and Frigs both laughed.");
+        
+        MainGame.dialoguelnln("Frigs", "Come on, it's not *that* cold. You'll get used to it.");
+        
+        print("The girls all scoffed and groaned as they huddled around Calmus and forced him to start marching them down "
+                + "the mountain./Frigs laughed as he walked next to them. Anahita shot water at him to keep him quiet the "
+                + "rest of the way.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter(); 
+        
+        print("At the bottom of Mount Zoni, Gaea addressed the entire group.");
+        
+        MainGame.dialoguelnln("Gaea", "Before we go to Zoni, I would like to stop by the Electric Village. Since Fultra's "
+                + "passing,\n\tI haven't heard word from his grandmother and how she's doing. Can we make that stop first? "
+                + "This\n\tshould be the last thing, I promise.");
+        
+        MainGame.dialoguelnln("Anahita", "Yeah, that's fine! It's the only village we haven't been to yet, so we might as "
+                + "well check\n\ton them. I know that it's in the middle of the Forlorn Desert, so we'll need to get "
+                + "through there first.");
+        
+        MainGame.dialoguelnln("Frigs", "No issue here. Let's do it.");
+        
+        MainGame.dialoguelnln("Gaea", "Thank you so much guys. (*sigh*) Fultra...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Congratulations! Frigs joined your party!");
+        
+        MainGame.promptToEnter();
+    }
 }

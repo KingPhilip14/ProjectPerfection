@@ -1114,13 +1114,13 @@ public class MainGame
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
-        frigs.setMaxHealth(370);
-        frigs.setCurrentHealth(370);
-        frigs.setAttack(180);
-        frigs.setDefense(60);
-        frigs.setRangedAttack(165);
-        frigs.setRangedDefense(75);
-        frigs.setSpeed(120);
+        frigs.setMaxHealth(1260);
+        frigs.setCurrentHealth(1260);
+        frigs.setAttack(350);
+        frigs.setDefense(160);
+        frigs.setRangedAttack(310);
+        frigs.setRangedDefense(160);
+        frigs.setSpeed(280);
         
         ArrayList<Attack> frigsAllAttacks = new ArrayList<>(6);
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");

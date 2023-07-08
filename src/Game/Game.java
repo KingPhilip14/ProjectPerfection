@@ -45,6 +45,7 @@ public class Game
     private static boolean testing;
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
+    private boolean summitBossAttempted;
     private int resiTutorialAttempts;
     private Cutscene startingCutscene;
     private String endingCutscene;
@@ -142,10 +143,10 @@ public class Game
             
             // Put the player in Ice Village
             objective.update();
-//            knownLocations.add(remainingLocations.remove(0));
+            knownLocations.add(remainingLocations.remove(0));
             
             // Talk to Elder Zeno
-//            objective.update();
+            objective.update();
             
             // Use this for going to the newest location
             currentLocation = knownLocations.get(knownLocations.size() - 1);
@@ -176,7 +177,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(19);
+            anahita.setLevel(20);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -190,7 +191,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(19);
+            gaea.setLevel(20);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -218,7 +219,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(19);
+            calmus.setLevel(20);
             
             Player ninlil = MainGame.makeNinlil();
             ninlil.setMaxHealth(9999);
@@ -233,7 +234,7 @@ public class Game
             ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
             ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
             ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
-            ninlil.setLevel(19);
+            ninlil.setLevel(20);
             
             team.add(anahita);
             team.add(gaea);
@@ -496,27 +497,26 @@ public class Game
 //            currentLocation.setIsExplored();
         }
         
-        // Set the Ninlil boss battle for Tempest Tower
         switch (currentLocation.getName()) 
         {
             case "Tempest Tower":
-                {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
-                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
-                    break;
-                }
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                break;
+            }
             case "Mount Volcan":
-                {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
-                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
-                    break;
-                }
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                break;
+            }
             case "Mount Zoni Summit":
-                {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), team);
-                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
-                    break;
-                }
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                break;
+            }
             default:
                 break;
         }
@@ -752,60 +752,79 @@ public class Game
     
     private void bossBattle()
     {   
-        if(currentLocation.getName().equals("Tempest Tower"))
+        switch (currentLocation.getName()) 
         {
-            MainGame.clearScreen();
-            
-            // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
-            if(!towerBossAttempted && !testing) 
-            {
-                Cutscene.foundNinlilCutscene();
-            }
-            
-            Wilderness tempestTower = ((Wilderness)currentLocation);
-            tempestTower.getBossBattle().start(gold);
-            towerBossAttempted = true;
-            
-            // If the player wins the boss fight, remove it from Tempest Tower.
-            if(tempestTower.getBossBattle().isWon())
-            {
-                Cutscene.defeatedNinlilCutscene();
-                tempestTower.removeBossBattle();
-                objective.update();
-                team.add(MainGame.makeNinlil());
-            }
-        }
-        else if(currentLocation.getName().equals("Mount Volcan"))
-        {
-            MainGame.clearScreen();
-            
-            // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
-            if(!volcanBossAttempted) // add !testing 
-            {
-                Cutscene.foundOmegaCutscene();
-            }
-            
-            Wilderness volcan = ((Wilderness)currentLocation);
-            volcan.getBossBattle().start(gold);
-            volcanBossAttempted = true;
-            
-            // If the player wins the boss fight, remove it from Mount Volcan.
-            if(volcan.getBossBattle().isWon())
-            {
-                defeatedOmegaBoss = true;
-                Cutscene.defeatedOmegaCutscene();
-                volcan.removeBossBattle();
-                objective.update();
+            case "Tempest Tower":
+                MainGame.clearScreen();
                 
-                NPC lyra = ((Village)getLocation("Fire Village")).getNPC("Lyra");
-                lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
-                lyra.setTalkedTo(false);
-                lyra.setHasCutscene(true);
+                // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
+                if(!towerBossAttempted && !testing)
+                {
+                    Cutscene.foundNinlilCutscene();
+                }   
                 
-                NPC vulca = ((Village)getLocation("Fire Village")).getNPC("Elder Vulca");
-                vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
-                vulca.setTalkedTo(false);
-            }
+                Wilderness tempestTower = ((Wilderness)currentLocation);
+                tempestTower.getBossBattle().start(gold);
+                towerBossAttempted = true;
+                // If the player wins the boss fight, remove it from Tempest Tower.
+                if(tempestTower.getBossBattle().isWon())
+                {
+                    Cutscene.defeatedNinlilCutscene();
+                    tempestTower.removeBossBattle();
+                    objective.update();
+                    team.add(MainGame.makeNinlil());
+                }   break;
+            case "Mount Volcan":
+                MainGame.clearScreen();
+                
+                // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
+                if(!volcanBossAttempted) // add !testing
+                {
+                    Cutscene.foundOmegaCutscene();
+                }   
+                
+                Wilderness volcan = ((Wilderness)currentLocation);
+                volcan.getBossBattle().start(gold);
+                volcanBossAttempted = true;
+                // If the player wins the boss fight, remove it from Mount Volcan.
+                if(volcan.getBossBattle().isWon())
+                {
+                    defeatedOmegaBoss = true;
+                    Cutscene.defeatedOmegaCutscene();
+                    volcan.removeBossBattle();
+                    objective.update();
+                    
+                    NPC lyra = ((Village)getLocation("Fire Village")).getNPC("Lyra");
+                    lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
+                    lyra.setTalkedTo(false);
+                    lyra.setHasCutscene(true);
+                    
+                    NPC vulca = ((Village)getLocation("Fire Village")).getNPC("Elder Vulca");
+                    vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
+                    vulca.setTalkedTo(false);
+                }   break;
+            case "Mount Zoni Summit":
+                MainGame.clearScreen();
+                // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
+                if(!summitBossAttempted)
+                {
+                    Cutscene.foundFrigsCutscene();
+                }   
+                
+                Wilderness summit = ((Wilderness)currentLocation);
+                summit.getBossBattle().start(gold);
+                summitBossAttempted = true;
+                // If the player wins the boss fight, remove it from Mount Zoni Summit.
+                if(summit.getBossBattle().isWon())
+                {
+                    Cutscene.defeatedFrigsCutscene();
+                    summit.removeBossBattle();
+                    objective.update();
+                    team.add(MainGame.makeFrigs());
+                }   currentLocation = getLocation("Mount Zoni");
+                break;
+            default:
+                break;
         }
     }
     
@@ -917,7 +936,7 @@ public class Game
     private void locationUnlocked()
     {
 //        MainGame.clearScreen();
-        MainGame.printlnlnWait("Congratulations! You can now travel to " + nextLocation.getName() + "!", 25, 4000);
+        MainGame.printlnlnWait("Congratulations! You can now travel to " + nextLocation.getName() + "!", 25, 1000);
         
         // Removes the location from the overall ArrayList to the known ArrayList
         knownLocations.add(nextLocation);
@@ -1835,7 +1854,7 @@ public class Game
     
     private Wilderness createMountZoni()
     {
-        Coordinate c = new Coordinate(2, 31);
+        Coordinate c = new Coordinate(4, 31);
         Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 19, c);
         mountZoni.addLocalElement("Ice");
         mountZoni.addLocalElement("Wind");
@@ -1846,7 +1865,7 @@ public class Game
     
     private Wilderness createMountZoniSummit()
     {
-        Coordinate c = new Coordinate(5, 31);
+        Coordinate c = new Coordinate(2, 31);
         Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 20, c);
         mountZoniSummit.addLocalElement("Ice");
         mountZoniSummit.addLocalElement("Wind");
@@ -1921,6 +1940,10 @@ public class Game
         {
             Cutscene.iceVillageCutscene();
             objective.update();
+        }
+        else if(currentLocation.getName().equals("Mount Zoni Summit") && (!currentLocation.isExplored()))
+        {
+            objective.update();  // No cutscene needed
         }
         
 //        objective.update();

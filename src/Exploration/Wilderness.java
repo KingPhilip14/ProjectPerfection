@@ -64,7 +64,7 @@ public class Wilderness extends Location
      */
     public boolean canDoBossBattle(ArrayList<Player> playerTeam) 
     {
-        return hasBossBattle() && Player.highestPlayerLV(playerTeam) == requiredBossLevel;
+        return hasBossBattle() && Player.highestPlayerLV(playerTeam) >= requiredBossLevel;
     }
     public void removeBossBattle() {this.bossBattle = null;}
     
