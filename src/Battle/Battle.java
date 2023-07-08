@@ -318,7 +318,7 @@ public abstract class Battle
     }
     
     private void positionCheerPlayers()
-    {   
+    {
         if(ORIGINAL_PLAYER_POSITIONS.size() > 0)
         {
             selectPartners();
@@ -333,7 +333,7 @@ public abstract class Battle
         int response;
         
         for(Player p : ORIGINAL_PLAYER_POSITIONS)
-        {
+        {   
             String message = "Who would you like to be " + p.getName() + "'s cheer partner?";
             message = loopForCheerSelection(p, message);
 
@@ -343,7 +343,11 @@ public abstract class Battle
 
             addPlayerToCheer(response, p);
             
-                
+            // If there are no more potential characters to assign as cheer partners, end the loop
+            if(PLAYER_TEAM.isEmpty())
+            {
+                break;
+            }
             
             // If size is greater than 1, prompt player to choose
 //            if(PLAYER_TEAM.size() != 1)

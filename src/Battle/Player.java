@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.Game;
 import Game.MainGame;
 import java.util.ArrayList;
 import java.util.Random;
@@ -227,7 +228,7 @@ public class Player extends Character
             */
             if(level != 5)
             {
-                MainGame.printlnlnWait(getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
+                MainGame.printlnlnWait(getName() + "'s XP to next level: " + xpToLevelUp, 20, 1000);
             }
         }
         
@@ -270,6 +271,17 @@ public class Player extends Character
         
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
+        
+        // REMOVE IF AND KEEP ELSE STATEMENT AFTER DONE WITH TESTS
+        if(Game.isTesting())
+        {
+            xpToLevelUp = 1000;
+        }
+        else if(xpToLevelUp > 5000)
+        {
+            xpToLevelUp = 5000;
+        }
+        
         updateStats();
 
         // Initiates a recursive call to give the rest of the experience
