@@ -821,7 +821,10 @@ public class Game
                     summit.removeBossBattle();
                     objective.update();
                     team.add(MainGame.makeFrigs());
-                }   currentLocation = getLocation("Mount Zoni");
+                }   
+                
+                currentLocation = getLocation("Mount Zoni");
+                map.updateMap(currentLocation, getLocation("Mount Zoni"));
                 break;
             default:
                 break;
