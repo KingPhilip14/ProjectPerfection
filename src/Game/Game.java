@@ -65,6 +65,16 @@ public class Game
     
     public Game(boolean isTesting)
     {
+        /*
+        Aquammoda new name: Aquammoda (Aqua + accomodating [people pleasing])
+        Degon new name: Degon (Dirt + egocentric )
+        Wind Village new name: Aerogan (Aero + arrogant)
+        Fire Village new name: Infol (Inferno + colossus)
+        Solice new name: Solice (Solus [alone or unaccompanied] + Ice)
+        Elerric new name: Elerric  (Electric + terror)
+        */
+        
+        
         testing = isTesting;
 //        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
 //                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
@@ -86,11 +96,11 @@ public class Game
             knownLocations.add(remainingLocations.remove(0));
             objective.update();
             
-            // Puts the player in Water Village
+            // Puts the player in Aquammoda
             knownLocations.add(remainingLocations.remove(0));
             objective.update();
             
-            // Put the player in Earth Village
+            // Put the player in Degon
             knownLocations.add(remainingLocations.remove(0));
             objective.update();
             
@@ -141,7 +151,7 @@ public class Game
             objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
-            // Put the player in Ice Village
+            // Put the player in Solice
             objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
@@ -312,18 +322,18 @@ public class Game
     {
         remainingLocations.add(createPurityBeach());
         remainingLocations.add(createOpiconForest());
-        remainingLocations.add(createWaterVillage());
-        remainingLocations.add(createEarthVillage());
+        remainingLocations.add(createAquammoda());
+        remainingLocations.add(createDegon());
         remainingLocations.add(createZoniVillage());
         remainingLocations.add(createWindVillage());
         remainingLocations.add(createTempestTower());
         remainingLocations.add(createFireVillage());
         remainingLocations.add(createMountVolcan());
         remainingLocations.add(createMountZoni());
-        remainingLocations.add(createIceVillage());
+        remainingLocations.add(createSoliceVillage());
         remainingLocations.add(createMountZoniSummit());
         remainingLocations.add(createForlornDesert());
-        remainingLocations.add(createElectricVillage());
+        remainingLocations.add(createElerric());
         remainingLocations.add(createZoniVillage2());
         
         if(testing)
@@ -661,12 +671,12 @@ public class Game
         knownLocations.remove(knownLocations.size() - 1);
         
         /*
-        Adds new Water and Earth Villages with less NPCs and adds it to the known locations. Sets Water Village as the 
+        Adds new Water and Degons with less NPCs and adds it to the known locations. Sets Aquammoda as the 
         current location for the player to start in for the second phase.
         */
-        knownLocations.set(2, createWaterVillage2());
+        knownLocations.set(2, createAquammoda2());
         currentLocation = knownLocations.get(2);
-        knownLocations.set(3, createEarthVillage2());
+        knownLocations.set(3, createDegon2());
         
         
         // Removes Frigs and Ninlil from the player's team of characters
@@ -836,11 +846,11 @@ public class Game
         Village village = (Village)currentLocation;
         
         // Chain of if statements look for if a specific NPC was talked to at the location
-        if(village.getName().equals("Water Village") && village.getNPC("Merda").hasBeenTalkedTo())
+        if(village.getName().equals("Aquammoda") && village.getNPC("Merda").hasBeenTalkedTo())
         {
             return true;
         }
-        else if(village.getName().equals("Earth Village") && village.getNPC("Fleur").hasBeenTalkedTo())
+        else if(village.getName().equals("Degon") && village.getNPC("Fleur").hasBeenTalkedTo())
         {
             return true;
         }
@@ -870,7 +880,7 @@ public class Game
             
             return true;
         }
-        else if(village.getName().equals("Ice Village") && village.getNPC("Elder Zeno").hasBeenTalkedTo())
+        else if(village.getName().equals("Solice") && village.getNPC("Elder Zeno").hasBeenTalkedTo())
         {
             // Unlock Mount Zoni Summit
             MainGame.clearScreen();
@@ -901,10 +911,10 @@ public class Game
         Village village = (Village)currentLocation;
         
         /*
-        If the player is at Water Village, and Merda's cutscene has been completed (which counts as talking to her), 
+        If the player is at Aquammoda, and Merda's cutscene has been completed (which counts as talking to her), 
         the player can progress 
         */
-        if(village.getName().equals("Water Village") && village.getNPC("Merda").hasBeenTalkedTo())
+        if(village.getName().equals("Aquammoda") && village.getNPC("Merda").hasBeenTalkedTo())
         {
             return true;
         }
@@ -1458,7 +1468,7 @@ public class Game
 //        }
 //    }
     
-    private Village createWaterVillage()
+    private Village createAquammoda()
     {
         // Anahita's mother
         NPC merda = new NPC("Merda", "I'll see you guys at the festival later!", true);
@@ -1474,10 +1484,10 @@ public class Game
         // Anahita's father
         NPC lac = new NPC("Lac", "It's the Drama Queen Duo and Fearless Thunder! Bahaha! It's a pleasure to see you all. Make sure you're ready\n\tfor the festival later!", gift, 2, false);
         lac.setGiveGiftMessage("I have something I'd like to give you guys. It isn't much, but it might help tame that sweet tooth!");
-        lac.setDescription("Anahita's father | Water Village Elder");
+        lac.setDescription("Anahita's father | Aquammoda Elder");
         
         NPC buzi = new NPC("Buzi", "Hey guys! I hope you're ready for the annual festival tonight. It'll be a blast!", false);
-        buzi.setDescription("Water Village resident");
+        buzi.setDescription("Aquammoda resident");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(merda);
@@ -1496,12 +1506,12 @@ public class Game
         
         // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
         Coordinate c = new Coordinate(17, 24);
-        Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        Village v = new Village("Aquammoda", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createWaterVillage2()
+    private Village createAquammoda2()
     {
         NPC merda = new NPC("Merda", "Be careful out there. If you ever need something, we're here for you.", false);
         merda.setDescription("Anahita's mother");
@@ -1525,26 +1535,26 @@ public class Game
         
         // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
         Coordinate c = new Coordinate(17, 24);
-        Village v = new Village("Water Village", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        Village v = new Village("Aquammoda", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
         v.setIsExplored();
         return v;
     }
     
-    private Village createEarthVillage()
+    private Village createDegon()
     {
         NPC gord = new NPC("Gord", "The thing I love most about Pulchra is how we all live in harmony. Our powers make it easy to help each other out.", false);
-        gord.setDescription("Earth Village resident");
+        gord.setDescription("Degon resident");
         
         NPC caillou = new NPC("Caillou", "ugh... i'm so weak now... the effects of my beans wore off... remember what i said, okay?", true);
-        caillou.setDescription("Earth Village resident | Bean Master"); 
+        caillou.setDescription("Degon resident | Bean Master"); 
        
         // Gaea's cousin
         NPC fleur = new NPC("Fleur", "Thank you guys for your help again! But why are you still here? Go to the festival!", true);
         fleur.setDescription("Gaea's older cousin");
         
         NPC roxy = new NPC("Roxy", "Have you guys seen the flowers blooming in Opicon Forest? This is the best time of year to see them if you haven't!", false);
-        roxy.setDescription("Earth Village Elder");
+        roxy.setDescription("Degon Elder");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(gord);
@@ -1565,15 +1575,15 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(22, 13);
-        Village v = new Village("Earth Village", "A village located southwest of the Water Village.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        Village v = new Village("Degon", "A village located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createEarthVillage2()
+    private Village createDegon2()
     {   
         NPC caillou = new NPC("Caillou", "i wish beans were good enough to prevent all the casualties that happened.", false);
-        caillou.setDescription("Earth Village resident // Bean Master"); 
+        caillou.setDescription("Degon resident // Bean Master"); 
        
         // Gaea's cousin
         NPC fleur = new NPC("Fleur", "I wish you all the best on your journey. Be careful out there, please.", true);
@@ -1581,7 +1591,7 @@ public class Game
         
         Item gift = Item.getBuffItem("Purple Bean");
         NPC roxy = new NPC("Roxy", "You're all going to be known as heroes. I just know it. Do what you can for us all.", gift, false);
-        roxy.setDescription("Earth Village Elder");
+        roxy.setDescription("Degon Elder");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(caillou);
@@ -1601,7 +1611,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(22, 13);
-        Village v = new Village("Earth Village", "A village located southwest of the Water Village.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        Village v = new Village("Degon", "A village located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
         v.setShop(s);
         v.setIsExplored();
         return v;
@@ -1617,7 +1627,7 @@ public class Game
         calmus.setDescription("Fire Village resident");
         
         NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
-        frigs.setDescription("Ice Village resident");
+        frigs.setDescription("Solice resident");
         
         NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Go away.", true);
         ninlil.setDescription("Wind Village resident");
@@ -1635,11 +1645,11 @@ public class Game
         gift = Item.getBuffItem("Blue Bean");
         NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
         clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
-        clairdra.setDescription("Electric Village resident | Fultra's grandma");
+        clairdra.setDescription("Elerric resident | Fultra's grandma");
         
         NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
                 + "amazing\n\tpeople to back him up when I'm not there. I hope you enjoy the rest of the night!", false);
-        verg.setDescription("Ice Village resident | Frigs' older brother");
+        verg.setDescription("Solice resident | Frigs' older brother");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(vitorem);
@@ -1712,8 +1722,8 @@ public class Game
         NPC volca = new NPC("Elder Vulca", "(*cough*) Thank you for helping, grandson. (*cough cough*)", true);
         volca.setDescription("Fire Village Elder | Calmus' grandmother");
         
-        NPC mimi = new NPC("Mimi", "I normally live in the Water Village, but things seem worse here than back at home, so I'm here to help.\n\tAre you here to help too?", false);
-        mimi.setDescription("Water Village resident");
+        NPC mimi = new NPC("Mimi", "I normally live in Aquammoda, but things seem worse here than back at home, so I'm here to help.\n\tAre you here to help too?", false);
+        mimi.setDescription("Aquammoda resident");
         
         Item gift = Item.getBuffItem("Red Bean");
         NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
@@ -1744,15 +1754,15 @@ public class Game
         return v;
     }
     
-    private Village createIceVillage()
+    private Village createSoliceVillage()
     {
         // Once player enters village, can find summit of mountain
         
         NPC zeno = new NPC("Elder Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
-        zeno.setDescription("Ice Village Elder");
+        zeno.setDescription("Solice Elder");
         
         NPC ligian = new NPC("Ligan", "If you want Frigs, he's at the summit of the mountain. He's been grieving a lot lately.", false);
-        ligian.setDescription("Ice Village Resident");
+        ligian.setDescription("Solice Resident");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(zeno);
@@ -1767,22 +1777,22 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(3, 31);
-        Village v = new Village("Ice Village", "Near the peak of Zoni Mountain, the Ice Village hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
+        Village v = new Village("Solice", "Near the peak of Zoni Mountain, the Solice hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createElectricVillage()
+    private Village createElerric()
     {
         NPC clairdra = new NPC("Elder Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
-        clairdra.setDescription("Electric Village Elder");
+        clairdra.setDescription("Elerric Elder");
         
         NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our village hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
-        tonnerre.setDescription("Electric Village resident");
+        tonnerre.setDescription("Elerric resident");
         
         Item gift = Item.getHealingItem("Half Cake");
         NPC san = new NPC("San", "Are you guys okay? How are your villages?", gift, false);
-        san.setDescription("Electric Village resident");
+        san.setDescription("Elerric resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
         
         NPC pheu = new NPC("Pheu", "MAKE ME HAVE DEFAULT TEXT", true);
@@ -1804,7 +1814,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(10, 9);
-        Village v = new Village("Electric Village", "Located to the east, the Electric Village is known for having the strongest fighters on Pulchra.", people, 25, 101, c);
+        Village v = new Village("Elerric", "Located to the east, the Elerric is known for having the strongest fighters on Pulchra.", people, 25, 101, c);
         v.setShop(s);
         return v;
     }
@@ -1812,7 +1822,7 @@ public class Game
     private Wilderness createPurityBeach()
     {
         Coordinate c = new Coordinate(22, 36);
-        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of the Water Village. Its calm waves and salty air help soothe the mind.", 1, c);
+        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of Aquammoda. Its calm waves and salty air help soothe the mind.", 1, c);
         purityBeach.addLocalElement("Water");
         purityBeach.addLocalElement("Earth");
         purityBeach.addLocalElement("Wind");
@@ -1824,7 +1834,7 @@ public class Game
     private Wilderness createOpiconForest()
     {
         Coordinate c = new Coordinate(19, 35);
-        Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between the Earth and Water villages.", 6, c);
+        Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between the Earth and Aquammodas.", 6, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");
@@ -1899,14 +1909,14 @@ public class Game
             team.add(MainGame.makeFultra());
             MainGame.setPlayerTeam(team);
         }
-        else if(currentLocation.getName().equals("Water Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Aquammoda") && (!currentLocation.isExplored()))
         {
-            Cutscene.waterVillageCutscene();
+            Cutscene.aquammodaCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Earth Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Degon") && (!currentLocation.isExplored()))
         {
-            Cutscene.earthVillageCutscene();
+            Cutscene.degonCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
@@ -1916,7 +1926,7 @@ public class Game
         }
         else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
         {
-            Cutscene.windVillageCutscene();
+            Cutscene.aeroganCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
@@ -1926,7 +1936,7 @@ public class Game
         }
         else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
         {
-            Cutscene.fireVillageCutscene();
+            Cutscene.infolCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Mount Volcan") && (!currentLocation.isExplored()))
@@ -1939,14 +1949,19 @@ public class Game
             Cutscene.mountZoniCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Ice Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Solice") && (!currentLocation.isExplored()))
         {
-            Cutscene.iceVillageCutscene();
+            Cutscene.soliceCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Mount Zoni Summit") && (!currentLocation.isExplored()))
         {
             objective.update();  // No cutscene needed
+        }
+        else if(currentLocation.getName().equals("Forlorn Desert") && (!currentLocation.isExplored()))
+        {
+            Cutscene.forlornDesertCutscene();
+            objective.update();
         }
         
 //        objective.update();
@@ -2046,11 +2061,11 @@ public class Game
     This allows for the player to not progress the story unless certain levels are attained AND NPCs are talked to since
     each boolean will be checking for a different condition
     
-    For example: made it to water village is completed. Current objective: talk to merda. The class will now only check if Merda
+    For example: made it to Aquammoda is completed. Current objective: talk to merda. The class will now only check if Merda
     has been talked to. The talkToPeople() method in this class will check if she was talked to. If so, it'll update the 
-    objective class from there. The next objective is to then get to level 9 to access the Earth Village. Since this is the case,
+    objective class from there. The next objective is to then get to level 9 to access the Degon. Since this is the case,
     an immediate check is necessary to see if the player is already at level 9. If so, unlock it like normal. If not, 
-    the player will simply play until they're at that level and the Earth Village will be unlocked. 
+    the player will simply play until they're at that level and the Degon will be unlocked. 
     
     Essentially, the game does not progress unless the objective class does, providing a cleaner way of tracking
     the progress made. It also removes a lot of booleans from this class. 
