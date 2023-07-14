@@ -41,22 +41,45 @@ public class Game
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
+    
+    // Objective booleans
+    private boolean atOpiconForest;
+    private boolean atAquammoda;
     private boolean talkedToMerda;
+    private boolean atDegon;
+    private boolean talkedToFleur;
+    private boolean atZoniCity;
+    private boolean talkedToEveryone;
+    private boolean atAerogan;
+    private boolean talkedToElderNu;
+    private boolean atTempestTower;
+    private boolean foundNinlil;
+    private boolean atInfol;
+    private boolean talkedToElderVulca;
+    private boolean atMountVulcan;
+    private boolean foundMinerals;
+    private boolean talkedToLyra;
+    private boolean atMountZoni;
+    private boolean atSolice;
+    private boolean atSummit;
+    private boolean foundFrigs;
+    private boolean atForlornCave;
+    private boolean atElerric;
+    private boolean talkedToElderClairdra;
+    private boolean returnedZoniCity;
+    private boolean defeatIrwin;
+    
     private static boolean testing;
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
     private boolean summitBossAttempted;
     private int resiTutorialAttempts;
-    private Cutscene startingCutscene;
-    private String endingCutscene;
     private Objective objective;
-//    private String currentObjective;
     private Location currentLocation;
     private Location nextLocation;
     private ArrayList<Location> knownLocations = new ArrayList<>();
     private ArrayList<Location> remainingLocations = new ArrayList<>();
     private ArrayList<Player> team = new ArrayList<>(6);
-//    private static boolean levelUpOccurred;
     private static int gold;
     private static boolean inSecondPhase;
     private static boolean defeatedOmegaBoss;
@@ -107,7 +130,7 @@ public class Game
             // Talk to Fleur objective
             objective.update();
             
-            // Put the player in Zoni Village
+            // Put the player in Zoni City
             objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
@@ -332,7 +355,7 @@ public class Game
         remainingLocations.add(createMountZoni());
         remainingLocations.add(createSoliceVillage());
         remainingLocations.add(createMountZoniSummit());
-        remainingLocations.add(createForlornDesert());
+        remainingLocations.add(createForlornCave());
         remainingLocations.add(createElerric());
         remainingLocations.add(createZoniVillage2());
         
@@ -580,7 +603,7 @@ public class Game
     {
         MainGame.clearScreen();
         
-        if(inSecondPhase && currentLocation.getName().equals("Zoni Village"))
+        if(inSecondPhase && currentLocation.getName().equals("Zoni City"))
         {
             MainGame.printlnlnWait("The shop was destroyed during the invasion...", 25, 2000);
             return;
@@ -594,7 +617,7 @@ public class Game
     {
         Village village = ((Village)currentLocation);
         
-        if(testing && village.getName().equals("Zoni Village"))
+        if(testing && village.getName().equals("Zoni City"))
         {
             village.getVillagePeople().forEach(p -> {
                 p.setTalkedTo(true);
@@ -613,8 +636,8 @@ public class Game
             objective.update();
             checkForNextLocation();
         }
-        // This check is specifically for when the player talks to every NPC in the Zoni Village in the first phase.
-        else if(!inSecondPhase && village.getName().equals("Zoni Village") && village.hasTalkedToEveryone())
+        // This check is specifically for when the player talks to every NPC in the Zoni City in the first phase.
+        else if(!inSecondPhase && village.getName().equals("Zoni City") && village.hasTalkedToEveryone())
         {
             MainGame.promptToEnter();
             
@@ -667,7 +690,7 @@ public class Game
         // Reduces the population number by an arbitrary amount to show that the world has changed
         pulchraPopulation = (pulchraPopulation / 2) - 576;
         
-        // Removes Zoni Village from the known locations. The player can no longer go there until unlocked again.
+        // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
         
         /*
@@ -1662,7 +1685,7 @@ public class Game
         people.add(verg);
         
         Coordinate c = new Coordinate(12, 31);
-        Village v = new Village("Zoni Village", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
+        Village v = new Village("Zoni City", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
         
         //----------------------------------------------------------------------
         Shop s = new Shop(Item.allItemsDeepCopy());
@@ -1675,7 +1698,7 @@ public class Game
     private Village createZoniVillage2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Village("Zoni Village", "What was once a bustling, animated village is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
+        return new Village("Zoni City", "What was once a bustling, animated village is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
     }    
     
     private Village createWindVillage()
@@ -1885,10 +1908,10 @@ public class Game
         return mountZoniSummit;
     }
     
-    private Wilderness createForlornDesert()
+    private Wilderness createForlornCave()
     {
         Coordinate c = new Coordinate(9, 15);
-        Wilderness forlornDessert = new Wilderness("Forlorn Desert", "A dry and sandy area. It's covered in a dense fog that almost seems sentient. Those that go in rarely come out...", 23, c);
+        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dry and sandy area. It's covered in a dense fog that almost seems sentient. Those that go in rarely come out...", 23, c);
         forlornDessert.addLocalElement("Electric");
         forlornDessert.addLocalElement("Earth");
         forlornDessert.addLocalElement("Wind");
@@ -1919,9 +1942,9 @@ public class Game
             Cutscene.degonCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Zoni Village") && (!currentLocation.isExplored()) && (!inSecondPhase))
+        else if(currentLocation.getName().equals("Zoni City") && (!currentLocation.isExplored()) && (!inSecondPhase))
         {
-            Cutscene.zoniVillageCutscene();
+            Cutscene.zoniCityCutscene();
             objective.update();
         }
         else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
@@ -1958,9 +1981,9 @@ public class Game
         {
             objective.update();  // No cutscene needed
         }
-        else if(currentLocation.getName().equals("Forlorn Desert") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Forlorn Cave") && (!currentLocation.isExplored()))
         {
-            Cutscene.forlornDesertCutscene();
+            Cutscene.forlornCaveCutscene();
             objective.update();
         }
         
