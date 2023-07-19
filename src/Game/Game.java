@@ -26,7 +26,7 @@ import Exploration.Location;
 import Exploration.Map;
 import Exploration.NPC;
 import Exploration.Shop;
-import Exploration.Village;
+import Exploration.Town;
 import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class Game
     private static int gold;
     private static boolean inSecondPhase;
     private static boolean defeatedOmegaBoss;
-    private int pulchraPopulation = 43452;
+    private int pulchraPopulation = 201704;
     private Map map = new Map();
     
     public Game(boolean isTesting)
@@ -91,8 +91,8 @@ public class Game
         /*
         Aquammoda new name: Aquammoda (Aqua + accomodating [people pleasing])
         Degon new name: Degon (Dirt + egocentric )
-        Wind Village new name: Aerogan (Aero + arrogant)
-        Fire Village new name: Infol (Inferno + colossus)
+        Aerogan new name: Aerogan (Aero + arrogant)
+        Infol new name: Infol (Inferno + colossus)
         Solice new name: Solice (Solus [alone or unaccompanied] + Ice)
         Elerric new name: Elerric  (Electric + terror)
         */
@@ -141,7 +141,7 @@ public class Game
             objective.update();
             startSecondPhase();
             
-            // Put the player in Wind Village
+            // Put the player in Aerogan
             knownLocations.add(remainingLocations.remove(0));
             objective.update();  // Talk to Elder Nu objective 
             
@@ -153,7 +153,7 @@ public class Game
             // Find Ninlil objective
             objective.update();
 
-            // Go to fire village
+            // Go to fire town
             objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
@@ -347,17 +347,17 @@ public class Game
         remainingLocations.add(createOpiconForest());
         remainingLocations.add(createAquammoda());
         remainingLocations.add(createDegon());
-        remainingLocations.add(createZoniVillage());
-        remainingLocations.add(createWindVillage());
+        remainingLocations.add(createZoniCity());
+        remainingLocations.add(createAerogan());
         remainingLocations.add(createTempestTower());
-        remainingLocations.add(createFireVillage());
+        remainingLocations.add(createInfol());
         remainingLocations.add(createMountVolcan());
         remainingLocations.add(createMountZoni());
-        remainingLocations.add(createSoliceVillage());
+        remainingLocations.add(createSolice());
         remainingLocations.add(createMountZoniSummit());
         remainingLocations.add(createForlornCave());
         remainingLocations.add(createElerric());
-        remainingLocations.add(createZoniVillage2());
+        remainingLocations.add(createZoniCity2());
         
         if(testing)
         {
@@ -390,7 +390,7 @@ public class Game
         String message = "\t1) Travel\n\t2) ";
         int input = 0;
         
-        if(currentLocation instanceof Village)
+        if(currentLocation instanceof Town)
         {
             message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
             input = MenuHelper.displayMenu(message, 1, 6);
@@ -407,7 +407,7 @@ public class Game
                     talkToPeople();
                     break;
                 case 4:
-                    findVillageChest();
+                    findCityChest();
                     break;
                 case 5:
                     viewInventory();
@@ -609,22 +609,22 @@ public class Game
             return;
         }
         
-        Shop shop = ((Village)currentLocation).getShop();
+        Shop shop = ((Town)currentLocation).getShop();
         shop.startShopping();
     }
     
     private void talkToPeople()
     {
-        Village village = ((Village)currentLocation);
+        Town town = ((Town)currentLocation);
         
-        if(testing && village.getName().equals("Zoni City"))
+        if(testing && town.getName().equals("Zoni City"))
         {
-            village.getVillagePeople().forEach(p -> {
+            town.getVillagePeople().forEach(p -> {
                 p.setTalkedTo(true);
             });
         }
         
-        village.talkToPeople();
+        town.talkToPeople();
         
         /*
         Since the player sometimes unlocks a new location by talking to certain people, a check will occur here
@@ -637,7 +637,7 @@ public class Game
             checkForNextLocation();
         }
         // This check is specifically for when the player talks to every NPC in the Zoni City in the first phase.
-        else if(!inSecondPhase && village.getName().equals("Zoni City") && village.hasTalkedToEveryone())
+        else if(!inSecondPhase && town.getName().equals("Zoni City") && town.hasTalkedToEveryone())
         {
             MainGame.promptToEnter();
             
@@ -663,7 +663,7 @@ public class Game
                 team.add(MainGame.makeNinlil());
 
                 // Start tutorial RESI Battle here
-                RESITutorialBattle rtb = village.makeRESITutorial(team);
+                RESITutorialBattle rtb = town.makeRESITutorial(team);
                 rtb.start(gold);
                 
                 resiTutorialAttempts++;
@@ -827,12 +827,12 @@ public class Game
                     volcan.removeBossBattle();
                     objective.update();
                     
-                    NPC lyra = ((Village)getLocation("Fire Village")).getNPC("Lyra");
+                    NPC lyra = ((Town)getLocation("Infol")).getNPC("Lyra");
                     lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
                     lyra.setTalkedTo(false);
                     lyra.setHasCutscene(true);
                     
-                    NPC vulca = ((Village)getLocation("Fire Village")).getNPC("Elder Vulca");
+                    NPC vulca = ((Town)getLocation("Infol")).getNPC("Elder Vulca");
                     vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
                     vulca.setTalkedTo(false);
                 }   break;
@@ -866,18 +866,18 @@ public class Game
     
     private boolean talkedToSpecificPerson()
     {
-        Village village = (Village)currentLocation;
+        Town town = (Town)currentLocation;
         
         // Chain of if statements look for if a specific NPC was talked to at the location
-        if(village.getName().equals("Aquammoda") && village.getNPC("Merda").hasBeenTalkedTo())
+        if(town.getName().equals("Aquammoda") && town.getNPC("Merda").hasBeenTalkedTo())
         {
             return true;
         }
-        else if(village.getName().equals("Degon") && village.getNPC("Fleur").hasBeenTalkedTo())
+        else if(town.getName().equals("Degon") && town.getNPC("Fleur").hasBeenTalkedTo())
         {
             return true;
         }
-        else if(village.getName().equals("Wind Village") && village.getNPC("Elder Nu").hasBeenTalkedTo())
+        else if(town.getName().equals("Aerogan") && town.getNPC("Elder Nu").hasBeenTalkedTo())
         {
             // Unlock Tempest Tower
             MainGame.clearScreen();
@@ -886,7 +886,7 @@ public class Game
             
             return true;
         }
-        else if(village.getName().equals("Fire Village") && village.getNPC("Elder Vulca").hasBeenTalkedTo())
+        else if(town.getName().equals("Infol") && town.getNPC("Elder Vulca").hasBeenTalkedTo())
         {
             // Unlock Mount Volcan
             MainGame.clearScreen();
@@ -895,7 +895,7 @@ public class Game
             
             return true;
         }
-        else if(village.getName().equals("Fire Village") && village.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
+        else if(town.getName().equals("Infol") && town.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
         {
             MainGame.clearScreen();
             nextLocation.setUnlocked(true);
@@ -903,7 +903,7 @@ public class Game
             
             return true;
         }
-        else if(village.getName().equals("Solice") && village.getNPC("Elder Zeno").hasBeenTalkedTo())
+        else if(town.getName().equals("Solice") && town.getNPC("Elder Zeno").hasBeenTalkedTo())
         {
             // Unlock Mount Zoni Summit
             MainGame.clearScreen();
@@ -912,6 +912,15 @@ public class Game
             
             return true;
         }
+        else if(town.getName().equals("Elerric") && town.getNPC("Elder Clairdra").hasBeenTalkedTo())
+        {
+            MainGame.clearScreen();
+            nextLocation.setUnlocked(true);
+            locationUnlocked();
+            
+            return true;
+        }
+        
         
         return false;
     }
@@ -931,13 +940,13 @@ public class Game
         
         
         
-        Village village = (Village)currentLocation;
+        Town town = (Town)currentLocation;
         
         /*
         If the player is at Aquammoda, and Merda's cutscene has been completed (which counts as talking to her), 
         the player can progress 
         */
-        if(village.getName().equals("Aquammoda") && village.getNPC("Merda").hasBeenTalkedTo())
+        if(town.getName().equals("Aquammoda") && town.getNPC("Merda").hasBeenTalkedTo())
         {
             return true;
         }
@@ -981,10 +990,10 @@ public class Game
 //        levelUpOccurred = false;
     }
     
-    private void findVillageChest()
+    private void findCityChest()
     {
-        Village village = ((Village)currentLocation);
-        village.findChest();
+        Town town = ((Town)currentLocation);
+        town.findChest();
         processInput();
     }
     
@@ -1491,7 +1500,7 @@ public class Game
 //        }
 //    }
     
-    private Village createAquammoda()
+    private Town createAquammoda()
     {
         // Anahita's mother
         NPC merda = new NPC("Merda", "I'll see you guys at the festival later!", true);
@@ -1529,12 +1538,12 @@ public class Game
         
         // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
         Coordinate c = new Coordinate(17, 24);
-        Village v = new Village("Aquammoda", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        Town v = new Town("Aquammoda", "A town located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createAquammoda2()
+    private Town createAquammoda2()
     {
         NPC merda = new NPC("Merda", "Be careful out there. If you ever need something, we're here for you.", false);
         merda.setDescription("Anahita's mother");
@@ -1558,13 +1567,13 @@ public class Game
         
         // X coordinate is 1 less, and Y coordinate is 2 less than what they actually are in the text file
         Coordinate c = new Coordinate(17, 24);
-        Village v = new Village("Aquammoda", "A village located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
+        Town v = new Town("Aquammoda", "A town located above Opicon Forest. Its residents are known to be very altruistic and compassionate.", people, 7, 1020, c);
         v.setShop(s);
         v.setIsExplored();
         return v;
     }
     
-    private Village createDegon()
+    private Town createDegon()
     {
         NPC gord = new NPC("Gord", "The thing I love most about Pulchra is how we all live in harmony. Our powers make it easy to help each other out.", false);
         gord.setDescription("Degon resident");
@@ -1598,12 +1607,12 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(22, 13);
-        Village v = new Village("Degon", "A village located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        Town v = new Town("Degon", "A town located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createDegon2()
+    private Town createDegon2()
     {   
         NPC caillou = new NPC("Caillou", "i wish beans were good enough to prevent all the casualties that happened.", false);
         caillou.setDescription("Degon resident // Bean Master"); 
@@ -1634,36 +1643,36 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(22, 13);
-        Village v = new Village("Degon", "A village located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
+        Town v = new Town("Degon", "A town located southwest of Aquammoda.\nTheir residents love to take care of themselves and help the island's vegetation to prosper.", people, 9, 1271, c);
         v.setShop(s);
         v.setIsExplored();
         return v;
     }
     
-    private Village createZoniVillage()
+    private Town createZoniCity()
     {
         // Add a cutscene for Vitorem
         NPC vitorem = new NPC("Elder Vitorem", "We'll be starting the festival soon! You don't want miss it.", true);
-        vitorem.setDescription("Zoni Elder | Leader of Pulchra");
+        vitorem.setDescription("Zoni City Elder | Leader of Pulchra");
         
         NPC calmus = new NPC("Calmus", "We should catch up more! Let's meet up again after the festival. I'll see you all soon!", true);
-        calmus.setDescription("Fire Village resident");
+        calmus.setDescription("Infol resident");
         
         NPC frigs = new NPC("Frigs", "Go enjoy the festival! I'll be here for a long while. But let's catch up later!", true);
         frigs.setDescription("Solice resident");
         
         NPC ninlil = new NPC("Ninlil", "Ugh, can't you see I'm busy? You've interrupted me enough. Go away.", true);
-        ninlil.setDescription("Wind Village resident");
+        ninlil.setDescription("Aerogan resident");
         
         Item gift = Item.getBuffItem("Green Bean");
         NPC pheu = new NPC("Pheu", "You know my nephew Calmus, right? Do me a favor and keep being good friends with him. He may seem okay, but\n\the's struggling "
                 + "with the loss of his parents from a few years ago. The poor boy needs a break from all he's doing.", gift, 2, false);
         pheu.setGiveGiftMessage("Take this in advance as a thank you. I know you'll keep my word.");
-        pheu.setDescription("Fire Village Resident | Calmus' aunt");
+        pheu.setDescription("Infol Resident | Calmus' aunt");
         
         NPC ilven = new NPC("Ilven", "Hey! I hope you're all ready for the festival! Also, I have a request: be patient with Ninlil.\n\tI know she can be pretentious at times, "
                 + "but she's not always like that. I know it's hard to believe, but trust me.", false);
-        ilven.setDescription("Wind Village resident | Ninlil's training partner");
+        ilven.setDescription("Aerogan resident | Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
         NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
@@ -1685,7 +1694,7 @@ public class Game
         people.add(verg);
         
         Coordinate c = new Coordinate(12, 31);
-        Village v = new Village("Zoni City", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
+        Town v = new Town("Zoni City", "The captial of Pulchra. It's located at the center of the island and has the densest population with a variety of residents.", people, 10, 2473, c);
         
         //----------------------------------------------------------------------
         Shop s = new Shop(Item.allItemsDeepCopy());
@@ -1695,23 +1704,23 @@ public class Game
         return v;
     }
     
-    private Village createZoniVillage2()
+    private Town createZoniCity2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Village("Zoni City", "What was once a bustling, animated village is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
+        return new Town("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
     }    
     
-    private Village createWindVillage()
+    private Town createAerogan()
     {   
         NPC nu = new NPC("Elder Nu", "(*smack*) If you need anything, do come back. We will do what we can to help you.", true);
-        nu.setDescription("Wind Village Elder");
+        nu.setDescription("Aerogan Elder");
         
         NPC oura = new NPC("Oura", "(*sniff*) why is this happening... oh goodness... why?", false);
-        oura.setDescription("Wind Village resident | Newly widowed");
+        oura.setDescription("Aerogan resident | Newly widowed");
         
         Item gift = Item.getBuffItem("Purple Bean");
         NPC tem = new NPC("Tem", "If you guys are here to help, we appreciate it. Hopefully we can recover from everything.", gift, 3, false);
-        tem.setDescription("Wind Village resident");
+        tem.setDescription("Aerogan resident");
         tem.setGiveGiftMessage("We don't have much right now, but I think you could use this better than us.");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -1732,25 +1741,25 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(11, 71);
-        Village v = new Village("Wind Village", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of\nany other village.", people, 12, 312, c);
+        Town v = new Town("Aerogan", "Located on the most eastern area of Pulchra, the residents here are known for their high esteem and have the most prestige out of\nany other town.", people, 12, 312, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createFireVillage()
+    private Town createInfol()
     {
         NPC lyra = new NPC("Lyra", "Calmus! Please do what you can to help!", false);
-        lyra.setDescription("Fire Village resident | Calmus' little sister");
+        lyra.setDescription("Infol resident | Calmus' little sister");
         
         NPC volca = new NPC("Elder Vulca", "(*cough*) Thank you for helping, grandson. (*cough cough*)", true);
-        volca.setDescription("Fire Village Elder | Calmus' grandmother");
+        volca.setDescription("Infol Elder | Calmus' grandmother");
         
         NPC mimi = new NPC("Mimi", "I normally live in Aquammoda, but things seem worse here than back at home, so I'm here to help.\n\tAre you here to help too?", false);
         mimi.setDescription("Aquammoda resident");
         
         Item gift = Item.getBuffItem("Red Bean");
-        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many villages have been destroyed because of him.", gift, false);
-        hitaka.setDescription("Fire Village resident");
+        NPC hitaka = new NPC("Hitaka", "That Irwin guy... why did he do all of this...? So many towns have been destroyed because of him.", gift, false);
+        hitaka.setDescription("Infol resident");
         hitaka.setGiveGiftMessage("I'm not much of a fighter, so please, take this. If you can do something about all this... do it.");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -1772,14 +1781,14 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(5, 53);
-        Village v = new Village("Fire Village", "Located in the northeast of Pulchra, the Fire Village has a group of people rich in culture, community, and humblness.", people, 16, 201, c);
+        Town v = new Town("Infol", "Located in the northeast of Pulchra, the Infol has a group of people rich in culture, community, and humblness.", people, 16, 201, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createSoliceVillage()
+    private Town createSolice()
     {
-        // Once player enters village, can find summit of mountain
+        // Once player enters town, can find summit of mountain
         
         NPC zeno = new NPC("Elder Zeno", "I'm impressed you all made it through the mountain! The weather is at its worst this time of the year. Like others, we don't have much left, but some of us are holding on to hope.", true);
         zeno.setDescription("Solice Elder");
@@ -1800,26 +1809,26 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(3, 31);
-        Village v = new Village("Solice", "Near the peak of Zoni Mountain, the Solice hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
+        Town v = new Town("Solice", "Near the peak of Zoni Mountain, the Solice hosts a group of nonchalant yet powerful and honorable people.", people, 20, 56, c);
         v.setShop(s);
         return v;
     }
     
-    private Village createElerric()
+    private Town createElerric()
     {
         NPC clairdra = new NPC("Elder Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
         clairdra.setDescription("Elerric Elder");
         
-        NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our village hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
+        NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our town hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
         tonnerre.setDescription("Elerric resident");
         
         Item gift = Item.getHealingItem("Half Cake");
-        NPC san = new NPC("San", "Are you guys okay? How are your villages?", gift, false);
+        NPC san = new NPC("San", "Are you guys okay? How are your towns?", gift, false);
         san.setDescription("Elerric resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
         
         NPC pheu = new NPC("Pheu", "MAKE ME HAVE DEFAULT TEXT", true);
-        pheu.setDescription("Fire Village Resident | Calmus' aunt");
+        pheu.setDescription("Infol Resident | Calmus' aunt");
         
         ArrayList<NPC> people = new ArrayList<>();
         people.add(clairdra);
@@ -1837,7 +1846,7 @@ public class Game
         //----------------------------------------------------------------------
         
         Coordinate c = new Coordinate(10, 9);
-        Village v = new Village("Elerric", "Located to the east, the Elerric is known for having the strongest fighters on Pulchra.", people, 25, 101, c);
+        Town v = new Town("Elerric", "Located to the east, the Elerric is known for having the strongest fighters on Pulchra.", people, 25, 101, c);
         v.setShop(s);
         return v;
     }
@@ -1881,7 +1890,7 @@ public class Game
     private Wilderness createMountVolcan()
     {
         Coordinate c = new Coordinate(4, 48);
-        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Fire Village residents come here frequently to train and hone their abilities.", 17, c);
+        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 17, c);
         mountVolcan.addLocalElement("Fire");
         mountVolcan.addLocalElement("Earth");
         mountVolcan.addLocalElement("Wind");
@@ -1947,7 +1956,7 @@ public class Game
             Cutscene.zoniCityCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Wind Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Aerogan") && (!currentLocation.isExplored()))
         {
             Cutscene.aeroganCutscene();
             objective.update();
@@ -1957,7 +1966,7 @@ public class Game
             Cutscene.tempestTowerCutscene();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Fire Village") && (!currentLocation.isExplored()))
+        else if(currentLocation.getName().equals("Infol") && (!currentLocation.isExplored()))
         {
             Cutscene.infolCutscene();
             objective.update();
@@ -1986,7 +1995,12 @@ public class Game
             Cutscene.forlornCaveCutscene();
             objective.update();
         }
-        
+        else if(currentLocation.getName().equals("Elerric") && (!currentLocation.isExplored()))
+        {
+            Cutscene.elerricCutscene();
+            objective.update();
+        }
+            
 //        objective.update();
         currentLocation.setIsExplored();
     }

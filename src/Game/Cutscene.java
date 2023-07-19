@@ -69,6 +69,8 @@ public class Cutscene
                 break;
             case "Elder Zeno":
                 elderZenoCutscene();
+            case "Elder Clairdra":
+                elderClairdraCutscene();
         }
     }
     
@@ -1985,5 +1987,137 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Let's go look for Elder Clairdra then -- quickly! Who knows if she may need help!");
         
         MainGame.promptToEnter();
+    }
+    
+    public static void elderClairdraCutscene()
+    {
+        print("As the group ran through the town, they saw people cleaning up some debris that was left on the ground. Some "
+                + "pieces/were completely burnt, and some things crumbled into dust once they were touched. Eventally, the "
+                + "group found/Elder Clairdra. She was standing alone looking at the sky.");
+        
+        MainGame.dialoguelnln("Gaea", "Oh, Elder Clairdra! You're okay!");
+        
+        print("Before the Elder could react, Gaea had pulled her in for a hug. Once the Elder realized who it was, she "
+                + "hugged back.");
+        
+        MainGame.dialoguelnln("Elder Clairdra", "Oho! It's good to see you, Gaea! The rest of you all, too. You all made it "
+                + "through\n\tthe cave safely! That's wonderful to see. I assume you lead everyone here, Gaea.");
+        
+        MainGame.dialoguelnln("Gaea", "Yes, I did! I remembered the way, thankfully. It was difficult, but we overcame it.");
+        
+        print("Ninlil started to look at the ground, thinking about the cave again.");
+        
+        MainGame.dialoguelnln("Elder Clairdra", "Well, it's a good thing you're all safe.");
+        
+        MainGame.dialoguelnln("Gaea", "Yes. Are you all safe though? What *happened* here?");
+        
+        MainGame.dialoguelnln("Anahita", "The damage done here is the worst out of all the other towns!");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Clairdra", "Ah, I might as well explain everything that happened. During the invasion,"
+                + "\n\t we, along with the other towns, were attacked by the R.E.S.I. Bots. As we tried to recover from the "
+                + "first\n\tattack, there was another, lone Bot that came in. It was... different. It was faster and "
+                + "stronger\n\tthan the other ones. It blasted everything with electricity, which was surprising to see.");
+        
+        print("Ninlil perked up by hearing the electricity part.");
+        
+        MainGame.dialoguelnln("Ninlil", "Elder, was this Bot sleek in design, or was it more humanoid...");
+        
+        MainGame.dialoguelnln("Elder Clairdra", "Hmm, I believe it was more humanoid. It was difficult to tell as it "
+                + "attacked at night.");
+        
+        MainGame.dialoguelnln("Frigs", "Ninlil, are you insinuating something...?");
+        
+        print("Ninlil slowly started to nod her head. As she did, Gaea's eyes widened.");
+        
+        MainGame.dialoguelnln("Gaea", "You don't mean that...");
+        
+        MainGame.dialoguelnln("Ninlil", "Unless the Bots are getting better with using more elemental based attacks, there's "
+                + "the\n\tpotential that it could've been Fultra...");
+        
+        print("Both Elder Clairdra and Gaea gasped at the thought. Elder Clairdra was already aware of Fultra's death. A "
+                + "survivor/from the invasion in Zoni City returned back to Elerric and informed her of what happened to him. "
+                + "She mourned/for her grandson that day, but still had her duties as Elder to take care of, so she had to "
+                + "collect herself/quickly.. Hearing that the other attacker might have been her grandson filled her with "
+                + "hope and confusion. Gaea, however, was hot with emotion.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Gaea", "Ninlil! You know he's dead! Don't spread false hope like that. What's wrong with you?");
+        
+        MainGame.dialoguelnln("Ninlil", "Gaea, that's not my intention at all, I--");
+        
+        MainGame.dialoguelnln("Gaea", "No! Accept the fact that he's *dead*! He's gone!");
+        
+        print("Gaea's face became red and hot with emotion, and Ninlil stared sadly at the ground. "
+                + "She meant no harm -- she just wanted to throw out possible solutions -- and now felt awful. She thought "
+                + "she was getting along better with Gaea.");
+        
+        print("Anahita pulled Gaea aside to talk to her privately.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Anahita", "Gaea, what's going on? There was no reason to blow up on Ninlil like that.");
+        
+        MainGame.dialoguelnln("Gaea", "And there was no reason for her to say Fultra could still be alive. I *know* what I "
+                + "saw\n\t-- he's *dead*.");
+        
+        MainGame.dialoguelnln("Anahita", "Even if she's right -- and I'm not saying she is -- wouldn't that be some form of "
+                + "good news?\n\tIt would mean that he's still alive!");
+        
+        MainGame.dialoguelnln("Gaea", "Alive and attacking his own home?? That wouldn't make sense! It can't be him... It "
+                + "\n\tcan't be...");
+        
+        print("Anahita consoled Gaea a little more, which helped her calm down. Gaea eventaully came to her senses and "
+                + "acknowledged/how rashly she acted. The two joined the rest of the group and the Elder.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Gaea", "Ninlil, I'm sorry. I shouldn't have snapped at you like that. Thinking about him still "
+                + "being a live is... a touchy subject still.");
+        
+        MainGame.dialoguelnln("Ninlil", "It's okay -- I understand.");
+        
+        print("The two quickly reconciled and everyone turned their attention back to the Elder.");
+        
+        MainGame.dialoguelnln("Elder Clairdra", "I understand that it's a sensitive subject, Gaea. It's confusing for me too, "
+                + "but\n\tdon't be blindsighted. Regardless of if it was him or not, you all need to be careful. That Bot "
+                + "was strong.");
+        
+        MainGame.dialoguelnln("Anahita", "Understood. Is there anything we can do you here, Elder?");
+        
+        MainGame.dialoguelnln("Calmus", "If we can help, we will. We've seen too much destruction lately.");
+        
+        MainGame.dialoguelnln("Elder Clairdra", "Thank you all, but no. You all have a much greater mission to attend to. "
+                + "We\n\tknow how to clean up the damage done here. You go to Zoni City instead and fight for us all. I've "
+                + "seen you\n\tall grow, and I'm sure you're more than capable of bringing peace back. Go! We'll be here for "
+                + "you\n\tafterwards.");
+        
+        MainGame.dialoguelnln("Gaea", "Thank you, Elder... We'll do what we can. For you, for Fultra, and for Pulchra.");
+        
+        print("The group gave the Elder their best wishes as they prepared to depart from Elerric.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Anahita", "So... that's everythingt then, right?");
+        
+        MainGame.dialoguelnln("Gaea", "I believe so. There's not much else I need or want to do.");
+        
+        MainGame.dialoguelnln("Calmus", "Our next step is Zoni City then, right?");
+        
+        MainGame.dialoguelnln("Ninlil", "Seems like it. It's time to go back to where it all started...");
+        
+        MainGame.dialoguelnln("Frigs", "Let's go, then. It's about time we fight Irwin.");
+        
+        MainGame.dialoguelnln("Anahita", "Agreed. We've all grown a lot together. Let's be wise in how we handle everything. "
+                + "This\n\tis it guys!");
+        
+        MainGame.dialoguelnln("Gaea", "Let's do this! For Pulchra!");
     }
 }

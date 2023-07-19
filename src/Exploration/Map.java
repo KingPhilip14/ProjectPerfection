@@ -71,7 +71,7 @@ public class Map
     {
         char result;
         
-        if(currentLocation instanceof Village)
+        if(currentLocation instanceof Town)
         {
             result = '+';
         }
