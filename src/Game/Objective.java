@@ -42,7 +42,7 @@ public class Objective
         unfinsihedTasks.enqueue(("Talk to Elder Zeno."));
         unfinsihedTasks.enqueue(("Go to Mount Zoni Summit."));
         unfinsihedTasks.enqueue(("Find Frigs (Required Level: 21)"));
-        unfinsihedTasks.enqueue(("Go to Forlorn Desert (Required Level: 23)"));
+        unfinsihedTasks.enqueue(("Go to Forlorn Cave (Required Level: 23)"));
         unfinsihedTasks.enqueue(("Go to Elerric (Required Level: 25)"));
         unfinsihedTasks.enqueue(("Talk to Elder Clairdra."));
         unfinsihedTasks.enqueue(("Return to Zoni City (Required Level: 29)"));

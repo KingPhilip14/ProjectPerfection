@@ -69,8 +69,10 @@ public class Cutscene
                 break;
             case "Elder Zeno":
                 elderZenoCutscene();
+                break;
             case "Elder Clairdra":
                 elderClairdraCutscene();
+                break;
         }
     }
     
@@ -1795,7 +1797,7 @@ public class Cutscene
         print("Frigs wiped the now frozen tear from his cheek as more started to stream down. Anahita's heart was broken for "
                 + "her dear friend./Before she could speak, Frigs did.");
         
-        MainGame.dialoguelnln("Frigs", "How about a little challenge? I've beens sitting here too long anyway, haha.");
+        MainGame.dialoguelnln("Frigs", "How about a little challenge? I've been sitting here too long anyway, haha.");
         
         print("Frigs was trying to make himself laugh to cope with his pain. That was always how he coped with things since "
                 + "he never/learned how to confront his emotions healthily.");
@@ -1840,7 +1842,7 @@ public class Cutscene
         print("Calmus came by and put a hand on Frigs' shoulder.");
         
         MainGame.dialoguelnln("Calmus", "We love you Frigs. Depsite him being gone, 'there is a friend that sticks closer "
-                + "than a\n\tbrother.' In this case, we are -- and always will be -- your brothers and sisters.");
+                + "than a\n\tbrother.' We are -- and always will be -- your brothers and sisters.");
         
         print("Anahtia, Gaea, and Ninlil all smiled at the comment because it was true. The group, despite the distance from "
                 + "where they/lived, and any conflict they may have had, they've all grown -- individually and together. There "
@@ -1907,7 +1909,7 @@ public class Cutscene
     
     public static void forlornCaveCutscene()
     {
-        print("The group came upon the Forlorn Cave, and Calmus had a small flame ready to be a light for the group."
+        print("The group came upon the Forlorn Cave, and Calmus had a small flame ready to be a light for the group. "
                 + "The/entrance of the cave was brooding and cold. An air of sorrowfulness "
                 + "started to wash/over the group as they came closer to the cave.");
         
@@ -1944,8 +1946,8 @@ public class Cutscene
     public static void elerricCutscene()
     {
         print("The group trudged through the cave the best they could, the sense of hopelessness slowly consuming them more "
-                + "and/more. They passed by a few remains of those that got lost in the cave, and it caused the weight "
-                + "of their emotions to increase. Ninlil eventaully cracked and fell to the cold, cave floor.");
+                + "and more./They passed by a few remains of those that got lost in the cave, and it caused the weight "
+                + "of their/emotions to increase. Ninlil eventaully cracked and fell to the cold, cave floor.");
         
         MainGame.dialoguelnln("Ninlil", "i can't keep going... please go without me... i'll only... hold you all back...");
         
@@ -1959,7 +1961,7 @@ public class Cutscene
                 + "on her/feet and to drag her the rest of the way.");
         
         MainGame.dialoguelnln("Gaea", "look... there's a light at the end of this path...! we've come too far to... "
-                + "stop now... i'm not giving up on... any of you...");
+                + "stop now...\n\ti'm not giving up on... any of you...");
         
         print("With Gaea dragging a hopeless Ninlil who was close to tears, the group fought their emotional battles as they "
                 + "made it/to the end of the cave.");
@@ -1977,7 +1979,7 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "It's alright, Ninlil. We're all here to support each other.");
         
         print("After the two separated, the group went deeper into Elerric to see that it was utterly destroyed. The group "
-                + "gasped at the damage done to the town. There were scortch markings everywhere, things were burned, and "
+                + "gasped at/the damage done to the town. There were scortch markings everywhere, things were burned, and "
                 + "houses were destroyed.");
         
         MainGame.dialoguelnln("Frigs", "What on Earth happened here?? There's no way the Bots did all of this, did they??");
@@ -2017,13 +2019,13 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Elder Clairdra", "Ah, I might as well explain everything that happened. During the invasion,"
-                + "\n\t we, along with the other towns, were attacked by the R.E.S.I. Bots. As we tried to recover from the "
+                + "\n\twe, along with the other towns, were attacked by the R.E.S.I. Bots. As we tried to recover from the "
                 + "first\n\tattack, there was another, lone Bot that came in. It was... different. It was faster and "
                 + "stronger\n\tthan the other ones. It blasted everything with electricity, which was surprising to see.");
         
         print("Ninlil perked up by hearing the electricity part.");
         
-        MainGame.dialoguelnln("Ninlil", "Elder, was this Bot sleek in design, or was it more humanoid...");
+        MainGame.dialoguelnln("Ninlil", "Elder, was this Bot sleek in design, or was it more humanoid...?");
         
         MainGame.dialoguelnln("Elder Clairdra", "Hmm, I believe it was more humanoid. It was difficult to tell as it "
                 + "attacked at night.");
@@ -2040,8 +2042,8 @@ public class Cutscene
         print("Both Elder Clairdra and Gaea gasped at the thought. Elder Clairdra was already aware of Fultra's death. A "
                 + "survivor/from the invasion in Zoni City returned back to Elerric and informed her of what happened to him. "
                 + "She mourned/for her grandson that day, but still had her duties as Elder to take care of, so she had to "
-                + "collect herself/quickly.. Hearing that the other attacker might have been her grandson filled her with "
-                + "hope and confusion. Gaea, however, was hot with emotion.");
+                + "collect herself/quickly. Hearing that the other attacker might have been her grandson filled her with "
+                + "hope and confusion./Gaea, however, was hot with emotion.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2053,7 +2055,7 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "No! Accept the fact that he's *dead*! He's gone!");
         
         print("Gaea's face became red and hot with emotion, and Ninlil stared sadly at the ground. "
-                + "She meant no harm -- she just wanted to throw out possible solutions -- and now felt awful. She thought "
+                + "She meant no harm -- she just/wanted to suggest possible solutions -- and now felt awful. She thought "
                 + "she was getting along better with Gaea.");
         
         print("Anahita pulled Gaea aside to talk to her privately.");
@@ -2064,7 +2066,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Gaea, what's going on? There was no reason to blow up on Ninlil like that.");
         
         MainGame.dialoguelnln("Gaea", "And there was no reason for her to say Fultra could still be alive. I *know* what I "
-                + "saw\n\t-- he's *dead*.");
+                + "saw -- he's *dead*.");
         
         MainGame.dialoguelnln("Anahita", "Even if she's right -- and I'm not saying she is -- wouldn't that be some form of "
                 + "good news?\n\tIt would mean that he's still alive!");
@@ -2079,9 +2081,9 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Gaea", "Ninlil, I'm sorry. I shouldn't have snapped at you like that. Thinking about him still "
-                + "being a live is... a touchy subject still.");
+                + "being alive\n\tis... a touchy subject still.");
         
-        MainGame.dialoguelnln("Ninlil", "It's okay -- I understand.");
+        MainGame.dialoguelnln("Ninlil", "It's okay. I understand.");
         
         print("The two quickly reconciled and everyone turned their attention back to the Elder.");
         
@@ -2089,14 +2091,14 @@ public class Cutscene
                 + "but\n\tdon't be blindsighted. Regardless of if it was him or not, you all need to be careful. That Bot "
                 + "was strong.");
         
-        MainGame.dialoguelnln("Anahita", "Understood. Is there anything we can do you here, Elder?");
+        MainGame.dialoguelnln("Anahita", "Understood, Elder. Is there anything we can do you here?");
         
         MainGame.dialoguelnln("Calmus", "If we can help, we will. We've seen too much destruction lately.");
         
         MainGame.dialoguelnln("Elder Clairdra", "Thank you all, but no. You all have a much greater mission to attend to. "
                 + "We\n\tknow how to clean up the damage done here. You go to Zoni City instead and fight for us all. I've "
                 + "seen you\n\tall grow, and I'm sure you're more than capable of bringing peace back. Go! We'll be here for "
-                + "you\n\tafterwards.");
+                + "you\n\tafterward.");
         
         MainGame.dialoguelnln("Gaea", "Thank you, Elder... We'll do what we can. For you, for Fultra, and for Pulchra.");
         
@@ -2105,7 +2107,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        MainGame.dialoguelnln("Anahita", "So... that's everythingt then, right?");
+        MainGame.dialoguelnln("Anahita", "So... that's everything then, right?");
         
         MainGame.dialoguelnln("Gaea", "I believe so. There's not much else I need or want to do.");
         

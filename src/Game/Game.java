@@ -181,6 +181,24 @@ public class Game
             // Talk to Elder Zeno
             objective.update();
             
+            // Go to mount zoni summit
+            objective.update();
+            
+            // Find frigs. Places in Mount Zoni Summit
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Places in Forlorn Cave
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Places in Elerric
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
+            // Talk to Elder Clairdra
+            objective.update();
+            
             // Use this for going to the newest location
             currentLocation = knownLocations.get(knownLocations.size() - 1);
             
@@ -806,7 +824,8 @@ public class Game
                     tempestTower.removeBossBattle();
                     objective.update();
                     team.add(MainGame.makeNinlil());
-                }   break;
+                }   
+                break;
             case "Mount Volcan":
                 MainGame.clearScreen();
                 
@@ -835,7 +854,8 @@ public class Game
                     NPC vulca = ((Town)getLocation("Infol")).getNPC("Elder Vulca");
                     vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
                     vulca.setTalkedTo(false);
-                }   break;
+                }   
+                break;
             case "Mount Zoni Summit":
                 MainGame.clearScreen();
                 // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
@@ -1920,7 +1940,7 @@ public class Game
     private Wilderness createForlornCave()
     {
         Coordinate c = new Coordinate(9, 15);
-        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dry and sandy area. It's covered in a dense fog that almost seems sentient. Those that go in rarely come out...", 23, c);
+        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dark and ominous cave. Some say that the cave feels sentient. Those that go in rarely come out...", 23, c);
         forlornDessert.addLocalElement("Electric");
         forlornDessert.addLocalElement("Earth");
         forlornDessert.addLocalElement("Wind");
