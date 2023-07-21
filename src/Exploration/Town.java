@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * A class for creating Villages the player can briefly explore
  * @author Ian King
  */
-public class Village extends Location
+public class Town extends Location
 {
     private ArrayList<NPC> villagePeople;
     private Shop shop;
@@ -29,14 +29,14 @@ public class Village extends Location
 //        shop = new Shop();
 //    }
     
-    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate)
+    public Town(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate)
     {
         super(name, description, requiredLevel, coordinate);
         this.villagePeople = people;
         this.population = population;
     }
     
-    public Village(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate, Shop shop)
+    public Town(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate, Shop shop)
     {
         super(name, description, requiredLevel, coordinate);
         this.villagePeople = people;

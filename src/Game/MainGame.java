@@ -1110,17 +1110,17 @@ public class MainGame
         PlayerClass pc = PlayerClass.getPlayerClass("Master Striker");
         
         // Instantiating Frigs and his moveset--------------------------
-        Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
+        Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
         frigs.setMaxHealth(1260);
         frigs.setCurrentHealth(1260);
-        frigs.setAttack(350);
-        frigs.setDefense(160);
-        frigs.setRangedAttack(310);
-        frigs.setRangedDefense(160);
-        frigs.setSpeed(280);
+        frigs.setAttack(320);
+        frigs.setDefense(190);
+        frigs.setRangedAttack(290);
+        frigs.setRangedDefense(190);
+        frigs.setSpeed(270);
         
         ArrayList<Attack> frigsAllAttacks = new ArrayList<>(6);
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
