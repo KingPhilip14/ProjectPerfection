@@ -70,10 +70,14 @@ public class Game
     private boolean defeatIrwin;
     
     private static boolean testing;
+    
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
     private boolean summitBossAttempted;
+    private boolean fultraBossAttempted;
+    private boolean irwinBossAttempted;
     private int resiTutorialAttempts;
+    
     private Objective objective;
     private Location currentLocation;
     private Location nextLocation;
