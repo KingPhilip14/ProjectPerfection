@@ -8,9 +8,9 @@ import java.util.ArrayList;
  * A class for making the RESI tutorial battle sequence.
  * @author ianth
  */
-public class RESITutorialBattle  extends TutorialBattle
+public class ResiTutorialBattle  extends TutorialBattle
 {
-    public RESITutorialBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
+    public ResiTutorialBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
         super(enemyTeam, playerTeam);
         startingText = "Tutorial Battle: S T A R T";
@@ -66,7 +66,7 @@ public class RESITutorialBattle  extends TutorialBattle
         
         if(attack.getAttackHit() && !target.isDead())
         {
-            RESIEnemy enemy = ((RESIEnemy)target);
+            ResiEnemy enemy = ((ResiEnemy)target);
         
             enemy.setElement(player.getElement());
 

@@ -144,7 +144,7 @@ public class Player extends Character
         MainGame.clearScreen();
         
         // Calculates the XP gained by rounding the amount
-        int amt = (int)Math.round(BASE_XP * ((15 * defeatedEnemy.getLevel()) / player.getLevel()));
+        int amt = (int)Math.round((BASE_XP + defeatedEnemy.getXpYield()) * ((15 * defeatedEnemy.getLevel()) / player.getLevel()));
         
         // If there is only one player, increase their XP and return
         if(fighitngTeam.size() == 1)
@@ -275,7 +275,7 @@ public class Player extends Character
         // REMOVE IF AND KEEP ELSE STATEMENT AFTER DONE WITH TESTS
         if(Game.isTesting())
         {
-            xpToLevelUp = 1000;
+            xpToLevelUp = 2000;
         }
         else if(xpToLevelUp > 5000)
         {

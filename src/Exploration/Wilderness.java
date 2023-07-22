@@ -14,8 +14,8 @@ import Battle.NormalBattle;
 import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
-import Battle.RESIBattle;
-import Battle.RESIEnemy;
+import Battle.ResiBattle;
+import Battle.ResiEnemy;
 import Battle.WaterEnemy;
 import Battle.WindEnemy;
 import java.util.ArrayList;
@@ -357,10 +357,10 @@ public class Wilderness extends Location
         }
     }
     
-    public RESIBattle makeRESIBattle(ArrayList<Player> playerTeam)
+    public ResiBattle makeRESIBattle(ArrayList<Player> playerTeam)
     {
         ArrayList<Enemy> enemyTeam = createRESITeam();
-        RESIBattle battle = new RESIBattle(enemyTeam, playerTeam);
+        ResiBattle battle = new ResiBattle(enemyTeam, playerTeam);
         return battle;
     }
     
@@ -420,9 +420,9 @@ public class Wilderness extends Location
         }
     }
     
-    private RESIEnemy createRESIEnemy(int level)
+    private ResiEnemy createRESIEnemy(int level)
     {
-        return new RESIEnemy(level, this);
+        return new ResiEnemy(level, this);
     }
     
     public ArrayList<Enemy> makeNinlilBoss()

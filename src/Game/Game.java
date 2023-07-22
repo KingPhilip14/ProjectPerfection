@@ -15,8 +15,8 @@ import Battle.OffensiveAttack;
 import Battle.OpiconTutorialBattle;
 import Battle.Player;
 import Battle.PlayerClass;
-import Battle.RESIBattle;
-import Battle.RESITutorialBattle;
+import Battle.ResiBattle;
+import Battle.ResiTutorialBattle;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Battle.WaterEnemy;
@@ -70,10 +70,14 @@ public class Game
     private boolean defeatIrwin;
     
     private static boolean testing;
+    
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
     private boolean summitBossAttempted;
+    private boolean fultraBossAttempted;
+    private boolean irwinBossAttempted;
     private int resiTutorialAttempts;
+    
     private Objective objective;
     private Location currentLocation;
     private Location nextLocation;
@@ -215,6 +219,7 @@ public class Game
             Player gaea = MainGame.makeGaea();
 //            Player fultra = MainGame.makeFultra();
             Player calmus = MainGame.makeCalmus();
+            Player frigs = MainGame.makeFrigs();
             
             anahita.setMaxHealth(9999);
             anahita.setCurrentHealth(9999);
@@ -228,7 +233,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(20);
+            anahita.setLevel(23);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -242,7 +247,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(20);
+            gaea.setLevel(23);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -270,7 +275,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(20);
+            calmus.setLevel(23);
             
             Player ninlil = MainGame.makeNinlil();
             ninlil.setMaxHealth(9999);
@@ -285,12 +290,27 @@ public class Game
             ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
             ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
             ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
-            ninlil.setLevel(20);
+            ninlil.setLevel(23);
+            
+            frigs.setMaxHealth(9999);
+            frigs.setCurrentHealth(9999);
+            frigs.setAttack(9999);
+            frigs.setDefense(9999);
+            frigs.setRangedAttack(9999);
+            frigs.setRangedDefense(9999);
+            frigs.setSpeed(9999);
+            frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+            frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+            frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+            frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+            frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+            frigs.setLevel(23);
             
             team.add(anahita);
             team.add(gaea);
             team.add(calmus);
             team.add(ninlil);
+            team.add(frigs);
             
             gold = 100000;
         }
@@ -681,7 +701,7 @@ public class Game
                 team.add(MainGame.makeNinlil());
 
                 // Start tutorial RESI Battle here
-                RESITutorialBattle rtb = town.makeRESITutorial(team);
+                ResiTutorialBattle rtb = town.makeRESITutorial(team);
                 rtb.start(gold);
                 
                 resiTutorialAttempts++;
@@ -705,8 +725,8 @@ public class Game
         
         inSecondPhase = true;
         
-        // Reduces the population number by an arbitrary amount to show that the world has changed
-        pulchraPopulation = (pulchraPopulation / 2) - 576;
+        // Reduces the population number to show that the world has changed
+        pulchraPopulation = (pulchraPopulation / 5) - 600;
         
         // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
@@ -778,6 +798,12 @@ public class Game
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold);
         }
+        else if(currentLocation.getName().equals("Zoni City") && inSecondPhase)
+        {
+            // When in second phase and in Zoni City, battles will always be RESI battles
+            ResiBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
+            battle.start(gold);
+        }
         // Second phase - 60% normal battles, 40% RESI battles
         else
         {
@@ -796,7 +822,7 @@ public class Game
         }
         else
         {
-            RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
+            ResiBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
             battle.start(gold);
         }
     }
@@ -1724,10 +1750,10 @@ public class Game
         return v;
     }
     
-    private Town createZoniCity2()
+    private Wilderness createZoniCity2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Town("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
+        return new Wilderness("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", 27, c);
     }    
     
     private Town createAerogan()

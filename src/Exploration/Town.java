@@ -2,8 +2,8 @@
 
 import Battle.Enemy;
 import Battle.Player;
-import Battle.RESIEnemy;
-import Battle.RESITutorialBattle;
+import Battle.ResiEnemy;
+import Battle.ResiTutorialBattle;
 import Game.MainGame;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
@@ -222,14 +222,14 @@ public class Town extends Location
      * @param player
      * @return a tutorial battle
      */
-    public RESITutorialBattle makeRESITutorial(ArrayList<Player> playerTeam)
+    public ResiTutorialBattle makeRESITutorial(ArrayList<Player> playerTeam)
     {
-        RESIEnemy resi = new RESIEnemy(12, "Fire");
+        ResiEnemy resi = new ResiEnemy(12, "Fire");
 //        resi.setCurrentHealth(1);
 //        resi.setSpeed(1);
         ArrayList<Enemy> enemyTeam = new ArrayList<>(1);
         enemyTeam.add(resi);
-        RESITutorialBattle battle = new RESITutorialBattle(enemyTeam, playerTeam);
+        ResiTutorialBattle battle = new ResiTutorialBattle(enemyTeam, playerTeam);
         return battle;
     }
     
