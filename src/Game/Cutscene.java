@@ -27,51 +27,51 @@ public class Cutscene
         switch(person.getName())
         {
             case "Merda":
-                merdaCutscene();
+                merda();
                 break;
             case "Fleur":
                 // If in the first phase, play Fleur's first cutscene. Otherwise, play her cutscene for the second phase.
                 if(!Game.getSecondPhase())
                 {
-                    fleurCutscene();
+                    fleur();
                 }
                 else
                 {
-                    fleurCutscene2();
+                    fleur2();
                 }
                 break;
             case "Caillou":
-                calliouCutscene();
+                calliou();
                 break;
             case "Elder Vitorem":
-                vitoremCutscene();
+                vitorem();
                 break;
             case "Calmus":
-                calmusCutscene();
+                calmus();
                 break;
             case "Frigs":
-                frigsCutscene();
+                frigs();
                 break;
             case "Ninlil":
-                ninlilCutscene();
+                ninlil();
                 break;
             case "Elder Nu":
-                elderNuCutscene();
+                elderNu();
                 break;
             case "Elder Vulca":
-                    elderVulcaCutscene();
+                    elderVulca();
                     break;
             case "Lyra":
                 if(Game.getDefeatedOmega())
                 {
-                    helpedLyraCutscene();
+                    helpedLyra();
                 }
                 break;
             case "Elder Zeno":
-                elderZenoCutscene();
+                elderZeno();
                 break;
             case "Elder Clairdra":
-                elderClairdraCutscene();
+                elderClairdra();
                 break;
         }
     }
@@ -79,7 +79,7 @@ public class Cutscene
     /**
      * The opening cutscene when a new game starts.
      */
-    public static void startingCutscene()
+    public static void opening()
     {
         MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
         MainGame.printWait("The world is", 25, 100);
@@ -182,7 +182,7 @@ public class Cutscene
     /**
      * Cutscene for when the player first enters Opicon Forest.
      */
-    public static void opiconCutscene()
+    public static void opicon()
     {
         MainGame.clearScreen();
         
@@ -240,7 +240,7 @@ public class Cutscene
     /**
      * Cutscene right after forest tutorial.
      */
-    public static void opiconCutscene2()
+    public static void opicon2()
     {
         MainGame.clearScreen();
         
@@ -267,7 +267,7 @@ public class Cutscene
     /**
      * Cutscene when first entering Aquammoda.
      */
-    public static void aquammodaCutscene()
+    public static void aquammoda()
     {
         MainGame.clearScreen();
         
@@ -300,7 +300,7 @@ public class Cutscene
     /**
      * Cutscene for when talking to Merda for the first time.
      */
-    public static void merdaCutscene()
+    public static void merda()
     {
         MainGame.dialoguelnln("Merda", "Oh! There you are. Hello everyone.");
         MainGame.dialoguelnln("Anahita", "Hey, Mom! I'm so so sorry that I got here late. I lost track of time and I-");
@@ -353,7 +353,7 @@ public class Cutscene
     /**
      * Cutscecne for when the player first enters Degon.
      */
-    public static void degonCutscene()
+    public static void degon()
     {
         MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the Annual Festival, and "
                 + "then\n\twe can party!");
@@ -372,7 +372,7 @@ public class Cutscene
     /**
      * Cutscene for when talking to Fleur for the first time.
      */
-    public static void fleurCutscene()
+    public static void fleur()
     {
         print("Fleur is found talking about decorations for the festival to a team of other Pulchrians.");
         MainGame.dialoguelnln("Fleur", "... Perfect! All we need now are the baskets of flowers. Where is Gaea?\n\t"
@@ -451,7 +451,7 @@ public class Cutscene
     /**
      * Cutscene for when talking to Calliou for the first time (he explains beans and a bit of ethrellium).
      */
-    public static void calliouCutscene()
+    public static void calliou()
     {
         MainGame.dialoguelnln("Calliou", "Y O U  T H R E E!!!");
         
@@ -493,7 +493,7 @@ public class Cutscene
     /**
      * Cutscene for when the player first enters Degon.
      */
-    public static void zoniCityCutscene()
+    public static void zoniCity()
     {
         MainGame.dialoguelnln("Anahita", "Finally! We made it!!");
         
@@ -521,7 +521,7 @@ public class Cutscene
     /**
      * A cutscene for when the player talks to Elder Vitorem at Zoni Village.
      */
-    public static void vitoremCutscene()
+    public static void vitorem()
     {
         print("Vitorem's cutscene will be here. It should introduce the concept of the elders to the player and how the title "
                 + "is passed down.");
@@ -530,7 +530,7 @@ public class Cutscene
     /**
      * A cutscene for when the player talks to Calmus at Zoni Village.
      */
-    public static void calmusCutscene()
+    public static void calmus()
     {
         print("The group approaches a young male playing with what appears to be his little sister. He's quite tall and "
                 + "towers over the group. Anahita/calls out to him.");
@@ -582,7 +582,7 @@ public class Cutscene
     /**
      * A cutscene for when the player talks to Frigs  at Zoni Village.
      */
-    public static void frigsCutscene()
+    public static void frigs()
     {
         MainGame.dialoguelnln("Anahita", "Hey, I think I see Frigs over here! I haven't seen him in so long!");
         
@@ -629,7 +629,7 @@ public class Cutscene
     /**
      * A cutscene for when the player talks to Ninlil  at Zoni Village.
      */
-    public static void ninlilCutscene()
+    public static void ninlil()
     {
         print("Anahita was walking and talking to Gaea and Fultra, sharing her enthusiasm with the group. Her excitement, "
                 + "unfortunately, blinded her/and caused her to bump into someone helping with decorations. A large basket of "
@@ -675,7 +675,7 @@ public class Cutscene
     /**
      * A cutscene that plays after the player talks to everyone at the Annual Festival.
      */
-    public static void warCutscene()
+    public static void invasion()
     {
         print("After the group finished talking to other townrs, a bell chimed and a wave of people gathered to the center "
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
@@ -804,7 +804,7 @@ public class Cutscene
     /**
      * A cutscene that plays after the player defeats the R.E.S.I. Bot.
      */
-    public static void warCutscene2()
+    public static void invasion2()
     {
         print("After a difficult fight, Anahita and the others successfully defeated the R.E.S.I. Bot, leaving a dismantled "
                 + "pile of metal on the ground./A green liquid started seeping out from the remains.");
@@ -952,7 +952,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void postWarCutscene()
+    public static void postInvasion()
     {
         print("A week after the horrible events that took place at Zoni Village, Anahita, Gaea, and Calmus are at "
                 + "Anahita's/house in Aquammoda. The trio and Merda were having conversation as Brinlee laid across "
@@ -1040,7 +1040,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player talks to fleur in the second phase of the game.
      */
-    public static void fleurCutscene2()
+    public static void fleur2()
     {
         MainGame.dialoguelnln("Fleur", "My cutscene starts here!");
     }
@@ -1048,7 +1048,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player first enters the Aerogan.
      */
-    public static void aeroganCutscene()
+    public static void aerogan()
     {
         print("Anahita and the others safely arrived to the Aerogan. There were only a handful of homes that were fully "
                 + "intact. Others/were either damaged, burned, or completely missing. Debris was everywhere, with only a "
@@ -1062,7 +1062,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player talks to Elder Nu for the first time.
      */
-    public static void elderNuCutscene()
+    public static void elderNu()
     {
         MainGame.dialoguelnln("Anahita", "I see Elder Nu over there. Let's ask him if he knows where Ninlil is.");
         
@@ -1112,7 +1112,7 @@ public class Cutscene
     /**
      * A custcene that plays when entering Tempest Tower for the first time.
      */
-    public static void tempestTowerCutscene()
+    public static void tempestTower()
     {
         print("The group arrived to the entrance of Tempest Tower. Its shadow loomed over them. Its peak pierced the sky as "
                 + "clouds/encircled it. It exuded an air of majesty and power. Anahita and Gaea were too breath taken to speak.");
@@ -1134,7 +1134,7 @@ public class Cutscene
     /**
      * A cutscene that plays before starting the Ninlil Boss fight.
      */
-    public static void foundNinlilCutscene()
+    public static void foundNinlil()
     {
         MainGame.dialoguelnln("Gaea", "(*pant*) (*pant*) UGH. How much further do we have until we find Ninlil? This is "
                 + "ridiculous.\n\tI *really* need a shower, and it's so COLD up here.");
@@ -1232,7 +1232,7 @@ public class Cutscene
     /**
      * A cutscene that plays after defeating the Ninlil boss at Tempest Tower.
      */
-    public static void defeatedNinlilCutscene()
+    public static void defeatedNinlil()
     {
         print("After a fierce fight, Anahita was claimed the victor. Both Anahita and Ninlil were panting from the fight as "
                 + "Gaea and Calmus/smiled at the victory. However, their smiles quickly dropped as Ninlil fell to her knees "
@@ -1324,7 +1324,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void infolCutscene()
+    public static void infol()
     {
         MainGame.dialoguelnln("Calmus", "Oh no...");
         
@@ -1342,7 +1342,7 @@ public class Cutscene
         MainGame.dialoguelnln("Calmus", "Thank you all. It means a lot. The house is close by, so we can get there quickly.");
     }
     
-    public static void elderVulcaCutscene()
+    public static void elderVulca()
     {
         print("The group entered Calmus' house to see his little sister, Lyra, and his grandmother who is the Elder of the "
                 + "town./Elder Vulca was on a bed resting as Lyra sat next to her. When Lyra saw the group, "
@@ -1409,7 +1409,7 @@ public class Cutscene
     /**
      * Cutscene to be played when first entering Mount Volcan.
      */
-    public static void mountVulcaCutscene()
+    public static void mountVulca()
     {
         print("The group made it safely to the base of Mount Volcan and started climbing. Simply being at the base of "
                 + "the volcano/caused all the girls to sweat from the heat. Calmus felt perfectly fine.");
@@ -1453,7 +1453,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player encounters R.E.S.I. Omega.
      */
-    public static void foundOmegaCutscene()
+    public static void foundOmega()
     {
         print("The group finally made it to the top of the volcano. The girls were miserable and sweating bullets. Calmus "
                 + "started to pity them/just by seeing their facial expressions.");
@@ -1510,7 +1510,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player defeats R.E.S.I. Omega.
      */
-    public static void defeatedOmegaCutscene()
+    public static void defeatedOmega()
     {
         MainGame.dialoguelnln("R.E.S.I. Omega", "S Y s T 3 M  F 4 1 L U R 3 ,  5 Y 5 T 3 M  f 4 I L u R 3 .\n\t"
                 + "S Y 5 t 3 M 5  4 R e  5 H u t t I N G\n\t"
@@ -1591,7 +1591,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player returns to Infol and talks to Lyra.
      */
-    public static void helpedLyraCutscene()
+    public static void helpedLyra()
     {
         MainGame.dialoguelnln("Anahita", "We got the minerals!");
         
@@ -1654,7 +1654,7 @@ public class Cutscene
     /**
      * A cutscene for when the player first gets to Mount Zoni.
      */
-    public static void mountZoniCutscene()
+    public static void mountZoni()
     {
         print("As the group arrived to the base of Mount Zoni, Gaea sulked just looking at the size of it and its frozen "
                 + "peak./The wind started to pick up, causing her to shiver.");
@@ -1680,7 +1680,7 @@ public class Cutscene
     /**
      * A cutscene that plays when the player first enters Solice
      */
-    public static void soliceCutscene()
+    public static void solice()
     {
         print("The group finally made it near the summit of Mount Zoni -- Solice. Everyone was crowded against Calmus "
                 + "who was a/human heat generator at this point.");
@@ -1697,7 +1697,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Well, we might as well look for Frigs. Let's see if anyone has seen him lately.");
     }
     
-    public static void elderZenoCutscene()
+    public static void elderZeno()
     {
         MainGame.dialoguelnln("Anahita", "Hello, Elder Zeno!");
         
@@ -1748,7 +1748,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void foundFrigsCutscene()
+    public static void foundFrigs()
     {
         print("The girls were still huddled around Calmus as they ascended to the peak of the mountain. Shivering, red in the "
                 + "face, and cold,/the group rejoiced at their accomplishment. They then saw Frigs not too far off and "
@@ -1817,7 +1817,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void defeatedFrigsCutscene()
+    public static void defeatedFrigs()
     {
         print("Ninlil and Frigs were both panting from the fight, Ninlil the victor. Frigs looked at the sky and smiled, the "
                 + "cold winds/making his hair blow around. More tears came.");
@@ -1907,7 +1907,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void forlornCaveCutscene()
+    public static void forlornCave()
     {
         print("The group came upon the Forlorn Cave, and Calmus had a small flame ready to be a light for the group. "
                 + "The/entrance of the cave was brooding and cold. An air of sorrowfulness "
@@ -1943,7 +1943,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void elerricCutscene()
+    public static void elerric()
     {
         print("The group trudged through the cave the best they could, the sense of hopelessness slowly consuming them more "
                 + "and more./They passed by a few remains of those that got lost in the cave, and it caused the weight "
@@ -1991,7 +1991,7 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    public static void elderClairdraCutscene()
+    public static void elderClairdra()
     {
         print("As the group ran through the town, they saw people cleaning up some debris that was left on the ground. Some "
                 + "pieces/were completely burnt, and some things crumbled into dust once they were touched. Eventally, the "
@@ -2121,5 +2121,83 @@ public class Cutscene
                 + "This\n\tis it guys!");
         
         MainGame.dialoguelnln("Gaea", "Let's do this! For Pulchra!");
+        
+        MainGame.promptToEnter();
+    }
+    
+    public static void returnToZoni()
+    {
+        print("The group arrived to the remains of Zoni City. The place that once had people at every corner was now "
+                + "destitute/of them. All the shops, homes, and buildings were destroyed. The roads that were once "
+                + "beautifully/constructed were torn up and had gapping holes in them.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The group was astonished to see the damage done. R.E.S.I. Bots were everywhere in the city; not a single "
+                + "living/organism was found. Anahita and the others took cover behind some debris to avoid being found.");
+        
+        MainGame.dialoguelnln("Frigs", "This is terrifying... I've never seen so many in one area!");
+        
+        MainGame.dialoguelnln("Calmus", "Where can we even find Irwin in the middle of everything?");
+        
+        MainGame.dialoguelnln("Ninlil", "I can quickly fly up to can a quick scan of the area!");
+        
+        MainGame.dialoguelnln("Anahita", "Do it! Just be careful.");
+        
+        print("Ninlil nodded before quickly leaving the group to not draw attention to them. She quietly created an updraft "
+                + "that/lifted her up into the air. As she scanned the city, she saw a large, matte black aircraft in the "
+                + "center./She then got back down and regrouped with the others.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Ninlil", "There's an aircraft at the center of the city. If we can fight or sneak our way "
+                + "through the\n\tBots, we should be able to get there safely.");
+        
+        MainGame.dialoguelnln("Frigs", "Surely we just fight our way through, right? We take them down one by one and make a "
+                + "path\n\tfor ourselves.");
+        
+        MainGame.dialoguelnln("Gaea", "Uhh, I think not. It would be best to sneak around them and to avoid drawing attention "
+                + "to ourselves.");
+        
+        MainGame.dialoguelnln("Frigs", "But we've handled them before. You guys said that you defeated a larger one before, "
+                + "didn't you?\n\tThis will pale in comparison!");
+        
+        MainGame.dialoguelnln("Gaea", "Frigs, please just think for a second. If we fight, it'll--");
+        
+        MainGame.dialoguelnln("Anahita", "Guys! We'll do what we can. We'll sneak around them, and if we have to fight, "
+                + "we'll defeat them\n\tas quickly and quietly as we can. Does that sound like a plan?");
+        
+        print("Frigs and Gaea nodded, as well as Calmus and Ninlil.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Calmus", "We know how to get there, but what will we *do* when we get there?");
+        
+        print("There was a brief pause within the group after Calmus' question. The mechanical whirring of passing Bots "
+                + "filled/the silence.");
+        
+        MainGame.dialoguelnln("Ninlil", "I don't think words will persuade him at this point. We will have to fight.");
+        
+        MainGame.dialoguelnln("Calmus", "Yeah... I should've expected that.");
+        
+        MainGame.dialoguelnln("Anahita", "It... it's not ideal, but we'll have to do what we need to...");
+        
+        print("The group fell silent once more.");
+        
+        MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Calmus", "Well, we might as well start moving forward. We can't sit here forever.");
+        
+        MainGame.dialoguelnln("Frigs", "Agreed. Anahita, we'll follow your lead. Whatever you say, goes.");
+        
+        MainGame.dialoguelnln("Anahita", "Alright... Let's see what we can do...!");
+        
+        MainGame.promptToEnter();
     }
 }

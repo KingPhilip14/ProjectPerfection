@@ -74,8 +74,12 @@ public class Game
     private boolean towerBossAttempted;
     private boolean volcanBossAttempted;
     private boolean summitBossAttempted;
+    
+    // Endgame boss battle booleans
     private boolean fultraBossAttempted;
+    private boolean fultraBossDefeated;
     private boolean irwinBossAttempted;
+    private boolean irwinBossDefeated;
     private int resiTutorialAttempts;
     
     private Objective objective;
@@ -392,7 +396,7 @@ public class Game
     
     private void gameOpening()
     {
-        Cutscene.startingCutscene();
+        Cutscene.opening();
     }
     
     private void displayInfo()
@@ -558,21 +562,28 @@ public class Game
             {
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
                 ((Wilderness)currentLocation).setBossBattle(battle, 14);
-                break;
             }
+            break;
             case "Mount Volcan":
             {
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 17);
-                break;
+                
             }
+            break;
             case "Mount Zoni Summit":
             {
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
                 ((Wilderness)currentLocation).setBossBattle(battle, 21);
-                break;
             }
-            default:
+            break;
+            default: // Zoni City
+                if(inSecondPhase && !fultraBossDefeated)
+                {
+                    // Only make the boss battle when in second phase
+//                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFultraBoss(), team);
+//                    ((Wilderness)currentLocation).setBossBattle(battle, 27);
+                }
                 break;
         }
         
@@ -678,7 +689,7 @@ public class Game
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
             if(resiTutorialAttempts == 0 && !testing)
             {
-                Cutscene.warCutscene();
+                Cutscene.invasion();
                 
                 team.add(MainGame.makeCalmus());
                 team.add(MainGame.makeFrigs());
@@ -704,13 +715,13 @@ public class Game
     {
         if(!testing)
         {
-            Cutscene.warCutscene2();
+            Cutscene.invasion2();
         }   
         
         inSecondPhase = true;
         
         // Reduces the population number by an arbitrary amount to show that the world has changed
-        pulchraPopulation = (pulchraPopulation / 2) - 576;
+        pulchraPopulation = (pulchraPopulation / 5) - 600;
         
         // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
@@ -736,7 +747,7 @@ public class Game
         
         if(!testing)
         {
-            Cutscene.postWarCutscene();
+            Cutscene.postInvasion();
         }
     }
     
@@ -815,7 +826,7 @@ public class Game
                 // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!towerBossAttempted && !testing)
                 {
-                    Cutscene.foundNinlilCutscene();
+                    Cutscene.foundNinlil();
                 }   
                 
                 Wilderness tempestTower = ((Wilderness)currentLocation);
@@ -824,7 +835,7 @@ public class Game
                 // If the player wins the boss fight, remove it from Tempest Tower.
                 if(tempestTower.getBossBattle().isWon())
                 {
-                    Cutscene.defeatedNinlilCutscene();
+                    Cutscene.defeatedNinlil();
                     tempestTower.removeBossBattle();
                     objective.update();
                     team.add(MainGame.makeNinlil());
@@ -836,7 +847,7 @@ public class Game
                 // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!volcanBossAttempted) // add !testing
                 {
-                    Cutscene.foundOmegaCutscene();
+                    Cutscene.foundOmega();
                 }   
                 
                 Wilderness volcan = ((Wilderness)currentLocation);
@@ -846,7 +857,7 @@ public class Game
                 if(volcan.getBossBattle().isWon())
                 {
                     defeatedOmegaBoss = true;
-                    Cutscene.defeatedOmegaCutscene();
+                    Cutscene.defeatedOmega();
                     volcan.removeBossBattle();
                     objective.update();
                     
@@ -865,7 +876,7 @@ public class Game
                 // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!summitBossAttempted)
                 {
-                    Cutscene.foundFrigsCutscene();
+                    Cutscene.foundFrigs();
                 }   
                 
                 Wilderness summit = ((Wilderness)currentLocation);
@@ -874,7 +885,7 @@ public class Game
                 // If the player wins the boss fight, remove it from Mount Zoni Summit.
                 if(summit.getBossBattle().isWon())
                 {
-                    Cutscene.defeatedFrigsCutscene();
+                    Cutscene.defeatedFrigs();
                     summit.removeBossBattle();
                     objective.update();
                     team.add(MainGame.makeFrigs());
@@ -1728,10 +1739,10 @@ public class Game
         return v;
     }
     
-    private Town createZoniCity2()
+    private Wilderness createZoniCity2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Town("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", new ArrayList<>(), 29, 0, c);
+        return new Wilderness("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", 27, c);
     }    
     
     private Town createAerogan()
@@ -1957,76 +1968,90 @@ public class Game
      */
     private void checkForCutscene()
     {
-        if(currentLocation.getName().equals("Opicon Forest") && (!currentLocation.isExplored()))
+        if(isNewLocation("Opicon Forest"))
         {
             objective.update();
-            Cutscene.opiconCutscene();
+            Cutscene.opicon();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
             MainGame.setPlayerTeam(team);
         }
-        else if(currentLocation.getName().equals("Aquammoda") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Aquammoda"))
         {
-            Cutscene.aquammodaCutscene();
+            Cutscene.aquammoda();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Degon") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Degon"))
         {
-            Cutscene.degonCutscene();
+            Cutscene.degon();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Zoni City") && (!currentLocation.isExplored()) && (!inSecondPhase))
+        else if(isNewLocation("Zoni City") && (!inSecondPhase))
         {
-            Cutscene.zoniCityCutscene();
+            Cutscene.zoniCity();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Aerogan") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Aerogan"))
         {
-            Cutscene.aeroganCutscene();
+            Cutscene.aerogan();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Tempest Tower") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Tempest Tower"))
         {
-            Cutscene.tempestTowerCutscene();
+            Cutscene.tempestTower();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Infol") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Infol"))
         {
-            Cutscene.infolCutscene();
+            Cutscene.infol();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Mount Volcan") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Mount Volcan"))
         {
-            Cutscene.mountVulcaCutscene();
+            Cutscene.mountVulca();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Mount Zoni") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Mount Zoni"))
         {
-            Cutscene.mountZoniCutscene();
+            Cutscene.mountZoni();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Solice") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Solice"))
         {
-            Cutscene.soliceCutscene();
+            Cutscene.solice();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Mount Zoni Summit") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Mount Zoni Summit"))
         {
             objective.update();  // No cutscene needed
         }
-        else if(currentLocation.getName().equals("Forlorn Cave") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Forlorn Cave"))
         {
-            Cutscene.forlornCaveCutscene();
+            Cutscene.forlornCave();
             objective.update();
         }
-        else if(currentLocation.getName().equals("Elerric") && (!currentLocation.isExplored()))
+        else if(isNewLocation("Elerric"))
         {
-            Cutscene.elerricCutscene();
+            Cutscene.elerric();
+            objective.update();
+        }
+        else if(isNewLocation("Zoni City") && inSecondPhase)
+        {
+            Cutscene.returnToZoni();
             objective.update();
         }
             
-//        objective.update();
         currentLocation.setIsExplored();
+    }
+    
+    /**
+     * Helper method for checkForCutscene() that checks if the given town name hasn't been explored.
+     * @param name
+     * @return 
+     */
+    private boolean isNewLocation(String name)
+    {
+        return currentLocation.getName().equals(name) && (!currentLocation.isExplored());
     }
     
     /**
