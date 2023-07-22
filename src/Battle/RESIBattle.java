@@ -7,9 +7,9 @@ import java.util.ArrayList;
  * A class for taking the player through a RESI Bot battle sequence.
  * @author Ian King
  */
-public class ResiBattle extends Battle
+public class RESIBattle extends Battle
 {
-    public ResiBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
+    public RESIBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
         super(enemyTeam, playerTeam);
         baseGoldAmt = 175;
@@ -26,7 +26,7 @@ public class ResiBattle extends Battle
         
         if(attack.getAttackHit() && !target.isDead())
         {
-            ResiEnemy enemy = ((ResiEnemy)target);
+            RESIEnemy enemy = ((RESIEnemy)target);
         
             enemy.setElement(player.getElement());
 

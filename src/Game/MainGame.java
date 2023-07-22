@@ -10,7 +10,7 @@ import Battle.Item;
 import Battle.OffensiveAttack;
 import Battle.Player;
 import Battle.PlayerClass;
-import Battle.ResiEnemy;
+import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Utilites.MenuHelper;
@@ -326,7 +326,7 @@ public class MainGame
 //        playerFightingTeam.add(fultra);
         
         Enemy.populateAllAttacks();
-        ResiEnemy.populateAllAttacks();
+        RESIEnemy.populateAllAttacks();
 //        Enemy e0 = new Enemy("Electric Elk", "An Elk that can control electricity.", "Electric", playerTeam, true);
 //        Enemy e1 = new Enemy("Water Elk", "An Elk that can control water.", "Water", playerTeam, true);
 //        Enemy e2 = new Enemy("Earth Elk", "An Elk that can control the earth.", "Earth", playerTeam, true);

@@ -8,7 +8,7 @@ import java.util.Random;
  * A class for creating RESI Bot enemies.
  * @author Ian King
  */
-public class ResiEnemy extends Enemy
+public class RESIEnemy extends Enemy
 {
     
     /*
@@ -23,7 +23,7 @@ public class ResiEnemy extends Enemy
     private static ArrayList<DebuffAttack> allDebuffResiAttacks;
     
     // R.E.S.I. Bot: Research Extraction Surveillance Investigator Bot
-    public ResiEnemy(Wilderness currentLocation)
+    public RESIEnemy(Wilderness currentLocation)
     {
         super(currentLocation);
         createElement(currentLocation);
@@ -31,10 +31,9 @@ public class ResiEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
-        xpYield = 25;
     }
     
-    public ResiEnemy(int level, Wilderness currentLocation)
+    public RESIEnemy(int level, Wilderness currentLocation)
     {
         super(level);
         createElement(currentLocation);
@@ -42,10 +41,9 @@ public class ResiEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
-        xpYield = 25;
     }
     
-    public ResiEnemy(int level, String element)
+    public RESIEnemy(int level, String element)
     {
         super(level);
         this.element = element;
@@ -53,7 +51,6 @@ public class ResiEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
-        xpYield = 25;
     }
     
     private String createName()
