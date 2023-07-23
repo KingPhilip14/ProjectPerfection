@@ -577,12 +577,12 @@ public class Game
                 ((Wilderness)currentLocation).setBossBattle(battle, 21);
             }
             break;
-            default: // Zoni City
+            default: // Zoni City in second phase
                 if(inSecondPhase && !fultraBossDefeated)
                 {
                     // Only make the boss battle when in second phase
-//                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFultraBoss(), team);
-//                    ((Wilderness)currentLocation).setBossBattle(battle, 27);
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFultraBoss((Wilderness)currentLocation), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 27);
                 }
                 break;
         }
@@ -882,6 +882,7 @@ public class Game
                 Wilderness summit = ((Wilderness)currentLocation);
                 summit.getBossBattle().start(gold);
                 summitBossAttempted = true;
+                
                 // If the player wins the boss fight, remove it from Mount Zoni Summit.
                 if(summit.getBossBattle().isWon())
                 {
@@ -893,6 +894,28 @@ public class Game
                 
                 currentLocation = getLocation("Mount Zoni");
                 map.updateMap(currentLocation, getLocation("Mount Zoni"));
+                break;
+            case "Zoni City":
+                if(!fultraBossDefeated)
+                {
+                    MainGame.clearScreen();
+                    
+                    if(!fultraBossAttempted)
+                    {
+                        Cutscene.foundResiFultra();
+                    }
+                    
+                    Wilderness city = ((Wilderness)currentLocation);
+                    city.getBossBattle().start(gold);
+                    fultraBossAttempted = true;
+                    
+                    if(city.getBossBattle().isWon())
+                    {
+                        Cutscene.defeatedResiFultra();
+                        city.removeBossBattle();
+                        objective.update();
+                    }
+                }
                 break;
             default:
                 break;
@@ -1742,7 +1765,14 @@ public class Game
     private Wilderness createZoniCity2()
     {
         Coordinate c = new Coordinate(12, 31);
-        return new Wilderness("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", 27, c);
+        Wilderness zoni = new Wilderness("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", 27, c);
+        zoni.addLocalElement("Water");
+        zoni.addLocalElement("Earth");
+        zoni.addLocalElement("Wind");
+        zoni.addLocalElement("Fire");
+        zoni.addLocalElement("Ice");
+        zoni.addLocalElement("Electric");
+        return zoni;
     }    
     
     private Town createAerogan()

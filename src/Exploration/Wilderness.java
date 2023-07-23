@@ -516,6 +516,39 @@ public class Wilderness extends Location
         return team;
     }
     
+    public ArrayList<Enemy> makeFultraBoss(Wilderness currentLocation)
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are increased for 3 turns, and cooldown is less than Charge.", "All", 3, 3));
+        attacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
+        attacks.get(1).setAccuracy(85);
+        attacks.add(new OffensiveAttack("Plasma Blast II", "The user discharges a overwhelming electrical wave. Its accuracy and power are better than normal.", 180, "R. Attack"));
+        attacks.get(2).setAccuracy(51); 
+        OffensiveAttack overdriveII = new OffensiveAttack("Overdrive II", "The user coats themselves in electricity and rams into the target. It now has a higher crit rate.", 115, "Attack");
+        overdriveII.setCritRate(0.35);
+        overdriveII.setAccuracy(75);
+        attacks.add(overdriveII);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(3225); // HP
+        stats.add(325); // Attack
+        stats.add(325); // Defense
+        stats.add(325); // R Attack
+        stats.add(325); // R Defense
+        stats.add(325); // Speed
+        
+        BossEnemy fultra = new BossEnemy("R.E.S.I. Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
+                                    attacks, stats);
+        fultra.setStatDescription("'Fearless Thunder' in a new form.");
+        
+        ArrayList<Enemy> team = new ArrayList<>(3);
+        team.add(new RESIEnemy(currentLocation));
+        team.add(fultra);
+        team.add(new RESIEnemy(currentLocation));
+        
+        return team;
+    }
+    
     @Override
     public String toString()
     {

@@ -2500,10 +2500,12 @@ public class Cutscene
         
         MainGame.dialoguelnln("Anahita", "... She loved you, you know. But you did more than kill. You broke all our hearts.");
         
-        print("Fultra was left there on his knees sobbing as Anahita parted from him to catch up with the rest of the group.");
+        print("Fultra was left there on his knees sobbing as Anahita parted from him to catch up with the others.");
         
         MainGame.ellipsislnln();
         
         MainGame.promptToEnter();
     }
+    
+    
 }
