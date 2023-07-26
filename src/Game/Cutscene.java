@@ -2507,5 +2507,134 @@ public class Cutscene
         MainGame.promptToEnter();
     }
     
-    
+    public static void foundIrwin()
+    {
+        print("Anahita and the others successfully made it through the maze of rubble and Bots and arrived at the aircraft's "
+                + "entrance.");
+        
+        MainGame.dialoguelnln("Calmus", "This is gonna change everything that's happened, right? Once we go in, we either win "
+                + "or lose.\n\tThere's no going back from this.");
+        
+        MainGame.dialoguelnln("Frigs", "That's right... This is where it'll all end.");
+        
+        MainGame.dialoguelnln("Anahita", "If we're all ready... we can head in then...");
+        
+        MainGame.dialoguelnln("Ninlil", "I think we're ready as we will be. Thank you all for letting me be here with you all. "
+                + "Despite\n\teverything, I know I belong, and you guys helped me see that.");
+        
+        MainGame.dialoguelnln("Gaea", "Of course, Ninlil. I'm glad we all settled our differences. You're all the best!");
+        
+        print("The quick words of encouragement brought the group's spirits up, despite the fear they all felt. No one was "
+                + "brave/enough to admit it, but they all knew how each other felt. If they don't succeed here, Pulchra may "
+                + "fall into/ruin forever. What would that mean for the rest of the world?");
+        
+        MainGame.dialoguelnln("Anahita", "Let's head in then. Let's save our home.");
+        
+        print("The others nodded and followed Anahita's leaed into the aircraft. When they entered, it was like they entered "
+                + "a new/world. Despite the black exterior, the inside was completely white. There were bright lights and "
+                + "colorful/panels everywhere. Frigs attempted to touch a few buttons, but Gaea smacked his hand away. He "
+                + "rubbed his hand as they continued into the space.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The group stumbled upon an area that had a lot of Pulchrians in chambers. They had tubes and wires coming out "
+                + "of them./Anahita and the others were motified. No one they personally knew was there, but they could "
+                + "recognize the faces.");
+        
+        MainGame.dialoguelnln("Gaea", "Wh-what is he doing to everyone??");
+        
+        MainGame.dialoguelnln("Frigs", "It's kind of hard to tell... The fuilds in the tubes look like ethrellium. That "
+                + "might\n\tbe what he's after, but why...?");
+        
+        MainGame.dialoguelnln("Calmus", "We should keep moving first. We might get the answer when we find Irwin.");
+        
+        print("The rest agreed, and they left there fellow people in the chambers. Anahita's heart ached for them. Were they "
+                + "alive?/What were their last moments?");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("There were many different doors that lead to different areas. They group couldn't tell which doors lead them "
+                + "to Irwin./Just then, there was a voice that spoke over a speaker system.");
+        
+        MainGame.dialoguelnln("Irwin", "(Through speakers) Hmph, I see Fultra was incapable of stopping you all.");
+        
+        print("The group looked around confused before they realized that the voice was coming from the aircraft's systems.");
+        
+        MainGame.dialoguelnln("Ninlil", "Irwin!");
+        
+        MainGame.dialoguelnln("Irwin", "(Through speakers) I can only presume you're all here to fight me. Very well. I will "
+                + "accept\n\tyour challenge. Just know that I refuse to lose. My goals are necessary for saving the world.");
+        
+        MainGame.dialoguelnln("Calmus", "What're you doing with all the ethrellium you're harvesting from us? Why our "
+                + "people?");
+        
+        MainGame.dialoguelnln("Irwin", "Excellent question, Calmus. I'll explain everything when you all find me. Just come "
+                + "through this door.");
+        
+        MainGame.dialoguelnln("Frigs", "Well shoot, Calmus was right. We will get our answer afterall.");
+        
+        print("One of the doors opened and led to a large, dimmly lit room. Skeptically, the group entered. Then, the door "
+                + "close behind/them. Calmus tried to pry the door open but to no avail. This was it.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Due to the lighting, only silhouettes could be seen. Irwin's was seen in the center of the room. There were "
+                + "two,/large silhouettes next to him as well. They appeared to be larger shaped Bots.");
+        
+        MainGame.dialoguelnln("Calmus", "Those other silhouettes look similar to R.E.S.I. Omega! But we defeated it earlier, "
+                + "didn't we?");
+        
+        MainGame.dialoguelnln("Irwin", "That you did. However, I remade to be better and stronger. You defeating the first "
+                + "one was\n\tpure luck. You cannot beat two of them *and* me at the same time.");
+        
+        MainGame.dialoguelnln("Frigs", "Tch, he's crazy!");
+        
+        MainGame.dialoguelnln("Irwin", "Crazy? You know what's crazy? Seeing this world perish to its own foolishness! "
+                + "You all\n\thave lived a secluded live where you live in eternal peace! The rest of the world deserves it "
+                + "too!\n\tYou all have perfect lives. I'm here to spread it to the rest of the world... It needs a reset.");
+        
+        MainGame.dialoguelnln("Gaea", "Perfect lives? We are *far* from perfect! We may not know all that the rest of the "
+                + "world goes\n\tthrough, but we are far from perfection here!");
+        
+        MainGame.dialoguelnln("Ninlil", "Gaea's right! We all still have our flaws and imperfections here! That's part of "
+                + "being human!");
+        
+        MainGame.dialoguelnln("Anahita", "People pleasing, self-centeredness, arrogance, being emotional, fearful, alone... "
+                + "We\n\tstill have struggles. Why do you think we're different? Us having powers makes us no different!");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Irwin", "Ah, but that's where you're wrong! See, you all have the power to control the "
+                + "elements.\n\tThere's a natural balance. Instead of you all dominating each other, you all "
+                + "understand that\n\tone element is stronger than the other. It creates a sense of mutual understanding. "
+                + "The rest of us...\n\tWe suffer through wars and loss because there is no balance. Take a guess as to why "
+                + "I've\n\tbeen harvesting ethrellium from you all.");
+        
+        MainGame.dialoguelnln("Frigs", "You're trying to make the rest of the world like us...");
+        
+        MainGame.dialoguelnln("Irwin", "Correct, but only partly. I will restart the world by destroying it and restart "
+                + "humanity\n\tin a way for everyone to be viewed as equal. I will lead it. I will be powerful. I will "
+                + "control all elements.\n\tI will be the one people look up to. I will save the world!");
+        
+        MainGame.dialoguelnln("Gaea", "And more death is supposed to solve it??");
+        
+        MainGame.dialoguelnln("Iriwn", "It's simply a small price to pay for the betterment of the world.");
+        
+        MainGame.dialoguelnln("Calmus", "You're insane!");
+        
+        MainGame.dialoguelnln("Irwin", "What's insane, Calmus, is that no one else in the world has tried to resolve all "
+                + "these problems!\n\tI'm the only one with enough sense to help this fallen world.");
+        
+        MainGame.dialoguelnln("Anahita", "There's no helping you! Even though the world is corrupt, it doesn't mean that "
+                + "*you* decide\n\tthe face of everyone else. This 'perfection' you're seeking for can never happen. Man "
+                + "can't be perfect!\n\tYou need to accept that!");
+        
+        MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to attain perfection! I *will* have "
+                + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
+                + "hero!");
+    }
 }
