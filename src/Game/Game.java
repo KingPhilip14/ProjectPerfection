@@ -236,7 +236,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(20);
+            anahita.setLevel(27);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -250,7 +250,7 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(20);
+            gaea.setLevel(27);
             
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
@@ -278,7 +278,7 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(20);
+            calmus.setLevel(27);
             
             Player ninlil = MainGame.makeNinlil();
             ninlil.setMaxHealth(9999);
@@ -293,12 +293,28 @@ public class Game
             ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
             ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
             ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
-            ninlil.setLevel(20);
+            ninlil.setLevel(27);
+            
+            Player frigs = MainGame.makeNinlil();
+            frigs.setMaxHealth(9999);
+            frigs.setCurrentHealth(9999);
+            frigs.setAttack(9999);
+            frigs.setDefense(9999);
+            frigs.setRangedAttack(9999);
+            frigs.setRangedDefense(9999);
+            frigs.setSpeed(9999);
+            frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+            frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+            frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+            frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+            frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+            frigs.setLevel(27);
             
             team.add(anahita);
             team.add(gaea);
             team.add(calmus);
             team.add(ninlil);
+            team.add(frigs);
             
             gold = 100000;
         }
@@ -914,6 +930,8 @@ public class Game
                         Cutscene.defeatedResiFultra();
                         city.removeBossBattle();
                         objective.update();
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                        ((Wilderness)currentLocation).setBossBattle(battle, 28);
                     }
                 }
                 break;
@@ -1043,7 +1061,13 @@ public class Game
         
         // Removes the location from the overall ArrayList to the known ArrayList
         knownLocations.add(nextLocation);
-        nextLocation = remainingLocations.remove(0);
+        
+        // If there is more than one remaining location, set it as the next location.
+        if(remainingLocations.size() > 1)
+        {
+            nextLocation = remainingLocations.remove(0);
+        }
+            
 //        nextLocation.setIsExplored();
 //        levelUpOccurred = false;
     }

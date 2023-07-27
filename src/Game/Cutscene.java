@@ -2129,7 +2129,7 @@ public class Cutscene
     {
         print("The group arrived to the remains of Zoni City. The place that once had people at every corner was now "
                 + "destitute/of them. All the shops, homes, and buildings were destroyed. The roads that were once "
-                + "beautifully/constructed were torn up and had gapping holes in them.");
+                + "beautifully/constructed were torn up and had gaping holes in them.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2147,7 +2147,7 @@ public class Cutscene
         
         print("Ninlil nodded before quickly leaving the group to not draw attention to them. She quietly created an updraft "
                 + "that/lifted her up into the air. As she scanned the city, she saw a large, matte black aircraft in the "
-                + "center./She then got back down and regrouped with the others.");
+                + "city's center./She then descended and regrouped with the others.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2209,7 +2209,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Ninlil", "We're getting close, guys. If we sneak our way through, we'll be there quickly.");
         
-        MainGame.dialoguelnln("Calmus", "Good. These fights are still tiring. Is everyone okay?");
+        MainGame.dialoguelnln("Calmus", "Glad to hear it. I'm getting tired of these metal buckets... Is everyone okay?");
         
         MainGame.dialoguelnln("Frigs", "Besides the endless swarm out there, yeah, I'm swell.");
         
@@ -2245,10 +2245,10 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("Fultra lifted his head, the sun shining on his now dusty and metallic face. The group collectively gasped at "
-                + "the sight. It was him. His body... wasn't his body. He was half Pulchrian, half Bot. The same metal the "
-                + "aircraft Ninlil saw was what the metal on his body was made of. His torso, left arm, and right leg were "
-                + "completely changed. The rest of him was still flesh.");
+        print("Fultra lifted his head, the sun shining on his now dusty face. The group collectively gasped at the sight. "
+                + "It was/him. His body... wasn't his body. He was half Pulchrian, half Bot. The same metal the aircraft "
+                + "Ninlil saw was/what the metal on his body was made of. His torso, left arm, and right leg were "
+                + "completely/changed. The rest of him was still flesh.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2277,7 +2277,7 @@ public class Cutscene
                 + "we've all\n\tbeen through, everything he's done to the people you *love*, and you're throwing it all away?");
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "I'm not throwing it all away... He knows what he's doing. It'll help "
-                + "everyone -- the *entire world* -- if he succeeds. That includes you all.");
+                + "everyone\n\t-- the *entire world* -- if he succeeds. This includes you all.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2292,6 +2292,8 @@ public class Cutscene
         MainGame.dialoguelnln("R.E.S.I. Fultra", "NO! There's nothing to discuss! I'm going to stop you all here. Right now.");
         
         MainGame.dialoguelnln("Frigs", "Everyone, be careful!");
+        
+        MainGame.promptToEnter();
     }
     
     public static void defeatedResiFultra()
@@ -2303,7 +2305,7 @@ public class Cutscene
         
         print("The group, panting, slowly recovered their breath. Gaea, who was behind everyone, pushed them slightly out the "
                 + "way and/walked up to Fultra. He looked up and the two made eye contact. The person she though was dead was "
-                + "right in/front of her. Gaea's face was hot and has tears rolling down her cheeks. She had too many emotions "
+                + "right in/front of her. Gaea's face was hot and had tears rolling down her cheeks. She had too many emotions "
                 + "and thoughts/going through her head to think straight.");
         
         MainGame.ellipsislnln();
@@ -2314,9 +2316,9 @@ public class Cutscene
         print("*SMACK*");
         
         print("Gaea backhanded Fultra with a hand covered in stone. His head shook from the recoil as he looked back at her, "
-                + "a massive/red mark now on his cheek. His own eyes/started to water, but not from the pain. He knew Gaea "
-                + "well, and/she would *never* physically harm someone unless they either made her absolutely livid or if it"
-                + "was justified./Fultra knew that it was both in this case.");
+                + "a massive/red mark now on his cheek. His own eyes started to water, but not from the pain. He knew Gaea "
+                + "well, and/she would *never* physically harm someone unless they either made her livid or if it "
+                + "was fairly justified./Fultra knew that it was both in this case.");
         
         print("Calmus took a step to go intervene, but Frigs put a hand on his shoulder.");
         
@@ -2328,7 +2330,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Gaea", "I thought you *died*! What... what happened for you to do all of this? To become... "
-                + "*this?*");
+                + "*this*?");
         
         print("Fultra was quiet for a moment before speaking.");
         
@@ -2353,25 +2355,26 @@ public class Cutscene
         
         MainGame.dialoguelnln("Irwin", "You are my key to perfection. You *will* help me.");
         
-        print("Irwin, with his R.E.S.I. suit on, press a button on a remote on his arm. His aircraft which was hovering above "
-                + "the/city landed in the city's center, and a large door opened with a platform leading up to it. The Bots "
-                + "that attacked/Fultra picked up his almost lifeless body and brought him into the aircraft. Irwin then "
-                + "walked inside.");
+        print("Irwin, with his R.E.S.I. suit on, pressed a button on a remote on his arm. His aircraft which was hovering "
+                + "above the/city landed in the city's center, and a large door opened with a platform leading up to it. "
+                + "The Bots that attacked/Fultra picked up his almost lifeless body and brought him into the aircraft. "
+                + "Irwin then walked inside.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
         print("(FLASHBACK: The day of the invasion when Fultra was attacked.)");
         
-        print("The inside of the aircraft was very spacious. There many scientific instruments, panels, chambers, and more. "
+        print("The inside of the aircraft was very spacious. There many scientific instruments, panels, chambers, and more./"
                 + "Inside some chambers were other Pulchrians. They had many tubes inside them, with a green liquid coming "
                 + "out. Ethrellium.");
         
-        print("Irwin had been studying the land of Pulchra for sometime. Even though outsiders were never able to make it in "
-                + "before/him because of the violent storms surrounding the land, he was able to create a type of metal that "
-                + "could withstand the storms and elements. This is the same metal the R.E.S.I. Bots are made of. He created "
-                + "a surveillance bot that would fly through the storms and stay in Pulchra. With microphones and cameras, "
-                + "he was able to spy on the people. That's how he knew about Anahita, the group, and their families.");
+        print("Irwin had been studying the land of Pulchra for sometime. Outsiders were never able to arrive to alive before "
+                + "him/because of the violent storms surrounding the land. He was able to create a type of metal that could "
+                + "withstand the/storms and elements with funding he received from the government. This is the same metal "
+                + "the R.E.S.I./Bots and the aircraft are made of. He created a surveillance bot that would fly through "
+                + "the storms/and stay in Pulchra. With microphones and cameras, he was able to spy on the people. That's "
+                + "how/he knew about Anahita, the group, their families, and the source of their powers.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2396,14 +2399,17 @@ public class Cutscene
                 + "electricity.");
         
         MainGame.dialoguelnln("Irwin", "Fultra, you are okay. You're injured, but I can help you. You have two options right "
-                + "now.\n\tI offered for you to join me before, so this is your chance of redemption. Either you agree and "
-                + "work with me,\n\tor you will die here and now. If you work with me, we will be able to accomplish "
+                + "now.\n\tI offered for you to join me before, so this is your last chance of redemption. Either you agree "
+                + "and work with me,\n\tor you *will* die here and now. If you work with me, we will be able to accomplish "
                 + "something that will be\n\tbeneficial to yourself and the rest of the world.");
         
-        print("Fultra's heart was fearful. He felt the pain of his broken bones and how injured he was. He was close to "
+        print("Fultra's heart was fearful. He felt the pain of his broken bones and how injured he was. He knew was close to "
                 + "dying,/and he was afraid. This choice could be the end of his life...");
         
         MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Fultra", "... I'm listening...");
         
@@ -2412,34 +2418,34 @@ public class Cutscene
         
         print("(FLASHBACK: The day of the invasion when Fultra was attacked.)");
         
-        print("Irwin completed the surgery on Fultra to make him half R.E.S.I. Bot. This was enough for him to be able to use "
-                + "Fultra like the other Bots. Just as he could remotely control the Bots he made, he could also control "
-                + "Fultra. However, he didn't take over his mind completely.");
+        print("Irwin completed the surgery on Fultra to make him half a R.E.S.I. Bot. This was enough for him to be "
+                + "able to/use Fultra like the other Bots. Just as he could remotely control the Bots he made, he could "
+                + "also partly control Fultra. Irwin still needed him to be partly human.");
         
-        MainGame.dialoguelnln("Irwin", "You will be by my side. You are my best creation. And with you, we will "
+        MainGame.dialoguelnln("Irwin", "You will be by my side. You are my best creation. With you, we will "
                 + "acheive\n\twhat man thought to be impossible. Do you feel it, Fultra? The new strength you've just "
                 + "unlocked?\n\tYou are *much* stronger than you were before.");
         
         print("Fultra stepped down from the operation table with his new body. He stumbled at first, but he quickly caught "
-                + "himself. He could feel a new form of power flowing through him. His electric powers were amplified "
+                + "himself./He could feel a new form of power flowing through him. His electric powers were amplified "
                 + "exponentionally.");
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "Yes... I feel it... It feels good. Very good.");
         
-        MainGame.dialoguelnln("Irwin", "Excellent. Now, let me explain what our goals are, together.");
+        MainGame.dialoguelnln("Irwin", "Excellent. Now, let me explain what our goals are.");
         
         print("Irwin explained how the world was in ruin. He explained the corruption, wars, and tragedies that happen every "
                 + "day to Fultra.");
         
-        MainGame.dialoguelnln("Irwin", "And this is why I need *you*, Fultra. You are the strongest Pulchrian, are you not? "
+        MainGame.dialoguelnln("Irwin", "This is why I need *you*, Fultra. You are the strongest Pulchrian, are you not? "
                 + "That's\n\twhy I want to work with you! With our combined strengths, we can solve the problems of this world. "
                 + "We can set\n\tit free from its pain and start over. The world is imperfect now, but we can work towards... "
                 + "perfection.");
         
-        MainGame.dialoguelnln("R.E.S.I. Fultra", "Yes, I understand. It makes sense now... And we had no idea that the world "
+        MainGame.dialoguelnln("R.E.S.I. Fultra", "Yes, I understand. It makes sense now... We had no idea that the world "
                 + "was so corrupt...");
         
-        MainGame.dialoguelnln("Irwin", "Yes, my son! You're understanding it now. I do apologize for the damage done here to "
+        MainGame.dialoguelnln("Irwin", "Yes! You're understanding it now. I do apologize for the damage done here to "
                 + "your home.\n\tWith what we need to do here, it needs to be done by force, which is a worthy sacrifice for "
                 + "the rest of the world.");
         
@@ -2465,12 +2471,13 @@ public class Cutscene
                 + "really, but\n\tI've lost it all for you now.");
         
         MainGame.dialoguelnln("Gaea", "Frigs is right. We've all had to go through so much, and for what? You were afraid to "
-                + "die,\n\tright? Newsflash -- WE ALL WERE. Yet none of us decided to let THOUSANDS die for our single "
-                + "life... If your grandmother saw you right now...");
+                + "die,\n\tright? Newsflash -- WE ALL ARE! Yet none of us decided to let THOUSANDS of *our* people die for "
+                + "our\n\tindividual lives... If your grandmother saw you right now...");
         
         print("Fultra's breath stopped momentarily after hearing that. He remembered that he attacked his own home village. "
                 + "The place/where he grew up and was raised. He was blinded. He didn't care what he did. As long as he "
-                + "lived,/that's what mattered.");
+                + "lived,/that's what mattered. His mind felt like twisted. His human half was seeing the logic in "
+                + "the words/being said, but his programmed, robotic self was fighting against it to say it was incorrect.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2479,8 +2486,8 @@ public class Cutscene
                 + "for this\n\tbetrayal. We've been by your side since we were all kids, and you decided to harm us and our "
                 + "families.");
         
-        MainGame.dialoguelnln("Ninlil", "Our hearts collectively ache. We ached for you too, Fultra. And I know you can tell "
-                + "we're all\n\tfurious. We have every right to be.");
+        MainGame.dialoguelnln("Ninlil", "Our hearts collectively ached. We ached for you too, Fultra. I know you can tell "
+                + "we're all\n\tfurious right now, but we have *every* right to be.");
         
         MainGame.dialoguelnln("Anahita", "Seeing you fall so far... I can't tell if this hurts more than knowing that you "
                 + "died...");
@@ -2496,7 +2503,8 @@ public class Cutscene
                 + "Fultra we're\n\tlooking at doesn't deserve it. You're nothing more than a coward. A selfish coward.");
         
         print("With that, Gaea was the first to leave Fultra. She marched off to find a new place to hid from the R.E.S.I. "
-                + "Bots/that were still around. Next came Frigs, then Calmus, then Ninlil. Fultra looked up at Anahita.");
+                + "Bots/that were still around. Next came Frigs, then Calmus, then Ninlil. Fultra looked up at Anahita, but "
+                + "she/couldn't make eye contact with him.");
         
         MainGame.dialoguelnln("Anahita", "... She loved you, you know. But you did more than kill. You broke all our hearts.");
         
@@ -2636,5 +2644,7 @@ public class Cutscene
         MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to attain perfection! I *will* have "
                 + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
                 + "hero!");
+        
+        MainGame.promptToEnter();
     }
 }
