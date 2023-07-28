@@ -2812,14 +2812,137 @@ public class Cutscene
         
         MainGame.dialoguelnln("Fultra", "That doesn't matter. I'm about to show you you're greatest mistake.");
         
-        MainGame.dialoguelnln("Perfected Irwin", "Hmm...?");
+        MainGame.dialoguelnln("Perfected Irwin", "Hmm?");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        // Fultra's energy starts to leak out more and cause him pain. He's a living bomb that will destroy anything.
+        print("As Fultra said that, his body started to glow brightly. His body became a living time bomb. By super charging "
+                + "himself and/the R.E.S.I. armor he had on, he was causing his body and robotic systems to overload. This "
+                + "would only result in one thing. A destructive explosion.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "What are you doing? Stop that at once!");
+        
+        print("As the two kept fighting, Fultra started push them up higher in the air. Irwin was fighting back with "
+                + "different/elemental attacks all at once. Despite the added injuries, Fultra kept pushing on.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "GET AWAY FROM ME!");
+        
+        MainGame.dialoguelnln("Gaea", "What's going on up there??");
+        
+        print("Calmus walked up to her and put a hand on her shoulder.");
+        
+        MainGame.dialoguelnln("Calmus", "He's... he's saving us.");
+        
+        print("Gaea gave him a concerned look.");
+        
+        MainGame.dialoguelnln("Gaea", "What does that mean?");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
+        
+        print("As Fultra created enough space between him and the group, he kept attacking Irwin. With every strike, he "
+                + "spoke.");
+        
+        MainGame.dialoguelnln("Fultra", "I was a fool to give into the temptation! I was a fool to trust you! You don't care "
+                + "about the\n\tworld. You only care about yourself! You're a monster! A fraud! With this, I hope to "
+                + "redeem myself.\n\tI tarnished my name being by your side and betraying my family. May they remember me "
+                + "who I once\n\twas before.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "Fultra, stop this! We will both die if you do this! I promised you so much, "
+                + "and you\n\twant to throw it all away?!");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Fultra", "The live of one pales in comparison to the lives of many. My one life will save "
+                + "others\n\tfrom your tyranny. With my last breath, I will take you down here and now!");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Perfected Irwin", "NOOOOOOO!");
+        
+        print("After his last words, Fultra shined brightly like a star. The light was so blinding that the group left on the "
+                + "top of/the aircraft had to shield their eyes. Fultra smiled as he felt his body deteriorate even more. "
+                + "He knew that his/last act was for good and not evil. Irwin tried to free himself from Fultra's grasp, but "
+                + "to no/avail. Fultra mumbled one last thing.");
+        
+        MainGame.dialoguelnln("Fearless Thunder", "I love you, Gaea. Calmus, keep your promise; watch over her for me.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("(*BOOM*)");
+        
+        print("Fultra's body exploded, purple lightning and sparks flying everywhere. The group jumped down from the aircraft "
+                + "to take/cover from the falling sparks and debris.");
+        
+        print("Then everything fell quiet.");
+        
+        MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("The group emerged from their cover and looked at the sky. Irwin was gone... Fultra too. Gaea fell to her knees "
+                + "and started/sobbing. Calmus and Anahita rushed to her to console her.");
+        
+        MainGame.dialoguelnln("Frigs", "He... he sacrificed himself... He's...");
+        
+        MainGame.dialoguelnln("Ninlil", "He wanted to redeem himself from his actions... He saved us.");
+        
+        MainGame.dialoguelnln("Gaea", "F-fultra... Just when we got you back...");
+        
+        print("Anahita held Gaea tightly.");
+        
+        MainGame.dialoguelnln("Anahita", "He did what he knew was necessary... He lived up to his name.");
+        
+        MainGame.dialoguelnln("Everyone", "Fearless Thunder...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("All the R.E.S.I. Bots shut down after Irwin's death. The remote he had on the arm of his R.E.S.I. suit was "
+                + "the central/control unit. They were now lifeless chunks of metal.");
+        
+        MainGame.dialoguelnln("Frigs", "What do we do now? We can't clean all this up on our own, surely.");
+        
+        MainGame.dialoguelnln("Anahita", "We need to let everyone else know. They need to know that peace has been restored. "
+                + "Everything\n\twill fall into place.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("A few years later...");
+        
+        print("Amidst the blue terror called the ocean, there is a special, small land called Pulchra. After being terrorized "
+                + "by a man/who saught to achieve the impossible, they were preparing and recovering from the damage done. "
+                + "While most places/were restored, some still had some work to do.");
+        
+        print("Nevertheless, there were major changes in the land. Anahita, Gaea, Calmus, Ninlil, and Frigs all became "
+                + "the/Elders of their respective town -- Aquammoda, Degon, Infol, Arrogan, and Solice. Elder Clairdra "
+                + "would remain/the Elder of Elerric until a new candidate was found.");
+        
+        print("A national meeting was held in New Zoni City, with Anahita leading with a speech.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Anahita", "Good evening, Pulchra!");
+        
+        print("The audience cheered. People like Merda, Fleur, Pheu, and Lyra were near the front where Anahita was "
+                + "speaking.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        
+        
+        /* 
+            Fast foward a few years into the future. Pulchra is still in some ruin, but is mostly rebuilt. 
+            The group is now the new group of Elders, and make someone the new Elder Vitorem. Then there's a ceremony on 
+            a new holiday, 'The Thunderous Day' in rememberance of Fultra. 
+        */
     }
 }
