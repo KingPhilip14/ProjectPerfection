@@ -2313,7 +2313,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("*SMACK*");
+        print("(*SMACK*)");
         
         print("Gaea backhanded Fultra with a hand covered in stone. His head shook from the recoil as he looked back at her, "
                 + "a massive/red mark now on his cheek. His own eyes started to water, but not from the pain. He knew Gaea "
@@ -2383,7 +2383,7 @@ public class Cutscene
         
         print("With Fultra on an operation table, Irwin approached him and pressed a button on a large panel. Machinery "
                 + "with/different parts for operation whirred and surrounded Fultra with pieces of matte black metal. The "
-                + "Bots specifically broke some/of his bones during the attack -- his rub cage, left arm, and right leg. "
+                + "Bots specifically broke some/of his bones during the attack -- his rib cage, left arm, and right leg. "
                 + "Iwrin had already planned to replace them.");
         
         MainGame.dialoguelnln("Irwin", "All according to plan...");
@@ -2408,9 +2408,6 @@ public class Cutscene
         
         MainGame.ellipsislnln();
         
-        //---------------------------------------------------------------------------------------------------------------------
-        MainGame.promptToEnter();
-        
         MainGame.dialoguelnln("Fultra", "... I'm listening...");
         
         //---------------------------------------------------------------------------------------------------------------------
@@ -2420,7 +2417,7 @@ public class Cutscene
         
         print("Irwin completed the surgery on Fultra to make him half a R.E.S.I. Bot. This was enough for him to be "
                 + "able to/use Fultra like the other Bots. Just as he could remotely control the Bots he made, he could "
-                + "also partly control Fultra. Irwin still needed him to be partly human.");
+                + "also/partly control Fultra. Irwin still needed him to be partly human.");
         
         MainGame.dialoguelnln("Irwin", "You will be by my side. You are my best creation. With you, we will "
                 + "acheive\n\twhat man thought to be impossible. Do you feel it, Fultra? The new strength you've just "
@@ -2476,7 +2473,7 @@ public class Cutscene
         
         print("Fultra's breath stopped momentarily after hearing that. He remembered that he attacked his own home village. "
                 + "The place/where he grew up and was raised. He was blinded. He didn't care what he did. As long as he "
-                + "lived,/that's what mattered. His mind felt like twisted. His human half was seeing the logic in "
+                + "lived,/that's what mattered. His mind felt twisted. His human half was seeing the logic in "
                 + "the words/being said, but his programmed, robotic self was fighting against it to say it was incorrect.");
         
         //---------------------------------------------------------------------------------------------------------------------
@@ -2645,6 +2642,184 @@ public class Cutscene
                 + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
                 + "hero!");
         
+        MainGame.promptToEnter();
+    }
+    
+    public static void defeatedIrwin()
+    {
+        MainGame.dialoguelnln("Irwin", "NO, NO, NO, NO!!! I CANNOT LOSE HERE WHEN I'M SO CLOSE!");
+        
+        print("The R.E.S.I. Omega models were completely destroyed and dismantled, ethrellium oozing out of them. Irwin was "
+                + "injured with/a crazed look in his eyes.");
+        
+        MainGame.dialoguelnln("Calmus", "Irwin! This needs to stop now! You've done enough harm. Please -- just leave with "
+                + "your life!\n\tLet us have peace.");
+        
+        MainGame.dialoguelnln("Irwin", "And let the rest of the world suffer?! NO! I'm so close to attaining the impossible! "
+                + "I WILL\n\tHAVE WHAT'S MINE!");
+        
+        print("Irwin scrambled to a part of the room that had glowing lights and a large red button. After pressing it, it "
+                + "revealed a/large syringe filled with purple ethrellium and a platform. He snatched the syringe and took "
+                + "the platform up/to the top of the aircraft.");
+        
+        MainGame.dialoguelnln("Frigs", "Get back here, coward!");
+        
+        MainGame.dialoguelnln("Ninlil", "We need to go after him!");
+        
+        print("Calmus and Anahita used their powers together to use the combo attack Exploding Geyser. The immense heat "
+                + "melted the/roof of the aircraft faster than Calmus' normal fire attacks could've.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+    }
+    
+    public static void foundFinalBoss()
+    {
+        print("The group then flew up to the roof using updrafts Ninlil created. There, they confronted Irwin.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "I shouldn't be in this form yet, but you've all left me no choice.");
+        
+        print("As the group made it to the top of the aircraft, they Irwin in a different form. He was glowing with an "
+                + "iridescent/aura. A strong gust of wind -- stronger than Ninlil's -- kept him in the air. The group had "
+                + "to/catch their balance before they slipped off the edge of the aircraft.");
+        
+        MainGame.dialoguelnln("Gaea", "Wh-what happened to him?? He's glowing!");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "The ethrellium in the syringe was a combination of all the extractions "
+                + "I've taken\n\tfrom every Pulchrian in my lab. I know have control over *every* element!");
+        
+        MainGame.dialoguelnln("Frigs", "That's possible??");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "I told you! Perfection was simply at my fingertips. It was only a matter of "
+                + "time.");
+        
+        MainGame.dialoguelnln("Anahita", "Guys... I don't know if we'll be able to defeat him in this state...");
+        
+        MainGame.dialoguelnln("???", "I'll assist you!");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("Just then, Fultra flew in and landed next to the group. A scowl grew on Irwin's face as the group became "
+                + "skeptical/of their former friend attempting to lend a hand.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "You! I should've let my Bots kill you when I had the chance.");
+        
+        MainGame.dialoguelnln("Calmus", "Why are you here? You've already betrayed us, and *now* you want to help?");
+        
+        MainGame.dialoguelnln("R.E.S.I. Fultra", "When you all left, I realized that I truly wasn't myself. Irwin planted a "
+                + "chip in\n\tmy head to keep me mostly under his control. I was able to fight against the programming and "
+                + "destroy it.\n\tEverything you guys said... You were right. I was a coward, but I'm here to aid you. I "
+                + "know who\n\tI am. I hope you can all forgive me, but I am here to fight against *him*.");
+        
+        MainGame.dialoguelnln("Gaea", "... we forgive you.");
+        
+        print("The group was taken aback by how quickly Gaea's heart changed toward Fultra. After some thought, they realized "
+                + "that she/would know him the best out of any of them. If her judgement said to trust him, it was probably "
+                + "for the best.");
+        
+        MainGame.dialoguelnln("Fultra", "Thank you for trusting me. I truly am sorry...");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Perfected Irwin", "I should've foreseen this coming... No matter. Once I dispose of you all, "
+                + "I will\n\tnever make another mistake. I have found perfection! I *am* perfection! The future of the world "
+                + "rests in my hands!");
+        
+        MainGame.dialoguelnln("R.E.S.I. Fultra", "You're nothing but a man with a skewed vision of the world! You won't "
+                + "continue\n\tanymore with your plans!");
+        
+        MainGame.dialoguelnln("Anahita", "No one can be perfect, and that's something you need to accept! The world is "
+                + "suffering, but\n\tthat doesn't mean killing everyone to restart it is the solution!");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "What do you know? You live here in paradise! Your ignorance will cause "
+                + "your downfall. Your story ends here!");
+        
+        MainGame.promptToEnter();
+    }
+    
+    public static void defeatedFinalBoss()
+    {
+        print("The group was struggling to defeat this 'perfected' form of Irwin. He would only attack them by using elements "
+                + "that/were strong against each individual.");
+        
+        MainGame.dialoguelnln("Anahita", "There's... there's nothing we can do! We've barely done anything to him.");
+        
+        MainGame.dialoguelnln("Frigs", "(*pant*) Just keep... attacking him! He'll have to get tired eventually!");
+        
+        MainGame.dialoguelnln("Ninlil", "Frigs, think! We're more tired than he is!");
+        
+        MainGame.dialoguelnln("Gaea", "(*pant pant*) Yeah... I'm really running out of steam here!");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "That's how things should be! You cannot stop me!");
+        
+        print("Fultra was contemplating what he could do. He wanted to redeem himself for his actions. For his friends. For "
+                + "his/grandmother. For Gaea. Just then, an idea came to his mind. It was far from ideal, but he knew it "
+                + "would work./He caught Calmus' attention and told him his plan.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Calmus", "Fultra... are you sure about this? I'm sure it'll work, but--");
+        
+        MainGame.dialoguelnln("Fultra", "I'm... I'm sure. We can't let him win.");
+        
+        MainGame.dialoguelnln("Calmus", "... U-understood. Let's do it.");
+        
+        MainGame.dialoguelnln("Fultra", "One more thing, Calmus...");
+        
+        MainGame.dialoguelnln("Calmus", "What's up? I'll do whatever you need. I... I trust you.");
+        
+        print("Fultra smiled at the comment.");
+        
+        MainGame.dialoguelnln("Fultra", "It's mutual, then. That warms my heart.");
+        
+        MainGame.ellipsislnln();
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Fultra", "Everyone, watch out!");
+        
+        print("The others and Irwin were so distracted in their own chaos, that they didn't see the giant attack coming their "
+                + "way./Fultra and Calmus combined their powers to use the combo attack Flaming Bolt. Anahita, Gaea, Ninlil, "
+                + "and Frigs all/jumped out the way, and the attack hit Irwin directly.");
+        
+        MainGame.dialoguelnln("Frigs", "I should call you guys Hot Shots after that. Awesome aim!");
+        
+        print("Smoke covered the battle. Fultra then took that time to quickly super charge himself. He used so much "
+                + "electricity/that just being within 10 feet of him caused the others' hair to stand up from the static. "
+                + "The R.E.S.I./upgrades allowed him to reach this level of power, but it was more than his body could "
+                + "handle. He/was still injured from the fight with his friends, but he pushed through. He could feel his "
+                + "body start/to deteriorate as he charged.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        print("As the smoke cleared from the Flaming Bolt attack, the group could only see the blue of lighting that was "
+                + "Fultra./He rammed himself into Irwin, and the two started their own duel. Calmus held his breath as he "
+                + "watched./He started to pray and hope that this plan worked, even though he knew what would happen.");
+        
+        MainGame.dialoguelnln("Frigs", "Go get him!");
+        
+        MainGame.dialoguelnln("Gaea", "Be careful!!");
+        
+        print("With each attack, there were flashes of iridescent light and purplish-black lightening.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "You think that just because you took my chip out your head that you can "
+                + "defeat me? Look at you -- you're still injured! You can only take so much before you fall.");
+        
+        MainGame.dialoguelnln("Fultra", "That doesn't matter. I'm about to show you you're greatest mistake.");
+        
+        MainGame.dialoguelnln("Perfected Irwin", "Hmm...?");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        // Fultra's energy starts to leak out more and cause him pain. He's a living bomb that will destroy anything.
+        
+        //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
     }
 }

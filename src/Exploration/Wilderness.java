@@ -624,6 +624,33 @@ public class Wilderness extends Location
         return team;
     }
     
+    public ArrayList<Enemy> makeFinalBoss()
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Perfectionist", "The user removes their imperfections to increase all stats.", "All", 5, 3));
+        attacks.add(new OffensiveAttack("Perfect Strike", "The user attacks with a forceful strike. It cannot miss.", 100, "Attack"));
+        attacks.add(new OffensiveAttack("Perfect Blast", "Using concentrated energy of the user's element, an energy blast is fired. It cannot miss.", 100, "R. Attack"));
+        attacks.add(new OffensiveAttack("Divine Vision", "The vision of a new, divine world is what motivates the user. An onslaught of attacks is then launched at the target.", 120, "R. Attack"));
+        attacks.get(3).setAccuracy(85);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(777); // HP
+        stats.add(420); // Attack
+        stats.add(420); // Defense
+        stats.add(420); // R Attack
+        stats.add(420); // R Defense
+        stats.add(420); // Speed
+        
+        BossEnemy perfectedIrwin = new BossEnemy("Perfected Irwin", "He's one step closer to accomplishing his goals.", "Electric", 35, 
+                                    attacks, stats);
+        perfectedIrwin.setStatDescription("A man who has perfection at his fingertips.");
+        
+        ArrayList<Enemy> team = new ArrayList<>(1);
+        team.add(perfectedIrwin);
+        
+        return team;
+    }
+    
     @Override
     public String toString()
     {

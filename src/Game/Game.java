@@ -207,15 +207,19 @@ public class Game
             // Talk to Elder Clairdra
             objective.update();
             
+            // Return to Zoni City.
+            objective.update();
+            knownLocations.add(remainingLocations.remove(0));
+            
             // Use this for going to the newest location
-            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            currentLocation = knownLocations.get(knownLocations.size() - 2); // Make - 1 after testing Irwin battle
             
             for(Location l : knownLocations)
             {
                 l.setIsExplored();
             }
             
-            nextLocation = remainingLocations.remove(0);
+//            nextLocation = remainingLocations.remove(0);
             
             beachTutorialDone = true;
             forestTutorialDone = true;
@@ -295,7 +299,7 @@ public class Game
             ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
             ninlil.setLevel(27);
             
-            Player frigs = MainGame.makeNinlil();
+            Player frigs = MainGame.makeFrigs();
             frigs.setMaxHealth(9999);
             frigs.setCurrentHealth(9999);
             frigs.setAttack(9999);
@@ -933,6 +937,31 @@ public class Game
                         BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
                         ((Wilderness)currentLocation).setBossBattle(battle, 28);
                     }
+                }
+                else if(fultraBossDefeated && !irwinBossDefeated)
+                {
+                    MainGame.clearScreen();
+                    
+                    if(!irwinBossAttempted)
+                    {
+                        Cutscene.foundIrwin();
+                    }
+                    
+                    Wilderness city = ((Wilderness)currentLocation);
+                    city.getBossBattle().start(gold);
+                    
+                    if(city.getBossBattle().isWon())
+                    {
+                        Cutscene.defeatedIrwin();
+                        city.removeBossBattle();
+                        objective.update();
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
+                        ((Wilderness)currentLocation).setBossBattle(battle, 30);
+                    }
+                }
+                else if(fultraBossDefeated && irwinBossDefeated)
+                {
+                    
                 }
                 break;
             default:
