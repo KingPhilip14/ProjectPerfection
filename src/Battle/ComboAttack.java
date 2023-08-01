@@ -138,6 +138,12 @@ public class ComboAttack extends Attack
         
         int damage = (int)(Math.round((baseDamage * attack1 * attack2 * elementEffectiveness1 * elementEffectiveness2) / (Math.pow(defense, 2) + Math.pow(target.getLevel() * 10, 2))));
         
+        // Max damage possible
+        if(damage > 9999)
+        {
+            damage = 9999;
+        }
+        
         return damage;
     }
     

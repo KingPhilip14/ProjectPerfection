@@ -75,11 +75,12 @@ public class Game
     private boolean volcanBossAttempted;
     private boolean summitBossAttempted;
     
-    // Endgame boss battle booleans
+    // Endgame boss battle booleans  
     private boolean fultraBossAttempted;
     private boolean fultraBossDefeated;
     private boolean irwinBossAttempted;
     private boolean irwinBossDefeated;
+    private boolean finalBossAttempted;
     private int resiTutorialAttempts;
     
     private Objective objective;
@@ -207,17 +208,18 @@ public class Game
             // Talk to Elder Clairdra
             objective.update();
             
+            for(Location l : knownLocations)
+            {
+                l.setIsExplored();
+            }
+            
             // Return to Zoni City.
             objective.update();
             knownLocations.add(remainingLocations.remove(0));
             
             // Use this for going to the newest location
             currentLocation = knownLocations.get(knownLocations.size() - 2); // Make - 1 after testing Irwin battle
-            
-            for(Location l : knownLocations)
-            {
-                l.setIsExplored();
-            }
+
             
 //            nextLocation = remainingLocations.remove(0);
             
@@ -838,10 +840,11 @@ public class Game
     
     private void bossBattle()
     {   
+        MainGame.clearScreen();
+        
         switch (currentLocation.getName()) 
         {
             case "Tempest Tower":
-                MainGame.clearScreen();
                 
                 // If the Ninlil boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!towerBossAttempted && !testing)
@@ -862,7 +865,6 @@ public class Game
                 }   
                 break;
             case "Mount Volcan":
-                MainGame.clearScreen();
                 
                 // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!volcanBossAttempted) // add !testing
@@ -892,7 +894,7 @@ public class Game
                 }   
                 break;
             case "Mount Zoni Summit":
-                MainGame.clearScreen();
+                
                 // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
                 if(!summitBossAttempted)
                 {
@@ -916,56 +918,120 @@ public class Game
                 map.updateMap(currentLocation, getLocation("Mount Zoni"));
                 break;
             case "Zoni City":
-                if(!fultraBossDefeated)
-                {
-                    MainGame.clearScreen();
-                    
-                    if(!fultraBossAttempted)
-                    {
-                        Cutscene.foundResiFultra();
-                    }
-                    
-                    Wilderness city = ((Wilderness)currentLocation);
-                    city.getBossBattle().start(gold);
-                    fultraBossAttempted = true;
-                    
-                    if(city.getBossBattle().isWon())
-                    {
-                        Cutscene.defeatedResiFultra();
-                        city.removeBossBattle();
-                        objective.update();
-                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
-                        ((Wilderness)currentLocation).setBossBattle(battle, 28);
-                    }
-                }
-                else if(fultraBossDefeated && !irwinBossDefeated)
-                {
-                    MainGame.clearScreen();
-                    
-                    if(!irwinBossAttempted)
-                    {
-                        Cutscene.foundIrwin();
-                    }
-                    
-                    Wilderness city = ((Wilderness)currentLocation);
-                    city.getBossBattle().start(gold);
-                    
-                    if(city.getBossBattle().isWon())
-                    {
-                        Cutscene.defeatedIrwin();
-                        city.removeBossBattle();
-                        objective.update();
-                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
-                        ((Wilderness)currentLocation).setBossBattle(battle, 30);
-                    }
-                }
-                else if(fultraBossDefeated && irwinBossDefeated)
-                {
-                    
-                }
+                cityBossFights();
+//                if(!fultraBossDefeated) // Fultra boss fight
+//                {   
+//                    if(!fultraBossAttempted)
+//                    {
+//                        Cutscene.foundResiFultra();
+//                    }
+//                    
+//                    Wilderness city = ((Wilderness)currentLocation);
+//                    city.getBossBattle().start(gold);
+//                    fultraBossAttempted = true;
+//                    
+//                    if(city.getBossBattle().isWon())
+//                    {
+//                        Cutscene.defeatedResiFultra();
+//                        city.removeBossBattle();
+//                        objective.update();
+//                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+//                        ((Wilderness)currentLocation).setBossBattle(battle, 28);
+//                    }
+//                }
+//                else if(fultraBossDefeated && !irwinBossDefeated) // Irwin Fight
+//                {   
+//                    if(!irwinBossAttempted)
+//                    {
+//                        Cutscene.foundIrwin();
+//                    }
+//                    
+//                    Wilderness city = ((Wilderness)currentLocation);
+//                    city.getBossBattle().start(gold);
+//                    
+//                    if(city.getBossBattle().isWon())
+//                    {
+//                        Cutscene.defeatedIrwin();
+//                        city.removeBossBattle();
+//                        objective.update();
+//                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
+//                        ((Wilderness)currentLocation).setBossBattle(battle, 30);
+//                    }
+//                }
+//                else if(fultraBossDefeated && irwinBossDefeated) // Final boss fight
+//                {
+//                    if(!finalBossAttempted)
+//                    {
+//                        Cutscene.foundFinalBoss();
+//                    }
+//                    
+//                    Wilderness city = ((Wilderness)currentLocation);
+//                    city.getBossBattle().start(gold);
+//                }
                 break;
             default:
                 break;
+        }
+    }
+    
+    private void cityBossFights()
+    {
+        Wilderness city = ((Wilderness)currentLocation);
+        
+        if(!fultraBossDefeated) // Fultra boss fight
+        {   
+            if(!fultraBossAttempted)
+            {
+                Cutscene.foundResiFultra();
+            }
+            
+            city.getBossBattle().start(gold);
+            fultraBossAttempted = true;
+
+            if(city.getBossBattle().isWon())
+            {
+                Cutscene.defeatedResiFultra();
+                fultraBossDefeated = true;
+                city.removeBossBattle();
+                objective.update();
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 28);
+            }
+        }
+        else if(fultraBossDefeated && !irwinBossDefeated) // Irwin Fight
+        {   
+            if(!irwinBossAttempted)
+            {
+                Cutscene.foundIrwin();
+            }
+
+            city.getBossBattle().start(gold);
+
+            if(city.getBossBattle().isWon())
+            {
+                Cutscene.defeatedIrwin();
+                irwinBossDefeated = true;
+                city.removeBossBattle();
+                objective.update();
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 30);
+            }
+        }
+        else if(fultraBossDefeated && irwinBossDefeated) // Final boss fight
+        {
+            if(!finalBossAttempted)
+            {
+                Cutscene.foundFinalBoss();
+            }
+
+            city.getBossBattle().start(gold);
+            
+            if(city.getBossBattle().isWon())
+            {
+                Cutscene.defeatedFinalBoss();
+                finalBossDefeated = true;
+                city.removeBossBattle();
+            }
         }
     }
     
@@ -1818,7 +1884,7 @@ public class Game
     private Wilderness createZoniCity2()
     {
         Coordinate c = new Coordinate(12, 31);
-        Wilderness zoni = new Wilderness("Zoni City", "What was once a bustling, animated town is now a desolated area. No Pulchrians are here anymore...", 27, c);
+        Wilderness zoni = new Wilderness("Zoni City", "What was once a bustling, animated city is now a desolated area. No Pulchrians are here anymore...", 27, c);
         zoni.addLocalElement("Water");
         zoni.addLocalElement("Earth");
         zoni.addLocalElement("Wind");

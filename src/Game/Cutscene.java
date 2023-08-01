@@ -2145,7 +2145,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Anahita", "Do it! Just be careful.");
         
-        print("Ninlil nodded before quickly leaving the group to not draw attention to them. She quietly created an updraft "
+        print("Ninlil nodded before quickly leaving the others to not draw attention to them. She quietly created an updraft "
                 + "that/lifted her up into the air. As she scanned the city, she saw a large, matte black aircraft in the "
                 + "city's center./She then descended and regrouped with the others.");
         
@@ -2220,7 +2220,7 @@ public class Cutscene
         MainGame.dialoguelnln("Frigs", "Seems like it. Lead the way.");
         
         print("Anahita and the others left their cover and started their way again. Just as they avoided some Bots, Calmus "
-                + "looked up/at the sky and saw something headed their way.");
+                + "looked up/at the sky and--");
         
         MainGame.dialoguelnln("Calmus", "LOOK OUT!");
         
@@ -2233,8 +2233,8 @@ public class Cutscene
                 + "shatter and break.");
         
         print("As the group got up from the ground and the dust settled, they got in defensive stances. The figure was "
-                + "humanoid,/yet was made of the same material as the Bots. As the figure stood up, it kept its head down as "
-                + "it spoke.");
+                + "humanoid,/yet it was made of the same material as the Bots. As the figure stood up, it kept its head down "
+                + "as it spoke.");
         
         MainGame.dialoguelnln("???", "This... this is where you stop... All of you.");
         
@@ -2248,7 +2248,7 @@ public class Cutscene
         print("Fultra lifted his head, the sun shining on his now dusty face. The group collectively gasped at the sight. "
                 + "It was/him. His body... wasn't his body. He was half Pulchrian, half Bot. The same metal the aircraft "
                 + "Ninlil saw was/what the metal on his body was made of. His torso, left arm, and right leg were "
-                + "completely/changed. The rest of him was still flesh.");
+                + "completely changed. The/rest of him was still flesh.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2267,14 +2267,12 @@ public class Cutscene
         MainGame.dialoguelnln("Frigs", "What's your problem, Fultra?! Do you not recognize us, or is all that metal in your "
                 + "brain too?");
         
-        MainGame.dialoguelnln("Calmus", "Why would you talk to Gaea like that? Why are you attacking us?");
-        
         MainGame.dialoguelnln("R.E.S.I. Fultra", "Even if everything is explained to you all, you won't understand... There's "
-                + "no stopping\n\tIrwin. His plans are in motion, and you're all getting in his way. So, I'm here to stop you "
+                + "no stopping\n\tIrwin. His plans are in motion, and you're all getting in his way. I'm here to stop you "
                 + "before you ruin anything!");
         
-        MainGame.dialoguelnln("Anahita", "You're not making sense! You would side with *him* over us? After *everything* "
-                + "we've all\n\tbeen through, everything he's done to the people you *love*, and you're throwing it all away?");
+        MainGame.dialoguelnln("Anahita", "Wait, what?! You would side with *him* over us? After *everything* "
+                + "we've all been\n\tthrough, everything he's done to the people you *love*, and you're throwing it all away?");
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "I'm not throwing it all away... He knows what he's doing. It'll help "
                 + "everyone\n\t-- the *entire world* -- if he succeeds. This includes you all.");
@@ -2291,7 +2289,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "NO! There's nothing to discuss! I'm going to stop you all here. Right now.");
         
-        MainGame.dialoguelnln("Frigs", "Everyone, be careful!");
+        MainGame.dialoguelnln("Calmus", "Everyone, be careful!");
         
         MainGame.promptToEnter();
     }
@@ -2578,10 +2576,10 @@ public class Cutscene
         MainGame.dialoguelnln("Irwin", "Excellent question, Calmus. I'll explain everything when you all find me. Just come "
                 + "through this door.");
         
-        MainGame.dialoguelnln("Frigs", "Well shoot, Calmus was right. We will get our answer afterall.");
+        MainGame.dialoguelnln("Frigs", "Well shoot, Calmus was right. We will get our answer after all.");
         
         print("One of the doors opened and led to a large, dimmly lit room. Skeptically, the group entered. Then, the door "
-                + "close behind/them. Calmus tried to pry the door open but to no avail. This was it.");
+                + "closed behind/them. Calmus tried to pry the door open but to no avail. This was it.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2592,8 +2590,8 @@ public class Cutscene
         MainGame.dialoguelnln("Calmus", "Those other silhouettes look similar to R.E.S.I. Omega! But we defeated it earlier, "
                 + "didn't we?");
         
-        MainGame.dialoguelnln("Irwin", "That you did. However, I remade to be better and stronger. You defeating the first "
-                + "one was\n\tpure luck. You cannot beat two of them *and* me at the same time.");
+        MainGame.dialoguelnln("Irwin", "That you did. However, I remade them to be better and stronger. You defeating the "
+                + "first one was\n\tpure luck. You cannot beat two of them *and* me at the same time.");
         
         MainGame.dialoguelnln("Frigs", "Tch, he's crazy!");
         
@@ -2631,14 +2629,14 @@ public class Cutscene
         
         MainGame.dialoguelnln("Calmus", "You're insane!");
         
-        MainGame.dialoguelnln("Irwin", "What's insane, Calmus, is that no one else in the world has tried to resolve all "
+        MainGame.dialoguelnln("Irwin", "What is insane, Calmus, is that no one else in the world has tried to resolve all "
                 + "these problems!\n\tI'm the only one with enough sense to help this fallen world.");
         
         MainGame.dialoguelnln("Anahita", "There's no helping you! Even though the world is corrupt, it doesn't mean that "
-                + "*you* decide\n\tthe face of everyone else. This 'perfection' you're seeking for can never happen. Man "
+                + "*you* decide\n\tthe fate of everyone else. This 'perfection' you're seeking never be found. Man "
                 + "can't be perfect!\n\tYou need to accept that!");
         
-        MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to attain perfection! I *will* have "
+        MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to obtain it! I *will* have "
                 + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
                 + "hero!");
         
@@ -2679,16 +2677,16 @@ public class Cutscene
         
         MainGame.dialoguelnln("Perfected Irwin", "I shouldn't be in this form yet, but you've all left me no choice.");
         
-        print("As the group made it to the top of the aircraft, they Irwin in a different form. He was glowing with an "
+        print("As the group made it to the top of the aircraft, they saw Irwin in a different form. He was glowing with an "
                 + "iridescent/aura. A strong gust of wind -- stronger than Ninlil's -- kept him in the air. The group had "
                 + "to/catch their balance before they slipped off the edge of the aircraft.");
         
         MainGame.dialoguelnln("Gaea", "Wh-what happened to him?? He's glowing!");
         
         MainGame.dialoguelnln("Perfected Irwin", "The ethrellium in the syringe was a combination of all the extractions "
-                + "I've taken\n\tfrom every Pulchrian in my lab. I know have control over *every* element!");
+                + "I've taken\n\tfrom every Pulchrian in my lab. I npw have control over *every* element!");
         
-        MainGame.dialoguelnln("Frigs", "That's possible??");
+        MainGame.dialoguelnln("Frigs", "That's... that's possible??");
         
         MainGame.dialoguelnln("Perfected Irwin", "I told you! Perfection was simply at my fingertips. It was only a matter of "
                 + "time.");
@@ -2703,7 +2701,7 @@ public class Cutscene
         print("Just then, Fultra flew in and landed next to the group. A scowl grew on Irwin's face as the group became "
                 + "skeptical/of their former friend attempting to lend a hand.");
         
-        MainGame.dialoguelnln("Perfected Irwin", "You! I should've let my Bots kill you when I had the chance.");
+        MainGame.dialoguelnln("Perfected Irwin", "You! I should have let my Bots kill you when I had the chance.");
         
         MainGame.dialoguelnln("Calmus", "Why are you here? You've already betrayed us, and *now* you want to help?");
         
@@ -2715,8 +2713,8 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "... we forgive you.");
         
         print("The group was taken aback by how quickly Gaea's heart changed toward Fultra. After some thought, they realized "
-                + "that she/would know him the best out of any of them. If her judgement said to trust him, it was probably "
-                + "for the best.");
+                + "that she/would know him the best out of any of them. If her judgement said to trust him, there was no  "
+                + "argument to be had.");
         
         MainGame.dialoguelnln("Fultra", "Thank you for trusting me. I truly am sorry...");
         
@@ -2748,15 +2746,15 @@ public class Cutscene
         
         MainGame.dialoguelnln("Frigs", "(*pant*) Just keep... attacking him! He'll have to get tired eventually!");
         
-        MainGame.dialoguelnln("Ninlil", "Frigs, think! We're more tired than he is!");
+        MainGame.dialoguelnln("Gaea", "Frigs, think! We're more tired than he is!");
         
-        MainGame.dialoguelnln("Gaea", "(*pant pant*) Yeah... I'm really running out of steam here!");
+        MainGame.dialoguelnln("Ninlil", "(*pant pant*) Yeah... I'm really running out of energy here!");
         
         MainGame.dialoguelnln("Perfected Irwin", "That's how things should be! You cannot stop me!");
         
         print("Fultra was contemplating what he could do. He wanted to redeem himself for his actions. For his friends. For "
                 + "his/grandmother. For Gaea. Just then, an idea came to his mind. It was far from ideal, but he knew it "
-                + "would work./He caught Calmus' attention and told him his plan.");
+                + "would work./He caught Calmus' attention in the middle of the fight and told him his plan.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2773,7 +2771,7 @@ public class Cutscene
         
         print("Fultra smiled at the comment.");
         
-        MainGame.dialoguelnln("Fultra", "It's mutual, then. That warms my heart.");
+        MainGame.dialoguelnln("Fultra", "It's mutual, then.");
         
         MainGame.ellipsislnln();
         
@@ -2788,7 +2786,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Frigs", "I should call you guys Hot Shots after that. Awesome aim!");
         
-        print("Smoke covered the battle. Fultra then took that time to quickly super charge himself. He used so much "
+        print("Smoke covered the area. Fultra then took that time to quickly super charge himself. He used so much "
                 + "electricity/that just being within 10 feet of him caused the others' hair to stand up from the static. "
                 + "The R.E.S.I./upgrades allowed him to reach this level of power, but it was more than his body could "
                 + "handle. He/was still injured from the fight with his friends, but he pushed through. He could feel his "
@@ -2797,7 +2795,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("As the smoke cleared from the Flaming Bolt attack, the group could only see the blue of lighting that was "
+        print("As the smoke cleared from the Flaming Bolt attack, the group could only see the purple of lighting that was "
                 + "Fultra./He rammed himself into Irwin, and the two started their own duel. Calmus held his breath as he "
                 + "watched./He started to pray and hope that this plan worked, even though he knew what would happen.");
         
@@ -2805,10 +2803,10 @@ public class Cutscene
         
         MainGame.dialoguelnln("Gaea", "Be careful!!");
         
-        print("With each attack, there were flashes of iridescent light and purplish-black lightening.");
+        print("With each attack, there were flashes of iridescent light and purplish-black lightning.");
         
         MainGame.dialoguelnln("Perfected Irwin", "You think that just because you took my chip out your head that you can "
-                + "defeat me? Look at you -- you're still injured! You can only take so much before you fall.");
+                + "defeat me? Look at\n\tyou -- you're still injured! You can only take so much before you fall.");
         
         MainGame.dialoguelnln("Fultra", "That doesn't matter. I'm about to show you you're greatest mistake.");
         
@@ -2817,14 +2815,15 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("As Fultra said that, his body started to glow brightly. His body became a living time bomb. By super charging "
-                + "himself and/the R.E.S.I. armor he had on, he was causing his body and robotic systems to overload. This "
-                + "would only result in one thing. A destructive explosion.");
+        print("As Fultra said that, his body started to glow brightly. His body became a living bomb. By super charging "
+                + "himself and the/R.E.S.I. armor he had on, he was causing his body and robotic systems to overload. This "
+                + "would only/result in one thing. A destructive explosion.");
         
         MainGame.dialoguelnln("Perfected Irwin", "What are you doing? Stop that at once!");
         
         print("As the two kept fighting, Fultra started push them up higher in the air. Irwin was fighting back with "
-                + "different/elemental attacks all at once. Despite the added injuries, Fultra kept pushing on.");
+                + "different/elemental attacks all at once. Despite the additional pummels and damage, Fultra kept pushing "
+                + "on.");
         
         MainGame.dialoguelnln("Perfected Irwin", "GET AWAY FROM ME!");
         
@@ -2868,15 +2867,15 @@ public class Cutscene
                 + "He knew that his/last act was for good and not evil. Irwin tried to free himself from Fultra's grasp, but "
                 + "to no/avail. Fultra mumbled one last thing.");
         
-        MainGame.dialoguelnln("Fearless Thunder", "I love you, Gaea. Calmus, keep your promise; watch over her for me.");
+        MainGame.dialoguelnln("Fearless Thunder", "I love you, Gaea... Calmus, keep your promise; watch over her for me.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
         print("(*BOOM*)");
         
-        print("Fultra's body exploded, purple lightning and sparks flying everywhere. The group jumped down from the aircraft "
-                + "to take/cover from the falling sparks and debris.");
+        print("Fultra's body exploded, purple lightning and sparks flying everywhere accompanied by a brilliant iridescent "
+                + "shine. The/group jumped down from the aircraft to take cover from the falling sparks, fire, and debris.");
         
         print("Then everything fell quiet.");
         
@@ -2896,7 +2895,7 @@ public class Cutscene
         
         print("Anahita held Gaea tightly.");
         
-        MainGame.dialoguelnln("Anahita", "He did what he knew was necessary... He lived up to his name.");
+        MainGame.dialoguelnln("Anahita", "He did what he knew was necessary... He lived up to his name...");
         
         MainGame.dialoguelnln("Everyone", "Fearless Thunder...");
         
@@ -2909,7 +2908,12 @@ public class Cutscene
         MainGame.dialoguelnln("Frigs", "What do we do now? We can't clean all this up on our own, surely.");
         
         MainGame.dialoguelnln("Anahita", "We need to let everyone else know. They need to know that peace has been restored. "
-                + "Everything\n\twill fall into place.");
+                + "Everything\n\twill fall into place after that.");
+
+        print("The group nodded somberly. Gaea picked herself up from the ground, still comprehending everything that "
+                + "happened./Anahita and the others then start to go to all the towns of Pulchra to spread the news.");
+        
+        MainGame.ellipsislnln();
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2921,8 +2925,9 @@ public class Cutscene
                 + "While most places/were restored, some still had some work to do.");
         
         print("Nevertheless, there were major changes in the land. Anahita, Gaea, Calmus, Ninlil, and Frigs all became "
-                + "the/Elders of their respective town -- Aquammoda, Degon, Infol, Arrogan, and Solice. Elder Clairdra "
-                + "would remain/the Elder of Elerric until a new candidate was found.");
+                + "the/Elders of their respective towns -- Aquammoda, Degon, Infol, Arrogan, and Solice. Elder Clairdra "
+                + "would remain/the Elder of Elerric until a new candidate was found, and Zoni City was left without one "
+                + "for the time/being.");
         
         print("A national meeting was held in New Zoni City, with Anahita leading with a speech.");
         
@@ -2931,18 +2936,77 @@ public class Cutscene
         
         MainGame.dialoguelnln("Elder Anahita", "Good evening, Pulchra!");
         
-        print("The audience cheered. People like Merda, Fleur, Pheu, and Lyra were near the front where Anahita was "
-                + "speaking.");
+        print("The audience cheered. The new Elders' family -- Merda, Fleur, Pheu, and Lyra -- were near the front of the "
+                + "crowd/where Anahita was speaking.");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Anahita", "I, along with the other Elders are happy to be in the position we are today. "
+                + "We\n\tsuffered great loss years ago, but with everyone's collective efforts, we've been able to restore "
+                + "part of\n\twhat we lost.");
+        
+        print("Elder Frigs moved from his spot and stood next to Anahita, placing a hand on her shoulder.");
+        
+        MainGame.dialoguelnln("Elder Frigs", "However, we cannot replace everything that was lost. Those that we loved... "
+                + "they\n\tmay be gone, but we fight on for them. They live in our hearts and memories.");
+        
+        print("Then, Elder Calmus took a step forward.");
+        
+        MainGame.dialoguelnln("Elder Calmus", "This has caused us to make a decision. A decision to remember the legacy of "
+                + "those\n\twe've lost.");
+        
+        print("Next, Elder Ninlil spoke.");
+        
+        MainGame.dialoguelnln("Elder Ninlil", "Today will be a new national holiday. We will remember all those who fell "
+                + "victim\n\tto the invasion and for the one that saved us all...");
+        
+        print("Elder Gaea was the last to speak. She swallowed before taking a step to speak.");
+        
+        MainGame.dialoguelnln("Elder Gaea", "Today will be known as 'Fearless Souls Day,' named after of our greatest "
+                + "champion,\n\tFultra, 'Fearless Thunder.' He sacrificed his one life for the rest of us that stand here "
+                + "today. Let us not\n\tforget his sacrifice...");
+        
+        print("Elder Calmus put a hand on Gaea's shoulder to comfort her, something he does well. She looked at him and "
+                + "smiled, and he/smiled back. The crowd cheered once more and started to chant, "
+                + "'Fearless Thunder!/Remember the Electric Wonder!'");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
+        
+        MainGame.dialoguelnln("Elder Anahita", "Let us celebrate tonight! Enjoy the festivities, food, and each others lives. "
+                + "Please,\n\tcherish what we have. Love each other! These moments don't last forever!");
+        
+        print("The crowd roared one last time as music started to play and dancers started to perform. Each of the Elders' "
+                + "respective/family members smiled and wished them best before leaving for the festivities. The Elders then "
+                + "stepped back away/from the noise to have a conversation.");
+        
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
         
+        MainGame.dialoguelnln("Elder Calmus", "I can't believe we're Elders now... It still doesn't feel real, but we're "
+                + "here.");
         
-        /* 
-            Fast foward a few years into the future. Pulchra is still in some ruin, but is mostly rebuilt. 
-            The group is now the new group of Elders, and make someone the new Elder Vitorem. Then there's a ceremony on 
-            a new holiday, 'The Thunderous Day' in rememberance of Fultra. 
-        */
+        MainGame.dialoguelnln("Elder Ninlil", "You better believe it. Everyone respects us as the new elite group of Pulchra. "
+                + "We did it!");
+        
+        MainGame.dialoguelnln("Elder Frigs", "We did... Hopefully we can keep our peace now without any other threats.");
+        
+        MainGame.dialoguelnln("Elder Gaea", "Agreed... But how long will it last? If Irwin did what he did because the rest "
+                + "of the\n\tworld is in shambles, who's to say it won't happen again? Is there anything we can do to help "
+                + "the others\n\tthat are suffering? I can only imagine the state everything else is in... Especially with "
+                + "how Irwin described it.");
+        
+        print("The Elders paused to reflect. Irwin did say that the rest of the world was suffering. Pulchra was secluded "
+                + "from/everything else. Was it worth trying to find a way to help the world? Should Pulchra come out of "
+                + "seclusion?");
+        
+        MainGame.dialoguelnln("Elder Anahita", "The world may need help, you're right... Who's to say that we can only "
+                + "live\n\tin peace?");
+        
+        //---------------------------------------------------------------------------------------------------------------------
+        MainGame.promptToEnter();
     }
 }

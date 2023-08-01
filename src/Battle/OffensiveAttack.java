@@ -112,6 +112,12 @@ public class OffensiveAttack extends Attack
             }
         }
         
+        // Max damage possible
+        if(damage > 9999)
+        {
+            damage = 9999;
+        }
+        
         return damage;
     }
     

@@ -47,7 +47,8 @@ public class Objective
         unfinsihedTasks.enqueue(("Talk to Elder Clairdra."));
         unfinsihedTasks.enqueue(("Return to Zoni City."));
         unfinsihedTasks.enqueue(("Search for Irwin (Required Level: 27)"));
-        unfinsihedTasks.enqueue(("Defeat Irwin (Required Level: 28)"));
+        unfinsihedTasks.enqueue(("Find Irwin again (Required Level: 28)"));
+        unfinsihedTasks.enqueue(("Restore Pulchra's peace (Required Level: 30)"));
     }
     
     public void update()

@@ -594,7 +594,7 @@ public class Wilderness extends Location
         
         BossEnemy irwin = new BossEnemy("Irwin Krov", "A man trying to destroy the world to restart it in his image.", "Electric", 28, 
                                     irwinAttacks, irwinStats);
-        irwin.setStatDescription("Perfection is his goal. He won't stop no matter what.");
+        irwin.setStatDescription("Perfection is his goal. He won't stop until he succeeds.");
         // ----------------------------------------------------------------------------------------
         
         // Creating R.E.S.I. Omega III
@@ -643,7 +643,7 @@ public class Wilderness extends Location
         
         BossEnemy perfectedIrwin = new BossEnemy("Perfected Irwin", "He's one step closer to accomplishing his goals.", "Electric", 35, 
                                     attacks, stats);
-        perfectedIrwin.setStatDescription("A man who has perfection at his fingertips.");
+        perfectedIrwin.setStatDescription("He's one step closer to creating the perfect world.");
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(perfectedIrwin);
