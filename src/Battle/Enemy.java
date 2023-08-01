@@ -21,6 +21,7 @@ public abstract class Enemy extends Character
     protected String statSpreadDescription;
     protected String elementDescriptor;
     protected String species;
+    protected int xpYield = 15;
     protected abstract String createElementDescriptor();
     protected abstract String createDescription();
     
@@ -84,6 +85,9 @@ public abstract class Enemy extends Character
     }
     
     public String getStatSpreadDesc() {return statSpreadDescription;}
+    
+    public int getXpYield() {return xpYield;}
+    public void setXpYield(int yield) {xpYield = yield;}
     
     private void createLevel(Wilderness currentLocation)
     {

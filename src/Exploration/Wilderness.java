@@ -16,6 +16,7 @@ import Battle.OpiconTutorialBattle;
 import Battle.Player;
 import Battle.RESIBattle;
 import Battle.RESIEnemy;
+import Battle.SingleHealingAttack;
 import Battle.WaterEnemy;
 import Battle.WindEnemy;
 import java.util.ArrayList;
@@ -476,7 +477,7 @@ public class Wilderness extends Location
         stats.add(204); // R Defense
         stats.add(174); // Speed
         
-        BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first -- and only -- of its kind. Irwin's best R.E.S.I. Bot.", "Fire", 17, 
+        BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 17, 
                                     attacks, stats);
         omega.setStatDescription("This R.E.S.I. Bot is more than 3 times the size of a normal one. Be careful!");
         
@@ -512,6 +513,140 @@ public class Wilderness extends Location
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(frigs);
+        
+        return team;
+    }
+    
+    public ArrayList<Enemy> makeFultraBoss(Wilderness currentLocation)
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are increased for 3 turns, and cooldown is less than Charge.", "All", 3, 3));
+        attacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
+        attacks.get(1).setAccuracy(85);
+        attacks.add(new OffensiveAttack("Plasma Blast II", "The user discharges a overwhelming electrical wave. Its accuracy and power are better than normal.", 180, "R. Attack"));
+        attacks.get(2).setAccuracy(51); 
+        OffensiveAttack overdriveII = new OffensiveAttack("Overdrive II", "The user coats themselves in electricity and rams into the target. It now has a higher crit rate.", 115, "Attack");
+        overdriveII.setCritRate(0.35);
+        overdriveII.setAccuracy(75);
+        attacks.add(overdriveII);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(3225); // HP
+        stats.add(325); // Attack
+        stats.add(325); // Defense
+        stats.add(325); // R Attack
+        stats.add(325); // R Defense
+        stats.add(325); // Speed
+        
+        BossEnemy fultra = new BossEnemy("R.E.S.I. Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
+                                    attacks, stats);
+        fultra.setStatDescription("'Fearless Thunder' in a new form. Has he lived up to his name?");
+        
+        ArrayList<Enemy> team = new ArrayList<>(3);
+        team.add(new RESIEnemy(currentLocation));
+        team.add(fultra);
+        team.add(new RESIEnemy(currentLocation));
+        
+        return team;
+    }
+    
+    public ArrayList<Enemy> makeIrwinBoss()
+    {
+        // Creating R.E.S.I. Omega II ----------------------------------------------------------------------------------------
+        ArrayList<Attack> omegaAttacks = new ArrayList<>(4);
+        omegaAttacks.add(new BuffAttack("System Restart", "The user restarts its systems to refresh itself, raising all stats.", "All", 2.0, 5, 2));
+        OffensiveAttack deathClaw = new OffensiveAttack("Death Claw", "The user flies into the air and launches a claw that captures the target and applies pressure to deal damage.", 130, "Attack");
+        deathClaw.setAccuracy(70);
+        omegaAttacks.add(deathClaw);
+        omegaAttacks.add(new OffensiveAttack("Omega Laser", "The user blasts a highly concentrated laser that destroys everyting in its path.", 100, "R. Attack"));
+        omegaAttacks.get(2).setAccuracy(90);
+        OffensiveAttack protocal = new OffensiveAttack("RESI Protocal: Omega", "The user fires lasers, missles, claws and explosives in every direction. Those hit rarely live to tell the tale.", 150, "Attack");
+        protocal.setAccuracy(55);
+        omegaAttacks.add(protocal);
+        
+        ArrayList<Integer> omegaStats = new ArrayList<>(6);
+        omegaStats.add(2480); // HP
+        omegaStats.add(340); // Attack
+        omegaStats.add(340); // Defense
+        omegaStats.add(340); // R Attack
+        omegaStats.add(340); // R Defense
+        omegaStats.add(200); // Speed
+        
+        BossEnemy omegaII = new BossEnemy("R.E.S.I. Bot Omega II", "The second of its kind. Irwin's attempt at redemption for the first one's failure.", "Fire", 26, 
+                                    omegaAttacks, omegaStats);
+        omegaII.setStatDescription("This R.E.S.I. Bot towers over the group. Don't lose heart!");
+        // ----------------------------------------------------------------------------------------
+        
+        // Creating Irwin
+        ArrayList<Attack> irwinAttacks = new ArrayList<>(4);
+        irwinAttacks.add(new BuffAttack("Perfection Mindset", "The user thinks about their goals and fills themselves with determination, increasing their attack and speed.", "Attack,Speed", 5, 2));
+        irwinAttacks.add(new BuffAttack("R.E.S.I. Protection", "The user creates a force field around them that decreases the power of all incoming attacks", "Defense,R. Defense", 4, 2));
+        irwinAttacks.add(new OffensiveAttack("R.E.S.I. Blast", "Using R.E.S.I. technology, the user creates a concentrated blast to attack.", 100, "R. Attack"));
+        irwinAttacks.add(new OffensiveAttack("R.E.S.I. Punch", "Using R.E.S.I. technology, the user punches with a metalic fist", 100, "Attack"));
+        
+        ArrayList<Integer> irwinStats = new ArrayList<>(6);
+        irwinStats.add(2575); // HP
+        irwinStats.add(351); // Attack
+        irwinStats.add(351); // Defense
+        irwinStats.add(366); // R Attack
+        irwinStats.add(351); // R Defense
+        irwinStats.add(261); // Speed
+        
+        BossEnemy irwin = new BossEnemy("Irwin Krov", "A man trying to destroy the world to restart it in his image.", "Electric", 28, 
+                                    irwinAttacks, irwinStats);
+        irwin.setStatDescription("Perfection is his goal. He won't stop until he succeeds.");
+        // ----------------------------------------------------------------------------------------
+        
+        // Creating R.E.S.I. Omega III
+        ArrayList<Attack> omega2Attacks = new ArrayList<>(4);
+        omega2Attacks.add(new BuffAttack("System Restart", "The user restarts its systems to refresh itself, raising all stats.", "All", 2.0, 5, 2));
+        omega2Attacks.add(deathClaw);
+        omega2Attacks.add(new SingleHealingAttack("Ethrellium Injection", "The user injects their ally with pure ethrellium to heal them", 0.25, 3));
+        omega2Attacks.add(protocal);
+        
+        ArrayList<Integer> omega2Stats = new ArrayList<>(6);
+        omega2Stats.add(2480); // HP
+        omega2Stats.add(340); // Attack
+        omega2Stats.add(340); // Defense
+        omega2Stats.add(340); // R Attack
+        omega2Stats.add(340); // R Defense
+        omega2Stats.add(200); // Speed
+        
+        BossEnemy omegaIII = new BossEnemy("R.E.S.I. Bot Omega III", "The third -- and last -- of its kind. It's made to focus on support in battle.", "Water", 26, 
+                                    omega2Attacks, omega2Stats);
+        omegaIII.setStatDescription("This R.E.S.I. Bot is still large, but its smaller than the other. Don't give up!");
+        
+        ArrayList<Enemy> team = new ArrayList<>(3);
+        team.add(omegaII);
+        team.add(irwin);
+        team.add(omegaIII);
+        
+        return team;
+    }
+    
+    public ArrayList<Enemy> makeFinalBoss()
+    {
+        ArrayList<Attack> attacks = new ArrayList<>(4);
+        attacks.add(new BuffAttack("Perfectionist", "The user removes their imperfections to increase all stats.", "All", 5, 3));
+        attacks.add(new OffensiveAttack("Perfect Strike", "The user attacks with a forceful strike. It cannot miss.", 100, "Attack"));
+        attacks.add(new OffensiveAttack("Perfect Blast", "Using concentrated energy of the user's element, an energy blast is fired. It cannot miss.", 100, "R. Attack"));
+        attacks.add(new OffensiveAttack("Divine Vision", "The vision of a new, divine world is what motivates the user. An onslaught of attacks is then launched at the target.", 120, "R. Attack"));
+        attacks.get(3).setAccuracy(85);
+        
+        ArrayList<Integer> stats = new ArrayList<>(6);
+        stats.add(777); // HP
+        stats.add(420); // Attack
+        stats.add(420); // Defense
+        stats.add(420); // R Attack
+        stats.add(420); // R Defense
+        stats.add(420); // Speed
+        
+        BossEnemy perfectedIrwin = new BossEnemy("Perfected Irwin", "He's one step closer to accomplishing his goals.", "Electric", 35, 
+                                    attacks, stats);
+        perfectedIrwin.setStatDescription("He's one step closer to creating the perfect world.");
+        
+        ArrayList<Enemy> team = new ArrayList<>(1);
+        team.add(perfectedIrwin);
         
         return team;
     }

@@ -45,8 +45,10 @@ public class Objective
         unfinsihedTasks.enqueue(("Go to Forlorn Cave (Required Level: 23)"));
         unfinsihedTasks.enqueue(("Go to Elerric (Required Level: 25)"));
         unfinsihedTasks.enqueue(("Talk to Elder Clairdra."));
-        unfinsihedTasks.enqueue(("Return to Zoni City (Required Level: 29)"));
-        unfinsihedTasks.enqueue(("Defeat Irwin."));
+        unfinsihedTasks.enqueue(("Return to Zoni City."));
+        unfinsihedTasks.enqueue(("Search for Irwin (Required Level: 27)"));
+        unfinsihedTasks.enqueue(("Find Irwin again (Required Level: 28)"));
+        unfinsihedTasks.enqueue(("Restore Pulchra's peace (Required Level: 30)"));
     }
     
     public void update()
