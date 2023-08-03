@@ -31,6 +31,7 @@ import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * A class for creating Game objects to start the game.
@@ -41,33 +42,7 @@ public class Game
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
-    
-    // Objective booleans
-    private boolean atOpiconForest;
-    private boolean atAquammoda;
-    private boolean talkedToMerda;
-    private boolean atDegon;
-    private boolean talkedToFleur;
-    private boolean atZoniCity;
-    private boolean talkedToEveryone;
-    private boolean atAerogan;
-    private boolean talkedToElderNu;
-    private boolean atTempestTower;
-    private boolean foundNinlil;
-    private boolean atInfol;
-    private boolean talkedToElderVulca;
-    private boolean atMountVulcan;
-    private boolean foundMinerals;
-    private boolean talkedToLyra;
-    private boolean atMountZoni;
-    private boolean atSolice;
-    private boolean atSummit;
-    private boolean foundFrigs;
-    private boolean atForlornCave;
-    private boolean atElerric;
-    private boolean talkedToElderClairdra;
-    private boolean returnedZoniCity;
-    private boolean defeatIrwin;
+    private boolean recentBattleWon;
     
     private static boolean testing;
     
@@ -81,7 +56,7 @@ public class Game
     private boolean irwinBossAttempted;
     private boolean irwinBossDefeated;
     private boolean finalBossAttempted;
-    private int resiTutorialAttempts;
+    private boolean resiTutorialAttempted;
     
     private Objective objective;
     private Location currentLocation;
@@ -108,123 +83,114 @@ public class Game
         
         
         testing = isTesting;
-//        startingCutscene =  new Cutscene("Amidst the ocean, there is an island inhabited by a special people able to control the elements./"
-//                + "This island is called Pulchra./It's a small island full of beauty, vast creatures, and a peaceful people./"
-//                + "A bright, young girl named Anahita is found at Purity Beach, located to the south of the island./She's "
-//                + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./Little does she know that her "
-//                + "life is about to take a drastic turn.");
         populateAllLocations();
         knownLocations.add(remainingLocations.remove(0));
         
         objective = new Objective();
         
-        // DELETE AFTER SECOND TUTORIAL TESTS
-//        knownLocations.add(allLocations.remove(0));
-//        team.add(MainGame.makeAnahita());
-        
         if(isTesting)
         {
             // Puts the player at Opicon Forest
             knownLocations.add(remainingLocations.remove(0));
-            objective.update();
-            
-            // Puts the player in Aquammoda
+////            objective.update();
+//            
+//            // Puts the player in Aquammoda
             knownLocations.add(remainingLocations.remove(0));
-            objective.update();
-            
-            // Put the player in Degon
+////            objective.update();
+//            
+//            // Put the player in Degon
             knownLocations.add(remainingLocations.remove(0));
-            objective.update();
-            
-            // Talk to Fleur objective
-            objective.update();
-            
-            // Put the player in Zoni City
-            objective.update();
+////            objective.update();
+//            
+//            // Talk to Fleur objective
+////            objective.update();
+//            
+//            // Put the player in Zoni City
+////            objective.update();
             knownLocations.add(remainingLocations.remove(0));
-            
-            // Talk to everyone in Zoni objective
-            objective.update();
-            
-            // Start second phase. Everything is taken care of in the method
-            objective.update();
+//            
+//            // Talk to everyone in Zoni objective
+////            objective.update();
+//            
+//            // Start second phase. Everything is taken care of in the method
+//            objective.update();
             startSecondPhase();
-            
-            // Put the player in Aerogan
+//            
+//            // Put the player in Aerogan
             knownLocations.add(remainingLocations.remove(0));
-            objective.update();  // Talk to Elder Nu objective 
-            
-            // Go to tempest tower objective
-            knownLocations.add(remainingLocations.remove(0));
-            ((Wilderness)knownLocations.get(knownLocations.size() - 1)).removeBossBattle();
-            objective.update();
-            
-            // Find Ninlil objective
-            objective.update();
-
-            // Go to fire town
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Talk to Vulca objective
-            objective.update();
-            
-            // Go to Mount Vulca 
-            objective.update();
-            
-            // Find minerals
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Talk To Lyra
-            objective.update();
-            
-            // Put the player in Mount Zoni
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Put the player in Solice
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Talk to Elder Zeno
-            objective.update();
-            
-            // Go to mount zoni summit
-            objective.update();
-            
-            // Find frigs. Places in Mount Zoni Summit
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Places in Forlorn Cave
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Places in Elerric
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Talk to Elder Clairdra
-            objective.update();
-            
+////            objective.update();  // Talk to Elder Nu objective 
+//            
+//            // Go to tempest tower objective
+//            knownLocations.add(remainingLocations.remove(0));
+//            ((Wilderness)knownLocations.get(knownLocations.size() - 1)).removeBossBattle();
+////            objective.update();
+//            
+//            // Find Ninlil objective
+////            objective.update();
+//
+//            // Go to fire town
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Talk to Vulca objective
+////            objective.update();
+//            
+//            // Go to Mount Vulca 
+////            objective.update();
+//            
+//            // Find minerals
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Talk To Lyra
+////            objective.update();
+//            
+//            // Put the player in Mount Zoni
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Put the player in Solice
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Talk to Elder Zeno
+////            objective.update();
+//            
+//            // Go to mount zoni summit
+////            objective.update();
+//            
+//            // Find frigs. Places in Mount Zoni Summit
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Places in Forlorn Cave
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Places in Elerric
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Talk to Elder Clairdra
+////            objective.update();
+//            
             for(Location l : knownLocations)
             {
                 l.setIsExplored();
             }
-            
-            // Return to Zoni City.
-            objective.update();
-            knownLocations.add(remainingLocations.remove(0));
-            
-            // Use this for going to the newest location
-            currentLocation = knownLocations.get(knownLocations.size() - 2); // Make - 1 after testing Irwin battle
-
-            
-//            nextLocation = remainingLocations.remove(0);
-            
-            beachTutorialDone = true;
-            forestTutorialDone = true;
+//            
+//            // Return to Zoni City.
+////            objective.update();
+//            knownLocations.add(remainingLocations.remove(0));
+//            
+//            // Use this for going to the newest location
+            currentLocation = knownLocations.get(knownLocations.size() - 1);
+//
+//            
+            nextLocation = remainingLocations.remove(0);
+//            
+//            beachTutorialDone = true;
+//            forestTutorialDone = true;
             Player anahita = MainGame.makeAnahita();
             Player gaea = MainGame.makeGaea();
 //            Player fultra = MainGame.makeFultra();
@@ -242,7 +208,7 @@ public class Game
             anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
             anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
             anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-            anahita.setLevel(27);
+            anahita.setLevel(14);
             
             gaea.setMaxHealth(9999);
             gaea.setCurrentHealth(9999);
@@ -256,8 +222,8 @@ public class Game
             gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
             gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
             gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-            gaea.setLevel(27);
-            
+            gaea.setLevel(14);
+
 //            fultra.setMaxHealth(9999);
 //            fultra.setCurrentHealth(9999);
 //            fultra.setAttack(9999);
@@ -270,7 +236,7 @@ public class Game
 //            fultra.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
 //            fultra.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
 //            fultra.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
-//            fultra.setLevel(10);
+//            fultra.setLevel(11);
 
             calmus.setMaxHealth(9999);
             calmus.setCurrentHealth(9999);
@@ -284,44 +250,61 @@ public class Game
             calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
             calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
             calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
-            calmus.setLevel(27);
-            
-            Player ninlil = MainGame.makeNinlil();
-            ninlil.setMaxHealth(9999);
-            ninlil.setCurrentHealth(9999);
-            ninlil.setAttack(9999);
-            ninlil.setDefense(9999);
-            ninlil.setRangedAttack(9999);
-            ninlil.setRangedDefense(9999);
-            ninlil.setSpeed(9999);
-            ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
-            ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
-            ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
-            ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
-            ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
-            ninlil.setLevel(27);
-            
-            Player frigs = MainGame.makeFrigs();
-            frigs.setMaxHealth(9999);
-            frigs.setCurrentHealth(9999);
-            frigs.setAttack(9999);
-            frigs.setDefense(9999);
-            frigs.setRangedAttack(9999);
-            frigs.setRangedDefense(9999);
-            frigs.setSpeed(9999);
-            frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
-            frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
-            frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
-            frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
-            frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
-            frigs.setLevel(27);
-            
+            calmus.setLevel(14);
+//            
+//            Player ninlil = MainGame.makeNinlil();
+//            ninlil.setMaxHealth(9999);
+//            ninlil.setCurrentHealth(9999);
+//            ninlil.setAttack(9999);
+//            ninlil.setDefense(9999);
+//            ninlil.setRangedAttack(9999);
+//            ninlil.setRangedDefense(9999);
+//            ninlil.setSpeed(9999);
+//            ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
+//            ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
+//            ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
+//            ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
+//            ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
+//            ninlil.setLevel(27);
+//            
+//            Player frigs = MainGame.makeFrigs();
+//            frigs.setMaxHealth(9999);
+//            frigs.setCurrentHealth(9999);
+//            frigs.setAttack(9999);
+//            frigs.setDefense(9999);
+//            frigs.setRangedAttack(9999);
+//            frigs.setRangedDefense(9999);
+//            frigs.setSpeed(9999);
+//            frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+//            frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+//            frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+//            frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+//            frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+//            frigs.setLevel(27);
+//            
             team.add(anahita);
             team.add(gaea);
+//            team.add(fultra);
             team.add(calmus);
-            team.add(ninlil);
-            team.add(frigs);
+//            team.add(ninlil);
+//            team.add(frigs);
             
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest();
+            objective.updateByTest(); // Travel to Tempest Tower
+//            objective.updateByTest(); // Find Ninlil fight
+
             gold = 100000;
         }
         else
@@ -336,6 +319,10 @@ public class Game
     }
     
     public boolean inSecondPhase() {return inSecondPhase;}
+    
+    public boolean getRecentBattleResult() {return recentBattleWon;}
+    
+    public Location getCurrentLocation() {return currentLocation;}
     
     public static boolean isTesting() {return testing;}
     
@@ -378,6 +365,7 @@ public class Game
         if(!testing)
         {
             gameOpening();
+            introduceNewLocation();
         }
         
         instatiations();
@@ -407,13 +395,13 @@ public class Game
         remainingLocations.add(createElerric());
         remainingLocations.add(createZoniCity2());
         
-        if(testing)
-        {
-            remainingLocations.get(0).setIsExplored();
-            remainingLocations.get(1).setIsExplored();
-            remainingLocations.get(2).setIsExplored();
-            remainingLocations.get(3).setIsExplored();
-        }
+//        if(testing)
+//        {
+//            remainingLocations.get(0).setIsExplored();
+//            remainingLocations.get(1).setIsExplored();
+//            remainingLocations.get(2).setIsExplored();
+//            remainingLocations.get(3).setIsExplored();
+//        }
     }
     
     private void gameOpening()
@@ -559,6 +547,15 @@ public class Game
         }
     }
     
+    private void introduceNewLocation()
+    {
+        MainGame.clearScreen();
+        MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
+        MainGame.wait(250);
+        MainGame.printlnln("\n" + currentLocation.getDescription(), 25);
+        MainGame.promptToEnter();
+    }
+    
     private void transition(Location newLocation)
     {
         currentLocation.travelDescription(currentLocation, newLocation);
@@ -570,36 +567,38 @@ public class Game
         // Now using currentLocation as the newly arrived to Location
         if(!currentLocation.isExplored())
         {
-            MainGame.clearScreen();
-            MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-            MainGame.wait(500);
-            MainGame.printlnln("\n" + currentLocation.getDescription(), 25);
-            MainGame.promptToEnter();
+            introduceNewLocation();
+            if(objective.completedTask(this))
+            {
+                objective.update(this);
+            }
+//            objective.update(this);
+//            objective.updateByLevel(Player.highestPlayerLV(team));
 //            currentLocation.setIsExplored();
         }
         
         switch (currentLocation.getName()) 
         {
             case "Tempest Tower":
-            {
-                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
-                ((Wilderness)currentLocation).setBossBattle(battle, 14);
-            }
-            break;
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                }
+                break;
             case "Mount Volcan":
-            {
-                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
-                ((Wilderness)currentLocation).setBossBattle(battle, 17);
-                
-            }
-            break;
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+
+                }
+                break;
             case "Mount Zoni Summit":
-            {
-                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
-                ((Wilderness)currentLocation).setBossBattle(battle, 21);
-            }
-            break;
-            default: // Zoni City in second phase
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                }
+                break;
+            case "Zoni City": // Zoni City in second phase
                 if(inSecondPhase && !fultraBossDefeated)
                 {
                     // Only make the boss battle when in second phase
@@ -672,12 +671,12 @@ public class Game
     {
         Town town = ((Town)currentLocation);
         
-        if(testing && town.getName().equals("Zoni City"))
-        {
-            town.getVillagePeople().forEach(p -> {
-                p.setTalkedTo(true);
-            });
-        }
+//        if(testing && town.getName().equals("Zoni City"))
+//        {
+//            town.getVillagePeople().forEach(p -> {
+//                p.setTalkedTo(true);
+//            });
+//        }
         
         town.talkToPeople();
         
@@ -686,10 +685,27 @@ public class Game
         for if they talked to that person. This is to ensure that if the player is already at a specific level and
         hasn't talked to the specific person, after doing so, the next location is unlocked immediately.
         */
-        if(talkedToSpecificPerson())
+        
+        // The first phase will only update the objective and not unlock the next location
+        if(!inSecondPhase && talkedToSpecificPerson() && objective.completedTask(this))
+        {
+            MainGame.clearScreen();
+            objective.update(this);
+            
+            // After the objective updates, check to see if the next one was completed preemptively
+            if(objective.completedTask(this))
+            {
+                objective.update(this);
+            }
+        }
+        // If npc has been talked to and the objective successfully updated, unlock the next location. Only in second phase
+        else if(talkedToSpecificPerson() && objective.completedTask(this))
         {   
-            objective.update();
-            checkForNextLocation();
+            MainGame.clearScreen();
+//            unlockNextLocation();
+            objective.update(this);
+//            objective.updateByNpc(town);
+//            checkForNextLocation();
         }
         // This check is specifically for when the player talks to every NPC in the Zoni City in the first phase.
         else if(!inSecondPhase && town.getName().equals("Zoni City") && town.hasTalkedToEveryone())
@@ -697,19 +713,22 @@ public class Game
             MainGame.promptToEnter();
             
             if(testing)
-            {
-                resiTutorialAttempts = 1;
-                
+            {   
                 team.add(MainGame.makeCalmus());
                 team.add(MainGame.makeFrigs());
                 team.add(MainGame.makeNinlil());
                 
-                objective.update();
+                if(objective.completedTask(this))
+                {
+                    objective.update(this);
+                }
+//                objective.update(this);
+//                objective.updateByNpc(town);
                 startSecondPhase();
             }
             
             // If the player loses the tutorial, skip the cutscene. Otherwise, play it
-            if(resiTutorialAttempts == 0 && !testing)
+            if(!resiTutorialAttempted && !testing)
             {
                 Cutscene.invasion();
                 
@@ -719,14 +738,17 @@ public class Game
 
                 // Start tutorial RESI Battle here
                 RESITutorialBattle rtb = town.makeRESITutorial(team);
-                rtb.start(gold);
-                
-                resiTutorialAttempts++;
+                rtb.start(gold, recentBattleWon);
             
                 // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
                 if(rtb.isWon())
                 {
-                    objective.update();
+                    if(objective.completedTask(this))
+                    {
+                        objective.update(this);
+                    }
+//                    objective.update(this);
+//                    objective.updateByNpc(town);
                     startSecondPhase();
                 }
             }
@@ -743,7 +765,7 @@ public class Game
         inSecondPhase = true;
         
         // Reduces the population number by an arbitrary amount to show that the world has changed
-        pulchraPopulation = (pulchraPopulation / 5) - 600;
+        pulchraPopulation = (pulchraPopulation / 3) - 600;
         
         // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
@@ -784,7 +806,7 @@ public class Game
         if(!beachTutorialDone && currentLocation.getName().equals("Purity Beach"))
         {
             BeachTutorialBattle battle = ((Wilderness)currentLocation).makeBeachTutorial(team.get(0));
-            battle.start(gold);
+            battle.start(gold, recentBattleWon);
             
             // If the player loses the tutorial, they can't move on
             if(battle.isWon())
@@ -796,7 +818,7 @@ public class Game
         else if(!forestTutorialDone && currentLocation.getName().equals("Opicon Forest"))
         {
             OpiconTutorialBattle battle = ((Wilderness)currentLocation).makeOpiconTutorial(team);
-            battle.start(gold);
+            battle.start(gold, recentBattleWon);
             
             // If the player loses the tutorial, they can't move on
             if(battle.isWon())
@@ -813,7 +835,7 @@ public class Game
         else if(!inSecondPhase)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
-            battle.start(gold);
+            battle.start(gold, recentBattleWon);
         }
         // Second phase - 60% normal battles, 40% RESI battles
         else
@@ -821,7 +843,12 @@ public class Game
             chooseBattle(new Random().nextInt(100));
         }
         
-        checkForNextLocation();
+        if(objective.completedTask(this))
+        {
+            objective.update(this);
+        }
+            
+//        checkForNextLocation();
     }
     
     private void chooseBattle(int chance)
@@ -829,12 +856,12 @@ public class Game
         if(chance >= 0 && chance < 59)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
-            battle.start(gold);
+            battle.start(gold, recentBattleWon);
         }
         else
         {
             RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
-            battle.start(gold);
+            battle.start(gold, recentBattleWon);
         }
     }
     
@@ -853,14 +880,18 @@ public class Game
                 }   
                 
                 Wilderness tempestTower = ((Wilderness)currentLocation);
-                tempestTower.getBossBattle().start(gold);
+                tempestTower.getBossBattle().start(gold, recentBattleWon);
                 towerBossAttempted = true;
+                
+                // Update objective if battle is won
+                objective.update(this);
+//                objective.updateByBattleResult(tempestTower.getBossBattle().isWon());
+                
                 // If the player wins the boss fight, remove it from Tempest Tower.
                 if(tempestTower.getBossBattle().isWon())
                 {
                     Cutscene.defeatedNinlil();
                     tempestTower.removeBossBattle();
-                    objective.update();
                     team.add(MainGame.makeNinlil());
                 }   
                 break;
@@ -873,15 +904,19 @@ public class Game
                 }   
                 
                 Wilderness volcan = ((Wilderness)currentLocation);
-                volcan.getBossBattle().start(gold);
+                volcan.getBossBattle().start(gold, recentBattleWon);
                 volcanBossAttempted = true;
+                
+                // Update objective if battle is won
+                objective.update(this);
+//                objective.updateByBattleResult(volcan.getBossBattle().isWon());
+                
                 // If the player wins the boss fight, remove it from Mount Volcan.
                 if(volcan.getBossBattle().isWon())
                 {
                     defeatedOmegaBoss = true;
                     Cutscene.defeatedOmega();
                     volcan.removeBossBattle();
-                    objective.update();
                     
                     NPC lyra = ((Town)getLocation("Infol")).getNPC("Lyra");
                     lyra.setDialogue("Thank you so much for your help again! Good luck on your journey!");
@@ -902,15 +937,18 @@ public class Game
                 }   
                 
                 Wilderness summit = ((Wilderness)currentLocation);
-                summit.getBossBattle().start(gold);
+                summit.getBossBattle().start(gold, recentBattleWon);
                 summitBossAttempted = true;
+                
+                // Update objective if battle is won
+                objective.update(this);
+//                objective.updateByBattleResult(summit.getBossBattle().isWon());
                 
                 // If the player wins the boss fight, remove it from Mount Zoni Summit.
                 if(summit.getBossBattle().isWon())
                 {
                     Cutscene.defeatedFrigs();
                     summit.removeBossBattle();
-                    objective.update();
                     team.add(MainGame.makeFrigs());
                 }   
                 
@@ -972,6 +1010,11 @@ public class Game
             default:
                 break;
         }
+        
+        if(objective.completedTask(this))
+        {
+            objective.update(this);
+        }
     }
     
     private void cityBossFights()
@@ -985,15 +1028,18 @@ public class Game
                 Cutscene.foundResiFultra();
             }
             
-            city.getBossBattle().start(gold);
+            city.getBossBattle().start(gold, recentBattleWon);
             fultraBossAttempted = true;
 
+            // Update objective if battle is won
+            objective.update(this);
+//            objective.updateByBattleResult(city.getBossBattle().isWon());
+            
             if(city.getBossBattle().isWon())
             {
                 Cutscene.defeatedResiFultra();
                 fultraBossDefeated = true;
                 city.removeBossBattle();
-                objective.update();
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 28);
             }
@@ -1005,14 +1051,17 @@ public class Game
                 Cutscene.foundIrwin();
             }
 
-            city.getBossBattle().start(gold);
-
+            city.getBossBattle().start(gold, recentBattleWon);
+            
+            // Update objective if battle is won
+            objective.update(this);
+//            objective.updateByBattleResult(city.getBossBattle().isWon());
+            
             if(city.getBossBattle().isWon())
             {
                 Cutscene.defeatedIrwin();
                 irwinBossDefeated = true;
                 city.removeBossBattle();
-                objective.update();
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 30);
             }
@@ -1024,7 +1073,11 @@ public class Game
                 Cutscene.foundFinalBoss();
             }
 
-            city.getBossBattle().start(gold);
+            city.getBossBattle().start(gold, recentBattleWon);
+            
+            // Update objective if battle is won
+            objective.update(this);
+//            objective.updateByBattleResult(city.getBossBattle().isWon());
             
             if(city.getBossBattle().isWon())
             {
@@ -1033,67 +1086,114 @@ public class Game
                 city.removeBossBattle();
             }
         }
+        
+        if(objective.completedTask(this))
+        {
+            objective.update(this);
+        }
+    }
+    
+    /**
+     * Returns the String representing the NPCs name from the objective.
+     * @return String
+     */
+    private String getNpcNameFromObjective()
+    {
+        Scanner scan = new Scanner(objective.toString());
+        scan.useDelimiter("Talk to ");
+        return scan.next();
     }
     
     private boolean talkedToSpecificPerson()
     {
-        Town town = (Town)currentLocation;
+        if(currentLocation instanceof Town)
+        {
+            Town town = (Town)currentLocation;
         
-        // Chain of if statements look for if a specific NPC was talked to at the location
-        if(town.getName().equals("Aquammoda") && town.getNPC("Merda").hasBeenTalkedTo())
-        {
-            return true;
-        }
-        else if(town.getName().equals("Degon") && town.getNPC("Fleur").hasBeenTalkedTo())
-        {
-            return true;
-        }
-        else if(town.getName().equals("Aerogan") && town.getNPC("Elder Nu").hasBeenTalkedTo())
-        {
-            // Unlock Tempest Tower
-            MainGame.clearScreen();
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
+            // If in Zoni City, check if everyone was talked to
+//            if(town.getName().equals("Zoni City"))
+//            {
+//                return town.hasTalkedToEveryone();
+//            }
             
-            return true;
+            // Otherwise, check if the specific NPC was talked to 
+            if(town.getNPC(getNpcNameFromObjective()) == null)
+            {
+                return false;
+            }
+
+            return town.getNPC(getNpcNameFromObjective()).hasBeenTalkedTo();
         }
-        else if(town.getName().equals("Infol") && town.getNPC("Elder Vulca").hasBeenTalkedTo())
-        {
-            // Unlock Mount Volcan
-            MainGame.clearScreen();
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
-            
-            return true;
-        }
-        else if(town.getName().equals("Infol") && town.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
-        {
-            MainGame.clearScreen();
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
-            
-            return true;
-        }
-        else if(town.getName().equals("Solice") && town.getNPC("Elder Zeno").hasBeenTalkedTo())
-        {
-            // Unlock Mount Zoni Summit
-            MainGame.clearScreen();
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
-            
-            return true;
-        }
-        else if(town.getName().equals("Elerric") && town.getNPC("Elder Clairdra").hasBeenTalkedTo())
-        {
-            MainGame.clearScreen();
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
-            
-            return true;
-        }
-        
         
         return false;
+        
+        // Chain of if statements look for if a specific NPC was talked to at the location
+//        if(town.getName().equals("Aquammoda") && town.getNPC("Merda").hasBeenTalkedTo() )
+//        {
+//            talkedToMerda = true;
+//            return true;
+//        }
+//        else if(town.getName().equals("Degon") && town.getNPC("Fleur").hasBeenTalkedTo())
+//        {
+//            talkedToFleur = true;
+//            return true;
+//        }
+//        else if(town.getName().equals("Aerogan") && town.getNPC("Elder Nu").hasBeenTalkedTo())
+//        {
+//            talkedToElderNu = true;
+//            
+//            // Unlock Tempest Tower
+//            MainGame.clearScreen();
+//            nextLocation.setUnlocked(true);
+//            locationUnlocked();
+//            
+//            return true;
+//        }
+//        else if(town.getName().equals("Infol") && town.getNPC("Elder Vulca").hasBeenTalkedTo())
+//        {
+//            talkedToElderVulca = true;
+//            
+//            // Unlock Mount Volcan
+//            MainGame.clearScreen();
+//            nextLocation.setUnlocked(true);
+//            locationUnlocked();
+//            
+//            return true;
+//        }
+//        else if(town.getName().equals("Infol") && town.getNPC("Lyra").hasBeenTalkedTo() && defeatedOmegaBoss)
+//        {
+//            talkedToLyra = true;
+//            
+//            MainGame.clearScreen();
+//            nextLocation.setUnlocked(true);
+//            locationUnlocked();
+//            
+//            return true;
+//        }
+//        else if(town.getName().equals("Solice") && town.getNPC("Elder Zeno").hasBeenTalkedTo())
+//        {
+//            talkedToElderZeno = true;
+//            
+//            // Unlock Mount Zoni Summit
+//            MainGame.clearScreen();
+//            nextLocation.setUnlocked(true);
+//            locationUnlocked();
+//            
+//            return true;
+//        }
+//        else if(town.getName().equals("Elerric") && town.getNPC("Elder Clairdra").hasBeenTalkedTo())
+//        {
+//            talkedToElderClairdra = true;
+//            
+//            MainGame.clearScreen();
+//            nextLocation.setUnlocked(true);
+//            locationUnlocked();
+//            
+//            return true;
+//        }
+//        
+//        
+//        return false;
     }
     
     /**
@@ -1125,6 +1225,12 @@ public class Game
         return false;
     }
     
+    public void unlockNextLocation()
+    {
+        nextLocation.setUnlocked(true);
+        locationUnlocked();
+    }
+    
     private void checkForNextLocation()
     {
         // If a specific objective hasn't been met, don't allow the player to get to the next area
@@ -1133,15 +1239,29 @@ public class Game
 //            return;
 //        }
         
-        int level = Player.highestPlayerLV(team);
-        Location latestLocation = knownLocations.get(knownLocations.size() - 1);
+        // If the specified person is talked to in the objective, then check if the level is the minimum to unlock the next place
+//        if(talkedToSpecificPerson())
+//        {
+//            int level = Player.highestPlayerLV(team);
+            Location latestLocation = knownLocations.get(knownLocations.size() - 1);
+
+            if(latestLocation.isExplored() && objective.completedTask(this))
+            {
+                if(objective.completedTask(this))
+                {
+                    objective.update(this);
+                }
+//                objective.update(this);
+//                unlockNextLocation();
+            }
+            // If the level requirement is met and the objective updates, unlock next location. The latest location must be explored too
+//            if(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
+//            {
+//                unlockNextLocation();
+//            }
+//        }
         
-        // While the highest level is >= to the required level AND the newest location was explored, the player unlocks the next location 
-        if(level >= nextLocation.getRequiredLevel() && latestLocation.isExplored())
-        {
-            nextLocation.setUnlocked(true);
-            locationUnlocked();
-        }
+            
         
 //        if(nextLocation.isUnlocked())
 //        {
@@ -1852,7 +1972,7 @@ public class Game
         ilven.setDescription("Aerogan resident | Ninlil's training partner");
         
         gift = Item.getBuffItem("Blue Bean");
-        NPC clairdra = new NPC("Clairdra", "Look at you all - two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 2, false);
+        NPC clairdra = new NPC("Clairdra", "Look at you all -- two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 1, false);
         clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
         clairdra.setDescription("Elerric resident | Fultra's grandma");
         
@@ -2050,7 +2170,8 @@ public class Game
     private Wilderness createOpiconForest()
     {
         Coordinate c = new Coordinate(19, 35);
-        Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between the Earth and Aquammodas.", 6, c);
+        Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between Degon and Aquammoda, "
+                + "separating the two.", 6, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");
@@ -2119,7 +2240,7 @@ public class Game
     {
         if(isNewLocation("Opicon Forest"))
         {
-            objective.update();
+//            objective.update();
             Cutscene.opicon();
             team.add(MainGame.makeGaea());
             team.add(MainGame.makeFultra());
@@ -2128,66 +2249,66 @@ public class Game
         else if(isNewLocation("Aquammoda"))
         {
             Cutscene.aquammoda();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Degon"))
         {
             Cutscene.degon();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Zoni City") && (!inSecondPhase))
         {
             Cutscene.zoniCity();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Aerogan"))
         {
             Cutscene.aerogan();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Tempest Tower"))
         {
             Cutscene.tempestTower();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Infol"))
         {
             Cutscene.infol();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Mount Volcan"))
         {
             Cutscene.mountVulca();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Mount Zoni"))
         {
             Cutscene.mountZoni();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Solice"))
         {
             Cutscene.solice();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Mount Zoni Summit"))
         {
-            objective.update();  // No cutscene needed
+//            objective.update();  // No cutscene needed
         }
         else if(isNewLocation("Forlorn Cave"))
         {
             Cutscene.forlornCave();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Elerric"))
         {
             Cutscene.elerric();
-            objective.update();
+//            objective.update();
         }
         else if(isNewLocation("Zoni City") && inSecondPhase)
         {
             Cutscene.returnToZoni();
-            objective.update();
+//            objective.update();
         }
             
         currentLocation.setIsExplored();

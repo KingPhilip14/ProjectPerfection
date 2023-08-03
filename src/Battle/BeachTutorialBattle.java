@@ -15,9 +15,9 @@ public class BeachTutorialBattle extends TutorialBattle
     }
     
     @Override
-    public void start(int gold)
+    public void start(int gold, boolean result)
     {
-        super.start(gold);
+        super.start(gold, result);
         player.forcedLevelUp();
         player.setCurrentHealth(player.getMaxHealth());
     }

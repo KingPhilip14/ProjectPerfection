@@ -81,11 +81,16 @@ public class Cutscene
      */
     public static void opening()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
         MainGame.printWait("The world is", 25, 100);
         MainGame.ellipsis();
         MainGame.printWait("a place of war. ", 25, 1000);
-        MainGame.printWait("A constant place of distress.", 25, 1000);
+        MainGame.printWait("A constant place of distress. ", 25, 1000);
         MainGame.printlnlnWait("A place of loss. A place where peace is... seldom found.", 25, 1500);
         MainGame.printlnlnWait("Very, very few can say that they *truly* have peace...", 50, 1000);
         
@@ -124,8 +129,9 @@ public class Cutscene
                 + "start crowding the door./The bodyguards start to push a few people back to give the man space. The man "
                 + "sighs out of annoyance and shakes his head.");
         
-        print("The newscaster surprisingly pushes her way past through the crowd and slips past the bodyguards. "
-                + "She then finds/herself face to face with the man. She clears her throat before quickly speaking.");
+        print("The newscaster surprisingly pushes her way past through the crowd despite her small size and slips past the "
+                + "bodyguards./She then finds herself face to face with the man. She clears her throat before "
+                + "quickly speaking.");
         
         MainGame.dialoguelnln("Newscaster", "Mr. Krov! If I may take a minute of your time, what do you plan to do to help "
                 + "with all the wars and\n\tcorruption currently taking place? Will you be providing tools for the "
@@ -140,7 +146,7 @@ public class Cutscene
                 + "imperfections we as humans\n\thave is what caused the world to fall into ruin in the first place. Thus, "
                 + "the way to combat this is perfection.\n\tYou will all understand soon.");
         
-        print("Perplexed, the newscaster turns to the cameraman that accompanied her to finish her broadcast.");
+        print("Perplexed, the newscaster turned to the cameraman that accompanied her to finish her broadcast.");
         
         MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
                 + "restored?\n\tWill we have peace once -- or ever -- again? Will the supposed 'perfection' needed help us?"
@@ -154,7 +160,7 @@ public class Cutscene
         print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
                 + "with the ability to control the elements./Using these powers, the people have kept themselves hidden from "
                 + "the rest of the world for their own safety./With some having the ability to control water, wind, and "
-                + "electricity, the island is surrounded by violent storms,/preventing anyone and anything from getting "
+                + "electricity, the island is surrounded by violent storms,/preventing outsiders from getting "
                 + "through.");
         
         MainGame.promptToEnter();
@@ -184,6 +190,11 @@ public class Cutscene
      */
     public static void opicon()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.clearScreen();
         
         MainGame.dialoguelnln("Anahita", "Wow. This place will always take my breath away. All the flowers and vegetation are "
@@ -208,7 +219,7 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "(*sniff*) I'll be fine... I guess...");
         MainGame.dialoguelnln("Fultra", "You'll know she'll be okay, Ana. She's more concerned about her hair than anything else.");
         MainGame.dialoguelnln("Gaea", "Don't down play it like it's nothing! I have to redo it all before the festival now!");
-        MainGame.dialoguelnln("Anahita", "I promise I'll help you clean up a bit, okay? What're you guys doing here though?");
+        MainGame.dialoguelnln("Anahita", "I promise I'll help you clean up a bit, okay? What're you guys doing here?");
         MainGame.dialoguelnln("Gaea", "We were picking flowers to give to my cousin, Fleur. We have 4 baskets ready to go!");
         MainGame.dialoguelnln("Fultra", "And we thought we heard your voice, so we decided to see if it was you.\n\tAnd it "
                 + "clearly was considering the damage done.");
@@ -242,6 +253,11 @@ public class Cutscene
      */
     public static void opicon2()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.clearScreen();
         
         print("The three friends let out a collective sigh after defeating the enemies and gave each other "
@@ -269,6 +285,11 @@ public class Cutscene
      */
     public static void aquammoda()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.clearScreen();
         
         print("Anahita and the others safely arrived at Aquammoda, Anahita's home.");
@@ -302,6 +323,11 @@ public class Cutscene
      */
     public static void merda()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.dialoguelnln("Merda", "Oh! There you are. Hello everyone.");
         MainGame.dialoguelnln("Anahita", "Hey, Mom! I'm so so sorry that I got here late. I lost track of time and I-");
         MainGame.dialoguelnln("Merda", "It's okay, Ana. Brinlee and I already took care of the baking.");
@@ -355,6 +381,11 @@ public class Cutscene
      */
     public static void degon()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the Annual Festival, and "
                 + "then\n\twe can party!");
         MainGame.dialoguelnln("Fultra", "I've been waiting all day! It'll be nice to catch up with some people from the other "
@@ -374,6 +405,11 @@ public class Cutscene
      */
     public static void fleur()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         print("Fleur is found talking about decorations for the festival to a team of other Pulchrians.");
         MainGame.dialoguelnln("Fleur", "... Perfect! All we need now are the baskets of flowers. Where is Gaea?\n\t"
                 + "Right when I need her most, she's no where to be found...");
@@ -428,7 +464,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("The two laughed and quickly left Gaea's home. They caught up with Fultra right as Fleur's decoration team left "
-                + "to finish\n\tthe last decorations at Zoni Village.");
+                + "to finish/the last decorations at Zoni Village.");
         
         MainGame.dialoguelnln("Fultra", "Wow! You look amazing!");
         MainGame.dialoguelnln("Gaea", "You think so? Ana is to thank. She did an amazing job.");
@@ -453,6 +489,11 @@ public class Cutscene
      */
     public static void calliou()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.dialoguelnln("Calliou", "Y O U  T H R E E!!!");
         
         print("Anahita, Gaea, and Fultra all flinched at the sheer power coming from his voice.");
@@ -495,6 +536,11 @@ public class Cutscene
      */
     public static void zoniCity()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.dialoguelnln("Anahita", "Finally! We made it!!");
         
         print("Anahita and the others rush into Zoni Village and admire the animated area. People were going back and forth, "
@@ -532,6 +578,12 @@ public class Cutscene
      */
     public static void calmus()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
+        
         print("The group approaches a young male playing with what appears to be his little sister. He's quite tall and "
                 + "towers over the group. Anahita/calls out to him.");
         
@@ -584,6 +636,11 @@ public class Cutscene
      */
     public static void frigs()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         MainGame.dialoguelnln("Anahita", "Hey, I think I see Frigs over here! I haven't seen him in so long!");
         
         MainGame.dialoguelnln("Gaea", "It might be! Let's go say hi!");
@@ -631,6 +688,11 @@ public class Cutscene
      */
     public static void ninlil()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         print("Anahita was walking and talking to Gaea and Fultra, sharing her enthusiasm with the group. Her excitement, "
                 + "unfortunately, blinded her/and caused her to bump into someone helping with decorations. A large basket of "
                 + "flowers and streamers fell on the ground.");
@@ -677,6 +739,11 @@ public class Cutscene
      */
     public static void invasion()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         print("After the group finished talking to other townrs, a bell chimed and a wave of people gathered to the center "
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
                 + "lifestyle.");
@@ -806,6 +873,11 @@ public class Cutscene
      */
     public static void invasion2()
     {
+        if(Game.isTesting())
+        {
+            return;
+        }
+        
         print("After a difficult fight, Anahita and the others successfully defeated the R.E.S.I. Bot, leaving a dismantled "
                 + "pile of metal on the ground./A green liquid started seeping out from the remains.");
         
@@ -1096,8 +1168,8 @@ public class Cutscene
         
         MainGame.dialoguelnln("Elder Nu", "Yes, actually. She's at Tempest Tower, just south of here. (*smack*) She's been "
                 + "greiving since we lost\n\tIlven... He was one of our best and the closest person to her... When you "
-                + "see her, be careful.\n\tI doubt she's in the right headspace -- she may need some convincing and "
-                + "consolation.");
+                + "see her, be careful.\n\tI doubt she's in the right headspace -- she may need heavy consolation. She's "
+                + "been blaming herself for his death.");
         
         print("Gaea's heart is normally hardened toward Ninlil, but hearing Elder Nu speak softened her. She felt herself "
                 + "start to gain compassion/and empathy for her. Now knowing the pain of loss is a strong factor for this.");
