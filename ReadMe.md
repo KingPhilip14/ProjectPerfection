@@ -1,7 +1,7 @@
 # Project Perfection
 
 ## What is this project?
-This is a text-based RPG I started as a freshman in college to practice some of the coding concepts I learned in class. As of September 2023, it isn't complete yet but it is nearly finished. 
+This is a text-based RPG I started as a freshman in college to practice some of the coding concepts I learned in class. As of September 2023, it isn't complete yet, but it is nearly finished. 
 
 -----
 
