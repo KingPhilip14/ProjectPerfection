@@ -6,7 +6,7 @@ This is a text-based RPG I started as a freshman in college to practice some of 
 -----
 
 ## What can you do in the game?
-  *The Battle System
+  * The Battle System
     * This game has a turn-based combat system, similar to Pokemon. This allows players to use the given characters to fight in battles against enemies by using unique attacks. Attacks can deal damage, apply a buff or debuff to a stat, or heal an ally. 
   * The Game World
     * There are NPCs the player can talk to and potentially receive gifts from. These characters help make the game feel more alive and diverse. As players progress through the story, if they've been in certain areas, they might see what NPCs they can talk to either disappear or have new dialogue depending on the state of the world.
