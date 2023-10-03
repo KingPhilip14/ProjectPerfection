@@ -119,9 +119,16 @@ public class Game
 //            // Put the player in Aerogan
             knownLocations.add(remainingLocations.remove(0));
 ////            objective.update();  // Talk to Elder Nu objective 
-//            
+
+            // Delete this and uncomment the other one after Tempest tower test
+            for(Location l : knownLocations)
+            {
+                l.setIsExplored();
+            }
+
+
 //            // Go to tempest tower objective
-//            knownLocations.add(remainingLocations.remove(0));
+            knownLocations.add(remainingLocations.remove(0));
 //            ((Wilderness)knownLocations.get(knownLocations.size() - 1)).removeBossBattle();
 ////            objective.update();
 //            
@@ -174,17 +181,17 @@ public class Game
 //            // Talk to Elder Clairdra
 ////            objective.update();
 //            
-            for(Location l : knownLocations)
-            {
-                l.setIsExplored();
-            }
+//            for(Location l : knownLocations)
+//            {
+//                l.setIsExplored();
+//            }
 //            
 //            // Return to Zoni City.
 ////            objective.update();
 //            knownLocations.add(remainingLocations.remove(0));
 //            
 //            // Use this for going to the newest location
-            currentLocation = knownLocations.get(knownLocations.size() - 1);
+            currentLocation = knownLocations.get(knownLocations.size() - 2); // change to two after testing Tempest Tower
 //
 //            
             nextLocation = remainingLocations.remove(0);

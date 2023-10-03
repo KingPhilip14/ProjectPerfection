@@ -1501,7 +1501,7 @@ public class Cutscene
                 + "it will only\n\tget hotter from here.");
         
         print("The girls all groaned at the warning which caused Calmus to laugh. Calmus led the group up the path as the "
-                + "other trudged along begrudgingly.");
+                + "other trudged/along begrudgingly.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -1509,7 +1509,7 @@ public class Cutscene
         print("As the group traveled up the volcano, they saw massive markings on the rocks, and giant holes in some parts "
                 + "of the cliff walls.");
         
-        MainGame.dialoguelnln("Ninlil", "Hey, uh, guys? Are these markings supposed to be here?");
+        MainGame.dialoguelnln("Ninlil", "Hey, guys? Are these markings supposed to be here?");
         
         print("Ninlil pointed at one of the markings, which prompted Calmus to look at it. He touched it with his hand before "
                 + "addressing the group.");
