@@ -896,8 +896,8 @@ public class MainGame
         anahita.setDeathMessage("Everyone... I'm sorry...");
         anahita.setCheerReadyMessage("I'm right behind you!");
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
-        anahita.setMaxHealth(300);
-        anahita.setCurrentHealth(300);
+        anahita.setMaxHealth(210);
+        anahita.setCurrentHealth(210);
         anahita.setAttack(45);
         anahita.setDefense(55);
         anahita.setRangedAttack(70);
@@ -957,8 +957,8 @@ public class MainGame
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
         gaea.setAggro(5);
-        gaea.setMaxHealth(315);
-        gaea.setCurrentHealth(315);
+        gaea.setMaxHealth(245);
+        gaea.setCurrentHealth(245);
         gaea.setAttack(65);
         gaea.setDefense(80);
         gaea.setRangedAttack(80);
@@ -976,7 +976,7 @@ public class MainGame
         DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
-        terraForce.setAccuracy(90);
+        terraForce.setAccuracy(95);
         OffensiveAttack naturesAnger = new OffensiveAttack("Nature's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
@@ -1014,8 +1014,8 @@ public class MainGame
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
         fultra.setCheerReadyMessage("You're in good hands!");
-        fultra.setMaxHealth(335);
-        fultra.setCurrentHealth(335);
+        fultra.setMaxHealth(250);
+        fultra.setCurrentHealth(250);
         fultra.setAttack(72);
         fultra.setDefense(72);
         fultra.setRangedAttack(72);
@@ -1066,8 +1066,8 @@ public class MainGame
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
         calmus.setAggro(10);
-        calmus.setMaxHealth(420);
-        calmus.setCurrentHealth(420);
+        calmus.setMaxHealth(360);
+        calmus.setCurrentHealth(360);
         calmus.setAttack(140);
         calmus.setDefense(160);
         calmus.setRangedAttack(100);

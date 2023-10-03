@@ -70,7 +70,7 @@ public abstract class Battle
      * Starts the method and increases or decreases gold amount if player wins or loses.
      * @param gold 
      */
-    public void start(int gold)
+    public void start(int gold, boolean result)
     {   
         MainGame.printlnlnWait(startingText, 25, 1500);
         turnSetup();
@@ -151,6 +151,8 @@ public abstract class Battle
         {
             lost();
         }
+        
+        result = won;
         
         MainGame.promptToEnter();
 //        MainGame.wait(3000);

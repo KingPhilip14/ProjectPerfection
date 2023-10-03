@@ -25,11 +25,11 @@ public abstract class TutorialBattle extends Battle
     }
     
     @Override
-    public void start(int gold) 
+    public void start(int gold, boolean result) 
     {
         intro();
         
-        super.start(gold);
+        super.start(gold, result);
     }
     
     /**
