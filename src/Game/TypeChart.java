@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * A class for creating and displaying the type match-up chart.
  * @author Ian King
  */
-public class TypeChart 
+public class TypeChart implements java.io.Serializable
 {
     private final String[] HEADER;
     private ArrayList<String> elements;

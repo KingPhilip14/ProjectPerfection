@@ -14,7 +14,7 @@ import java.util.Random;
  * A class for starting, processing, and ending battles.
  * @author Ian King
  */
-public abstract class Battle 
+public abstract class Battle implements java.io.Serializable
 {
     private static int currentTurn;
     protected int baseGoldAmt = 100;

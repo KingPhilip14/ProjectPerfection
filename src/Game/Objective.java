@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * complete the given objective before they can move on.
  * @author Ian King
  */
-public class Objective 
+public class Objective implements java.io.Serializable
 {
     private Task currentTask;
 //    private Task nextObjective;

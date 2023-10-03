@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * An abstract class for Items that can be collected.
  * @author Ian King
  */
-public abstract class Item implements Collectable
+public abstract class Item implements Collectable, java.io.Serializable
 {
     private static ArrayList<HealingItem> allHealItems = new ArrayList();
     private static ArrayList<BuffItem> allBuffItems = new ArrayList();

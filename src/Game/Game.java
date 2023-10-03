@@ -37,7 +37,7 @@ import java.util.Scanner;
  * A class for creating Game objects to start the game.
  * @author Ian King
  */
-public class Game 
+public class Game implements java.io.Serializable
 {
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;

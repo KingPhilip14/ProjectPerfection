@@ -9,7 +9,7 @@ import java.util.Scanner;
  * A class for managing the game map.
  * @author Ian King
  */
-public class Map 
+public class Map implements java.io.Serializable
 {
     char[][] map;
     
