@@ -21,7 +21,7 @@ public class Map
     
     private void makeMap()
     {
-        String gameMapPath = "C:\\Users\\ianth\\OneDrive\\Documents\\GameMap.txt";
+        String gameMapPath = "C:\\Users\\ianth\\OneDrive\\Desktop\\ProjectPerfection\\src\\Exploration\\GameMap.txt";
         File gameMap = new File(gameMapPath);
         
         try
