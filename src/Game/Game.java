@@ -1363,8 +1363,7 @@ public class Game implements java.io.Serializable
     
     private void save()
     {
-//        MainGame.save();
-        
+        MainGame.save();
     }
     
     private void viewWorldMap()

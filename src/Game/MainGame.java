@@ -14,6 +14,10 @@ import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Utilites.MenuHelper;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -34,6 +38,7 @@ public class MainGame
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
+    private static Game game;
     
     public static void main(String[] args) 
     {
@@ -348,7 +353,7 @@ public class MainGame
         Item.populateAllHealItems();
         PlayerClass.createClasses();
 
-        Game game = new Game(true);
+        game = new Game(true);
         playerTeam = game.getTeam();
         game.startGame();
 
@@ -388,10 +393,47 @@ public class MainGame
         switch(response)
         {
             case 1:
-                Game game = new Game(false);
+                game = new Game(false);
                 game.startGame();
         }
     }
+    
+    public static void save()
+    {
+        try
+        {
+            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(game); // pass in the game object and write it to the file
+            oos.flush(); // writes out any buffered bytes
+            oos.close();
+            printlnln("Game was successfully saved!", 25);
+            promptToEnter();
+        }
+        catch(Exception e)
+        {
+            printlnln("Serialization Error! Game data couldn't be saved.", 25);
+        }
+    }
+    
+    public static void load()
+    {
+        try
+        {
+            FileInputStream fis = new FileInputStream("ProjPerf.save");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            game = (Game) ois.readObject();
+            ois.close();
+            printlnln("Game was successfully loaded. Starting...!", 25);
+            promptToEnter();
+            clearScreen();
+        }
+        catch(Exception e)
+        {
+            printlnln("Serialization Error! Game data couldn't be saved.", 25);
+        }
+    }
+        
     
     /**
      * Prints an ellipsis without adding new lines.
