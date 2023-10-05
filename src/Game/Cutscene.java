@@ -242,7 +242,7 @@ public class Cutscene
         
         MainGame.printWithBreaks("You now have access to Fultra, one of the strongest Pulchrians!/He has a unique class"
                 + " called the 'All-Rounder.'/All his stats are average and realatively even, but what really makes him "
-                + "shine is his Buff Attack called 'Charge!'/ With it, he increases all his stats for a certain time, "
+                + "shine is his Buff Attack called 'Charge!'/With it, he increases all his stats for a certain time, "
                 + "but it has a large cooldown, so be mindful!");
         
         MainGame.promptToEnter();
@@ -371,7 +371,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.printlnln("You received 3 Cinnamon Rolls!", 25);
-        MainGame.addToInventory(Item.getHealingItem("Cinnamon Roll"), 3);
+        Game.addToInventory(Item.getHealingItem("Cinnamon Roll"), 3);
         
         MainGame.promptToEnter();
     }
@@ -510,7 +510,7 @@ public class Cutscene
         MainGame.dialoguelnln("Calliou", "NOW YOU KNOW!! HERE -- TAKE SOME!!! BEANS ARE AMAZING!!!");
         
         MainGame.printlnln("You received 3 Orange Beans!", 25);
-        MainGame.addToInventory(Item.getBuffItem("Orange Bean"), 3);
+        Game.addToInventory(Item.getBuffItem("Orange Bean"), 3);
         
         MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION -- 'BEANS MAKE YOU STRONGER FOR LONGER"
                 + "!!!'");
@@ -620,7 +620,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.printlnln("You received an Apple Pie!", 25);
-        MainGame.addToInventory(Item.getHealingItem("Apple Pie"), 1);
+        Game.addToInventory(Item.getHealingItem("Apple Pie"), 1);
         
         MainGame.promptToEnter();
         

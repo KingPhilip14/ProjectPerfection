@@ -84,13 +84,13 @@ public class Shop extends GameProperty
     
     private void sellItems()
     {
-        int inventorySize = MainGame.getInventory().size();
+        int inventorySize = Game.getInventory().size();
         
         System.out.println("");
         MainGame.dialoguelnln("Berry", "What would ya like to sell? I'll take anything!");
         
         MainGame.print("(Your Inventory\t Current Gold: " + Game.getGoldString() + ")", 5);
-        String message = MainGame.getInventory().inventoryListForSelling() + 
+        String message = Game.getInventory().inventoryListForSelling() + 
                 "\n\t" + ++inventorySize + ") Back";
         
         int input = MenuHelper.displayMenu(message, 1, inventorySize);
@@ -101,7 +101,7 @@ public class Shop extends GameProperty
         }
         else
         {
-            Item item = MainGame.getInventory().get(--input);
+            Item item = Game.getInventory().get(--input);
             promptToSell(item);
         }
     }
@@ -130,7 +130,7 @@ public class Shop extends GameProperty
                     +  String.format("%,d", amt) + "!");
         }
         
-        MainGame.getInventory().sellItem(item, quantity);
+        Game.getInventory().sellItem(item, quantity);
 //        int goldAmt = item.getSalePrice() * quantity;
 //        
 //        Game.increaseGold(goldAmt);
@@ -219,7 +219,7 @@ public class Shop extends GameProperty
     
     private void makePurchase(Item item, int quantity)
     {
-        MainGame.addToInventory(item, quantity);
+        Game.addToInventory(item, quantity);
         
         int amt = item.getPrice() * quantity;
         

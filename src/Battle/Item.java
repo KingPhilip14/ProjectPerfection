@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.Game;
 import Game.MainGame;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * An abstract class for Items that can be collected.
  * @author Ian King
  */
-public abstract class Item implements Collectable
+public abstract class Item implements Collectable, java.io.Serializable
 {
     private static ArrayList<HealingItem> allHealItems = new ArrayList();
     private static ArrayList<BuffItem> allBuffItems = new ArrayList();
@@ -254,7 +255,7 @@ public abstract class Item implements Collectable
     {
         if(quantity == 0)
         {
-            MainGame.getInventory().remove(this);
+            Game.getInventory().remove(this);
         }
     }
     

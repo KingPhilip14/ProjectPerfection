@@ -2,7 +2,7 @@ package Exploration;
 
 import Battle.GameProperty;
 import Battle.Item;
-import Game.MainGame;
+import Game.Game;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -79,7 +79,7 @@ public class TreasureChest extends GameProperty
         for(Item item : contents)
         {
             item.printReceivedMessage();
-            MainGame.addToInventory(item, item.getQuantity());
+            Game.addToInventory(item, item.getQuantity());
         }
         
         int contentsSize = contents.size();

@@ -4,7 +4,7 @@ package Battle;
  * An abstract class for Game Properties.
  * @author Ian King
  */
-public abstract class GameProperty implements Entity
+public abstract class GameProperty implements Entity, java.io.Serializable
 {
     protected String name;
     protected String description;

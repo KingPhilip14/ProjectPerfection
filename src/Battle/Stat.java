@@ -6,7 +6,7 @@ import Game.MainGame;
  * A class for creating the Stats of an Enemy or Player
  * @author Ian King
  */
-public class Stat 
+public class Stat implements java.io.Serializable
 {
     private String stat;
     private int value;

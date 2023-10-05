@@ -4,7 +4,7 @@ package Exploration;
  * A class for creating the coordinates of Locations.
  * @author Ian King
  */
-public class Coordinate 
+public class Coordinate implements java.io.Serializable
 {
     private int xCoordinate;
     private int yCoordinate;
