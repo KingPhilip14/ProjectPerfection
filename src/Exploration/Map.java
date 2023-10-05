@@ -1,9 +1,11 @@
 package Exploration;
 
 import Game.MainGame;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 /**
  * A class for managing the game map.
@@ -21,26 +23,30 @@ public class Map implements java.io.Serializable
     
     private void makeMap()
     {
-        String gameMapPath = new File("").getAbsolutePath() + "\\src\\Exploration\\GameMap.txt";
-        File gameMap = new File(gameMapPath);
+        InputStream input = this.getClass().getClassLoader().getResourceAsStream("GameMap.txt");
+        String map = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)).lines().
+                collect(Collectors.joining("\n"));
         
-        try
-        {
-            Scanner scan = new Scanner(gameMap);
-            int row = 0;
-            
-            // While the file has another line
-            while(scan.hasNextLine())
-            {
-                map[row] = scan.nextLine().toCharArray();
-                
-                row++;
-            }
-        }
-        catch(FileNotFoundException e)
-        {
-            System.out.println("Map not found!");
-        }
+//        String gameMapPath = new File("").getAbsolutePath() + "\\src\\Exploration\\GameMap.txt";
+//        File gameMap = new File(gameMapPath);
+//        
+//        try
+//        {
+//            Scanner scan = new Scanner(gameMap);
+//            int row = 0;
+//            
+//            // While the file has another line
+//            while(scan.hasNextLine())
+//            {
+//                map[row] = scan.nextLine().toCharArray();
+//                
+//                row++;
+//            }
+//        }
+//        catch(FileNotFoundException e)
+//        {
+//            System.out.println("Map not found!");
+//        }
     }
     
     public void printMap()
