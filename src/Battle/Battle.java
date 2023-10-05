@@ -1011,7 +1011,7 @@ public abstract class Battle implements java.io.Serializable
     {
         message = "\nWhat item would you like to use?";
         
-        int numOfOptions;
+        int numOfOptions = 0;
         Item item;
         
         // Asks for which Item the player would like
@@ -1025,16 +1025,17 @@ public abstract class Battle implements java.io.Serializable
         }
         else
         {
-            message = "\n\t1) Back";
-            numOfOptions = 1;
+            // If there are no items, take them back to the main battle menu
             
-            MainGame.printWait("\nYou currently have no items.", 25, 1500);
+            MainGame.printlnln("\nYou currently have no items.", 25);
+            MainGame.waitForEnter();
+            System.out.println("");
+            activatePlayerTurn(player);
         }
         
         response = MenuHelper.displayMenu(message, 1, numOfOptions);
         
-        // If the player doesn't have anything, they can only choose to go to the previous menu
-        // Or if the player chooses "Back," go back
+        // If the player chooses "Back," go back
         if(Game.getInventory().isEmpty() || response == numOfOptions)
         {
             System.out.println("");
