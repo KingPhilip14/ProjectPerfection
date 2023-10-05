@@ -1015,11 +1015,11 @@ public abstract class Battle implements java.io.Serializable
         Item item;
         
         // Asks for which Item the player would like
-        if(!MainGame.getInventory().isEmpty())
+        if(!Game.getInventory().isEmpty())
         {
-            numOfOptions = MainGame.getInventory().size() + 1;
+            numOfOptions = Game.getInventory().size() + 1;
             
-            message += MainGame.getInventory().inventoryListForMenus();
+            message += Game.getInventory().inventoryListForMenus();
             
             message += "\n\t" + numOfOptions + ") Back";
         }
@@ -1035,14 +1035,14 @@ public abstract class Battle implements java.io.Serializable
         
         // If the player doesn't have anything, they can only choose to go to the previous menu
         // Or if the player chooses "Back," go back
-        if(MainGame.getInventory().isEmpty() || response == numOfOptions)
+        if(Game.getInventory().isEmpty() || response == numOfOptions)
         {
             System.out.println("");
             activatePlayerTurn(player);
         }
         else
         {
-            item = MainGame.getInventory().get(--response);
+            item = Game.getInventory().get(--response);
             useOnPlayer(message, response, player, item);
 //            response = MenuHelper.displayMenu(message, 1, numOfOptions);
         }

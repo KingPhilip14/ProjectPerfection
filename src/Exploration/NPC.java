@@ -3,6 +3,7 @@ package Exploration;
 import Battle.GameProperty;
 import Battle.Item;
 import Game.Cutscene;
+import Game.Game;
 import Game.MainGame;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class NPC extends GameProperty
         
         MainGame.dialoguelnln(name, giveGiftMessage());
         gift.printReceivedMessage();
-        MainGame.addToInventory(gift, gift.getQuantity());
+        Game.addToInventory(gift, gift.getQuantity());
         MainGame.dialoguelnln(name, "I hope it helps you on your journey!");
         gift = null;
     }
@@ -76,7 +77,7 @@ public class NPC extends GameProperty
         
         MainGame.dialoguelnln(name, message);
         gift.printReceivedMessage();
-        MainGame.addToInventory(gift, gift.getQuantity());
+        Game.addToInventory(gift, gift.getQuantity());
         MainGame.dialoguelnln(name, "I hope it helps you on your journey!");
         gift = null;
     }

@@ -4,6 +4,7 @@ import Battle.Player;
 import Exploration.Location;
 import Exploration.NPC;
 import Exploration.Town;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * complete the given objective before they can move on.
  * @author Ian King
  */
-public class Objective implements java.io.Serializable
+public class Objective implements Serializable
 {
     private Task currentTask;
 //    private Task nextObjective;
@@ -395,7 +396,7 @@ public class Objective implements java.io.Serializable
         private int getRequiredLevel() {return requiredLevel;}
     }
     
-    private class Task
+    private class Task implements Serializable
     {
         private boolean isAccomplished;
         private final String TASK_DESCRIPTION;

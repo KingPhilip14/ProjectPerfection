@@ -5,13 +5,14 @@ import Game.MainGame;
 import Utilites.ItemNameComparator;
 import Utilites.ItemTypeComparator;
 import Utilites.Sort;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A class for maintaining and managing the player's inventory
  * @author Ian King
  */
-public class Inventory 
+public class Inventory implements Serializable
 {
     ArrayList<Item> inventory;
     

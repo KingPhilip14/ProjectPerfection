@@ -1,5 +1,6 @@
 package Battle;
 
+import Game.Game;
 import Game.MainGame;
 import java.util.ArrayList;
 
@@ -254,7 +255,7 @@ public abstract class Item implements Collectable, java.io.Serializable
     {
         if(quantity == 0)
         {
-            MainGame.getInventory().remove(this);
+            Game.getInventory().remove(this);
         }
     }
     

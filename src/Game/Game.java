@@ -9,6 +9,7 @@ import Battle.EarthEnemy;
 import Battle.ElectricEnemy;
 import Battle.FireEnemy;
 import Battle.IceEnemy;
+import Battle.Inventory;
 import Battle.Item;
 import Battle.NormalBattle;
 import Battle.OffensiveAttack;
@@ -69,6 +70,8 @@ public class Game implements java.io.Serializable
     private static boolean defeatedOmegaBoss;
     private int pulchraPopulation = 201704;
     private Map map = new Map();
+    
+    private static Inventory inventory = new Inventory();
     
     public Game(boolean isTesting)
     {
@@ -324,12 +327,180 @@ public class Game implements java.io.Serializable
 
         map = new Map();
     }
+
+    public boolean isFinalBossDefeated() {
+        return finalBossDefeated;
+    }
+
+    public void setFinalBossDefeated(boolean finalBossDefeated) {
+        this.finalBossDefeated = finalBossDefeated;
+    }
+
+    public boolean isBeachTutorialDone() {
+        return beachTutorialDone;
+    }
+
+    public void setBeachTutorialDone(boolean beachTutorialDone) {
+        this.beachTutorialDone = beachTutorialDone;
+    }
+
+    public boolean isForestTutorialDone() {
+        return forestTutorialDone;
+    }
+
+    public void setForestTutorialDone(boolean forestTutorialDone) {
+        this.forestTutorialDone = forestTutorialDone;
+    }
+
+    public boolean isRecentBattleWon() {
+        return recentBattleWon;
+    }
+
+    public void setRecentBattleWon(boolean recentBattleWon) {
+        this.recentBattleWon = recentBattleWon;
+    }
+
+    public boolean isTowerBossAttempted() {
+        return towerBossAttempted;
+    }
+
+    public void setTowerBossAttempted(boolean towerBossAttempted) {
+        this.towerBossAttempted = towerBossAttempted;
+    }
+
+    public boolean isVolcanBossAttempted() {
+        return volcanBossAttempted;
+    }
+
+    public void setVolcanBossAttempted(boolean volcanBossAttempted) {
+        this.volcanBossAttempted = volcanBossAttempted;
+    }
+
+    public boolean isSummitBossAttempted() {
+        return summitBossAttempted;
+    }
+
+    public void setSummitBossAttempted(boolean summitBossAttempted) {
+        this.summitBossAttempted = summitBossAttempted;
+    }
+
+    public boolean isFultraBossAttempted() {
+        return fultraBossAttempted;
+    }
+
+    public void setFultraBossAttempted(boolean fultraBossAttempted) {
+        this.fultraBossAttempted = fultraBossAttempted;
+    }
+
+    public boolean isFultraBossDefeated() {
+        return fultraBossDefeated;
+    }
+
+    public void setFultraBossDefeated(boolean fultraBossDefeated) {
+        this.fultraBossDefeated = fultraBossDefeated;
+    }
+
+    public boolean isIrwinBossAttempted() {
+        return irwinBossAttempted;
+    }
+
+    public void setIrwinBossAttempted(boolean irwinBossAttempted) {
+        this.irwinBossAttempted = irwinBossAttempted;
+    }
+
+    public boolean isIrwinBossDefeated() {
+        return irwinBossDefeated;
+    }
+
+    public void setIrwinBossDefeated(boolean irwinBossDefeated) {
+        this.irwinBossDefeated = irwinBossDefeated;
+    }
+
+    public boolean isFinalBossAttempted() {
+        return finalBossAttempted;
+    }
+
+    public void setFinalBossAttempted(boolean finalBossAttempted) {
+        this.finalBossAttempted = finalBossAttempted;
+    }
+
+    public boolean isResiTutorialAttempted() {
+        return resiTutorialAttempted;
+    }
+
+    public void setResiTutorialAttempted(boolean resiTutorialAttempted) {
+        this.resiTutorialAttempted = resiTutorialAttempted;
+    }
+
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
+
+    public Location getNextLocation() {
+        return nextLocation;
+    }
+
+    public void setNextLocation(Location nextLocation) {
+        this.nextLocation = nextLocation;
+    }
+
+    public ArrayList<Location> getRemainingLocations() {
+        return remainingLocations;
+    }
+
+    public void setRemainingLocations(ArrayList<Location> remainingLocations) {
+        this.remainingLocations = remainingLocations;
+    }
+
+    public static boolean isInSecondPhase() {
+        return inSecondPhase;
+    }
+
+    public static void setInSecondPhase(boolean inSecondPhase) {
+        Game.inSecondPhase = inSecondPhase;
+    }
+
+    public static boolean isDefeatedOmegaBoss() {
+        return defeatedOmegaBoss;
+    }
+
+    public static void setDefeatedOmegaBoss(boolean defeatedOmegaBoss) {
+        Game.defeatedOmegaBoss = defeatedOmegaBoss;
+    }
+
+    public int getPulchraPopulation() {
+        return pulchraPopulation;
+    }
+
+    public void setPulchraPopulation(int pulchraPopulation) {
+        this.pulchraPopulation = pulchraPopulation;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+    
+    
     
     public boolean inSecondPhase() {return inSecondPhase;}
     
     public boolean getRecentBattleResult() {return recentBattleWon;}
     
     public Location getCurrentLocation() {return currentLocation;}
+    
+    public void setCurrentLocation(Location l) {currentLocation = l;}
+
+    public void setKnownLocations(ArrayList<Location> knownLocations) {
+        this.knownLocations = knownLocations;
+    }
     
     public static boolean isTesting() {return testing;}
     
@@ -338,8 +509,25 @@ public class Game implements java.io.Serializable
     public static boolean getDefeatedOmega() {return defeatedOmegaBoss;}
     
     public ArrayList<Player> getTeam() {return team;}
+
+    public void setTeam(ArrayList<Player> team) {
+        this.team = team;
+    }
+
+    public static Inventory getInventory() {
+        return inventory;
+    }
+
+    public static void setInventory(Inventory inventory) {
+        Game.inventory = inventory;
+    }
     
     public static int getGold() {return gold;}
+
+    public static void setGold(int gold) {
+        Game.gold = gold;
+    }
+    
     public static String getGoldString() {return String.format("%,d", gold) + " G";}
     
     public static void increaseGold(int amt) {gold += amt;}
@@ -1374,6 +1562,7 @@ public class Game implements java.io.Serializable
         switch(input)
         {
             case 1:
+                // Saves the game using a SaveLoad object. Game data is written to a file
                 MainGame.save();
                 break;
             case 2: 
@@ -1389,7 +1578,7 @@ public class Game implements java.io.Serializable
     
     private void viewInventory()
     {
-        if(MainGame.getInventory().isEmpty())
+        if(inventory.isEmpty())
         {
             System.out.println("");
             MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything.");
@@ -1397,8 +1586,13 @@ public class Game implements java.io.Serializable
         else
         {
             MainGame.println("\nInventory:\n", 25);
-            MainGame.getInventory().showInventory();
+            inventory.showInventory();
         }
+    }
+    
+    public static void addToInventory(Item item, int quantity)
+    {
+        inventory.addTo(item, quantity);   
     }
     
     private void viewTeam()

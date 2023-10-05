@@ -1,12 +1,13 @@
 package Battle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A class for creating Class types for player characters.
  * @author Ian King
  */
-public class PlayerClass 
+public class PlayerClass implements Serializable
 {
     private String className;
     private String primaryRole;

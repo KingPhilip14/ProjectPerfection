@@ -5,7 +5,6 @@ import Battle.BuffAttack;
 import Battle.ComboAttack;
 import Battle.DebuffAttack;
 import Battle.Enemy;
-import Battle.Inventory;
 import Battle.Item;
 import Battle.OffensiveAttack;
 import Battle.Player;
@@ -13,11 +12,8 @@ import Battle.PlayerClass;
 import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
+import Data.SaveLoad;
 import Utilites.MenuHelper;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -31,7 +27,6 @@ public class MainGame
     private static int gold = 10000;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
-    private static Inventory inventory = new Inventory();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -39,6 +34,7 @@ public class MainGame
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     private static Game game;
+    private static SaveLoad saveLoad = new SaveLoad();
     
     public static void main(String[] args) 
     {
@@ -408,7 +404,7 @@ public class MainGame
     public static void save()
     {
         clearScreen();
-        
+        saveLoad.save(game);
 //        try
 //        {
 //            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
@@ -424,16 +420,16 @@ public class MainGame
 //            printlnln("Game data couldn't be saved.", 25);
 //        }
 
-        try
-        {
-            ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("ProjPerf.save")));
-            oos.writeObject(game);
-            oos.close();
-        }
-        catch(Exception e)
-        {
-            printlnln("Game data couldn't be saved.", 25);
-        }
+//        try
+//        {
+//            ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("ProjPerf.save")));
+//            oos.writeObject(game);
+//            oos.close();
+//        }
+//        catch(Exception e)
+//        {
+//            printlnln("Game data couldn't be saved.", 25);
+//        }
     }
     
     public static void load()
@@ -456,8 +452,8 @@ public class MainGame
 //        }
         try
         {
-            ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get("ProjPerf.save")));
-            game = (Game) ois.readObject();
+            game = saveLoad.load();
+            game.startGame();
         }
         catch(Exception e)
         {
@@ -727,14 +723,6 @@ public class MainGame
     }
     
     public static boolean getFinalBossDefeated() {return finalBossDefeated;}
-    
-    public static void addToInventory(Item item, int quantity)
-    {
-        inventory.addTo(item, quantity);
-        
-    }
-    
-    public static Inventory getInventory() {return inventory;}
     
 //    public static int getGold() {return gold;}
 //    
