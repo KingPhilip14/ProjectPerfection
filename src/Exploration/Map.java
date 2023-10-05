@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -24,9 +25,20 @@ public class Map implements java.io.Serializable
     private void makeMap()
     {
         InputStream input = this.getClass().getClassLoader().getResourceAsStream("GameMap.txt");
-        String map = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)).lines().
+        String string_map = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)).lines().
                 collect(Collectors.joining("\n"));
         
+        Scanner scan = new Scanner(string_map);
+
+        int row = 0;
+        // While the file has another line
+        while(scan.hasNextLine())
+        {
+            map[row] = scan.nextLine().toCharArray();
+            row++;
+        }
+        
+      
 //        String gameMapPath = new File("").getAbsolutePath() + "\\src\\Exploration\\GameMap.txt";
 //        File gameMap = new File(gameMapPath);
 //        

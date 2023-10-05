@@ -984,6 +984,9 @@ public class MainGame
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);
+        OffensiveAttack tidalWave = new OffensiveAttack("Tidal Wave", "The user surrounds themselves in water and crashes into the target with the force of a tidal wave.", 95, "Attack");
+        tidalWave.setAccuracy(95);
+        DebuffAttack douse = new DebuffAttack("Douse", "The user soaks the target in so much water that their Ranged Attack decreases.", "R. Attack", 0.75, 4, 3);
         
         ArrayList<Attack> anahitaCurrentAttacks = new ArrayList<>(4);
         anahitaCurrentAttacks.add(blessedRain);
@@ -993,9 +996,11 @@ public class MainGame
         
         ComboAttack.getComboAttacks(anahita);
         
-        ArrayList<Attack> anahitaOtherAttacks = new ArrayList<>(2);
+        ArrayList<Attack> anahitaOtherAttacks = new ArrayList<>(4);
         anahitaOtherAttacks.add(torrent);
         anahitaOtherAttacks.add(liquidArmor);
+        anahitaOtherAttacks.add(tidalWave);
+        anahitaOtherAttacks.add(douse);
         
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
@@ -1035,24 +1040,29 @@ public class MainGame
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         
-        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.333);
+        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.15);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
         DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
         terraForce.setAccuracy(95);
         OffensiveAttack naturesAnger = new OffensiveAttack("Nature's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
+        SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 2);
+        OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
         gaeaCurrentAttacks.add(foulAroma);
         gaeaCurrentAttacks.add(stoneShield);
         gaeaCurrentAttacks.add(terraForce);
+        gaeaCurrentAttacks.add(earthsLove);
+        gaeaCurrentAttacks.add(obsidianStorm);
         
         ComboAttack.getComboAttacks(gaea);
         
-        ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(2);
+        ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(4);
         gaeaOtherAttacks.add(overgrowth);
+        gaeaOtherAttacks.add(naturesAnger);
         gaeaOtherAttacks.add(naturesAnger);
         
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
@@ -1095,7 +1105,6 @@ public class MainGame
         OffensiveAttack thunderbolt = new OffensiveAttack("Thunderbolt", "The user shocks the target with a large thunderbolt.", 70, "R. Attack");
         OffensiveAttack overdrive = new OffensiveAttack("Overdrive", "The user coats themselves in electricity and rams into the target.", 115, "Attack");
         overdrive.setAccuracy(75);
-        
         BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are increased for 2 turns.", "All", 5, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
         SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.1);
@@ -1139,20 +1148,22 @@ public class MainGame
         calmus.setSpeed(80);
         
         ArrayList<Attack> calmusAllAttacks = new ArrayList<>(6);
-        calmusAllAttacks.add(new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack"));
-        calmusAllAttacks.get(0).setAccuracy(80);
-        calmusAllAttacks.add(new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3));
-        calmusAllAttacks.add(new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2));
-        calmusAllAttacks.add(new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack"));
-        calmusAllAttacks.add(new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3));
-        calmusAllAttacks.add(new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack"));
-        calmusAllAttacks.get(5).setAccuracy(75);
+        OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack");
+        fieryWrath.setAccuracy(80);
+        DebuffAttack heatWave = new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3);
+        BuffAttack flareBoost = new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2);
+        OffensiveAttack searingBlow = new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack");
+        BuffAttack flamingAura = new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3);
+        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack");
+        burningDunk.setAccuracy(75);
+        SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.15);
+        DebuffAttack ashfall = new DebuffAttack("Ashfall", "The user singes the target to make them more sensitive to damage. This lowers their Defense.", "Defense", 4, 3);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
-        calmusCurrentAttacks.add(calmusAllAttacks.get(0));
-        calmusCurrentAttacks.add(calmusAllAttacks.get(2));
-        calmusCurrentAttacks.add(calmusAllAttacks.get(3));
-        calmusCurrentAttacks.add(calmusAllAttacks.get(5));
+        calmusCurrentAttacks.add(fieryWrath);
+        calmusCurrentAttacks.add(flareBoost);
+        calmusCurrentAttacks.add(searingBlow);
+        calmusCurrentAttacks.add(burningDunk);
         
         ComboAttack.getComboAttacks(calmus);
         
