@@ -3,3 +3,4 @@ build/
 dist/
 nbproject/
 build.xml
+ProjPerf.dat
