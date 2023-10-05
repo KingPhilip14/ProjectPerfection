@@ -22,6 +22,8 @@ public class SaveLoad
             // Write a new DataManager object to the file. All information is stored once constructed.
             oos.writeObject(new DataManager(game));
             oos.close();
+            
+            MainGame.printlnln("Game successfully saved!", 25);
         }
         catch(Exception e)
         {
@@ -64,6 +66,8 @@ public class SaveLoad
             Game.setDefeatedOmegaBoss(dm.isDefeatedOmegaBoss());
             game.setPulchraPopulation(dm.getPulchraPopulation());
             game.setMap(dm.getMap());
+            
+            Game.setInventory(dm.getInventory());
             
             ois.close();
             return game;
