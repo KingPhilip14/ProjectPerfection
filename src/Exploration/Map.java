@@ -21,7 +21,7 @@ public class Map implements java.io.Serializable
     
     private void makeMap()
     {
-        String gameMapPath = "C:\\Users\\ianth\\OneDrive\\Desktop\\ProjectPerfection\\src\\Exploration\\GameMap.txt";
+        String gameMapPath = new File("").getAbsolutePath() + "\\src\\Exploration\\GameMap.txt";
         File gameMap = new File(gameMapPath);
         
         try
