@@ -14,10 +14,10 @@ import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Utilites.MenuHelper;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -353,9 +353,10 @@ public class MainGame
         Item.populateAllHealItems();
         PlayerClass.createClasses();
 
-        game = new Game(true);
-        playerTeam = game.getTeam();
-        game.startGame();
+        startUp();
+//        game = new Game(fa);
+//        playerTeam = game.getTeam();
+//        game.startGame();
 
 //        TypeChart tc = new TypeChart();
 //        tc.printChart();
@@ -372,15 +373,16 @@ public class MainGame
     {
         clearScreen();
         startUpOptions.add("New Game");
+        startUpOptions.add("Continue Game");
         
         String gameTitle = "Project Perfection";
         
         MainGame.printWithRandomLetters(gameTitle);
-        System.out.println("\t");
         
         for(int i = 0; i < startUpOptions.size(); i++)
         {
-            System.out.print("\t(" + (i + 1) + ") ");
+            System.out.println("");
+            System.out.print("\t" + (i + 1) + ") ");
             MainGame.printWithRandomLetters(startUpOptions.get(i));
         }
         
@@ -394,43 +396,75 @@ public class MainGame
         {
             case 1:
                 game = new Game(false);
-                game.startGame();
+                break;
+            case 2:
+                load();
+                break;
         }
+        
+        game.startGame();
     }
     
     public static void save()
     {
+        clearScreen();
+        
+//        try
+//        {
+//            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
+//            ObjectOutputStream oos = new ObjectOutputStream(fos);
+//            oos.writeObject(game); // pass in the game object and write it to the file
+//            oos.flush(); // writes out any buffered bytes
+//            oos.close();
+//            printlnln("Game was successfully saved!", 25);
+//            promptToEnter();
+//        }
+//        catch(Exception e)
+//        {
+//            printlnln("Game data couldn't be saved.", 25);
+//        }
+
         try
         {
-            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(game); // pass in the game object and write it to the file
-            oos.flush(); // writes out any buffered bytes
+            ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("ProjPerf.save")));
+            oos.writeObject(game);
             oos.close();
-            printlnln("Game was successfully saved!", 25);
-            promptToEnter();
         }
         catch(Exception e)
         {
-            printlnln("Serialization Error! Game data couldn't be saved.", 25);
+            printlnln("Game data couldn't be saved.", 25);
         }
     }
     
     public static void load()
     {
+//        try
+//        {
+//            FileInputStream fis = new FileInputStream("ProjPerf.save");
+//            ObjectInputStream ois = new ObjectInputStream(fis);
+//            game = (Game) ois.readObject();
+//            ois.close();
+//            printlnln("Game was successfully loaded. Starting...", 25);
+//            promptToEnter();
+//        }
+//        catch(Exception e)
+//        {
+//            printlnln("There is no game data saved currently. Starting a new game instead.", 25);
+//            promptToEnter();
+//            game = new Game(false);
+//            game.startGame();
+//        }
         try
         {
-            FileInputStream fis = new FileInputStream("ProjPerf.save");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get("ProjPerf.save")));
             game = (Game) ois.readObject();
-            ois.close();
-            printlnln("Game was successfully loaded. Starting...!", 25);
-            promptToEnter();
-            clearScreen();
         }
         catch(Exception e)
         {
-            printlnln("Serialization Error! Game data couldn't be saved.", 25);
+            printlnln("There is no game data saved currently. Starting a new game instead.", 25);
+            promptToEnter();
+            game = new Game(false);
+            game.startGame();
         }
     }
         
@@ -589,34 +623,34 @@ public class MainGame
     public static void printWithRandomLetters(String string)
     {
         for(int i = 0; i < string.length(); i++)
-            {
-                char letter = string.charAt(i);
+        {
+            char letter = string.charAt(i);
 
-                if(Character.isUpperCase(letter))
+            if(Character.isUpperCase(letter))
+            {
+                for(int j = 0; j < 10; j++)
                 {
-                    for(int j = 0; j < 12; j++)
-                    {
-                        int randNum = new Random().nextInt(90 - 65 + 1) + 65;
-                        char c = (char)(randNum);
-                        System.out.print(c);
-                        wait(10);
-                        System.out.print("\b");
-                    }
-                    System.out.print(letter);
+                    int randNum = new Random().nextInt(90 - 65 + 1) + 65;
+                    char c = (char)(randNum);
+                    System.out.print(c);
+                    wait(10);
+                    System.out.print("\b");
                 }
-                else
-                {
-                    for(int j = 0; j < 20; j++)
-                    {
-                        int randNum = new Random().nextInt(122 - 97 + 1) + 97;
-                        char c = (char)(randNum);
-                        System.out.print(c);
-                        wait(10);
-                        System.out.print("\b");
-                    }
-                    System.out.print(letter);
-                }
+                System.out.print(letter);
             }
+            else
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    int randNum = new Random().nextInt(122 - 97 + 1) + 97;
+                    char c = (char)(randNum);
+                    System.out.print(c);
+                    wait(10);
+                    System.out.print("\b");
+                }
+                System.out.print(letter);
+            }
+        }
     }
     
     public static void dialoguelnln(Player player, String dialogue)

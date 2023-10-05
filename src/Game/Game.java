@@ -371,7 +371,7 @@ public class Game implements java.io.Serializable
         
         if(!testing)
         {
-            gameOpening();
+//            gameOpening();
             introduceNewLocation();
         }
         
@@ -1363,7 +1363,23 @@ public class Game implements java.io.Serializable
     
     private void save()
     {
-        MainGame.save();
+        MainGame.clearScreen();
+        
+        MainGame.println("Would you like to save the game?", 25);
+        
+        String message = "\t1) Yes\n\t2) No";
+        
+        int input = MenuHelper.displayMenu(message, 1, 2);
+        
+        switch(input)
+        {
+            case 1:
+                MainGame.save();
+                break;
+            case 2: 
+                processInput();
+                break;
+        }
     }
     
     private void viewWorldMap()
