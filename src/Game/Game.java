@@ -753,7 +753,7 @@ public class Game implements java.io.Serializable
     
     private void transition(Location newLocation)
     {
-        currentLocation.travelDescription(currentLocation, newLocation);
+        currentLocation.travelDescription(currentLocation, newLocation, team);
         
         updateAndPrintMap(newLocation);
         

@@ -60,6 +60,7 @@ public class SaveLoad
             game.setRemainingLocations(dm.getRemainingLocations());
             
             game.setTeam(dm.getTeam());
+            MainGame.setPlayerTeam(dm.getTeam());
             Game.setGold(dm.getGold());
             Game.setInSecondPhase(dm.isInSecondPhase());
             

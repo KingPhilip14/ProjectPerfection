@@ -624,7 +624,7 @@ public class MainGame
 
             if(Character.isUpperCase(letter))
             {
-                for(int j = 0; j < 10; j++)
+                for(int j = 0; j < 3; j++)
                 {
                     int randNum = new Random().nextInt(90 - 65 + 1) + 65;
                     char c = (char)(randNum);
@@ -636,7 +636,7 @@ public class MainGame
             }
             else
             {
-                for(int j = 0; j < 10; j++)
+                for(int j = 0; j < 3; j++)
                 {
                     int randNum = new Random().nextInt(122 - 97 + 1) + 97;
                     char c = (char)(randNum);

@@ -127,13 +127,13 @@ public abstract class Location extends GameProperty
         }
     }
     
-    public void travelDescription(Location location1, Location location2)
+    public void travelDescription(Location location1, Location location2, ArrayList<Player> team)
     {
-        int size = MainGame.getPlayerTeam().size();
+        int size = team.size();
         
         if(size == 1)
         {
-            Player p = MainGame.getPlayerTeam().get(0);
+            Player p = team.get(0);
             MainGame.printlnln("\n" + p.getName() + " traveled from " + location1.getName() + 
                 " to " + location2.getName() + ".", 25);
             MainGame.dialoguelnln(p, "Time to explore " + location2.getName() + "! Let's see how this goes." );
@@ -147,8 +147,7 @@ public abstract class Location extends GameProperty
         }    
         
         MainGame.wait(2000);
-        ArrayList<Player> playerTeam = MainGame.getPlayerTeam();
-        Player player = playerTeam.get(new Random().nextInt(playerTeam.size()));
+        Player player = team.get(new Random().nextInt(team.size()));
         
         int randomNum = new Random().nextInt(4);
         switch(randomNum)

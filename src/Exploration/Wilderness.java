@@ -134,7 +134,7 @@ public class Wilderness extends Location
     public OpiconTutorialBattle makeOpiconTutorial(ArrayList<Player> playerTeam)
     {
         WaterEnemy turkle = new WaterEnemy("Damp Turkle", "It appears to be helping the leader Krobble to get revenge!", 5);
-        EarthEnemy krobble = new EarthEnemy("Sandy Krobble", "This Krobble is the sibling of the other one Anahita defeated!\n\tIt's come for revenge with it's gang!", 6);
+        EarthEnemy krobble = new EarthEnemy("Sandy Krobble", "This Krobble is the sibling of the other one Anahita defeated!\n\tIt's come for revenge with its gang!", 6);
         ElectricEnemy torped = new ElectricEnemy("Thundering Torped", "It appears to be helping the leader Krobble to get revenge!", 5);
         
         
