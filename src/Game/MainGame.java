@@ -691,23 +691,24 @@ public class MainGame
         print(prompt, 5);
         
         Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+        scan.nextLine();
+//        String input = scan.nextLine();
         
-        if(input.isEmpty())
-        {
-            return;
-        }
-        
-        while(!input.equals(""))
-        {
-            for(int i = 0; i < input.length(); i++)
-            {
-                System.out.print("\b");
-                System.out.print("");
-            }
-            
-            input = "";
-        }
+//        if(input.isEmpty())
+//        {
+//            return;
+//        }
+//        
+//        while(!input.equals(""))
+//        {
+//            for(int i = 0; i < input.length(); i++)
+//            {
+//                System.out.print("\b");
+//                System.out.print("");
+//            }
+//            
+//            input = "";
+//        }
     }
     
     public static void wait(int time)

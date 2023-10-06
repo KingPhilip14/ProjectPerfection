@@ -839,7 +839,7 @@ public class Game implements java.io.Serializable
         else if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
-            MainGame.printWait("Anahita: Stop messing around! We're already at " + currentLocation + "!", 25, 1500);
+            MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!", 25);
         }
         else
         {
