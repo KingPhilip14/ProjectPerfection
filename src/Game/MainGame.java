@@ -986,7 +986,7 @@ public class MainGame
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);
         OffensiveAttack tidalWave = new OffensiveAttack("Tidal Wave", "The user surrounds themselves in water and crashes into the target with the force of a tidal wave.", 95, "Attack");
         tidalWave.setAccuracy(95);
-        DebuffAttack douse = new DebuffAttack("Douse", "The user soaks the target in so much water that their Ranged Attack decreases.", "R. Attack", 0.75, 4, 3);
+        DebuffAttack soak = new DebuffAttack("Soak", "The user soaks the target in so much water to weigh them down that their Speed decreases.", "Speed", 0.75, 3, 2);
         
         ArrayList<Attack> anahitaCurrentAttacks = new ArrayList<>(4);
         anahitaCurrentAttacks.add(blessedRain);
@@ -1000,7 +1000,7 @@ public class MainGame
         anahitaOtherAttacks.add(torrent);
         anahitaOtherAttacks.add(liquidArmor);
         anahitaOtherAttacks.add(tidalWave);
-        anahitaOtherAttacks.add(douse);
+        anahitaOtherAttacks.add(soak);
         
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
@@ -1055,15 +1055,14 @@ public class MainGame
         gaeaCurrentAttacks.add(foulAroma);
         gaeaCurrentAttacks.add(stoneShield);
         gaeaCurrentAttacks.add(terraForce);
-        gaeaCurrentAttacks.add(earthsLove);
-        gaeaCurrentAttacks.add(obsidianStorm);
         
         ComboAttack.getComboAttacks(gaea);
         
         ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(4);
         gaeaOtherAttacks.add(overgrowth);
         gaeaOtherAttacks.add(naturesAnger);
-        gaeaOtherAttacks.add(naturesAnger);
+        gaeaOtherAttacks.add(earthsLove);
+        gaeaOtherAttacks.add(obsidianStorm);
         
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
         gaea.setListOfOtherAttacks(gaeaOtherAttacks);
@@ -1147,7 +1146,6 @@ public class MainGame
         calmus.setRangedDefense(120);
         calmus.setSpeed(80);
         
-        ArrayList<Attack> calmusAllAttacks = new ArrayList<>(6);
         OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack");
         fieryWrath.setAccuracy(80);
         DebuffAttack heatWave = new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3);
@@ -1157,7 +1155,7 @@ public class MainGame
         OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack");
         burningDunk.setAccuracy(75);
         SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.15);
-        DebuffAttack ashfall = new DebuffAttack("Ashfall", "The user singes the target to make them more sensitive to damage. This lowers their Defense.", "Defense", 4, 3);
+        DebuffAttack singe = new DebuffAttack("Singe", "The user singes the target with heat to make them more sensitive. This lowers their Defense.", "Defense", 4, 3);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
         calmusCurrentAttacks.add(fieryWrath);
@@ -1167,8 +1165,14 @@ public class MainGame
         
         ComboAttack.getComboAttacks(calmus);
         
+        ArrayList<Attack> calmusOtherAttacks = new ArrayList<>(4);
+        calmusOtherAttacks.add(heatWave);
+        calmusOtherAttacks.add(flamingAura);
+        calmusOtherAttacks.add(pureFlame);
+        calmusOtherAttacks.add(singe);
+        
         calmus.setCurrentAttacks(calmusCurrentAttacks);
-        calmus.setListOfOtherAttacks(calmusAllAttacks);
+        calmus.setListOfOtherAttacks(calmusOtherAttacks);
         
         ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
@@ -1197,31 +1201,37 @@ public class MainGame
         frigs.setRangedDefense(190);
         frigs.setSpeed(270);
         
-        ArrayList<Attack> frigsAllAttacks = new ArrayList<>(6);
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
         fimblevetr.setCritRate(0.35);
         fimblevetr.setAccuracy(90);
-        frigsAllAttacks.add(fimblevetr);
-        frigsAllAttacks.get(0).setAccuracy(70);
-        frigsAllAttacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 95, "Attack"));
-        frigsAllAttacks.get(1).setAccuracy(95);
-        frigsAllAttacks.add(new OffensiveAttack("Hailstorm", "The user damages the target with a harsh hailstorm.", 100, "R. Attack"));
-        frigsAllAttacks.get(2).setAccuracy(85);
-        frigsAllAttacks.add(new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3));
-        frigsAllAttacks.add(new DebuffAttack("Frostbite", "The user causes the target to have frostbite, lowering all stats for 2 turns.", "All", 0.5, 5, 2));
-        frigsAllAttacks.get(4).setAccuracy(60);
-        frigsAllAttacks.add(new OffensiveAttack("Avalanche", "The user attacks by causing an avalanche to fall on the target.", 85, "Attack"));
+        OffensiveAttack icicleSlash = new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 95, "Attack");
+        icicleSlash.setAccuracy(95);
+        OffensiveAttack hailstorm = new OffensiveAttack("Hailstorm", "The user damages the target with a harsh hailstorm.", 100, "R. Attack");
+        hailstorm.setAccuracy(85);
+        BuffAttack frostedKnuckles = new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3);
+        DebuffAttack frostbite = new DebuffAttack("Frostbite", "The user causes the target to have frostbite, lowering all stats for 2 turns.", "All", 0.5, 5, 2);
+        frostbite.setAccuracy(60);
+        OffensiveAttack avalanche = new OffensiveAttack("Avalanche", "The user attacks by causing an avalanche to fall on the target.", 85, "Attack");
+        TeamHealingAttack aurora = new TeamHealingAttack("Aurora", "The user summons an aurora in the sky that sends healing down across the entire team.", 0.333, 3);
+        OffensiveAttack subzeroSlammer = new OffensiveAttack("Subzero Slammer", "The user surrounds the target with subzero temperatures and rushes them down for an attack.", 140, "Attack");
+        subzeroSlammer.setAccuracy(50);
         
         ArrayList<Attack> frigsCurrentAttacks = new ArrayList<>(4);
-        frigsCurrentAttacks.add(frigsAllAttacks.get(0));
-        frigsCurrentAttacks.add(frigsAllAttacks.get(1));
-        frigsCurrentAttacks.add(frigsAllAttacks.get(3));
-        frigsCurrentAttacks.add(frigsAllAttacks.get(5));
+        frigsCurrentAttacks.add(fimblevetr);
+        frigsCurrentAttacks.add(icicleSlash);
+        frigsCurrentAttacks.add(hailstorm);
+        frigsCurrentAttacks.add(frostedKnuckles);
         
         ComboAttack.getComboAttacks(frigs);
         
+        ArrayList<Attack> frigsOtherAttacks = new ArrayList<>(4);
+        frigsOtherAttacks.add(frostbite);
+        frigsOtherAttacks.add(avalanche);
+        frigsOtherAttacks.add(aurora);
+        frigsOtherAttacks.add(subzeroSlammer);
+        
         frigs.setCurrentAttacks(frigsCurrentAttacks);
-        frigs.setListOfOtherAttacks(frigsAllAttacks);
+        frigs.setListOfOtherAttacks(frigsOtherAttacks);
         
         ArrayList<PlayerClass> frigsOtherClasses = new ArrayList<>(3);
         frigsOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
@@ -1251,29 +1261,36 @@ public class MainGame
         ninlil.setRangedDefense(125);
         ninlil.setSpeed(125);
         
-        ArrayList<Attack> ninlilAllAttacks = new ArrayList<>(6);
-        ninlilAllAttacks.add(new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack"));
-        ninlilAllAttacks.get(0).setAccuracy(90);
-        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 80, "R. Attack");
+        OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
+        hurricane.setAccuracy(90);
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 75, "R. Attack");
         tornado.setCritRate(0.5);
-        ninlilAllAttacks.add(new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2));
-        ninlilAllAttacks.add(new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack"));
-        ninlilAllAttacks.add(new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack"));
+        tornado.setAccuracy(85);
+        BuffAttack soaringSpirit = new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2);
+        OffensiveAttack aerialDance = new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack");
+        OffensiveAttack airSlash = new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack");
         OffensiveAttack tempestBlade = new OffensiveAttack("Tempest Blade", "Using blades made of pressurized air, the user slashes at the target. This has a high critical hit rate.", 85, "Attack");
         tempestBlade.setAccuracy(85);
         tempestBlade.setCritRate(0.35);
-        ninlilAllAttacks.add(tempestBlade);
+        TeamHealingAttack soothingWinds = new TeamHealingAttack("Soothing Winds", "The user creates an updraft of wind with healing properties to heal the team.", 0.15, 2);
+        SingleHealingAttack slipstream = new SingleHealingAttack("Slipstream", "The user creates a gentle breeze that heals the wounds of the target.", 0.25, 3);
         
         ArrayList<Attack> ninlilCurrentAttacks = new ArrayList<>(4);
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(1));
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(2));
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(0));
-        ninlilCurrentAttacks.add(ninlilAllAttacks.get(3));
+        ninlilCurrentAttacks.add(tornado);
+        ninlilCurrentAttacks.add(soaringSpirit);
+        ninlilCurrentAttacks.add(hurricane);
+        ninlilCurrentAttacks.add(aerialDance);
         
         ComboAttack.getComboAttacks(ninlil);
         
+        ArrayList<Attack> ninlilOtherAttacks = new ArrayList<>(4);
+        ninlilOtherAttacks.add(airSlash);
+        ninlilOtherAttacks.add(tempestBlade);
+        ninlilOtherAttacks.add(soothingWinds);
+        ninlilOtherAttacks.add(slipstream);
+        
         ninlil.setCurrentAttacks(ninlilCurrentAttacks);
-        ninlil.setListOfOtherAttacks(ninlilAllAttacks);
+        ninlil.setListOfOtherAttacks(ninlilOtherAttacks);
         
         ArrayList<PlayerClass> ninlilOtherClasses = new ArrayList<>(3);
         ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Clerk"));
