@@ -245,7 +245,7 @@ public class Cutscene
                 + "shine is his Buff Attack called 'Charge!'/With it, he increases all his stats for a certain time, "
                 + "but it has a large cooldown, so be mindful!");
         
-        MainGame.promptToEnter();
+//        MainGame.promptToEnter();
     }
     
     /**
