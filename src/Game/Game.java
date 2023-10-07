@@ -648,7 +648,7 @@ public class Game implements java.io.Serializable
                     break;
             }
             
-            MainGame.waitForEnter();
+//            MainGame.waitForEnter();
         }
         // If the current location is of type Wildnerness
         else
@@ -676,10 +676,10 @@ public class Game implements java.io.Serializable
 //                    break;
 //            }
             
-            MainGame.waitForEnter();
+//            MainGame.waitForEnter();
         }
         
-//        MainGame.waitForEnter();
+        MainGame.waitForEnter();
     }
     
     /**
@@ -1493,7 +1493,7 @@ public class Game implements java.io.Serializable
     {
         Wilderness wildnerness = ((Wilderness)currentLocation);
         wildnerness.findChest();
-        processInput();
+//        processInput();
     }
     
     private void optionsMenu()

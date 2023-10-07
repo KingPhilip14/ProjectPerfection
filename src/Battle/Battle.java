@@ -72,7 +72,7 @@ public abstract class Battle implements java.io.Serializable
      */
     public void start(int gold, boolean result)
     {   
-        MainGame.printlnlnWait(startingText, 25, 1500);
+        MainGame.printlnln(startingText, 25);
         turnSetup();
         beforeBattlePrompt();
         BATTLE_INTERFACE = new BattleInterface(originalEnemyPositions, ORIGINAL_PLAYER_POSITIONS);
@@ -931,7 +931,6 @@ public abstract class Battle implements java.io.Serializable
         if(target.getCurrentHealth() == 0)
         {
             MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!", 25);
-            MainGame.waitForEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
@@ -942,8 +941,6 @@ public abstract class Battle implements java.io.Serializable
                 player.increaseXP(player, ORIGINAL_PLAYER_POSITIONS, target);
             }
         }
-        
-        MainGame.promptToEnter();
     }
     
     private void attackWithDebuff(Attack attack, Player player, Enemy target)

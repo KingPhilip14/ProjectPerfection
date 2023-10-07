@@ -50,15 +50,10 @@ public class Inventory implements Serializable
     
     public void showInventory()
     {
-        if(!inventory.isEmpty())
+        for(Item i : inventory)
         {
-            for(Item i : inventory)
-            {
-                MainGame.printlnln(i.toInventoryString(), 25);
-            }
+            MainGame.printlnln(i.toInventoryString(), 25);
         }
-        
-        MainGame.wait(1000);
     }
     
     public String inventoryListForMenus()
