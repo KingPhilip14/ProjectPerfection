@@ -69,12 +69,12 @@ public class OpiconTutorialBattle extends TutorialBattle
         // Explains the aggro system
         MainGame.printlnlnWait("Next, Aggro:", 25, 1500);
         MainGame.println("You may wonder how the enemies will target you. Each of your characters have a value called "
-                + "\"Aggro\".\nAfter every attack, their aggro will increase, forcing the enemy to target them.", 25);
+                + "\"Aggro\".\nAfter every attack, their aggro will increase, forcing the enemy to target them.");
         
         MainGame.promptToEnter();
         
         MainGame.printlnln("Certain moves accrue more Aggro than others, and some classes affect this as well.\n"
-                + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!", 25);
+                + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!");
         
         MainGame.promptToEnter();
     }

@@ -220,7 +220,7 @@ public class TypeChart implements java.io.Serializable
                 
                 numOfSpaces = columnWidth - info.length();
                 
-                MainGame.print(" ".repeat(numOfSpaces / 2) + info + " ".repeat(numOfSpaces / 2) + "|", 5);
+                MainGame.print(" ".repeat(numOfSpaces / 2) + info + " ".repeat(numOfSpaces / 2) + "|");
             }
             
             System.out.println("");
@@ -237,7 +237,7 @@ public class TypeChart implements java.io.Serializable
     {   
         for(Integer columnSize : COLUMN_SIZES) 
         {
-            MainGame.print("+" + "-".repeat(columnSize + (CELL_PADDING * 2)), 1);
+            MainGame.print("+" + "-".repeat(columnSize + (CELL_PADDING * 2)));
         }
 
         System.out.printf("+\n");

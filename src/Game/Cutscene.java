@@ -370,7 +370,7 @@ public class Cutscene
         
         MainGame.promptToEnter();
         
-        MainGame.printlnln("You received 3 Cinnamon Rolls!", 25);
+        MainGame.printlnln("You received 3 Cinnamon Rolls!");
         Game.addToInventory(Item.getHealingItem("Cinnamon Roll"), 3);
         
         MainGame.promptToEnter();
@@ -509,7 +509,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Wow, I didn't know that!");
         MainGame.dialoguelnln("Calliou", "NOW YOU KNOW!! HERE -- TAKE SOME!!! BEANS ARE AMAZING!!!");
         
-        MainGame.printlnln("You received 3 Orange Beans!", 25);
+        MainGame.printlnln("You received 3 Orange Beans!");
         Game.addToInventory(Item.getBuffItem("Orange Bean"), 3);
         
         MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION -- 'BEANS MAKE YOU STRONGER FOR LONGER"
@@ -619,7 +619,7 @@ public class Cutscene
         
         MainGame.promptToEnter();
         
-        MainGame.printlnln("You received an Apple Pie!", 25);
+        MainGame.printlnln("You received an Apple Pie!");
         Game.addToInventory(Item.getHealingItem("Apple Pie"), 1);
         
         MainGame.promptToEnter();
@@ -863,7 +863,7 @@ public class Cutscene
         
         MainGame.promptToEnter();
         
-        MainGame.printlnln("Congratulations! Calmus, Frigs, and Ninlil joined your party.", 25);
+        MainGame.printlnln("Congratulations! Calmus, Frigs, and Ninlil joined your party.");
         
         MainGame.promptToEnter();
     }

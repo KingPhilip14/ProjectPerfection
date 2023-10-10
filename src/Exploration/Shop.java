@@ -89,7 +89,7 @@ public class Shop extends GameProperty
         System.out.println("");
         MainGame.dialoguelnln("Berry", "What would ya like to sell? I'll take anything!");
         
-        MainGame.print("(Your Inventory\t Current Gold: " + Game.getGoldString() + ")", 5);
+        MainGame.print("(Your Inventory\t Current Gold: " + Game.getGoldString() + ")");
         String message = Game.getInventory().inventoryListForSelling() + 
                 "\n\t" + ++inventorySize + ") Back";
         

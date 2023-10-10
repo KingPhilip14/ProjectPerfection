@@ -30,6 +30,7 @@ public abstract class Battle implements java.io.Serializable
     private boolean comboAttackUsed;
     protected String startingText;
     protected boolean won;
+    protected boolean forfeit;
     
     public Battle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
@@ -69,10 +70,11 @@ public abstract class Battle implements java.io.Serializable
     /**
      * Starts the method and increases or decreases gold amount if player wins or loses.
      * @param gold 
+     * @param result 
      */
     public void start(int gold, boolean result)
     {   
-        MainGame.printlnln(startingText, 25);
+        MainGame.printlnln(startingText);
         turnSetup();
         beforeBattlePrompt();
         BATTLE_INTERFACE = new BattleInterface(originalEnemyPositions, ORIGINAL_PLAYER_POSITIONS);
@@ -106,6 +108,9 @@ public abstract class Battle implements java.io.Serializable
                     Player player = (Player)TURN_ORDER.remove(0);
                     MainGame.printlnlnWait("Starting " + player.getName() + "'s turn:", 25, 1000);
                     activatePlayerTurn(player);
+                    
+                    // Checks if player forfeit. If so, exit battle loop
+                    if(forfeit) {break;}
                 }
                 
                 MainGame.promptToEnter();
@@ -129,17 +134,14 @@ public abstract class Battle implements java.io.Serializable
                 }
             }
 
-            if(won)
+            // If the battle's final result is determined, escape loop
+            if(forfeit || won || !won)
             {
                 break;
             }
             else if(!PLAYER_FIGHTING_TEAM.isEmpty() && !enemyTeam.isEmpty())
             {
                 refreshBattle();
-            }
-            else if(!won)
-            {
-                break;
             }
         }
         
@@ -164,20 +166,20 @@ public abstract class Battle implements java.io.Serializable
     
     private void printTurnInfo()
     {
-        MainGame.printlnln("Start: Turn " + currentTurn, 25);
-        MainGame.printlnln("Turn " + currentTurn + " turn order:", 25);
+        MainGame.printlnln("Start: Turn " + currentTurn);
+        MainGame.printlnln("Turn " + currentTurn + " turn order:");
         
         for(Object o : TURN_ORDER)
         {
             if(o instanceof Player)
             {
                 Player p = (Player)o;
-                MainGame.println("\t" + p.getName(), 25);
+                MainGame.println("\t" + p.getName());
             }
             else if(o instanceof Enemy)
             {
                 Enemy e = (Enemy)o;
-                MainGame.println("\t" + e.getName(), 25);
+                MainGame.println("\t" + e.getName());
             }
             System.out.println("");
             MainGame.wait(1000);
@@ -202,10 +204,10 @@ public abstract class Battle implements java.io.Serializable
 //        {
 //            case 1:
 //                System.out.println("");
-//                MainGame.println("Teammate's Stat Information:", 25);
+//                MainGame.println("Teammate's Stat Information:");
 //                checkAllTeammatesStats();
 //                MainGame.wait(2000);
-//                MainGame.println("Enemies' Stat Information:", 25);
+//                MainGame.println("Enemies' Stat Information:");
 //                checkAllEnemyStats();
 //        }
 
@@ -214,7 +216,7 @@ public abstract class Battle implements java.io.Serializable
     
     private void positionPlayers()
     {
-        MainGame.printlnln("Incoming foe(s):", 25);
+        MainGame.printlnln("Incoming foe(s):");
         listEnemies();
         MainGame.wait(500);
         System.out.println("");
@@ -222,7 +224,7 @@ public abstract class Battle implements java.io.Serializable
         // If the player only has one character, they will automatically be selected
         if(PLAYER_TEAM.size() == 1)
         {
-            MainGame.println(PLAYER_TEAM.get(0).getName() + " will fight.", 25);
+            MainGame.println(PLAYER_TEAM.get(0).getName() + " will fight.");
             addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, 1);
         }
         // If the team can't have a cheer partner, this process allows to select the order without much else
@@ -236,7 +238,7 @@ public abstract class Battle implements java.io.Serializable
             {
                 if(PLAYER_TEAM.size() == 1)
                 {
-                    MainGame.println(PLAYER_TEAM.get(0).getName() + " will fight.", 25);
+                    MainGame.println(PLAYER_TEAM.get(0).getName() + " will fight.");
                     addPlayerTo(PLAYER_FIGHTING_TEAM, ORIGINAL_PLAYER_POSITIONS, 1);
                     break;
                 }
@@ -313,7 +315,7 @@ public abstract class Battle implements java.io.Serializable
         for(int i = 0; i < enemyTeam.size(); i++)
         {
             enemy = enemyTeam.get(i);
-            MainGame.println(enemy.getName() + ": " + enemy.getStatSpreadDesc(), 25);
+            MainGame.println(enemy.getName() + ": " + enemy.getStatSpreadDesc());
         }
         
         MainGame.wait(2000);
@@ -362,7 +364,7 @@ public abstract class Battle implements java.io.Serializable
 //            else
 //            {
 //                Player cheer = PLAYER_TEAM.remove(0);
-//                MainGame.println(cheer.getName() + " will be " + p.getName() + "'s cheer partner.", 25);
+//                MainGame.println(cheer.getName() + " will be " + p.getName() + "'s cheer partner.");
 //                p.setCheerPartner(cheer);
 //                cheer.setPlayerToCheer(p);
 //                cheer.printCheerReadyMessage();
@@ -587,8 +589,8 @@ public abstract class Battle implements java.io.Serializable
         if(ComboAttack.canUse(player) && comboAttackUsed == false)
         {
             message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Combo Attack\n\t3) Inventory"
-                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy";
-            response = MenuHelper.displayMenu(message, 1, 5);
+                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy + \n\t6) Forfeit Battle";
+            response = MenuHelper.displayMenu(message, 1, 6);
             
             switch (response) 
             {
@@ -612,12 +614,16 @@ public abstract class Battle implements java.io.Serializable
                 case 5:
                     checkEnemy(player);
                     break;
+                // If wanting to forfeit the battle
+                case 6:
+                    forfeit(player);
             }
         }
         else
         {
-            message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Inventory\n\t3) Check " + player.getName() + "\n\t4) Check Enemy";
-            response = MenuHelper.displayMenu(message, 1, 4);
+            message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Inventory\n\t3) Check " + player.getName() + 
+                    "\n\t4) Check Enemy\n\t5) Forfeit";
+            response = MenuHelper.displayMenu(message, 1, 5);
             
             switch (response) 
             {
@@ -637,6 +643,8 @@ public abstract class Battle implements java.io.Serializable
                 case 4:
                     checkEnemy(player);
                     break;
+                case 5:
+                    forfeit(player);
             }
         }    
         
@@ -644,6 +652,28 @@ public abstract class Battle implements java.io.Serializable
         {
             activateCheerPartner(player);
         }
+    }
+    
+    /**
+     * If the player wants to forfeit a battle, they will end the battle, but it will count as a loss.
+     */
+    private void forfeit(Player player)
+    {
+        MainGame.println("\nDo you want to forfeit? Doing so will count as a loss.");
+        
+        int input = MenuHelper.displayMenu("\t1) Yes\n\t2) No", 1, 2);
+        
+        switch(input)
+        {
+            case 1: 
+                forfeit = true;
+                break;
+            case 2: 
+                System.out.println(""); // formatting
+                activatePlayerTurn(player); 
+                break;
+        }
+                
     }
     
     private void activateCheerPartner(Player player)
@@ -665,7 +695,7 @@ public abstract class Battle implements java.io.Serializable
             PlayerClass pc = cheer.getPlayerClass();
             Player playerToCheer = cheer.getPlayerToCheer();
             
-            MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!", 25);
+            MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!");
             MainGame.wait(500);
             
             switch (pc.getPrimaryRole())
@@ -675,40 +705,40 @@ public abstract class Battle implements java.io.Serializable
                     {
                         int amt = (int)(playerToCheer.getMaxHealth() * 0.1);
                         playerToCheer.setCurrentHealth(amt);
-                        MainGame.printlnln(cheer.getName() + " healed " + playerToCheer.getName() + " " + amt + " HP!", 25);
+                        MainGame.printlnln(cheer.getName() + " healed " + playerToCheer.getName() + " " + amt + " HP!");
                     }
                     else
                     {
-                        MainGame.printlnln("But " + cheer.getName() + " couldn't do anything!", 25);
-                        MainGame.printlnln(cheer.getName() + ": Sorry about that!", 25);
+                        MainGame.printlnln("But " + cheer.getName() + " couldn't do anything!");
+                        MainGame.printlnln(cheer.getName() + ": Sorry about that!");
                     }
                 break;
                 case "Tank":
                     Stat defense = playerToCheer.getDefense();
                     playerToCheer.setDefense(defense.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 10!", 25);
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 10!");
                     defense.increaseCheerBuff(10);
                     
                     defense = playerToCheer.getRangedDefense();
                     playerToCheer.setRangedDefense(defense.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 10!", 25);
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 10!");
                     defense.increaseCheerBuff(10);
                 break;
                 case "Striker":
                     Stat attack = playerToCheer.getAttack();
                     playerToCheer.setAttack(attack.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 10!", 25);
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 10!");
                     attack.increaseCheerBuff(10);
                     
                     attack = playerToCheer.getRangedAttack();
                     playerToCheer.setRangedAttack(attack.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 10!", 25);
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 10!");
                     attack.increaseCheerBuff(10);
                 break;
                 default:
                     Stat speed = playerToCheer.getSpeed();
                     playerToCheer.setSpeed(speed.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 10!", 25);
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 10!");
                     speed.increaseCheerBuff(10);
                 break;
             }
@@ -753,7 +783,7 @@ public abstract class Battle implements java.io.Serializable
                 }
                 else if(attack instanceof TeamHealingAttack)
                 {
-                    MainGame.println("\n" + player.getName() + " used " + attack.getName() + " and healed the team!", 25);
+                    MainGame.println("\n" + player.getName() + " used " + attack.getName() + " and healed the team!");
                     player.increaseAggro(attack);
                     TeamHealingAttack heal = (TeamHealingAttack)attack;
                     heal.healPlayers(PLAYER_FIGHTING_TEAM, currentTurn);
@@ -766,7 +796,7 @@ public abstract class Battle implements java.io.Serializable
             else
             {
 //                int leftoverCooldown = attack.getCooldown() - currentTurn;
-                MainGame.println("\n" + attack.getName() + " can't used until turn " + attack.getNextAvailableTurn() + "!", 25);
+                MainGame.println("\n" + attack.getName() + " can't used until turn " + attack.getNextAvailableTurn() + "!");
                 wantToAttack(message, response, player);
             }
         }
@@ -872,7 +902,7 @@ public abstract class Battle implements java.io.Serializable
 //        
 //        if(target.getCurrentHealth() == 0)
 //        {
-//            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!", 25);
+//            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
 //            TURN_ORDER.remove(target);
 //            enemyTeam.remove(target);
 //            originalEnemyPositions.remove(target);
@@ -905,7 +935,7 @@ public abstract class Battle implements java.io.Serializable
         
 //        if(target.getCurrentHealth() == 0)
 //        {
-//            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!", 25);
+//            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
 //            TURN_ORDER.remove(target);
 //            enemyTeam.remove(target);
 //            originalEnemyPositions.remove(target);
@@ -930,7 +960,8 @@ public abstract class Battle implements java.io.Serializable
         
         if(target.getCurrentHealth() == 0)
         {
-            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!", 25);
+            MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
+            MainGame.waitForEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
@@ -952,10 +983,10 @@ public abstract class Battle implements java.io.Serializable
     
     private void checkPlayer(Player player)
     {
-        MainGame.printlnln("\n" + player.toString(), 25);
+        MainGame.printlnln("\n" + player.toString());
         MainGame.wait(2000);
         
-        MainGame.println("Attacks:", 25);
+        MainGame.println("Attacks:");
         player.listKnownAttacks();
         MainGame.waitForEnter();
         System.out.println("");
@@ -1024,7 +1055,7 @@ public abstract class Battle implements java.io.Serializable
         {
             // If there are no items, take them back to the main battle menu
             
-            MainGame.printlnln("\nYou currently have no items.", 25);
+            MainGame.printlnln("\nYou currently have no items.");
             MainGame.waitForEnter();
             System.out.println("");
             activatePlayerTurn(player);
@@ -1137,11 +1168,11 @@ public abstract class Battle implements java.io.Serializable
             
             if(ally.equals(player))
             {
-                MainGame.printlnln("\n" + player.getName() + " healed themself!", 25);
+                MainGame.printlnln("\n" + player.getName() + " healed themself!");
             }
             else
             {
-                MainGame.printlnln("\n" + player.getName() + " healed " + ally.getName() + "!", 25);
+                MainGame.printlnln("\n" + player.getName() + " healed " + ally.getName() + "!");
             }
             
             player.increaseAggro(attack);
@@ -1240,7 +1271,7 @@ public abstract class Battle implements java.io.Serializable
         else if((chance >= 3 && chance <= 9) && enemy.hasBuff() && (!enemy.hasActiveBuff()))
         {
             BuffAttack buff = enemy.getBuffAttack();
-//                    MainGame.printlnln("\n" + enemy.getName() + " used " + buff.getName() + "!", 25);
+//                    MainGame.printlnln("\n" + enemy.getName() + " used " + buff.getName() + "!");
             buff.activateBuff(enemy);
         }
     }
@@ -1269,7 +1300,7 @@ public abstract class Battle implements java.io.Serializable
         if(target.isDead())
         {
             removeDeadPlayer(enemy, target, attack);
-//            MainGame.printlnln(target.getName() + " was defeated!", 25);
+//            MainGame.printlnln(target.getName() + " was defeated!");
 //            target.printDeathMessage();
 //            PLAYER_FIGHTING_TEAM.remove(target);
 //            ORIGINAL_PLAYER_POSITIONS.remove(target);
@@ -1356,7 +1387,7 @@ public abstract class Battle implements java.io.Serializable
         */
         if(attack.getAttackHit())
         {
-            MainGame.printlnln(enemy.getName() + " defeated " + target.getName() + "!", 25);
+            MainGame.printlnln(enemy.getName() + " defeated " + target.getName() + "!");
 
             target.printDeathMessage();
             PLAYER_FIGHTING_TEAM.remove(target);
@@ -1373,7 +1404,7 @@ public abstract class Battle implements java.io.Serializable
                 Player cheer = target.getCheerPartner();
                 cheer.resetPlayerToCheer();
                 target.resetCheerPartner();
-                MainGame.printlnln(cheer.getName() + " took " + target.getName() + " to protect them from futher harm.", 25);
+                MainGame.printlnln(cheer.getName() + " took " + target.getName() + " to protect them from futher harm.");
 
                 target.resetStats();
             }
@@ -1416,11 +1447,11 @@ public abstract class Battle implements java.io.Serializable
 
         if(enemyToHeal.equals(enemy))
         {
-            MainGame.printlnln("\n" + enemy.getName() + " used " + healing.getName() + " and gained " + amt + " HP!", 25);
+            MainGame.printlnln("\n" + enemy.getName() + " used " + healing.getName() + " and gained " + amt + " HP!");
         }
         else
         {
-            MainGame.printlnln("\n" + enemy.getName() + " used " + healing.getName() + " on " + enemyToHeal.getName() + " and they gained " + amt + " HP!", 5);
+            MainGame.printlnln("\n" + enemy.getName() + " used " + healing.getName() + " on " + enemyToHeal.getName() + " and they gained " + amt + " HP!");
         }
     }
     
@@ -1428,7 +1459,7 @@ public abstract class Battle implements java.io.Serializable
     {
         TeamHealingAttack healing = enemy.getTeamHeal();
         healing.healEnemies(enemyTeam);
-        MainGame.printlnln("\n" + enemy.getName() + " healed itself and its allies!", 25);
+        MainGame.printlnln("\n" + enemy.getName() + " healed itself and its allies!");
     }
     
     /**
@@ -1845,7 +1876,7 @@ public abstract class Battle implements java.io.Serializable
     private void won()
     {
         MainGame.clearScreen();
-        MainGame.printlnln("You won! You recieved " + calculateGold(baseGoldAmt, true) + " G.", 25);
+        MainGame.printlnln("You won! You recieved " + calculateGold(baseGoldAmt, true) + " G.");
         Game.increaseGold(calculateGold(baseGoldAmt, true));
         won = true;
     }
@@ -1853,14 +1884,13 @@ public abstract class Battle implements java.io.Serializable
     private void lost()
     {
         MainGame.clearScreen();
-        MainGame.print("\nYou've been defeated", 100);
-        MainGame.printlnln("...", 500);
-        MainGame.printlnln("You lost " + calculateGold(baseGoldAmt, false) + " gold.", 100);
+        MainGame.print("You've been defeated");
+        MainGame.printlnln("...");
+        MainGame.printlnln("You lost " + calculateGold(baseGoldAmt, false) + " gold.");
         Game.decreaseGold(calculateGold(baseGoldAmt, false));
         won = false;
 //        MainGame.println("You lost " + MainGame.ANSI_YELLOW + calculateGold(BASE_GOLD, false) + " gold." +
 //                MainGame.ANSI_RESET, BASE_GOLD);
-        
     }
     
     /**
@@ -2261,7 +2291,7 @@ public abstract class Battle implements java.io.Serializable
             for(int col = 0; col < playerInfo[0].length; col++)
             {
                 columnWidth = compareColumnWidths(col);
-                MainGame.print("+" + "-".repeat(columnWidth + (cellPadding * 2)), 1);
+                MainGame.print("+" + "-".repeat(columnWidth + (cellPadding * 2)));
 //                System.out.printf("+" + "-".repeat(columnWidth + (cellPadding * 2)));
             }
 
@@ -2372,7 +2402,7 @@ public abstract class Battle implements java.io.Serializable
 
                             numOfSpaces = columnWidth - title.length();
 
-                            MainGame.print(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|", 1);
+                            MainGame.print(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|");
                             
 //                            System.out.printf(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|");
 
@@ -2384,21 +2414,21 @@ public abstract class Battle implements java.io.Serializable
                             {
                                 numOfSpaces = col0Width + (cellPadding * 2);
                                 
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
                             else if(col == 1)
                             {
                                 numOfSpaces = col1Width + (cellPadding * 2);
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
                             else
                             {
                                 numOfSpaces = col2Width + (cellPadding * 2);
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
@@ -2496,7 +2526,7 @@ public abstract class Battle implements java.io.Serializable
 
                             numOfSpaces = columnWidth - title.length();
                             
-                            MainGame.print(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|", 1);
+                            MainGame.print(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|");
 
 //                            System.out.printf(" ".repeat(numOfSpaces / 2) + title + " ".repeat(numOfSpaces / 2) + "|");
 
@@ -2507,21 +2537,21 @@ public abstract class Battle implements java.io.Serializable
                             if(col == 0)
                             {
                                 numOfSpaces = col0Width + (cellPadding * 2);
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
                             else if(col == 1)
                             {
                                 numOfSpaces = col1Width + (cellPadding * 2);
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
                             else
                             {
                                 numOfSpaces = col2Width + (cellPadding * 2);
-                                MainGame.print(" ".repeat(numOfSpaces) + "|", 1);
+                                MainGame.print(" ".repeat(numOfSpaces) + "|");
 //                                System.out.printf(" ".repeat(numOfSpaces) + "|");
                                 col++;
                             }
