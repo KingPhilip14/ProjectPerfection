@@ -30,6 +30,7 @@ public abstract class Battle implements java.io.Serializable
     private boolean comboAttackUsed;
     protected String startingText;
     protected boolean won;
+    protected boolean forfeit;
     
     public Battle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
@@ -69,10 +70,11 @@ public abstract class Battle implements java.io.Serializable
     /**
      * Starts the method and increases or decreases gold amount if player wins or loses.
      * @param gold 
+     * @param result 
      */
     public void start(int gold, boolean result)
     {   
-        MainGame.printlnlnWait(startingText, 25, 1500);
+        MainGame.printlnln(startingText, 25);
         turnSetup();
         beforeBattlePrompt();
         BATTLE_INTERFACE = new BattleInterface(originalEnemyPositions, ORIGINAL_PLAYER_POSITIONS);
@@ -106,6 +108,9 @@ public abstract class Battle implements java.io.Serializable
                     Player player = (Player)TURN_ORDER.remove(0);
                     MainGame.printlnlnWait("Starting " + player.getName() + "'s turn:", 25, 1000);
                     activatePlayerTurn(player);
+                    
+                    // Checks if player forfeit. If so, exit battle loop
+                    if(forfeit) {break;}
                 }
                 
                 MainGame.promptToEnter();
@@ -129,17 +134,14 @@ public abstract class Battle implements java.io.Serializable
                 }
             }
 
-            if(won)
+            // If the battle's final result is determined, escape loop
+            if(forfeit || won || !won)
             {
                 break;
             }
             else if(!PLAYER_FIGHTING_TEAM.isEmpty() && !enemyTeam.isEmpty())
             {
                 refreshBattle();
-            }
-            else if(!won)
-            {
-                break;
             }
         }
         
@@ -587,8 +589,8 @@ public abstract class Battle implements java.io.Serializable
         if(ComboAttack.canUse(player) && comboAttackUsed == false)
         {
             message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Combo Attack\n\t3) Inventory"
-                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy";
-            response = MenuHelper.displayMenu(message, 1, 5);
+                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy + \n\t6) Forfeit Battle";
+            response = MenuHelper.displayMenu(message, 1, 6);
             
             switch (response) 
             {
@@ -612,12 +614,16 @@ public abstract class Battle implements java.io.Serializable
                 case 5:
                     checkEnemy(player);
                     break;
+                // If wanting to forfeit the battle
+                case 6:
+                    forfeit(player);
             }
         }
         else
         {
-            message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Inventory\n\t3) Check " + player.getName() + "\n\t4) Check Enemy";
-            response = MenuHelper.displayMenu(message, 1, 4);
+            message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Inventory\n\t3) Check " + player.getName() + 
+                    "\n\t4) Check Enemy\n\t5) Forfeit";
+            response = MenuHelper.displayMenu(message, 1, 5);
             
             switch (response) 
             {
@@ -637,6 +643,8 @@ public abstract class Battle implements java.io.Serializable
                 case 4:
                     checkEnemy(player);
                     break;
+                case 5:
+                    forfeit(player);
             }
         }    
         
@@ -644,6 +652,28 @@ public abstract class Battle implements java.io.Serializable
         {
             activateCheerPartner(player);
         }
+    }
+    
+    /**
+     * If the player wants to forfeit a battle, they will end the battle, but it will count as a loss.
+     */
+    private void forfeit(Player player)
+    {
+        MainGame.println("\nDo you want to forfeit? Doing so will count as a loss.", 25);
+        
+        int input = MenuHelper.displayMenu("\t1) Yes\n\t2) No", 1, 2);
+        
+        switch(input)
+        {
+            case 1: 
+                forfeit = true;
+                break;
+            case 2: 
+                System.out.println(""); // formatting
+                activatePlayerTurn(player); 
+                break;
+        }
+                
     }
     
     private void activateCheerPartner(Player player)
@@ -1856,14 +1886,13 @@ public abstract class Battle implements java.io.Serializable
     private void lost()
     {
         MainGame.clearScreen();
-        MainGame.print("\nYou've been defeated", 100);
-        MainGame.printlnln("...", 500);
+        MainGame.print("You've been defeated", 25);
+        MainGame.printlnln("...", 25);
         MainGame.printlnln("You lost " + calculateGold(baseGoldAmt, false) + " gold.", 100);
         Game.decreaseGold(calculateGold(baseGoldAmt, false));
         won = false;
 //        MainGame.println("You lost " + MainGame.ANSI_YELLOW + calculateGold(BASE_GOLD, false) + " gold." +
 //                MainGame.ANSI_RESET, BASE_GOLD);
-        
     }
     
     /**
