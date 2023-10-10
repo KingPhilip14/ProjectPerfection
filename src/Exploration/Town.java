@@ -75,7 +75,7 @@ public class Town extends Location
         }
         else
         {
-            MainGame.printlnln("There's no one to talk to...", 5);
+            MainGame.printlnln("There's no one to talk to...");
         }
     }
     

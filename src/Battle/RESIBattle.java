@@ -30,7 +30,7 @@ public class RESIBattle extends Battle
         
             enemy.setElement(player.getElement());
 
-            MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!", 25);
+            MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!");
 
             MainGame.promptToEnter();
         }

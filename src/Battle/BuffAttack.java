@@ -53,7 +53,7 @@ public class BuffAttack extends Attack
         Scanner scan = new Scanner(STAT_TO_BUFF);
         scan.useDelimiter(",");
         
-        MainGame.printlnln("\n" + target.getName() + " used " + name + "!", 5);
+        MainGame.printlnln("\n" + target.getName() + " used " + name + "!");
         
         while(scan.hasNext())
         {   
@@ -66,13 +66,13 @@ public class BuffAttack extends Attack
                         target.getAttack().setBuffActive(true);
                         target.getAttack().setBuffModifier(BUFF_MODIFIER);
                         target.getAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s attack increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s attack increased!");
                         
                         Battle.getChangedStats().enqueue(target.getAttack());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has an attack buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has an attack buff active!");
                     }
                     break;
                 case "Defense":
@@ -82,13 +82,13 @@ public class BuffAttack extends Attack
                         target.getDefense().setBuffActive(true);
                         target.getDefense().setBuffModifier(BUFF_MODIFIER);
                         target.getDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s defense increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s defense increased!");
                         
                         Battle.getChangedStats().enqueue(target.getDefense());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a defense buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a defense buff active!");
                     }  
                     break;
                 case "R. Attack":
@@ -98,13 +98,13 @@ public class BuffAttack extends Attack
                         target.getRangedAttack().setBuffActive(true);
                         target.getRangedAttack().setBuffModifier(BUFF_MODIFIER);
                         target.getRangedAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s ranged attack increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s ranged attack increased!");
                         
                         Battle.getChangedStats().enqueue(target.getRangedAttack());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a ranged attack buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a ranged attack buff active!");
                     }  
                     break;
                 case "R. Defense":
@@ -114,13 +114,13 @@ public class BuffAttack extends Attack
                         target.getRangedDefense().setBuffActive(true);
                         target.getRangedDefense().setBuffModifier(BUFF_MODIFIER);
                         target.getRangedDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s ranged defense increased!" , 5);
+                        MainGame.printlnln(target.getName() + "'s ranged defense increased!" );
                         
                         Battle.getChangedStats().enqueue(target.getRangedDefense());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a ranged defense buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a ranged defense buff active!");
                     }
                     break;
                 case "All":
@@ -130,13 +130,13 @@ public class BuffAttack extends Attack
                         target.getAttack().setBuffActive(true);
                         target.getAttack().setBuffModifier(BUFF_MODIFIER);
                         target.getAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s attack increased!" , 5);
+                        MainGame.printlnln(target.getName() + "'s attack increased!" );
                         
                         Battle.getChangedStats().enqueue(target.getAttack());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has an attack buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has an attack buff active!");
                     }
                     
                     if(target.getDefense().getIsBuffActive() == false)
@@ -145,13 +145,13 @@ public class BuffAttack extends Attack
                         target.getDefense().setBuffActive(true);
                         target.getDefense().setBuffModifier(BUFF_MODIFIER);
                         target.getDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s defense increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s defense increased!");
                         
                         Battle.getChangedStats().enqueue(target.getDefense());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a defense buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a defense buff active!");
                     }  
                     
                     if(target.getRangedAttack().getIsBuffActive() == false)
@@ -160,13 +160,13 @@ public class BuffAttack extends Attack
                         target.getRangedAttack().setBuffActive(true);
                         target.getRangedAttack().setBuffModifier(BUFF_MODIFIER);
                         target.getRangedAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s ranged attack increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s ranged attack increased!");
                         
                         Battle.getChangedStats().enqueue(target.getRangedAttack());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a ranged attack buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a ranged attack buff active!");
                     }
                     
                     if(target.getRangedDefense().getIsBuffActive() == false)
@@ -175,13 +175,13 @@ public class BuffAttack extends Attack
                         target.getRangedDefense().setBuffActive(true);
                         target.getRangedDefense().setBuffModifier(BUFF_MODIFIER);
                         target.getRangedDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s ranged defense increased!" , 5);
+                        MainGame.printlnln(target.getName() + "'s ranged defense increased!" );
                         
                         Battle.getChangedStats().enqueue(target.getRangedDefense());
                     }
                     else 
                     {
-                        MainGame.printlnln(target.getName() + " still has a ranged defense buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a ranged defense buff active!");
                     }
                     
                     if(target.getSpeed().getIsBuffActive() == false)
@@ -190,16 +190,16 @@ public class BuffAttack extends Attack
                         target.getSpeed().setBuffActive(true);
                         target.getSpeed().setBuffModifier(BUFF_MODIFIER);
                         target.getSpeed().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s speed increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s speed increased!");
                         
                         Battle.getChangedStats().enqueue(target.getSpeed());
                     }
                     else
                     {
-                        MainGame.printlnln(target.getName() + " still has a speed buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a speed buff active!");
                     } 
                     
-//                    MainGame.printlnln(target.getName() + "'s stats increased!", 5);
+//                    MainGame.printlnln(target.getName() + "'s stats increased!");
                     break;
                 default:
                     if(target.getSpeed().getIsBuffActive() == false)
@@ -208,13 +208,13 @@ public class BuffAttack extends Attack
                         target.getSpeed().setBuffActive(true);
                         target.getSpeed().setBuffModifier(BUFF_MODIFIER);
                         target.getSpeed().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
-                        MainGame.printlnln(target.getName() + "'s speed increased!", 5);
+                        MainGame.printlnln(target.getName() + "'s speed increased!");
                         
                         Battle.getChangedStats().enqueue(target.getSpeed());
                     }
                     else
                     {
-                        MainGame.printlnln(target.getName() + " still has a speed buff active!", 5);
+                        MainGame.printlnln(target.getName() + " still has a speed buff active!");
                     } 
                     break;
             }

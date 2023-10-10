@@ -134,26 +134,26 @@ public class OffensiveAttack extends Attack
                 target.setCurrentHealth(0);
             }
 
-            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " and dealt " + damage + " to "+ target.getName() + "!", 5);
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " and dealt " + damage + " to "+ target.getName() + "!");
             
             if(isCrit)
             {
     //            MainGame.println(MainGame.ANSI_RED + "It's a critical hit!" + MainGame.ANSI_RESET, 10);
-                MainGame.printlnln("It's a critical hit!", 10);
+                MainGame.printlnln("It's a critical hit!");
             }
             
             if(elementEffectiveness < 1)
             {
-                MainGame.printlnln(attacker.getName() + "'s attack was not very effective.", 5);
+                MainGame.printlnln(attacker.getName() + "'s attack was not very effective.");
             }
             else if(elementEffectiveness > 1)
             {
-                MainGame.printlnln(attacker.getName() + "'s attack was super effective!", 5);
+                MainGame.printlnln(attacker.getName() + "'s attack was super effective!");
             }
         }
         else
         {
-            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!", 5);
+            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!");
         }
     }
     
@@ -167,7 +167,7 @@ public class OffensiveAttack extends Attack
         }
         else
         {
-            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!", 5);
+            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!");
         }
         
         setNextAvailableTurn(Battle.getCurrentTurn());

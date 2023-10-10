@@ -54,7 +54,7 @@ public class Inventory implements Serializable
         {
             for(Item i : inventory)
             {
-                MainGame.printlnln(i.toInventoryString(), 25);
+                MainGame.printlnln(i.toInventoryString());
             }
         }
         

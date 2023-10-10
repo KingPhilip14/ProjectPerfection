@@ -85,7 +85,7 @@ public abstract class Location extends GameProperty
     
     private void openChest()
     {
-        MainGame.printlnln("\nYou found a chest! What does it have?", 25);
+        MainGame.printlnln("\nYou found a chest! What does it have?");
         chest.open();
     }
     
@@ -135,7 +135,7 @@ public abstract class Location extends GameProperty
         {
             Player p = team.get(0);
             MainGame.printlnln("\n" + p.getName() + " traveled from " + location1.getName() + 
-                " to " + location2.getName() + ".", 25);
+                " to " + location2.getName() + ".");
             MainGame.dialoguelnln(p, "Time to explore " + location2.getName() + "! Let's see how this goes." );
             MainGame.clearScreen();
             return;
@@ -143,7 +143,7 @@ public abstract class Location extends GameProperty
         else
         {
             MainGame.printlnln("\nAnahita and the others traveled from " + location1.getName() + 
-                " to " + location2.getName() + ".", 25);
+                " to " + location2.getName() + ".");
         }    
         
         MainGame.wait(2000);

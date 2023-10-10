@@ -75,7 +75,7 @@ public abstract class Item implements Collectable, java.io.Serializable
     
     public abstract void use(Character character);
     
-    public void printDescription() {MainGame.printlnln(this.description, 5);}
+    public void printDescription() {MainGame.printlnln(this.description);}
     
     /**
      * Shows the player what item they received and how much.
@@ -84,11 +84,11 @@ public abstract class Item implements Collectable, java.io.Serializable
     {
         if(quantity > 1)
         {
-            MainGame.printlnln("You received " + quantity + " " + name + "s!", 10);
+            MainGame.printlnln("You received " + quantity + " " + name + "s!");
         }
         else
         {
-            MainGame.printlnln("You received " + quantity + " " + name + "!", 10);
+            MainGame.printlnln("You received " + quantity + " " + name + "!");
         }
     }
     

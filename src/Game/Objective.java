@@ -292,7 +292,7 @@ public class Objective implements Serializable
     
     public void printCurrentObjective()
     {
-        MainGame.println("Current Objective: " + currentTask.toString(), 10);
+        MainGame.println("Current Objective: " + currentTask.toString());
     }
     
     @Override

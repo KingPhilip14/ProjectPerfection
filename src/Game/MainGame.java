@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class MainGame 
 {
-    private static int gold = 10000;
+    private static int gold = 10000, textSpeed = 25;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);
@@ -348,6 +348,9 @@ public class MainGame
         Item.populateAllBuffItems();
         Item.populateAllHealItems();
         PlayerClass.createClasses();
+        startUpOptions.add("New Game");
+        startUpOptions.add("Continue Game");
+        startUpOptions.add("Set Text Speed");
 
         startUp();
 //        game = new Game(fa);
@@ -368,8 +371,6 @@ public class MainGame
     public static void startUp()
     {
         clearScreen();
-        startUpOptions.add("New Game");
-        startUpOptions.add("Continue Game");
         
         String gameTitle = "Project Perfection";
         
@@ -396,9 +397,75 @@ public class MainGame
             case 2:
                 load();
                 break;
+            case 3:
+                selectTextSpeed();
+                break;
         }
         
         game.startGame();
+    }
+    
+    public static void selectTextSpeed()
+    {
+        promptToChangeTextSpeed();
+        textSpeedExample();
+        finalTextSpeedPrompt();
+    }
+    
+    /**
+     * Asks the player what they want to set the text speed to.
+     */
+    private static void promptToChangeTextSpeed()
+    {
+        String message = String.format("What would you like the text speed to be? It is currently set to %d."
+                + "\n1 is the fastest, 25 is average, and anything greater than 30 is slow."
+                + "\nPlease enter a number between 1-100", textSpeed);
+        
+        int input = MenuHelper.displayMenu(message, 1, 100);
+        
+        textSpeed = input;
+        
+        promptToEnter();
+    }
+    
+    /**
+     * Shows an example of how fast the text will be typed.
+     */
+    private static void textSpeedExample()
+    {
+        printlnln(String.format("You selected %d to be the text speed. An exmaple of the speed will be displayed.", textSpeed));
+        
+        promptToEnter();
+        
+        printlnln("Exmaple: This is how fast text will be displayed during the game.");
+        
+        promptToEnter();
+    }
+    
+    /**
+     * Asks the player if the current speed is fine or if they need the example again.
+     */
+    private static void finalTextSpeedPrompt()
+    {
+        String message = String.format("Is a speed of %d what you want?\n\t1) Yes\n\t2) No\n\t3) Show example", textSpeed);
+        
+        int input = MenuHelper.displayMenu(message, 1, 3);
+        
+        switch(input)
+        {
+            case 1:
+                startUp();
+                break;
+            case 2: 
+                promptToEnter();
+                selectTextSpeed();
+                break;
+            case 3: 
+                promptToEnter();
+                textSpeedExample();
+                finalTextSpeedPrompt();
+                break;
+        }
     }
     
     public static void save()
@@ -457,7 +524,7 @@ public class MainGame
         }
         catch(Exception e)
         {
-            printlnln("There is no game data saved currently. Starting a new game instead.", 25);
+            printlnln("There is no game data saved currently. Starting a new game instead.");
             promptToEnter();
             game = new Game(false);
             game.startGame();
@@ -489,7 +556,7 @@ public class MainGame
         printlnlnWait("...", 500, 1000);
     }
     
-    public static void println(String string, int time)
+    public static void println(String string)
     {
         for(int i = 0; i < string.length(); i++)
         {
@@ -497,7 +564,7 @@ public class MainGame
             
             try
             {
-                Thread.sleep(time);
+                Thread.sleep(textSpeed);
             }
             catch(InterruptedException ie)
             {
@@ -508,7 +575,7 @@ public class MainGame
         System.out.println("");
     }
     
-    public static void printlnln(String string, int time)
+    public static void printlnln(String string)
     {
         for(int i = 0; i < string.length(); i++)
         {
@@ -516,7 +583,7 @@ public class MainGame
             
             try
             {
-                Thread.sleep(time);
+                Thread.sleep(textSpeed);
             }
             catch(InterruptedException ie)
             {
@@ -535,7 +602,7 @@ public class MainGame
      */
     public static void printlnlnWait(String string, int time, int waitTime)
     {
-        printlnln(string, time);
+        printlnln(string);
         wait(waitTime);
 //        promptToEnter();
     }
@@ -548,7 +615,7 @@ public class MainGame
      */
     public static void printlnWait(String string, int time, int waitTime)
     {
-        println(string, time);
+        println(string);
         wait(waitTime);
 //        promptToEnter();
     }
@@ -561,12 +628,12 @@ public class MainGame
      */
     public static void printWait(String string, int time, int waitTime)
     {
-        print(string, time);
+        print(string);
         wait(waitTime);
 //        promptToEnter();
     }
     
-    public static void print(String string, int time)
+    public static void print(String string)
     {
         for(int i = 0; i < string.length(); i++)
         {
@@ -574,7 +641,7 @@ public class MainGame
             
             try
             {
-                Thread.sleep(time);
+                Thread.sleep(textSpeed);
             }
             catch(InterruptedException ie)
             {
@@ -610,7 +677,7 @@ public class MainGame
         
         while(scan.hasNext())
         {
-            println(scan.next(), 25);
+            println(scan.next());
         }
         
         System.out.println("");
@@ -651,44 +718,44 @@ public class MainGame
     
     public static void dialoguelnln(Player player, String dialogue)
     {
-        printlnln("\t" + player.getName() + ": \"" + dialogue  + "\"", 25);
+        printlnln("\t" + player.getName() + ": \"" + dialogue  + "\"");
         wait(1000);
     }
     
     public static void dialoguelnln(String name, String dialogue)
     {
-        printlnln("\t" + name + ": \"" + dialogue + "\"", 25);
+        printlnln("\t" + name + ": \"" + dialogue + "\"");
         wait(1000);
     }
     
     public static void dialogueln(Player player, String dialogue)
     {
-        println("\t" + player.getName() + ": \"" + dialogue + "\"", 25);
+        println("\t" + player.getName() + ": \"" + dialogue + "\"");
         wait(1000);
     }
     
     public static void dialogueln(String name, String dialogue)
     {
-        println("\t" + name + ": \"" + dialogue + "\"", 25);
+        println("\t" + name + ": \"" + dialogue + "\"");
         wait(1000);
     }
     
     public static void dialogueInteract(Player player, String dialogue)
     {
-        print("\t" + player.getName() + ": \"" + dialogue + "\"", 25);
+        print("\t" + player.getName() + ": \"" + dialogue + "\"");
         waitForEnter();
     }
     
     public static void dialogueInteract(String name, String dialogue)
     {
-        printlnln("\t" + name + ": \"" + dialogue + "\"", 25);
+        printlnln("\t" + name + ": \"" + dialogue + "\"");
         promptToEnter();
     }
     
     public static void waitForEnter()
     {
         String prompt = "\n\tPress Enter to Continue >";
-        print(prompt, 5);
+        print(prompt);
         
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
@@ -861,7 +928,7 @@ public class MainGame
                 + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
                 + "slightly if they aren't at full HP./\tAll-Rounder: Boosts Speed by 10 points.");
         
-        printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!", 25);
+        printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!");
         
         promptToEnter();
     }

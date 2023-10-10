@@ -132,7 +132,7 @@ public class Stat implements java.io.Serializable
     public void deactivateBuff()
     {
         buffActive = false;
-        MainGame.printlnln(character.getName() + "'s " + stat + " buff is no longer active!", 5);
+        MainGame.printlnln(character.getName() + "'s " + stat + " buff is no longer active!");
         removeBuff();
 //            resetValue(character);
     }
@@ -147,7 +147,7 @@ public class Stat implements java.io.Serializable
     public void deactivateDebuff()
     {
         debuffActive = false;
-        MainGame.printlnln(character.getName() + "'s " + stat + " debuff is no longer active!", 5);
+        MainGame.printlnln(character.getName() + "'s " + stat + " debuff is no longer active!");
         removeDebuff();
     }
     
