@@ -23,11 +23,11 @@ public class SaveLoad
             oos.writeObject(new DataManager(game));
             oos.close();
             
-            MainGame.printlnln("Game successfully saved!", 25);
+            MainGame.printlnln("Game successfully saved!");
         }
         catch(Exception e)
         {
-            MainGame.printlnln("Game data couldn't be saved. " + e.getMessage(), 25);
+            MainGame.printlnln("Game data couldn't be saved. " + e.getMessage());
         }
     }
     

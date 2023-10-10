@@ -607,9 +607,9 @@ public class Game implements java.io.Serializable
     private void displayInfo()
     {
         objective.printCurrentObjective();
-        MainGame.println("Current Location: " + currentLocation.getName(), 5);
-        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G", 5);
-        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation), 5);
+        MainGame.println("Current Location: " + currentLocation.getName());
+        MainGame.println("Current Gold: " + String.format("%,d", getGold()) + " G");
+        MainGame.printlnln("Pulchra Population: " + String.format("%,d", pulchraPopulation));
     }
     
     public void processInput()
@@ -617,7 +617,7 @@ public class Game implements java.io.Serializable
         MainGame.clearScreen();
         displayInfo();
         
-        MainGame.println("What would you like to do?", 5);
+        MainGame.println("What would you like to do?");
         String message = "\t1) Travel\n\t2) ";
         int input = 0;
         
@@ -747,7 +747,7 @@ public class Game implements java.io.Serializable
         MainGame.clearScreen();
         MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
         MainGame.wait(250);
-        MainGame.printlnln("\n" + currentLocation.getDescription(), 25);
+        MainGame.printlnln("\n" + currentLocation.getDescription());
         MainGame.promptToEnter();
     }
     
@@ -1498,7 +1498,7 @@ public class Game implements java.io.Serializable
     
     private void optionsMenu()
     {
-        MainGame.println("\nWhat would you like to do?", 25);
+        MainGame.println("\nWhat would you like to do?");
         String message = "\t1) View Team\n\t2) View Tutorials\n\t3) View World Map\n\t4) Save\n\t5) Set Text Speed\n\t6) Back";
         int input = MenuHelper.displayMenu(message, 1, 6);
         
@@ -1528,7 +1528,7 @@ public class Game implements java.io.Serializable
     
     private void viewTutorials()
     {
-        MainGame.println("\nWhich tutorial would you like to review?", 25);
+        MainGame.println("\nWhich tutorial would you like to review?");
         String message = "\t1) Element Matchups\n\t2) Targeting\n\t3) Aggro\n\t4) Cheer Partner and Cheer Skills\n\t5) Back";
         int input = MenuHelper.displayMenu(message, 1, 5);
         
@@ -1556,7 +1556,7 @@ public class Game implements java.io.Serializable
     {
         MainGame.clearScreen();
         
-        MainGame.println("Would you like to save the game?", 25);
+        MainGame.println("Would you like to save the game?");
         
         String message = "\t1) Yes\n\t2) No";
         
@@ -1588,7 +1588,7 @@ public class Game implements java.io.Serializable
         }
         else
         {
-            MainGame.println("\nInventory:\n", 25);
+            MainGame.println("\nInventory:\n");
             inventory.showInventory();
         }
     }
@@ -1601,7 +1601,7 @@ public class Game implements java.io.Serializable
     private void viewTeam()
     {
         MainGame.clearScreen();
-        MainGame.println("Who would you like to view?", 25);
+        MainGame.println("Who would you like to view?");
         String message = "";
         int numOfOptions = 0;
         
@@ -1627,7 +1627,7 @@ public class Game implements java.io.Serializable
     
     private void viewPlayer(Player player)
     {
-        MainGame.println("\nWhat would you like to do with " + player.getName() + "?", 25);
+        MainGame.println("\nWhat would you like to do with " + player.getName() + "?");
         
         // The player has access to changing classes when they're in the second phase
         if(inSecondPhase)
@@ -1647,7 +1647,7 @@ public class Game implements java.io.Serializable
                     viewTeam();
                     break;
                 default:
-                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.printlnln("\n" + player.toOverallString());
                     MainGame.waitForEnter();
                     break;
             }
@@ -1666,7 +1666,7 @@ public class Game implements java.io.Serializable
                     viewTeam();
                     break;
                 default:
-                    MainGame.printlnln("\n" + player.toOverallString(), 25);
+                    MainGame.printlnln("\n" + player.toOverallString());
                     MainGame.waitForEnter();
                     break;
             }
@@ -1704,18 +1704,18 @@ public class Game implements java.io.Serializable
     
     private void promptToChangeClass(Player p)
     {
-        MainGame.printlnln(p.getName() + "'s other classes:", 25);
+        MainGame.printlnln(p.getName() + "'s other classes:");
         
         // Print available classes and their info
         for(PlayerClass pc : p.getOtherClasses())
         {
-            MainGame.printlnln(pc.detailedString(), 5);
+            MainGame.printlnln(pc.detailedString());
         }
         
         MainGame.promptToEnter();
         
         // Prompt player to select a choice.
-        MainGame.println("What would you like to change " + p.getName() + "'s class to?", 25);
+        MainGame.println("What would you like to change " + p.getName() + "'s class to?");
         String message = "";
         int numOfOptions = 0;
         
@@ -1751,12 +1751,12 @@ public class Game implements java.io.Serializable
         
         MainGame.promptToEnter();
         MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
-                " -----------> " + otherClass.toString(), 25);
+                " -----------> " + otherClass.toString());
         
-        MainGame.println(p.getName() + "'s new info:", 25);
+        MainGame.println(p.getName() + "'s new info:");
         
         // Prints out the updated character's info
-        MainGame.printlnln(p.toOverallString(), 5);
+        MainGame.printlnln(p.toOverallString());
         
         MainGame.waitForEnter();
         viewTeam();
@@ -1788,7 +1788,7 @@ public class Game implements java.io.Serializable
                 MainGame.printlnln("WARNING: Only Clerk classes can use healing attacks. " + p.getName() + " is currently "
                         + "using " + attack.getName() + ".\nTo change " + p.getName() + "'s class from " + 
                         currentClass.getClassName() + " to " + wantedClass.getClassName() + ", please change " +
-                        attack.getName() + " to a different attack.", 25);
+                        attack.getName() + " to a different attack.");
                 MainGame.promptToEnter();
                 
                 // If a is a form of healing, prompt player to change attacks first.
@@ -1807,7 +1807,7 @@ public class Game implements java.io.Serializable
     private void changeAttackForClass(Player p, int indexOfHealAttack, Attack attackToChange)
     {
         MainGame.println("Which move would you like to change " + attackToChange.getName() + " with? Please choose an attack "
-                + "that is not a form of healing.", 25);
+                + "that is not a form of healing.");
 
         String message = "";
         int numOfOptions = 0;
@@ -1843,7 +1843,7 @@ public class Game implements java.io.Serializable
         Attack otherAttack = p.getOtherAttacks().get(--indexOfOtherAttack);
         if(otherAttack instanceof SingleHealingAttack || otherAttack instanceof TeamHealingAttack)
         {
-            MainGame.printlnln("\nPlease select an attack that isn't a form of healing.", 5);
+            MainGame.printlnln("\nPlease select an attack that isn't a form of healing.");
             MainGame.promptToEnter();
             changeAttackForClass(p, indexOfHealAttack, attackToChange);
         }
@@ -1879,7 +1879,7 @@ public class Game implements java.io.Serializable
     
     private void promptToChangeMove(Player p)
     {
-        MainGame.println("\nWhich move would you like to change?", 25);
+        MainGame.println("\nWhich move would you like to change?");
         String message = "";
         int numOfOptions = 0;
         
@@ -1907,7 +1907,7 @@ public class Game implements java.io.Serializable
         MainGame.promptToEnter();
         Attack wantedAttack = p.getCurrentAttacks().get(inputForFirstAttack - 1);
         MainGame.println("Which attack would you like to change " + wantedAttack.getName() 
-                + " with?\nNOTE: Only Clerk classes can use attacks that heal.", 25);
+                + " with?\nNOTE: Only Clerk classes can use attacks that heal.");
         String message = "";
         int numOfOptions = 0;
         
@@ -1961,7 +1961,7 @@ public class Game implements java.io.Serializable
         {
             MainGame.printlnln("\nYou cannot change " + p.getCurrentAttacks().get(currentAttackInput).getName() + " to " 
                     + otherAttack.getName() + " because " + p.getName() + "'s curernt class is " 
-                    + p.getPlayerClass().getClassName() + ".\nPlease choose a different attack to switch to.", 25);
+                    + p.getPlayerClass().getClassName() + ".\nPlease choose a different attack to switch to.");
             
             // Take player back to select the other attack they want to change. Increment for the sake of implementation
             promptForOtherAttack(p, ++currentAttackInput);

@@ -90,11 +90,11 @@ public class Player extends Character
     
     public String getBattleReadyMessage() {return battleReadyMessage;}
     public void setBattleReadyMessage(String message) {battleReadyMessage = message;}
-    public void printBattleReadyMessage() {MainGame.printlnln("\n" + name + ": " + battleReadyMessage, 25);}
+    public void printBattleReadyMessage() {MainGame.printlnln("\n" + name + ": " + battleReadyMessage);}
     
     public String getCheerReadyMessage() {return cheerReadyMessage;}
     public void setCheerReadyMessage(String message) {cheerReadyMessage = message;}
-    public void printCheerReadyMessage() {MainGame.printlnln("\n" + name + ": " + cheerReadyMessage, 5);}
+    public void printCheerReadyMessage() {MainGame.printlnln("\n" + name + ": " + cheerReadyMessage);}
     
     public String getClassRole() {return playerClass.getPrimaryRole();}
 //    public void setClassRole(String roleType) {playerClass.setPrimaryRole(roleType);}
@@ -174,7 +174,7 @@ public class Player extends Character
         // if the Player has a cheer partner
         if(player.getCheerPartner() != null)
         {
-            MainGame.printlnln(player.getName() + " received " + amt + " XP!", 25);
+            MainGame.printlnln(player.getName() + " received " + amt + " XP!");
             MainGame.wait(200);
             player.currentXP += amt;
             player.updateXP(amt);
@@ -183,7 +183,7 @@ public class Player extends Character
 //            player.getCheerPartner().currentXP += amt;
 //            player.getCheerPartner().updateXPToLevelUp(amt);
             
-            MainGame.printlnln(player.getCheerPartner().getName() + " received " +  amt + " XP!", 25);
+            MainGame.printlnln(player.getCheerPartner().getName() + " received " +  amt + " XP!");
             MainGame.wait(200);
             player.getCheerPartner().currentXP += amt;
             player.getCheerPartner().updateXP(amt);
@@ -194,7 +194,7 @@ public class Player extends Character
         // if there isn't a cheer partner
         else
         {
-            MainGame.printlnln(player.getName() + " received " + amt + " XP!", 25);
+            MainGame.printlnln(player.getName() + " received " + amt + " XP!");
             player.currentXP += amt;
             player.updateXP(amt);
 //            MainGame.printlnlnWait(player.getName() + "'s XP to next level: " + xpToLevelUp, 20, 2000);
@@ -238,11 +238,11 @@ public class Player extends Character
 //    public void levelUp(int remaining)
 //    {
 ////        Game.setLevelUpOccurred();
-//        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
+//        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!");
 //        MainGame.wait(1250);
-//        MainGame.printlnln("Stats before:", 5);
+//        MainGame.printlnln("Stats before:");
 //        MainGame.wait(1500);
-//        MainGame.printlnln(toStringOriginalStats(), 25);
+//        MainGame.printlnln(toStringOriginalStats());
 //        MainGame.wait(3000);
 //        
 //        level++;
@@ -253,18 +253,18 @@ public class Player extends Character
 //        xpToLevelUp -= remaining;
 //        updateStats();
 //        
-//        MainGame.printlnln("Current stats:", 5);
-//        MainGame.println(toStringOriginalStats(), 25);
+//        MainGame.printlnln("Current stats:");
+//        MainGame.println(toStringOriginalStats());
 //        MainGame.wait(3000);
 //        MainGame.printlnlnWait(getName() + "'s XP to next level: " + xpToLevelUp, 20, 3000);
 //    }
     
     private void levelUp(int remainingXP)
     {
-        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
+        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!");
         MainGame.wait(500);
-        MainGame.printlnln("Stats before:", 5);
-        MainGame.printlnln(toStringOriginalStats(), 25);
+        MainGame.printlnln("Stats before:");
+        MainGame.printlnln(toStringOriginalStats());
 
         MainGame.waitForEnter();
         System.out.println("");
@@ -291,18 +291,18 @@ public class Player extends Character
         }
 
         xpToLevelUp -= remainingXP;
-        MainGame.printlnln("Current stats:", 5);
-        MainGame.println(toStringOriginalStats(), 25);
-        MainGame.printlnln(getName() + "'s XP to next level: " + xpToLevelUp, 20);
+        MainGame.printlnln("Current stats:");
+        MainGame.println(toStringOriginalStats());
+        MainGame.printlnln(getName() + "'s XP to next level: " + xpToLevelUp);
     }
     
     public void forcedLevelUp()
     {
-        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!", 25);
+        MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!");
         MainGame.wait(250);
-        MainGame.printlnln("Stats before:", 5);
+        MainGame.printlnln("Stats before:");
         MainGame.wait(250);
-        MainGame.printlnln(toStringOriginalStats(), 25);
+        MainGame.printlnln(toStringOriginalStats());
         MainGame.wait(250);
         
         level++;
@@ -311,8 +311,8 @@ public class Player extends Character
         
         updateStats();
         
-        MainGame.printlnln("Current stats:", 5);
-        MainGame.println(toString(), 25);
+        MainGame.printlnln("Current stats:");
+        MainGame.println(toString());
         MainGame.printlnlnWait(getName() + "'s XP to next level: " + xpToLevelUp, 20, 3000);
         MainGame.promptToEnter();
     }
@@ -921,7 +921,7 @@ public class Player extends Character
     {
         for(Attack attack : currentAttacks)
         {
-            MainGame.printlnln(attack.toString(), 5);
+            MainGame.printlnln(attack.toString());
         }
             
     }

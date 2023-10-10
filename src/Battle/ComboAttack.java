@@ -156,40 +156,40 @@ public class ComboAttack extends Attack
             target.setCurrentHealth(0);
         }
         
-        MainGame.printlnln("\n" + attacker1.getName() + " and " + attacker2.getName() + " used the combo attack, " + name + "!", 5);
+        MainGame.printlnln("\n" + attacker1.getName() + " and " + attacker2.getName() + " used the combo attack, " + name + "!");
         MainGame.wait(500);
         
         if(elementEffectiveness1 > 1)
         {
-            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was super effective!", 5);
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was super effective!");
         }
         else if(elementEffectiveness1 < 1)
         {
-            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was not very effective.", 5);
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was not very effective.");
         }
         else
         {
-            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.", 5);
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.");
         }
         
         MainGame.wait(1000);
         
         if(elementEffectiveness2 > 1)
         {
-            MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was super effective!", 5);
+            MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was super effective!");
         }
         else if(elementEffectiveness2 < 1)
         {
-            MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was not very effective.", 5);
+            MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was not very effective.");
         }
         else
         {
-            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.", 5);
+            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.");
         }
         
         MainGame.wait(1000);
         
-        MainGame.printlnln(attacker1.getName() + " and "  + attacker2.getName() + " dealt " + damage + " HP!", 5);
+        MainGame.printlnln(attacker1.getName() + " and "  + attacker2.getName() + " dealt " + damage + " HP!");
     }
     
     public void attack(Player attacker1, Player attacker2, Enemy target)

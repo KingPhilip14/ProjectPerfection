@@ -46,10 +46,10 @@ public abstract class TutorialBattle extends Battle
             case 1:
                 MainGame.clearScreen();
                 explainBattles();
-                MainGame.printlnln("Alright! Win so you can move on!", 25);
+                MainGame.printlnln("Alright! Win so you can move on!");
                 break;
             case 2:
-                MainGame.printlnln("\nAlright! Win so you can move on!", 25);
+                MainGame.printlnln("\nAlright! Win so you can move on!");
                 break;
         }
         

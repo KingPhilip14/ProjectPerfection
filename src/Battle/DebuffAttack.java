@@ -52,7 +52,7 @@ public class DebuffAttack extends Attack
     {
         attackHit();
         
-        MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on "+ target.getName() + "!", 5);
+        MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on "+ target.getName() + "!");
         
         if(attackHit)
         {
@@ -70,13 +70,13 @@ public class DebuffAttack extends Attack
                             target.getAttack().setDebuffActive(true);
                             target.getAttack().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s attack decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s attack decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getAttack());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has an attack debuff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has an attack debuff active!");
                         }
                         break;
                     case "Defense":
@@ -86,13 +86,13 @@ public class DebuffAttack extends Attack
                             target.getDefense().setDebuffActive(true);
                             target.getDefense().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s defense decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s defense decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getDefense());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a defense debuff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a defense debuff active!");
                         }  
                         break;
                     case "R. Attack":
@@ -102,13 +102,13 @@ public class DebuffAttack extends Attack
                             target.getRangedAttack().setDebuffActive(true);
                             target.getRangedAttack().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getRangedAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s ranged attack decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s ranged attack decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getRangedAttack());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a ranged attack debuff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a ranged attack debuff active!");
                         }  
                         break;
                     case "R. Defense":
@@ -118,13 +118,13 @@ public class DebuffAttack extends Attack
                             target.getRangedDefense().setDebuffActive(true);
                             target.getRangedDefense().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getRangedDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s ranged defense decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s ranged defense decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getRangedDefense());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a ranged debuff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a ranged debuff active!");
                         }
                         break;
                     case "All":
@@ -134,13 +134,13 @@ public class DebuffAttack extends Attack
                             target.getAttack().setDebuffActive(true);
                             target.getAttack().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s attack decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s attack decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getAttack());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has an attack buff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has an attack buff active!");
                         }
 
                         if(target.getDefense().getIsDebuffActive() == false)
@@ -149,13 +149,13 @@ public class DebuffAttack extends Attack
                             target.getDefense().setDebuffActive(true);
                             target.getDefense().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s defense decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s defense decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getDefense());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a defense buff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a defense buff active!");
                         }  
 
                         if(target.getRangedAttack().getIsDebuffActive() == false)
@@ -164,13 +164,13 @@ public class DebuffAttack extends Attack
                             target.getRangedAttack().setDebuffActive(true);
                             target.getRangedAttack().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getRangedAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s ranged attack decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s ranged attack decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getRangedAttack());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a ranged attack buff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a ranged attack buff active!");
                         }
 
                         if(target.getRangedDefense().getIsDebuffActive() == false)
@@ -179,13 +179,13 @@ public class DebuffAttack extends Attack
                             target.getRangedDefense().setDebuffActive(true);
                             target.getRangedDefense().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getRangedDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s ranged defense decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s ranged defense decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getRangedDefense());
                         }
                         else 
                         {
-                            MainGame.printlnln(target.getName() + " still has a ranged defense buff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a ranged defense buff active!");
                         }
 
                         if(target.getSpeed().getIsDebuffActive() == false)
@@ -194,16 +194,16 @@ public class DebuffAttack extends Attack
                             target.getSpeed().setDebuffActive(true);
                             target.getSpeed().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getSpeed().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s speed decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s speed decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getSpeed());
                         }
                         else
                         {
-                            MainGame.printlnln(target.getName() + " still has a speed buff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a speed buff active!");
                         } 
                     
-//                        MainGame.printlnln(target.getName() + "'s stats decreased!", 5);
+//                        MainGame.printlnln(target.getName() + "'s stats decreased!");
                         break;
                     default:
                         if(target.getSpeed().getIsDebuffActive() == false)
@@ -212,13 +212,13 @@ public class DebuffAttack extends Attack
                             target.getSpeed().setDebuffActive(true);
                             target.getSpeed().setDebuffModifier(DEBUFF_MODIFIER);
                             target.getSpeed().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
-                            MainGame.printlnln(target.getName() + "'s speed decreased!", 5);
+                            MainGame.printlnln(target.getName() + "'s speed decreased!");
                             
                             Battle.getChangedStats().enqueue(target.getSpeed());
                         }
                         else
                         {
-                            MainGame.printlnln(target.getName() + " still has a speed debuff active!", 5);
+                            MainGame.printlnln(target.getName() + " still has a speed debuff active!");
                         } 
                         break;
                 }
@@ -229,7 +229,7 @@ public class DebuffAttack extends Attack
         }
         else
         {
-            MainGame.printlnln(attacker.getName() + " targeted " + target.getName() + " and missed!", 5);
+            MainGame.printlnln(attacker.getName() + " targeted " + target.getName() + " and missed!");
         }
     }
     

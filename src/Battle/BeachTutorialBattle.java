@@ -38,10 +38,10 @@ public class BeachTutorialBattle extends TutorialBattle
 //                MainGame.clearScreen();
 //                MainGame.printlnlnWait("Here's how battles work:", 25, 2000);
 //                explainBattles();
-//                MainGame.printlnln("Alright! Beat up that Krobble so you can move to Opicon Forest!", 25);
+//                MainGame.printlnln("Alright! Beat up that Krobble so you can move to Opicon Forest!");
 //                break;
 //            case 2:
-//                MainGame.printlnln("\nAlright! Beat up that Krobble so you can move to Opicon Forest!", 25);
+//                MainGame.printlnln("\nAlright! Beat up that Krobble so you can move to Opicon Forest!");
 //                break;
 //        }
         
@@ -89,7 +89,7 @@ public class BeachTutorialBattle extends TutorialBattle
                 + "If a team has 1 member, they will be in the middle slot.\n\t"
                 + "If a team has 2 members, they will be in the left and right slots, leaving the middle empty.\n\t"
                 + "And if a team has 3 members, they will fill the entire table.\n\t"
-                + "(This will make more sense the more you play).", 25);
+                + "(This will make more sense the more you play).");
         
         MainGame.promptToEnter();
     }
@@ -107,9 +107,9 @@ public class BeachTutorialBattle extends TutorialBattle
     {
         // Explains targeting with the board
         MainGame.printlnlnWait("Next: Targeting.", 25, 1000);
-        MainGame.println("\tLeft slot: The left slot can only target and be targeted by the opposing left and center slots.", 25);
-        MainGame.println("\tCenter slot: The center slot can target and be targeted by all opposing slots.", 25);
-        MainGame.printlnln("\tRight slot: The right slot can target and be targeted by the opposing center and right slots.", 25);
+        MainGame.println("\tLeft slot: The left slot can only target and be targeted by the opposing left and center slots.");
+        MainGame.println("\tCenter slot: The center slot can target and be targeted by all opposing slots.");
+        MainGame.printlnln("\tRight slot: The right slot can target and be targeted by the opposing center and right slots.");
         MainGame.promptToEnter();
     }
 }
