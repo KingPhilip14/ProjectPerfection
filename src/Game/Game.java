@@ -1499,8 +1499,8 @@ public class Game implements java.io.Serializable
     private void optionsMenu()
     {
         MainGame.println("\nWhat would you like to do?", 25);
-        String message = "\t1) View Team\n\t2) View Tutorials\n\t3) View World Map\n\t4) Save\n\t5) Back";
-        int input = MenuHelper.displayMenu(message, 1, 5);
+        String message = "\t1) View Team\n\t2) View Tutorials\n\t3) View World Map\n\t4) Save\n\t5) Set Text Speed\n\t6) Back";
+        int input = MenuHelper.displayMenu(message, 1, 6);
         
         switch(input)
         {
@@ -1515,6 +1515,9 @@ public class Game implements java.io.Serializable
                 save();
                 break;
             case 5:
+                MainGame.selectTextSpeed();
+                break;
+            case 6:
                 processInput();
                 break;
             default:

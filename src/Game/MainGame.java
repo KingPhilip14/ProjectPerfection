@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class MainGame 
 {
-    private static int gold = 10000;
+    private static int gold = 10000, textSpeed = 25;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);
@@ -348,6 +348,9 @@ public class MainGame
         Item.populateAllBuffItems();
         Item.populateAllHealItems();
         PlayerClass.createClasses();
+        startUpOptions.add("New Game");
+        startUpOptions.add("Continue Game");
+        startUpOptions.add("Set Text Speed");
 
         startUp();
 //        game = new Game(fa);
@@ -368,8 +371,6 @@ public class MainGame
     public static void startUp()
     {
         clearScreen();
-        startUpOptions.add("New Game");
-        startUpOptions.add("Continue Game");
         
         String gameTitle = "Project Perfection";
         
@@ -396,9 +397,75 @@ public class MainGame
             case 2:
                 load();
                 break;
+            case 3:
+                selectTextSpeed();
+                break;
         }
         
         game.startGame();
+    }
+    
+    public static void selectTextSpeed()
+    {
+        promptToChangeTextSpeed();
+        textSpeedExample();
+        finalTextSpeedPrompt();
+    }
+    
+    /**
+     * Asks the player what they want to set the text speed to.
+     */
+    private static void promptToChangeTextSpeed()
+    {
+        String message = String.format("What would you like the text speed to be? It is currently set to %d."
+                + "\n1 is the fastest, 25 is average, and anything greater than 30 is slow."
+                + "\nPlease enter a number between 1-100", textSpeed);
+        
+        int input = MenuHelper.displayMenu(message, 1, 100);
+        
+        textSpeed = input;
+        
+        promptToEnter();
+    }
+    
+    /**
+     * Shows an example of how fast the text will be typed.
+     */
+    private static void textSpeedExample()
+    {
+        printlnln(String.format("You selected %d to be the text speed. An exmaple of the speed will be displayed.", textSpeed), 25);
+        
+        promptToEnter();
+        
+        printlnln("Exmaple: This is how fast text will be displayed during the game.", textSpeed);
+        
+        promptToEnter();
+    }
+    
+    /**
+     * Asks the player if the current speed is fine or if they need the example again.
+     */
+    private static void finalTextSpeedPrompt()
+    {
+        String message = String.format("Is a speed of %d what you want?\n\t1) Yes\n\t2) No\n\t3) Show example", textSpeed);
+        
+        int input = MenuHelper.displayMenu(message, 1, 3);
+        
+        switch(input)
+        {
+            case 1:
+                startUp();
+                break;
+            case 2: 
+                promptToEnter();
+                selectTextSpeed();
+                break;
+            case 3: 
+                promptToEnter();
+                textSpeedExample();
+                finalTextSpeedPrompt();
+                break;
+        }
     }
     
     public static void save()

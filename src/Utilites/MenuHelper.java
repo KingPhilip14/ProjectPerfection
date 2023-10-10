@@ -21,7 +21,7 @@ public class MenuHelper
     // Displays the menu to prompt the player for their choices
     public static int displayMenu(String message, int min, int max)
     {
-        MainGame.printlnln(message, 2);
+        MainGame.printlnln(message, 25);
 //        System.out.println(message);
 //        String invalidMessage = "Please enter a value between " + min + "-" + max + ":";
         scan = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class MenuHelper
         {
             invalidResponse = scan.nextLine();
 //            System.out.println(invalidMessage);
-            MainGame.printlnln(message, 2);
+            MainGame.printlnln(message, 25);
 //            System.out.println(message);
         }
         input = scan.nextInt();
@@ -38,13 +38,13 @@ public class MenuHelper
         while(input < min || input > max)
         {
             invalidResponse = scan.nextLine();
-            MainGame.printlnln(message, 2);
+            MainGame.printlnln(message, 25);
 //            System.out.println(invalidMessage);
             
             while(!scan.hasNextInt())
             {
                 invalidResponse = scan.nextLine();
-                MainGame.printlnln(message, 2);
+                MainGame.printlnln(message, 25);
 //                System.out.println(invalidMessage);
             }
             input = scan.nextInt();
