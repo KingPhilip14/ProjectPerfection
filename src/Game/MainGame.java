@@ -433,11 +433,9 @@ public class MainGame
      */
     private static void textSpeedExample()
     {
-        printlnln(String.format("You selected %d to be the text speed. An exmaple of the speed will be displayed.", textSpeed));
+        printlnln(String.format("You selected %d to be the text speed.", textSpeed));
         
-        promptToEnter();
-        
-        printlnln("Exmaple: This is how fast text will be displayed during the game.");
+        printlnln("The current speed is how the game will be displayed.");
         
         promptToEnter();
     }
@@ -454,6 +452,9 @@ public class MainGame
         switch(input)
         {
             case 1:
+                clearScreen();
+                printlnln("The speed can be changed by selecting 'Options > Set Text Speed' while playing the game.");
+                promptToEnter();
                 startUp();
                 break;
             case 2: 

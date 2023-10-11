@@ -18,14 +18,19 @@ public class BeachTutorialBattle extends TutorialBattle
     public void start(int gold, boolean result)
     {
         super.start(gold, result);
-        player.forcedLevelUp();
+
+        if(won)
+        {
+            player.forcedLevelUp();
+        }
+       
         player.setCurrentHealth(player.getMaxHealth());
     }
     
     @Override
     protected void intro()
     {
-        MainGame.printlnlnWait("Anahita is being threatened by a Sandy Krobble!", 25, 1000);
+        MainGame.printlnln("Anahita is being threatened by a Sandy Krobble!");
         
         String message = "Would you like the tutorial of how battles work?\n\t1) Yes\n\t2) No";
         

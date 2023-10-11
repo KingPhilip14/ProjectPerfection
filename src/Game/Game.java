@@ -839,7 +839,7 @@ public class Game implements java.io.Serializable
         else if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
-            MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!", 25);
+            MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");
         }
         else
         {
@@ -2377,7 +2377,7 @@ public class Game implements java.io.Serializable
     private Wilderness createPurityBeach()
     {
         Coordinate c = new Coordinate(22, 36);
-        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of Aquammoda. Its calm waves and salty air help soothe the mind.", 1, c);
+        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of Aquammoda. Its calm waves and salty air help soothe the mind.", 5, c);
         purityBeach.addLocalElement("Water");
         purityBeach.addLocalElement("Earth");
         purityBeach.addLocalElement("Wind");

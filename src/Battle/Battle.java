@@ -100,13 +100,13 @@ public abstract class Battle implements java.io.Serializable
                 if(TURN_ORDER.get(0) instanceof Enemy)
                 {
                     Enemy enemy = (Enemy)TURN_ORDER.remove(0);
-                    MainGame.printlnWait("Starting " + enemy.getName() + "'s turn:", 25, 1000);
+                    MainGame.println("Starting " + enemy.getName() + "'s turn:");
                     activateEnemyAI(enemy);
                 }
                 else
                 {
                     Player player = (Player)TURN_ORDER.remove(0);
-                    MainGame.printlnlnWait("Starting " + player.getName() + "'s turn:", 25, 1000);
+                    MainGame.printlnln("Starting " + player.getName() + "'s turn:");
                     activatePlayerTurn(player);
                     
                     // Checks if player forfeit. If so, exit battle loop
