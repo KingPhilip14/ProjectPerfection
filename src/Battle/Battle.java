@@ -182,7 +182,6 @@ public abstract class Battle implements java.io.Serializable
                 MainGame.println("\t" + e.getName());
             }
             System.out.println("");
-            MainGame.wait(1000);
         }
     }
     
@@ -218,7 +217,6 @@ public abstract class Battle implements java.io.Serializable
     {
         MainGame.printlnln("Incoming foe(s):");
         listEnemies();
-        MainGame.wait(500);
         System.out.println("");
         
         // If the player only has one character, they will automatically be selected
@@ -317,8 +315,6 @@ public abstract class Battle implements java.io.Serializable
             enemy = enemyTeam.get(i);
             MainGame.println(enemy.getName() + ": " + enemy.getStatSpreadDesc());
         }
-        
-        MainGame.wait(2000);
     }
     
     private void positionCheerPlayers()
@@ -380,8 +376,6 @@ public abstract class Battle implements java.io.Serializable
         list2.add(player);
         
         player.printBattleReadyMessage();
-        
-        MainGame.wait(1500);
     }
     
     private void addPlayerToCheer(int response, Player player)
@@ -395,7 +389,6 @@ public abstract class Battle implements java.io.Serializable
         player.setCheerPartner(cheer);
         cheer.setPlayerToCheer(player);
         cheer.printCheerReadyMessage();
-        MainGame.wait(1500);
     }
     
     private String addPositionMessage(String message)
@@ -696,7 +689,6 @@ public abstract class Battle implements java.io.Serializable
             Player playerToCheer = cheer.getPlayerToCheer();
             
             MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!");
-            MainGame.wait(500);
             
             switch (pc.getPrimaryRole())
             {
@@ -742,8 +734,6 @@ public abstract class Battle implements java.io.Serializable
                     speed.increaseCheerBuff(10);
                 break;
             }
-            
-            MainGame.wait(1500);
         }
     }
     
@@ -1022,7 +1012,7 @@ public abstract class Battle implements java.io.Serializable
     
     private void displayEnemyInfo(Enemy enemy, Player player)
     {
-        MainGame.printlnlnWait("\n" + enemy.toBattleString(), 5, 1000);
+        MainGame.printlnln("\n" + enemy.toBattleString());
         MainGame.waitForEnter();
         System.out.println("");
         
@@ -1412,7 +1402,7 @@ public abstract class Battle implements java.io.Serializable
             else if(PLAYER_FIGHTING_TEAM.size() == 1)
             {
                 String name = PLAYER_FIGHTING_TEAM.get(0).getName();
-                MainGame.printlnlnWait(name + " started defending " + target.getName() + " to prevent them from further harm.", 25, 2000);
+                MainGame.printlnln(name + " started defending " + target.getName() + " to prevent them from further harm.");
                 MainGame.dialoguelnln(name, "Hang in there, " + target.getName() + "! I've got you!");
                 target.resetStats();
             }

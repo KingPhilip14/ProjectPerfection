@@ -417,11 +417,14 @@ public class MainGame
      */
     private static void promptToChangeTextSpeed()
     {
-        String message = String.format("What would you like the text speed to be? It is currently set to %d."
-                + "\n1 is the fastest, 25 is average, and anything greater than 30 is slow."
-                + "\nPlease enter a number between 1-100", textSpeed);
+        String message = String.format("What would you like the text speed to be? It is currently set to %d.\n"
+                + "0 is instant.\n"
+                + "1 is the fastest.\n"
+                + "25 is average.\n" 
+                + "Anything greater than 40 is slow.\n"
+                + "Please enter a number between 0-100", textSpeed);
         
-        int input = MenuHelper.displayMenu(message, 1, 100);
+        int input = MenuHelper.displayMenu(message, 0, 100);
         
         textSpeed = input;
         
@@ -653,13 +656,13 @@ public class MainGame
 //        System.out.print("");
     }
     
-    public static void print(char c, int time)
+    public static void print(char c)
     {
         System.out.print(c);
         
         try
         {
-            Thread.sleep(time);
+            Thread.sleep(textSpeed);
         }
         catch(InterruptedException ie)
         {
