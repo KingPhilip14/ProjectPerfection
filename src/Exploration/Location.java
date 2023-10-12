@@ -111,10 +111,10 @@ public abstract class Location extends GameProperty
         }
         else
         {
-            MainGame.printlnlnWait("You couldn't find a chest...", 25, 500);
+            MainGame.printlnlnWait("\nYou couldn't find a chest...", 25, 500);
         }
         
-        MainGame.waitForEnter();
+//        MainGame.waitForEnter();
     }
     
     public void replenishChest()

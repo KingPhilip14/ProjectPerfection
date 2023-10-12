@@ -37,8 +37,8 @@ public class Wilderness extends Location
     public Wilderness(String name, String description, int requiredLevel, Coordinate coordinate)
     {
         super(name, description, requiredLevel, coordinate);
-        MAX_ENEMY_LV = requiredLevel + 4;
-        MIN_ENEMY_LV = requiredLevel - 1;
+        MAX_ENEMY_LV = requiredLevel + 3;
+        MIN_ENEMY_LV = requiredLevel;
         this.coordinate = coordinate;
         bossBattle = null;
     }

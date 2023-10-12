@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class MainGame 
 {
-    private static int gold = 10000, textSpeed = 25;
+    private static int gold = 10000, textSpeed = 0;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);
@@ -417,11 +417,14 @@ public class MainGame
      */
     private static void promptToChangeTextSpeed()
     {
-        String message = String.format("What would you like the text speed to be? It is currently set to %d."
-                + "\n1 is the fastest, 25 is average, and anything greater than 30 is slow."
-                + "\nPlease enter a number between 1-100", textSpeed);
+        String message = String.format("What would you like the text speed to be? It is currently set to %d.\n"
+                + "0 is instant.\n"
+                + "1 is the fastest.\n"
+                + "25 is average.\n" 
+                + "Anything greater than 40 is slow.\n"
+                + "Please enter a number between 0-100", textSpeed);
         
-        int input = MenuHelper.displayMenu(message, 1, 100);
+        int input = MenuHelper.displayMenu(message, 0, 100);
         
         textSpeed = input;
         
@@ -433,11 +436,9 @@ public class MainGame
      */
     private static void textSpeedExample()
     {
-        printlnln(String.format("You selected %d to be the text speed. An exmaple of the speed will be displayed.", textSpeed));
+        printlnln(String.format("You selected %d to be the text speed.", textSpeed));
         
-        promptToEnter();
-        
-        printlnln("Exmaple: This is how fast text will be displayed during the game.");
+        printlnln("The current speed is how the game will be displayed.");
         
         promptToEnter();
     }
@@ -454,6 +455,9 @@ public class MainGame
         switch(input)
         {
             case 1:
+                clearScreen();
+                printlnln("The speed can be changed by selecting 'Options > Set Text Speed' while playing the game.");
+                promptToEnter();
                 startUp();
                 break;
             case 2: 
@@ -652,13 +656,13 @@ public class MainGame
 //        System.out.print("");
     }
     
-    public static void print(char c, int time)
+    public static void print(char c)
     {
         System.out.print(c);
         
         try
         {
-            Thread.sleep(time);
+            Thread.sleep(textSpeed);
         }
         catch(InterruptedException ie)
         {
@@ -758,23 +762,24 @@ public class MainGame
         print(prompt);
         
         Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+        scan.nextLine();
+//        String input = scan.nextLine();
         
-        if(input.isEmpty())
-        {
-            return;
-        }
-        
-        while(!input.equals(""))
-        {
-            for(int i = 0; i < input.length(); i++)
-            {
-                System.out.print("\b");
-                System.out.print("");
-            }
-            
-            input = "";
-        }
+//        if(input.isEmpty())
+//        {
+//            return;
+//        }
+//        
+//        while(!input.equals(""))
+//        {
+//            for(int i = 0; i < input.length(); i++)
+//            {
+//                System.out.print("\b");
+//                System.out.print("");
+//            }
+//            
+//            input = "";
+//        }
     }
     
     public static void wait(int time)

@@ -245,7 +245,7 @@ public class Cutscene
                 + "shine is his Buff Attack called 'Charge!'/With it, he increases all his stats for a certain time, "
                 + "but it has a large cooldown, so be mindful!");
         
-        MainGame.promptToEnter();
+//        MainGame.promptToEnter();
     }
     
     /**
@@ -314,8 +314,6 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "You simply have bad tastes if you don't enjoy them, Fultra.");
         print("Anahita shrugged her shoulders as she teased him, but all Fultra did was laugh.");
         MainGame.dialoguelnln("Fultra", "You two are something else when you're together.");
-        
-        MainGame.promptToEnter();
     }
     
     /**
@@ -373,7 +371,7 @@ public class Cutscene
         MainGame.printlnln("You received 3 Cinnamon Rolls!");
         Game.addToInventory(Item.getHealingItem("Cinnamon Roll"), 3);
         
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
     }
     
     /**

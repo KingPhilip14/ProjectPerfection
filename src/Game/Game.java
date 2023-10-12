@@ -648,7 +648,7 @@ public class Game implements java.io.Serializable
                     break;
             }
             
-            MainGame.waitForEnter();
+//            MainGame.waitForEnter();
         }
         // If the current location is of type Wildnerness
         else
@@ -676,10 +676,10 @@ public class Game implements java.io.Serializable
 //                    break;
 //            }
             
-            MainGame.waitForEnter();
+//            MainGame.waitForEnter();
         }
         
-//        MainGame.waitForEnter();
+        MainGame.waitForEnter();
     }
     
     /**
@@ -811,7 +811,7 @@ public class Game implements java.io.Serializable
         map.updateMap(currentLocation, newLocation);
         map.printMap();
         
-        MainGame.waitForEnter();
+        // MainGame.waitForEnter();
 //        MainGame.clearScreen();
     }
     
@@ -839,7 +839,7 @@ public class Game implements java.io.Serializable
         else if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
-            MainGame.printWait("Anahita: Stop messing around! We're already at " + currentLocation + "!", 25, 1500);
+            MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");
         }
         else
         {
@@ -884,7 +884,7 @@ public class Game implements java.io.Serializable
         // The first phase will only update the objective and not unlock the next location
         if(!inSecondPhase && talkedToSpecificPerson() && objective.completedTask(this))
         {
-            MainGame.clearScreen();
+            // MainGame.clearScreen();
             objective.update(this);
             
             // After the objective updates, check to see if the next one was completed preemptively
@@ -1493,7 +1493,7 @@ public class Game implements java.io.Serializable
     {
         Wilderness wildnerness = ((Wilderness)currentLocation);
         wildnerness.findChest();
-        processInput();
+//        processInput();
     }
     
     private void optionsMenu()
@@ -2377,7 +2377,7 @@ public class Game implements java.io.Serializable
     private Wilderness createPurityBeach()
     {
         Coordinate c = new Coordinate(22, 36);
-        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of Aquammoda. Its calm waves and salty air help soothe the mind.", 1, c);
+        Wilderness purityBeach = new Wilderness("Purity Beach", "A beach to the south of Aquammoda. Its calm waves and salty air help soothe the mind.", 5, c);
         purityBeach.addLocalElement("Water");
         purityBeach.addLocalElement("Earth");
         purityBeach.addLocalElement("Wind");

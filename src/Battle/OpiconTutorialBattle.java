@@ -19,7 +19,7 @@ public class OpiconTutorialBattle extends TutorialBattle
     @Override
     protected void intro()
     {
-        MainGame.printlnlnWait("It's time to fight with more characters!", 25, 1000);
+        MainGame.printlnln("It's time to fight with more characters!");
         
         String message = "Would you like the next, technical tutorial of how battles work?\n\t1) Yes\n\t2) No";
         

@@ -112,6 +112,9 @@ public class OffensiveAttack extends Attack
             }
         }
         
+        // Adds a damage roll to the calculation
+        damage += new Random().nextInt(50); 
+
         // Max damage possible
         if(damage > 9999)
         {

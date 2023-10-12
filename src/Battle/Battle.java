@@ -100,20 +100,20 @@ public abstract class Battle implements java.io.Serializable
                 if(TURN_ORDER.get(0) instanceof Enemy)
                 {
                     Enemy enemy = (Enemy)TURN_ORDER.remove(0);
-                    MainGame.printlnWait("Starting " + enemy.getName() + "'s turn:", 25, 1000);
+                    MainGame.println("Starting " + enemy.getName() + "'s turn:");
                     activateEnemyAI(enemy);
                 }
                 else
                 {
                     Player player = (Player)TURN_ORDER.remove(0);
-                    MainGame.printlnlnWait("Starting " + player.getName() + "'s turn:", 25, 1000);
+                    MainGame.printlnln("Starting " + player.getName() + "'s turn:");
                     activatePlayerTurn(player);
                     
                     // Checks if player forfeit. If so, exit battle loop
                     if(forfeit) {break;}
                 }
                 
-                MainGame.promptToEnter();
+                // MainGame.promptToEnter();
                 
                 if(enemyTeam.isEmpty())
                 {
@@ -156,7 +156,6 @@ public abstract class Battle implements java.io.Serializable
         
         result = won;
         
-        MainGame.promptToEnter();
 //        MainGame.wait(3000);
         currentTurn = 0;
         resetPlayers();
@@ -182,7 +181,6 @@ public abstract class Battle implements java.io.Serializable
                 MainGame.println("\t" + e.getName());
             }
             System.out.println("");
-            MainGame.wait(1000);
         }
     }
     
@@ -218,7 +216,6 @@ public abstract class Battle implements java.io.Serializable
     {
         MainGame.printlnln("Incoming foe(s):");
         listEnemies();
-        MainGame.wait(500);
         System.out.println("");
         
         // If the player only has one character, they will automatically be selected
@@ -317,8 +314,6 @@ public abstract class Battle implements java.io.Serializable
             enemy = enemyTeam.get(i);
             MainGame.println(enemy.getName() + ": " + enemy.getStatSpreadDesc());
         }
-        
-        MainGame.wait(2000);
     }
     
     private void positionCheerPlayers()
@@ -380,8 +375,6 @@ public abstract class Battle implements java.io.Serializable
         list2.add(player);
         
         player.printBattleReadyMessage();
-        
-        MainGame.wait(1500);
     }
     
     private void addPlayerToCheer(int response, Player player)
@@ -395,7 +388,6 @@ public abstract class Battle implements java.io.Serializable
         player.setCheerPartner(cheer);
         cheer.setPlayerToCheer(player);
         cheer.printCheerReadyMessage();
-        MainGame.wait(1500);
     }
     
     private String addPositionMessage(String message)
@@ -673,7 +665,6 @@ public abstract class Battle implements java.io.Serializable
                 activatePlayerTurn(player); 
                 break;
         }
-                
     }
     
     private void activateCheerPartner(Player player)
@@ -696,7 +687,6 @@ public abstract class Battle implements java.io.Serializable
             Player playerToCheer = cheer.getPlayerToCheer();
             
             MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!");
-            MainGame.wait(500);
             
             switch (pc.getPrimaryRole())
             {
@@ -742,8 +732,6 @@ public abstract class Battle implements java.io.Serializable
                     speed.increaseCheerBuff(10);
                 break;
             }
-            
-            MainGame.wait(1500);
         }
     }
     
@@ -961,7 +949,6 @@ public abstract class Battle implements java.io.Serializable
         if(target.getCurrentHealth() == 0)
         {
             MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
-            MainGame.waitForEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
@@ -972,8 +959,6 @@ public abstract class Battle implements java.io.Serializable
                 player.increaseXP(player, ORIGINAL_PLAYER_POSITIONS, target);
             }
         }
-        
-        MainGame.promptToEnter();
     }
     
     private void attackWithDebuff(Attack attack, Player player, Enemy target)
@@ -1024,7 +1009,7 @@ public abstract class Battle implements java.io.Serializable
     
     private void displayEnemyInfo(Enemy enemy, Player player)
     {
-        MainGame.printlnlnWait("\n" + enemy.toBattleString(), 5, 1000);
+        MainGame.printlnln("\n" + enemy.toBattleString());
         MainGame.waitForEnter();
         System.out.println("");
         
@@ -1414,7 +1399,7 @@ public abstract class Battle implements java.io.Serializable
             else if(PLAYER_FIGHTING_TEAM.size() == 1)
             {
                 String name = PLAYER_FIGHTING_TEAM.get(0).getName();
-                MainGame.printlnlnWait(name + " started defending " + target.getName() + " to prevent them from further harm.", 25, 2000);
+                MainGame.printlnln(name + " started defending " + target.getName() + " to prevent them from further harm.");
                 MainGame.dialoguelnln(name, "Hang in there, " + target.getName() + "! I've got you!");
                 target.resetStats();
             }
