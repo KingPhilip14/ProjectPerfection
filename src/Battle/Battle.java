@@ -113,7 +113,7 @@ public abstract class Battle implements java.io.Serializable
                     if(forfeit) {break;}
                 }
                 
-                MainGame.promptToEnter();
+                // MainGame.promptToEnter();
                 
                 if(enemyTeam.isEmpty())
                 {
@@ -156,7 +156,6 @@ public abstract class Battle implements java.io.Serializable
         
         result = won;
         
-        MainGame.promptToEnter();
 //        MainGame.wait(3000);
         currentTurn = 0;
         resetPlayers();
@@ -666,7 +665,6 @@ public abstract class Battle implements java.io.Serializable
                 activatePlayerTurn(player); 
                 break;
         }
-                
     }
     
     private void activateCheerPartner(Player player)
@@ -951,7 +949,6 @@ public abstract class Battle implements java.io.Serializable
         if(target.getCurrentHealth() == 0)
         {
             MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
-            MainGame.waitForEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);

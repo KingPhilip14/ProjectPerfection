@@ -884,7 +884,7 @@ public class Game implements java.io.Serializable
         // The first phase will only update the objective and not unlock the next location
         if(!inSecondPhase && talkedToSpecificPerson() && objective.completedTask(this))
         {
-            MainGame.clearScreen();
+            // MainGame.clearScreen();
             objective.update(this);
             
             // After the objective updates, check to see if the next one was completed preemptively
