@@ -392,7 +392,7 @@ public class MainGame
         switch(response)
         {
             case 1:
-                game = new Game(false);
+                game = new Game(true);
                 break;
             case 2:
                 load();
@@ -1077,7 +1077,22 @@ public class MainGame
         anahita.setCurrentAttacks(anahitaCurrentAttacks);
         anahita.setListOfOtherAttacks(anahitaOtherAttacks);
         
-        
+        if(Game.isTesting())
+        {
+            anahita.setMaxHealth(9999);
+            anahita.setCurrentHealth(9999);
+            anahita.setAttack(9999);
+            anahita.setDefense(9999);
+            anahita.setRangedAttack(9999);
+            anahita.setRangedDefense(9999);
+            anahita.setSpeed(9999);
+            anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
+            anahita.getDefense().setOriginalValue(anahita.getDefense().getValue());
+            anahita.getRangedAttack().setOriginalValue(anahita.getRangedAttack().getValue());
+            anahita.getRangedDefense().setOriginalValue(anahita.getRangedDefense().getValue());
+            anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
+        }
+
         ArrayList<PlayerClass> anahitaOtherClasses = new ArrayList<>(3);
         anahitaOtherClasses.add(PlayerClass.getPlayerClass("Holy Tank"));
         anahitaOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
@@ -1111,6 +1126,11 @@ public class MainGame
         gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
+        gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
+        gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
+        gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
+        gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
+        gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         
         SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.15);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
@@ -1139,6 +1159,17 @@ public class MainGame
         gaea.setCurrentAttacks(gaeaCurrentAttacks);
         gaea.setListOfOtherAttacks(gaeaOtherAttacks);
         
+        if(Game.isTesting())
+        {
+            gaea.setMaxHealth(9999);
+            gaea.setCurrentHealth(9999);
+            gaea.setAttack(9999);
+            gaea.setDefense(9999);
+            gaea.setRangedAttack(9999);
+            gaea.setRangedDefense(9999);
+            gaea.setSpeed(9999);
+        }
+
         ArrayList<PlayerClass> gaeaOtherClasses = new ArrayList<>(3);
         gaeaOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
         gaeaOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
@@ -1190,6 +1221,22 @@ public class MainGame
         
         ComboAttack.getComboAttacks(fultra);
         
+        if(Game.isTesting())
+        {
+            fultra.setMaxHealth(9999);
+            fultra.setCurrentHealth(9999);
+            fultra.setAttack(9999);
+            fultra.setDefense(9999);
+            fultra.setRangedAttack(9999);
+            fultra.setRangedDefense(9999);
+            fultra.setSpeed(9999);
+            fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
+            fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
+            fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());
+            fultra.getRangedDefense().setOriginalValue(fultra.getRangedDefense().getValue());
+            fultra.getSpeed().setOriginalValue(fultra.getSpeed().getValue());
+        }
+
         ArrayList<Attack> fultraOtherAttacks = new ArrayList<>(2);
         fultraOtherAttacks.add(bluePulse);
         fultraOtherAttacks.add(plasmaBlast);
@@ -1246,6 +1293,22 @@ public class MainGame
         calmus.setCurrentAttacks(calmusCurrentAttacks);
         calmus.setListOfOtherAttacks(calmusOtherAttacks);
         
+        if(Game.isTesting())
+        {
+            calmus.setMaxHealth(9999);
+            calmus.setCurrentHealth(9999);
+            calmus.setAttack(9999);
+            calmus.setDefense(9999);
+            calmus.setRangedAttack(9999);
+            calmus.setRangedDefense(9999);
+            calmus.setSpeed(9999);
+            calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
+            calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
+            calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+            calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+            calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
+        }
+
         ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
@@ -1305,6 +1368,22 @@ public class MainGame
         frigs.setCurrentAttacks(frigsCurrentAttacks);
         frigs.setListOfOtherAttacks(frigsOtherAttacks);
         
+        if(Game.isTesting())
+        {
+            frigs.setMaxHealth(9999);
+            frigs.setCurrentHealth(9999);
+            frigs.setAttack(9999);
+            frigs.setDefense(9999);
+            frigs.setRangedAttack(9999);
+            frigs.setRangedDefense(9999);
+            frigs.setSpeed(9999);
+            frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+            frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+            frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+            frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+            frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+        }
+
         ArrayList<PlayerClass> frigsOtherClasses = new ArrayList<>(3);
         frigsOtherClasses.add(PlayerClass.getPlayerClass("Tranquil Striker"));
         frigsOtherClasses.add(PlayerClass.getPlayerClass("Guardian Striker"));
@@ -1364,6 +1443,22 @@ public class MainGame
         ninlil.setCurrentAttacks(ninlilCurrentAttacks);
         ninlil.setListOfOtherAttacks(ninlilOtherAttacks);
         
+        if(Game.isTesting())
+        {
+            ninlil.setMaxHealth(9999);
+            ninlil.setCurrentHealth(9999);
+            ninlil.setAttack(9999);
+            ninlil.setDefense(9999);
+            ninlil.setRangedAttack(9999);
+            ninlil.setRangedDefense(9999);
+            ninlil.setSpeed(9999);
+            ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
+            ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
+            ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
+            ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
+            ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
+        }
+
         ArrayList<PlayerClass> ninlilOtherClasses = new ArrayList<>(3);
         ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Clerk"));
         ninlilOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
