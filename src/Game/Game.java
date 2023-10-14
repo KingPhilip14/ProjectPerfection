@@ -1864,11 +1864,11 @@ public class Game implements java.io.Serializable
        
         // Gaea's cousin
         NPC fleur = new NPC("Fleur", "Thank you guys for your help again! But why are you still here? Go to the festival!", true);
-        fleur.setDescription("Gaea's older cousin");
+        fleur.setDescription("Gaea's older cousin | Degon Elder");
         
         NPC roxy = new NPC("Roxy", "Have you guys seen the flowers blooming in Opicon Forest? This is the best time of year to see them if you haven't!", false);
-        roxy.setDescription("Degon Elder");
-        
+        roxy.setDescription("Degon resident");
+
         ArrayList<NPC> people = new ArrayList<>();
         people.add(gord);
         people.add(caillou);
