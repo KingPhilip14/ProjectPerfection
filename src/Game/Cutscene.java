@@ -524,8 +524,27 @@ public class Cutscene
      */
     public static void vitorem()
     {
-        print("Vitorem's cutscene will be here. It should introduce the concept of the elders to the player and how the title "
-                + "is passed down.");
+        print("The three approached an older looking man with a strong physique. He was instructing a group of people that were helping with "
+        + "preparations./When he turned around, he saw Anahita and the others and flashed a big grin at them.");
+        MainGame.dialoguelnln("Elder Vitorem", "Well, if it isn't Pulchra's soon-to-be Elders! I hope you're all ready for the Annual Festival!");
+        print("Elder Vitorem is the leader of Pulchra, and he's dearly loved by the people. Whenever someone asks him for help, his altruistically  " 
+        + "helps them without question.");
+        MainGame.dialoguelnln("Gaea", "Elder, not yet! Give us some time before that actually happens. We still have some growing to do!");
+        print("In Pulchra, there are 7 Elders, one for each town. The Elder that resides in Zoni City is the leader of the entire nation, and the other "
+        + "Elders will report to them./The title of Elder is normally passed down through family. However, if something occurs to prevent that, a new Elder "
+        + "would be chosen by the town's respective Elder.");
+
+        MainGame.promptToEnter();
+        MainGame.dialoguelnln("Elder Vitorem", "All the more to prepare for, bahaha!");
+        MainGame.dialoguelnln("Fultra", "Is there anything you may need help with, Elder? We're willing to help setup if necessary!");
+        MainGame.dialoguelnln("Elder Vitorem", "Not at all, Fearless Thunder! (*wink*) I do appreciate the offer, but we're close to finishing. I'd rather " 
+        + "you all have fun!/Go talk to some friends you haven't seen in a while. The festival only lasts so long -- especially your youth! You'll have old bones soon, just like me.");
+        print("Gaea gasped at the though of being old and wrinkly.");
+        MainGame.dialoguelnln("Gaea", "Just the thought of looking like a raisin--");
+        print("Fultra covered Gaea's mouth before she could finish her sentence.");
+        MainGame.dialoguelnln("Anahita", "Aaaaaanyway, understood, Elder! We can't wait for the event to start!");
+        print("The three scurried off from the presence of the laughing Elder who knew what Gaea was going to say.");
+        MainGame.dialoguelnln("Elder Vitorem", "That Gaea has always been quite the character.");
     }
     
     /**
@@ -682,9 +701,8 @@ public class Cutscene
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
                 + "lifestyle.");
         
-        print("Anahita, Gaea, and Fulchra follow the crowd and find the person who rang the bell. It's an older looking man, "
-                + "with strong physique./He's known as Elder Vitorem, the leader of Pulchra. A kind, caring, and "
-                + "compassionate man.");
+        print("Anahita, Gaea, and Fulchra followed the crowd and found the person who rang the bell. It was Elder Vitorem, the leader of Pulchra. A kind, caring, and "
+                + "compassionate man./He beamed with excitement for the upcoming event.");
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -1043,7 +1061,18 @@ public class Cutscene
      */
     public static void fleur2()
     {
-        MainGame.dialoguelnln("Fleur", "My cutscene starts here!");
+        print("The group approached Fleur. None of them had seen her since the invasion, and Gaea only saw her last when she and Fleur escaped the " 
+        + "city.");
+        MainGame.dialoguelnln("Fleur", "Oh my gosh, Gaea! How are you feeling? Are you okay?");
+        MainGame.dialoguelnln("Gaea", "Honestly, I could be a lot better... I wish Fultra was...");
+        MainGame.dialoguelnln("Fleur", "Hey, it'll be alright, okay? I know it hurts, but you gotta keep pushin' on. I know he wouldn't " 
+        + "want you to give up./You need to keep fighting for him. Think of him in every scenario.");
+        print("Gaea sniffed at the kind words her cousin gave her. Sometimes, Fleur felt like more like a sister to her in moments like these.");
+        MainGame.dialoguelnln("Gaea", "Thanks, Fleur. I'll keep that in mind.");
+        MainGame.dialoguelnln("Caillou", "hey, fleur! can you help me find some beans?");
+        MainGame.dialoguelnln("Fleur", "(*sigh*) Elder duties are never over, haha. I'll see you guys later! Feel free to stop by whenever.");
+        MainGame.dialoguelnln("Gaea", "We will. Love you, Fleur!");
+        MainGame.dialoguelnln("Fleur", "Love you too, lil' cousin.");
     }
     
     /**
