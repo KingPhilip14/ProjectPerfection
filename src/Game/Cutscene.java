@@ -80,12 +80,7 @@ public class Cutscene
      * The opening cutscene when a new game starts.
      */
     public static void opening()
-    {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
+    {   
         MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
         MainGame.printWait("The world is", 25, 100);
         MainGame.ellipsis();
@@ -155,7 +150,7 @@ public class Cutscene
         
         MainGame.ellipsis();
         MainGame.wait(1000);
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         
         print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
                 + "with the ability to control the elements./Using these powers, the people have kept themselves hidden from "
@@ -190,12 +185,7 @@ public class Cutscene
      */
     public static void opicon()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         
         MainGame.dialoguelnln("Anahita", "Wow. This place will always take my breath away. All the flowers and vegetation are "
                 + "amazing!");
@@ -253,12 +243,7 @@ public class Cutscene
      */
     public static void opicon2()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         
         print("The three friends let out a collective sigh after defeating the enemies and gave each other "
                 + "high fives.");
@@ -285,12 +270,7 @@ public class Cutscene
      */
     public static void aquammoda()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         
         print("Anahita and the others safely arrived at Aquammoda, Anahita's home.");
         
@@ -321,11 +301,6 @@ public class Cutscene
      */
     public static void merda()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         MainGame.dialoguelnln("Merda", "Oh! There you are. Hello everyone.");
         MainGame.dialoguelnln("Anahita", "Hey, Mom! I'm so so sorry that I got here late. I lost track of time and I-");
         MainGame.dialoguelnln("Merda", "It's okay, Ana. Brinlee and I already took care of the baking.");
@@ -379,11 +354,6 @@ public class Cutscene
      */
     public static void degon()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the Annual Festival, and "
                 + "then\n\twe can party!");
         MainGame.dialoguelnln("Fultra", "I've been waiting all day! It'll be nice to catch up with some people from the other "
@@ -395,7 +365,7 @@ public class Cutscene
                 + "had breifly forgotten.");
         MainGame.dialoguelnln("Anahita", "Right, right! I'll braid it nicely for you. Let's find Fleur first.");
         
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
     }
     
     /**
@@ -403,11 +373,6 @@ public class Cutscene
      */
     public static void fleur()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         print("Fleur is found talking about decorations for the festival to a team of other Pulchrians.");
         MainGame.dialoguelnln("Fleur", "... Perfect! All we need now are the baskets of flowers. Where is Gaea?\n\t"
                 + "Right when I need her most, she's no where to be found...");
@@ -487,11 +452,6 @@ public class Cutscene
      */
     public static void calliou()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         MainGame.dialoguelnln("Calliou", "Y O U  T H R E E!!!");
         
         print("Anahita, Gaea, and Fultra all flinched at the sheer power coming from his voice.");
@@ -508,6 +468,8 @@ public class Cutscene
         MainGame.dialoguelnln("Calliou", "NOW YOU KNOW!! HERE -- TAKE SOME!!! BEANS ARE AMAZING!!!");
         
         MainGame.printlnln("You received 3 Orange Beans!");
+        MainGame.promptToEnter();
+
         Game.addToInventory(Item.getBuffItem("Orange Bean"), 3);
         
         MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION -- 'BEANS MAKE YOU STRONGER FOR LONGER"
@@ -534,11 +496,6 @@ public class Cutscene
      */
     public static void zoniCity()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         MainGame.dialoguelnln("Anahita", "Finally! We made it!!");
         
         print("Anahita and the others rush into Zoni Village and admire the animated area. People were going back and forth, "
@@ -559,7 +516,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "I agree! This is always the best time of the year. Before we do anything else, we "
                 + "should talk to everyone to see if\n\tanyone needs help. I also see some familar faces, so let's go say hi!");
         
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
     }
     
     /**
@@ -576,12 +533,6 @@ public class Cutscene
      */
     public static void calmus()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
-        
         print("The group approaches a young male playing with what appears to be his little sister. He's quite tall and "
                 + "towers over the group. Anahita/calls out to him.");
         
@@ -634,11 +585,6 @@ public class Cutscene
      */
     public static void frigs()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         MainGame.dialoguelnln("Anahita", "Hey, I think I see Frigs over here! I haven't seen him in so long!");
         
         MainGame.dialoguelnln("Gaea", "It might be! Let's go say hi!");
@@ -686,11 +632,6 @@ public class Cutscene
      */
     public static void ninlil()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         print("Anahita was walking and talking to Gaea and Fultra, sharing her enthusiasm with the group. Her excitement, "
                 + "unfortunately, blinded her/and caused her to bump into someone helping with decorations. A large basket of "
                 + "flowers and streamers fell on the ground.");
@@ -737,11 +678,6 @@ public class Cutscene
      */
     public static void invasion()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         print("After the group finished talking to other townrs, a bell chimed and a wave of people gathered to the center "
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
                 + "lifestyle.");
@@ -871,11 +807,6 @@ public class Cutscene
      */
     public static void invasion2()
     {
-        if(Game.isTesting())
-        {
-            return;
-        }
-        
         print("After a difficult fight, Anahita and the others successfully defeated the R.E.S.I. Bot, leaving a dismantled "
                 + "pile of metal on the ground./A green liquid started seeping out from the remains.");
         

@@ -105,13 +105,13 @@ public abstract class Location extends GameProperty
                     openChest();
                     break;
                 case 1:
-                    MainGame.printlnlnWait("You couldn't find a chest...", 25, 500);
+                    MainGame.printlnln("You couldn't find a chest...");
                     break;
             }
         }
         else
         {
-            MainGame.printlnlnWait("\nYou couldn't find a chest...", 25, 500);
+            MainGame.printlnln("\nYou couldn't find a chest...");
         }
         
 //        MainGame.waitForEnter();
@@ -136,8 +136,8 @@ public abstract class Location extends GameProperty
             Player p = team.get(0);
             MainGame.printlnln("\n" + p.getName() + " traveled from " + location1.getName() + 
                 " to " + location2.getName() + ".");
-            MainGame.dialoguelnln(p, "Time to explore " + location2.getName() + "! Let's see how this goes." );
-            MainGame.clearScreen();
+            MainGame.dialoguelnln(p, "Time to explore " + location2.getName() + "! Let's see how this goes.");
+            MainGame.promptToEnter();
             return;
         }
         else
@@ -146,7 +146,6 @@ public abstract class Location extends GameProperty
                 " to " + location2.getName() + ".");
         }    
         
-        MainGame.wait(2000);
         Player player = team.get(new Random().nextInt(team.size()));
         
         int randomNum = new Random().nextInt(4);
@@ -167,6 +166,6 @@ public abstract class Location extends GameProperty
                 break;
         }
         
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
     }
 }

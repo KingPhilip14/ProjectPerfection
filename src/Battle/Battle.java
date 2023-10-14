@@ -135,13 +135,17 @@ public abstract class Battle implements java.io.Serializable
             }
 
             // If the battle's final result is determined, escape loop
-            if(forfeit || won || !won)
+            if(forfeit || won)
             {
                 break;
             }
             else if(!PLAYER_FIGHTING_TEAM.isEmpty() && !enemyTeam.isEmpty())
             {
                 refreshBattle();
+            }
+            else if(!won) // must check if the battle is lost AFTER checking if a team was defeated.
+            {
+                break;
             }
         }
         
@@ -1037,6 +1041,21 @@ public abstract class Battle implements java.io.Serializable
             message += Game.getInventory().inventoryListForMenus();
             
             message += "\n\t" + numOfOptions + ") Back";
+
+            response = MenuHelper.displayMenu(message, 1, numOfOptions);
+        
+            // If the player chooses "Back," go back
+            if(Game.getInventory().isEmpty() || response == numOfOptions)
+            {
+                System.out.println("");
+                activatePlayerTurn(player);
+            }
+            else
+            {
+                item = Game.getInventory().get(--response);
+                useOnPlayer(message, response, player, item);
+    //            response = MenuHelper.displayMenu(message, 1, numOfOptions);
+            }
         }
         else
         {
@@ -1046,21 +1065,6 @@ public abstract class Battle implements java.io.Serializable
             MainGame.waitForEnter();
             System.out.println("");
             activatePlayerTurn(player);
-        }
-        
-        response = MenuHelper.displayMenu(message, 1, numOfOptions);
-        
-        // If the player chooses "Back," go back
-        if(Game.getInventory().isEmpty() || response == numOfOptions)
-        {
-            System.out.println("");
-            activatePlayerTurn(player);
-        }
-        else
-        {
-            item = Game.getInventory().get(--response);
-            useOnPlayer(message, response, player, item);
-//            response = MenuHelper.displayMenu(message, 1, numOfOptions);
         }
         
 //        // Handles if the player chooses back or to use an item

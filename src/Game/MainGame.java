@@ -1138,7 +1138,7 @@ public class MainGame
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
         terraForce.setAccuracy(95);
-        OffensiveAttack naturesAnger = new OffensiveAttack("Nature's Anger", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
+        OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
         SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 2);
         OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
         
@@ -1152,7 +1152,7 @@ public class MainGame
         
         ArrayList<Attack> gaeaOtherAttacks = new ArrayList<>(4);
         gaeaOtherAttacks.add(overgrowth);
-        gaeaOtherAttacks.add(naturesAnger);
+        gaeaOtherAttacks.add(wrathOfGaea);
         gaeaOtherAttacks.add(earthsLove);
         gaeaOtherAttacks.add(obsidianStorm);
         
@@ -1168,6 +1168,11 @@ public class MainGame
             gaea.setRangedAttack(9999);
             gaea.setRangedDefense(9999);
             gaea.setSpeed(9999);
+            gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
+            gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
+            gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
+            gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
+            gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         }
 
         ArrayList<PlayerClass> gaeaOtherClasses = new ArrayList<>(3);
