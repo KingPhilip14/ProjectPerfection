@@ -330,11 +330,8 @@ public class Game implements java.io.Serializable
         // Comment out for testing
         MainGame.clearScreen();
         
-        if(!testing)
-        {
 //            gameOpening();
-            introduceNewLocation();
-        }
+        
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
@@ -375,6 +372,7 @@ public class Game implements java.io.Serializable
     private void gameOpening()
     {
         Cutscene.opening();
+        introduceNewLocation(); // introduces Purity Beach
     }
     
     private void displayInfo()
@@ -387,7 +385,6 @@ public class Game implements java.io.Serializable
     
     public void processInput()
     {
-        MainGame.clearScreen();
         displayInfo();
         
         MainGame.println("What would you like to do?");
@@ -452,7 +449,7 @@ public class Game implements java.io.Serializable
 //            MainGame.waitForEnter();
         }
         
-        MainGame.waitForEnter();
+        MainGame.promptToEnter();
     }
     
     /**
@@ -519,9 +516,7 @@ public class Game implements java.io.Serializable
     {
         MainGame.clearScreen();
         MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
-        MainGame.wait(250);
         MainGame.printlnln("\n" + currentLocation.getDescription());
-        MainGame.promptToEnter();
     }
     
     private void transition(Location newLocation)
@@ -557,7 +552,6 @@ public class Game implements java.io.Serializable
                 {
                     BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
                     ((Wilderness)currentLocation).setBossBattle(battle, 17);
-
                 }
                 break;
             case "Mount Zoni Summit":
@@ -583,7 +577,7 @@ public class Game implements java.io.Serializable
     {
         map.updateMap(currentLocation, newLocation);
         map.printMap();
-        
+        MainGame.promptToEnter();
         // MainGame.waitForEnter();
 //        MainGame.clearScreen();
     }
@@ -1240,7 +1234,7 @@ public class Game implements java.io.Serializable
     private void locationUnlocked()
     {
 //        MainGame.clearScreen();
-        MainGame.printlnlnWait("Congratulations! You can now travel to " + nextLocation.getName() + "!", 25, 1000);
+        MainGame.printlnln("Congratulations! You can now travel to " + nextLocation.getName() + "!");
         
         // Removes the location from the overall ArrayList to the known ArrayList
         knownLocations.add(nextLocation);
