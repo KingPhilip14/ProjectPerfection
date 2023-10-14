@@ -577,7 +577,7 @@ public class Game implements java.io.Serializable
     {
         map.updateMap(currentLocation, newLocation);
         map.printMap();
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
         // MainGame.waitForEnter();
 //        MainGame.clearScreen();
     }
