@@ -365,7 +365,7 @@ public class Cutscene
                 + "had breifly forgotten.");
         MainGame.dialoguelnln("Anahita", "Right, right! I'll braid it nicely for you. Let's find Fleur first.");
         
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
     }
     
     /**
@@ -468,6 +468,8 @@ public class Cutscene
         MainGame.dialoguelnln("Calliou", "NOW YOU KNOW!! HERE -- TAKE SOME!!! BEANS ARE AMAZING!!!");
         
         MainGame.printlnln("You received 3 Orange Beans!");
+        MainGame.promptToEnter();
+
         Game.addToInventory(Item.getBuffItem("Orange Bean"), 3);
         
         MainGame.dialoguelnln("Calliou", "REMEMBER THIS IF YOU'RE IN A TOUGH SITUATION -- 'BEANS MAKE YOU STRONGER FOR LONGER"
@@ -514,7 +516,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "I agree! This is always the best time of the year. Before we do anything else, we "
                 + "should talk to everyone to see if\n\tanyone needs help. I also see some familar faces, so let's go say hi!");
         
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
     }
     
     /**

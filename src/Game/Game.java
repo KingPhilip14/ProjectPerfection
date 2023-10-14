@@ -672,8 +672,6 @@ public class Game implements java.io.Serializable
         // This check is specifically for when the player talks to every NPC in the Zoni City in the first phase.
         else if(!inSecondPhase && town.getName().equals("Zoni City") && town.hasTalkedToEveryone())
         {
-            MainGame.promptToEnter();
-            
             if(testing)
             {   
                 team.add(MainGame.makeCalmus());

@@ -135,13 +135,17 @@ public abstract class Battle implements java.io.Serializable
             }
 
             // If the battle's final result is determined, escape loop
-            if(forfeit || won || !won)
+            if(forfeit || won)
             {
                 break;
             }
             else if(!PLAYER_FIGHTING_TEAM.isEmpty() && !enemyTeam.isEmpty())
             {
                 refreshBattle();
+            }
+            else if(!won) // must check if the battle is lost AFTER checking if a team was defeated.
+            {
+                break;
             }
         }
         
