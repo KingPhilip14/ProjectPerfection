@@ -31,6 +31,12 @@ public class OpiconTutorialBattle extends TutorialBattle
     @Override
     protected void explainBattles()
     {
+        prompt();
+        MainGame.printlnln("That's a bit more on how battles work! Good luck!");
+    }
+
+    private void prompt()
+    {
         String message = "Select the tutorial you want to view:"
                 + "\n\t1) Attack Cooldown\n\t2) Aggro\n\t3) Classes\n\t4) Done";
         int input = MenuHelper.displayMenu(message, 1, 4);
@@ -39,49 +45,19 @@ public class OpiconTutorialBattle extends TutorialBattle
         switch(input)
         {
             case 1:
-                cooldownTutorial();
-                explainBattles();
+                MainGame.cooldownTutorial();
                 break;
             case 2:
-                aggroTutorial();
-                explainBattles();
+                MainGame.aggroTutorial();
                 break;
             case 3:
-                classTutorial();
-                explainBattles();
+                MainGame.classTutorial();
                 break;
             default:
                 MainGame.clearScreen();
-                break;
+                return; // end the recursive call if the user is done
         }
-    }
-    
-    private void cooldownTutorial()
-    {
-        MainGame.printlnlnWait("First, let's go over how attacks work a little more in depth.", 25, 1500);
-        MainGame.cooldownTutorial();
-    }
-    
-    private void aggroTutorial()
-    {
-        MainGame.clearScreen();
-        
-        // Explains the aggro system
-        MainGame.printlnlnWait("Next, Aggro:", 25, 1500);
-        MainGame.println("You may wonder how the enemies will target you. Each of your characters have a value called "
-                + "\"Aggro\".\nAfter every attack, their aggro will increase, forcing the enemy to target them.");
-        
-        MainGame.promptToEnter();
-        
-        MainGame.printlnln("Certain moves accrue more Aggro than others, and some classes affect this as well.\n"
-                + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!");
-        
-        MainGame.promptToEnter();
-    }
-    
-    private void classTutorial()
-    {
-        MainGame.printlnlnWait("Now that you have access to more characters, you have access to more classes! Let's discuss them.", 25, 1500);
-        MainGame.classTutorial();
+
+        prompt();
     }
 }

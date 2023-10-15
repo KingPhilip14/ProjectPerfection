@@ -911,14 +911,13 @@ public class MainGame
         clearScreen();
         
         // Explains the aggro system
-        printlnln("Aggro:");
         printWithBreaks("Each of your characters has a value called "
                 + "\"aggro\"./After every attack, their aggro will increase, forcing the enemy to target them./The character "
                 + "with the most aggro will have a marker next to their name: (!)./"
                 + "Certain moves accrue more aggro than others, and some classes affect this as well./"
-                + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!");
+                + "However, enemies will sometimes ignore this aggro and target someone else, so be mindeful!");
         
-        waitForEnter();
+        promptToEnter();
     }
     
     public static void cheerPartnerTutorial()
@@ -926,7 +925,6 @@ public class MainGame
         clearScreen();
         
         // Explains cheer partner mechanic
-        printlnln("Cheer Partners and Cheer Skills:");
         printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
                 + "A Cheer Partner will be there to support the person fighting by using their Cheer Skill./"
                 + "A Cheer Skill depends on the Cheer Partner's primary Class type.//\tStriker: Boosts Attack and Ranged Attack "
@@ -942,12 +940,11 @@ public class MainGame
     {
         clearScreen();
         
-        printlnln("Attack Cooldowns:");
         printWithBreaks("The more you play, you'll become more acquainted with your types of attacks: Buff, Debuff, Offensive, Single Heal, and Team Heal./"
                 + "All of these attacks except Offensive have \"Cooldowns.\"/If you view your character's attacks, you can see the cooldown value./"
                 + "This value means that after using this attack, it will be unavailable for that amount of turns./After the cooldown effect is over, the move is available again.");
         
-        waitForEnter();
+        promptToEnter();
     }
     
     public static void classTutorial()
@@ -955,28 +952,24 @@ public class MainGame
         clearScreen();
         
         // Part 1
-        printlnln("Classes:");
         printWithBreaks("Each character has a \"Class.\" There are 10 unique classes in total:/Clerk classes:\n\tMaster Clerk: Focuses on healing.\n\tHyper Clerk: Focuses on healing and damage.\n\tPassive Clerk: Focuses on healing and takes hits better than the other Clerks./"
                 + "Striker classes:\n\tMaster Striker: Focuses on physical and ranged damage.\n\tTranquil Striker: Focuses on physical damage and slight healing.\n\tGuardian Striker: Focuses on damage and slightly on aggro./"
                 + "Tank classes:\n\tMaster Tank: Focuses on taking physical attacks and gaining aggro.\n\tHoly Tank: Focuses on taking hits in general with minor healing.\n\tWild Tank: Focuses on taking hits while dealing damage./"
                 + "Special class:\n\tAll-Rounder: Relatively balanced with everything.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 2
         printWithBreaks("All classes except All-Rounder and the Master classes are made of two class roles./"
                 + "For example, the Passive Clerk has the primary role of a Clerk class with the secondary role being the Tank.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 3
         printWithBreaks("Classes affect how your stats change when a level up occurs./Each class focuses on certain stats, and when a character levels up, their class determines the odds of a stat "
                 + "increasing./For example, if Anahita levels up, you may not see her health increase, but it might increase if she levels up again.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 5
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
@@ -1399,7 +1392,7 @@ public class MainGame
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
-        ninlil.setAggro(7);
+        ninlil.setAggro(5);
         ninlil.setMaxHealth(630);
         ninlil.setCurrentHealth(630);
         ninlil.setAttack(120);
