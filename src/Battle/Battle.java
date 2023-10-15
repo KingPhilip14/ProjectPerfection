@@ -1132,12 +1132,14 @@ public abstract class Battle implements java.io.Serializable
         message = "\nSelect who you would like to heal:";
         ArrayList<Player> adjacentAllies;
         
-        if(player.getClassRole().equals("Healer"))
+        if(player.getPlayerClass().toString().equals("Master Clerk"))
         {
+            // Only Master Clerks can heal anyone from anywhere
             adjacentAllies = PLAYER_FIGHTING_TEAM;
         }
         else
         {
+            // Otherwise, only adjacent allies can be healed.
             adjacentAllies = getAdjacentAllies(player);
         }
         
@@ -1743,15 +1745,15 @@ public abstract class Battle implements java.io.Serializable
         int position = getPlayerPosition(player);
         
         // Master Clerk's can heal anyone no matter the adjacency
-        if(player.getPlayerClass().isMasterClerk())
-        {
-            for(Player p : ORIGINAL_PLAYER_POSITIONS)
-            {
-                result.add(p);
-            }
-        }
-        else
-        {
+        // if(player.getPlayerClass().isMasterClerk())
+        // {
+        //     for(Player p : ORIGINAL_PLAYER_POSITIONS)
+        //     {
+        //         result.add(p);
+        //     }
+        // }
+        // else
+        // {
 //            for(int i = 0; i < ORIGINAL_PLAYER_POSITIONS.size(); i++)
 //            {
 //                if(ORIGINAL_PLAYER_POSITIONS.size() == 1)
@@ -1774,24 +1776,34 @@ public abstract class Battle implements java.io.Serializable
 //                }
 //            }
             
-            switch (position) 
-            {
-                case 0:
-                    result.add(ORIGINAL_PLAYER_POSITIONS.get(0));
+        switch (position) 
+        {
+            case 0:
+                result.add(ORIGINAL_PLAYER_POSITIONS.get(0));
+
+                // Add the other player if the size is 3
+                if(ORIGINAL_PLAYER_POSITIONS.size() == 3)
+                {
                     result.add(ORIGINAL_PLAYER_POSITIONS.get(1));
-                    break;
-                case 1:
-                    for(Player p : ORIGINAL_PLAYER_POSITIONS)
-                    {
-                        result.add(p);
-                    }   
-                    break;
-                default:
-                    result.add(ORIGINAL_PLAYER_POSITIONS.get(1));
+                }
+                break;
+            case 1:
+                for(Player p : ORIGINAL_PLAYER_POSITIONS)
+                {
+                    result.add(p);
+                }   
+                break;
+            default:
+                result.add(ORIGINAL_PLAYER_POSITIONS.get(1));
+
+                // Add the other player if the size is 3
+                if(ORIGINAL_PLAYER_POSITIONS.size() == 3)
+                {
                     result.add(ORIGINAL_PLAYER_POSITIONS.get(2));
-                    break;
-            }
+                }
+                break;
         }
+        // }
 
         return result;
     }

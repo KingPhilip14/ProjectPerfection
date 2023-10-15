@@ -1,5 +1,7 @@
 package Battle;
 
+import Game.MainGame;
+
 /**
  * A class to create attacks that heal single targets.
  * @author Ian King
@@ -36,6 +38,8 @@ public class SingleHealingAttack extends HealingAttack
         
         canUse = false;
         setNextAvailableTurn(Battle.getCurrentTurn());
+
+        MainGame.promptToEnter();
     }
     
     @Override
