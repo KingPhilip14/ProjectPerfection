@@ -31,6 +31,11 @@ public class RESITutorialBattle  extends TutorialBattle
     @Override
     protected void explainBattles()
     {
+        prompt();
+    }
+
+    private void prompt()
+    {
         String message = "Select the tutorial you want to view:"
                 + "\n\t1) R.E.S.I. Battles\n\t2) Cheer Partners\n\t3) Combo Attacks\n\t4) Done";
         int input = MenuHelper.displayMenu(message, 1, 4);
@@ -40,20 +45,19 @@ public class RESITutorialBattle  extends TutorialBattle
         {
             case 1:
                 MainGame.resiTutorial();
-                explainBattles();
                 break;
             case 2:
                 MainGame.cheerPartnerTutorial();
-                explainBattles();
                 break;
             case 3:
                 MainGame.comboAttackTutorial();
-                explainBattles();
                 break;
             default:
                 MainGame.clearScreen();
-                break;
+                return;
         }
+
+        prompt();   
     }
     
     @Override

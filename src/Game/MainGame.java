@@ -723,25 +723,21 @@ public class MainGame
     public static void dialoguelnln(Player player, String dialogue)
     {
         printlnln("\t" + player.getName() + ": \"" + dialogue  + "\"");
-        wait(1000);
     }
     
     public static void dialoguelnln(String name, String dialogue)
     {
         printlnln("\t" + name + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueln(Player player, String dialogue)
     {
         println("\t" + player.getName() + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueln(String name, String dialogue)
     {
         println("\t" + name + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueInteract(Player player, String dialogue)
@@ -925,7 +921,7 @@ public class MainGame
         clearScreen();
         
         // Explains cheer partner mechanic
-        printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
+        printWithBreaks("When you have more than 3 team members, you can assign a Cheer Partner to another character./"
                 + "A Cheer Partner will be there to support the person fighting by using their Cheer Skill./"
                 + "A Cheer Skill depends on the Cheer Partner's primary Class type.//\tStriker: Boosts Attack and Ranged Attack "
                 + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
@@ -1456,5 +1452,21 @@ public class MainGame
         ninlil.setOtherClasses(ninlilOtherClasses);
         
         return ninlil;
+    }
+
+    /**
+     * Helper method that will take the list of characters and a name. The character that has the given name will be removed.
+     * @param team
+     * @param name
+     */
+    public static void removeFromTeam(ArrayList<Player> team, String name)
+    {
+        for(Player p: team)
+        {
+            if(p.getName().equals(name))
+            {
+                team.remove(p);
+            }
+        }
     }
 }

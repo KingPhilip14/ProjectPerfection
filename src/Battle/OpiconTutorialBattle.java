@@ -32,7 +32,6 @@ public class OpiconTutorialBattle extends TutorialBattle
     protected void explainBattles()
     {
         prompt();
-        MainGame.printlnln("That's a bit more on how battles work! Good luck!");
     }
 
     private void prompt()
