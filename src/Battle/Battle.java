@@ -160,7 +160,6 @@ public abstract class Battle implements java.io.Serializable
         
         result = won;
         
-//        MainGame.wait(3000);
         currentTurn = 0;
         resetPlayers();
     }
@@ -208,7 +207,6 @@ public abstract class Battle implements java.io.Serializable
 //                System.out.println("");
 //                MainGame.println("Teammate's Stat Information:");
 //                checkAllTeammatesStats();
-//                MainGame.wait(2000);
 //                MainGame.println("Enemies' Stat Information:");
 //                checkAllEnemyStats();
 //        }
@@ -367,7 +365,6 @@ public abstract class Battle implements java.io.Serializable
 //                p.setCheerPartner(cheer);
 //                cheer.setPlayerToCheer(p);
 //                cheer.printCheerReadyMessage();
-//                MainGame.wait(1500);
 //            }
         }
     }
@@ -585,7 +582,7 @@ public abstract class Battle implements java.io.Serializable
         if(ComboAttack.canUse(player) && comboAttackUsed == false)
         {
             message = "What would you like " + player.getName() + " to do?\n\t1) Attack\n\t2) Combo Attack\n\t3) Inventory"
-                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy + \n\t6) Forfeit Battle";
+                    + "\n\t4) Check " + player.getName() + "\n\t5) Check Enemy\n\t6) Forfeit";
             response = MenuHelper.displayMenu(message, 1, 6);
             
             switch (response) 
@@ -975,7 +972,6 @@ public abstract class Battle implements java.io.Serializable
     private void checkPlayer(Player player)
     {
         MainGame.printlnln("\n" + player.toString());
-        MainGame.wait(2000);
         
         MainGame.println("Attacks:");
         player.listKnownAttacks();
@@ -1302,7 +1298,6 @@ public abstract class Battle implements java.io.Serializable
     
     private boolean canGetKill(ArrayList<Player> adjacentPlayers, Enemy enemy)
     {
-        MainGame.wait(1500);
         boolean canKill = false;
         
         for(Player player : adjacentPlayers)
@@ -1872,7 +1867,6 @@ public abstract class Battle implements java.io.Serializable
      */
     private void completeTurn()
     {
-        MainGame.wait(1500);
         BATTLE_INTERFACE.reprintBattleInterfaceBNW();
     }
     

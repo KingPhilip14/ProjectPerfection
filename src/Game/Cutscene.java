@@ -354,6 +354,8 @@ public class Cutscene
      */
     public static void degon()
     {
+        MainGame.promptToEnter();
+
         MainGame.dialoguelnln("Gaea", "Aaaand we made it! Alright, this is our last stop before the Annual Festival, and "
                 + "then\n\twe can party!");
         MainGame.dialoguelnln("Fultra", "I've been waiting all day! It'll be nice to catch up with some people from the other "
@@ -496,6 +498,8 @@ public class Cutscene
      */
     public static void zoniCity()
     {
+        MainGame.promptToEnter();
+
         MainGame.dialoguelnln("Anahita", "Finally! We made it!!");
         
         print("Anahita and the others rush into Zoni Village and admire the animated area. People were going back and forth, "
@@ -538,7 +542,7 @@ public class Cutscene
         MainGame.dialoguelnln("Elder Vitorem", "All the more to prepare for, bahaha!");
         MainGame.dialoguelnln("Fultra", "Is there anything you may need help with, Elder? We're willing to help setup if necessary!");
         MainGame.dialoguelnln("Elder Vitorem", "Not at all, Fearless Thunder! (*wink*) I do appreciate the offer, but we're close to finishing. I'd rather " 
-        + "you all have fun!/Go talk to some friends you haven't seen in a while. The festival only lasts so long -- especially your youth! You'll have old bones soon, just like me.");
+        + "you all have fun!\n\tGo talk to some friends you haven't seen in a while. The festival only lasts so long -- especially your youth! You'll have old bones soon, just like me.");
         print("Gaea gasped at the though of being old and wrinkly.");
         MainGame.dialoguelnln("Gaea", "Just the thought of looking like a raisin--");
         print("Fultra covered Gaea's mouth before she could finish her sentence.");
@@ -552,7 +556,7 @@ public class Cutscene
      */
     public static void calmus()
     {
-        print("The group approaches a young male playing with what appears to be his little sister. He's quite tall and "
+        print("The group approaches a young man playing with what appears to be his little sister. He's quite tall and "
                 + "towers over the group. Anahita/calls out to him.");
         
         MainGame.dialoguelnln("Anahita", "Hey, Calmus? Is that you?");
@@ -614,7 +618,7 @@ public class Cutscene
 
         MainGame.dialoguelnln("Anahita", "Boo!");
         
-        print("Frigs let out a cry that was uncharacteristic for someone that's known to be nonchalant. He pushed a laughing "
+        print("Frigs let out a cry that was uncharacteristic for someone who's known to be nonchalant. He pushed a laughing "
                 + "Anahita away as/he recollected himself. Gaea and Fultra were laughing too.");
         
         MainGame.dialoguelnln("Frigs", "Oh my gosh... Ana! Can you not do that?");
@@ -697,6 +701,8 @@ public class Cutscene
      */
     public static void invasion()
     {
+        MainGame.promptToEnter();
+
         print("After the group finished talking to other townrs, a bell chimed and a wave of people gathered to the center "
                 + "of Zoni Village./All the decorations are hung up, beautifully representing the Pulchrian culture and "
                 + "lifestyle.");
@@ -763,9 +769,7 @@ public class Cutscene
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("The night went on strong, with people still celebrating. The music and dancing was still going, but then...");
-        
-        MainGame.wait(1500);
+        print("The night went on strong, with people still celebrating. The music and dancing was very lively./Then, Anahita noticed something.");
         
         MainGame.dialoguelnln("Anahita", "Do... do you guys see that bright light in the sky?");
         

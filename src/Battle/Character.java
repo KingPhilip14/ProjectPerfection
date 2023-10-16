@@ -85,7 +85,7 @@ public abstract class Character extends GameProperty implements Combatable
     public Stat getSpeed() {return speed;}
     
     @Override
-    public void setSpeed(int newSpeed) {speed.setValue(newSpeed);}
+    public void setSpeed(int newSpeed) {speed.setValue(newSpeed); speed.setOriginalValue(newSpeed);}
     
     @Override
     public void displayHealth()

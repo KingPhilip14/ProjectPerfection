@@ -57,35 +57,40 @@ public class BeachTutorialBattle extends TutorialBattle
     @Override
     protected void explainBattles()
     {
+        prompt();
+        MainGame.printlnln("That's a little bit of how battles work. These basics should help you out!");
+    }
+
+    private void prompt()
+    {
         String message = "Select the tutorial you want to view:"
                 + "\n\t1) Battle Interface\n\t2) Matchup Chart\n\t3) Targeting\n\t4) Done";
         int input = MenuHelper.displayMenu(message, 1, 4);
         
         // If the input isn't the player wanting to quit, recursively call the method until it is.
+        
         switch(input)
         {
             case 1:
                 interfaceTutorial();
-                explainBattles();
                 break;
             case 2:
                 matchupTutorial();
-                explainBattles();
                 break;
             case 3:
                 targetingTutorial();
-                explainBattles();
                 break;
             default:
                 MainGame.clearScreen();
-                break;
+                return; // end the recursive call if the user is done
         }
-        
-        MainGame.printlnlnWait("That's a little bit of how battles work. These basics should help you out!", 25, 2000);
+
+        prompt();
     }
     
     private void interfaceTutorial()
     {
+        MainGame.clearScreen();
         super.printEnemyInfoTable();
         
         // Explains the interface
@@ -101,8 +106,9 @@ public class BeachTutorialBattle extends TutorialBattle
     
     private void matchupTutorial()
     {
+        MainGame.clearScreen();
+
         // Explains matchups
-        MainGame.printlnlnWait("Next: Element matchups.", 25, 1500);
         MainGame.printElementMatchups();
         
         MainGame.clearScreen();
@@ -110,8 +116,9 @@ public class BeachTutorialBattle extends TutorialBattle
     
     private void targetingTutorial()
     {
-        // Explains targeting with the board
-        MainGame.printlnlnWait("Next: Targeting.", 25, 1000);
+        MainGame.clearScreen();
+
+        // Explains targeting with the board\
         MainGame.println("\tLeft slot: The left slot can only target and be targeted by the opposing left and center slots.");
         MainGame.println("\tCenter slot: The center slot can target and be targeted by all opposing slots.");
         MainGame.printlnln("\tRight slot: The right slot can target and be targeted by the opposing center and right slots.");

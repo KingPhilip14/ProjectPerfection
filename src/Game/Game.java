@@ -601,6 +601,7 @@ public class Game implements java.io.Serializable
         
         if(input == numOfOptions)
         {
+            MainGame.clearScreen();
             processInput();
         }
         else if(knownLocations.get(input - 1) == currentLocation)
@@ -671,31 +672,22 @@ public class Game implements java.io.Serializable
         }
         // This check is specifically for when the player talks to every NPC in the Zoni City in the first phase.
         else if(!inSecondPhase && town.getName().equals("Zoni City") && town.hasTalkedToEveryone())
-        {
-            if(testing)
-            {   
-                team.add(MainGame.makeCalmus());
-                team.add(MainGame.makeFrigs());
-                team.add(MainGame.makeNinlil());
-                
-                if(objective.completedTask(this))
-                {
-                    objective.update(this);
-                }
-//                objective.update(this);
-//                objective.updateByNpc(town);
-                startSecondPhase();
-            }
-            
-            // If the player loses the tutorial, skip the cutscene. Otherwise, play it
-            if(!resiTutorialAttempted && !testing)
-            {
-                Cutscene.invasion();
-                
-                team.add(MainGame.makeCalmus());
-                team.add(MainGame.makeFrigs());
-                team.add(MainGame.makeNinlil());
+        {           
+            // Play the cutscene and add the new characters
+            Cutscene.invasion();        
+            team.add(MainGame.makeCalmus());
+            team.add(MainGame.makeFrigs());
+            team.add(MainGame.makeNinlil());
 
+            /*
+             * If the player loses the fight, they are forced to do it until they win. 
+             * If the player loses, the game will give them a 2 free Apple Pies.
+             */
+            while(!recentBattleWon)
+            {
+                // If the player loses the tutorial, skip the cutscene. Otherwise, play it
+                // if(!resiTutorialAttempted)
+                // {
                 // Start tutorial RESI Battle here
                 RESITutorialBattle rtb = town.makeRESITutorial(team);
                 rtb.start(gold, recentBattleWon);
@@ -710,6 +702,16 @@ public class Game implements java.io.Serializable
 //                    objective.update(this);
 //                    objective.updateByNpc(town);
                     startSecondPhase();
+                }
+                else
+                {
+                    MainGame.promptToEnter();
+
+                    MainGame.printlnln("You may have lost, but 2 Apple Pies appeared in your inventory!");
+                    inventory.addTo(Item.getHealingItem("Apple Pie"), 2);
+                    MainGame.printlnln("Try again and defend Pulchra!");
+
+                    MainGame.promptToEnter();
                 }
             }
         }

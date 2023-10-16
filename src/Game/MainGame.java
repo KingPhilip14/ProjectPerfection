@@ -723,25 +723,21 @@ public class MainGame
     public static void dialoguelnln(Player player, String dialogue)
     {
         printlnln("\t" + player.getName() + ": \"" + dialogue  + "\"");
-        wait(1000);
     }
     
     public static void dialoguelnln(String name, String dialogue)
     {
         printlnln("\t" + name + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueln(Player player, String dialogue)
     {
         println("\t" + player.getName() + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueln(String name, String dialogue)
     {
         println("\t" + name + ": \"" + dialogue + "\"");
-        wait(1000);
     }
     
     public static void dialogueInteract(Player player, String dialogue)
@@ -898,10 +894,10 @@ public class MainGame
     {
         clearScreen();
         // Explains targeting with the board
-        printlnlnWait("Targeting:", 25, 500);
-        printlnlnWait("\tLeft slot: The left slot can only target and be targeted by the opposing left and center "
+        printlnln("Targeting:");
+        printlnln("\tLeft slot: The left slot can only target and be targeted by the opposing left and center "
                 + "slots.\n\tCenter slot: The center slot can target and be targeted by all opposing slots.\n\t"
-                + "Right slot: The right slot can target adn be targeted by the opposing center and right slots.", 40, 5000);
+                + "Right slot: The right slot can target adn be targeted by the opposing center and right slots.");
         
         waitForEnter();
     }
@@ -911,14 +907,13 @@ public class MainGame
         clearScreen();
         
         // Explains the aggro system
-        printlnlnWait("Aggro:", 25, 500);
         printWithBreaks("Each of your characters has a value called "
                 + "\"aggro\"./After every attack, their aggro will increase, forcing the enemy to target them./The character "
                 + "with the most aggro will have a marker next to their name: (!)./"
                 + "Certain moves accrue more aggro than others, and some classes affect this as well./"
-                + "However, enemies will sometimes ignore this Aggro and target someone else, so be mindeful!");
+                + "However, enemies will sometimes ignore this aggro and target someone else, so be mindeful!");
         
-        waitForEnter();
+        promptToEnter();
     }
     
     public static void cheerPartnerTutorial()
@@ -926,8 +921,7 @@ public class MainGame
         clearScreen();
         
         // Explains cheer partner mechanic
-        printlnlnWait("Cheer Partners and Cheer Skills:", 25, 500);
-        printWithBreaks("When you have more than 3 team members, you can use a Cheer Partner on other characters./"
+        printWithBreaks("When you have more than 3 team members, you can assign a Cheer Partner to another character./"
                 + "A Cheer Partner will be there to support the person fighting by using their Cheer Skill./"
                 + "A Cheer Skill depends on the Cheer Partner's primary Class type.//\tStriker: Boosts Attack and Ranged Attack "
                 + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
@@ -942,12 +936,11 @@ public class MainGame
     {
         clearScreen();
         
-        printlnlnWait("Attack Cooldowns:", 25, 500);
         printWithBreaks("The more you play, you'll become more acquainted with your types of attacks: Buff, Debuff, Offensive, Single Heal, and Team Heal./"
                 + "All of these attacks except Offensive have \"Cooldowns.\"/If you view your character's attacks, you can see the cooldown value./"
                 + "This value means that after using this attack, it will be unavailable for that amount of turns./After the cooldown effect is over, the move is available again.");
         
-        waitForEnter();
+        promptToEnter();
     }
     
     public static void classTutorial()
@@ -955,37 +948,24 @@ public class MainGame
         clearScreen();
         
         // Part 1
-        printlnlnWait("Classes:", 25, 500);
-        printWithBreaks("Each character has a \"Class.\" There are 10 unique classes in total:/Clerk classes:\n\tMaster Clerk: Focuses on healing.\n\tHyper Clerk: Focuses on healing and damage.\n\tPassive Clerk: Focuses on healing, debuffs, and aggro./"
-                + "Striker classes:\n\tMaster Striker: Focuses on physical and ranged damage.\n\tTranquil Striker: Focuses on physical damage and slight healing.\n\tGuardian Striker: Focuses on ranged damage and slightly on aggro./"
-                + "Tank classes:\n\tMaster Tank: Focuses on taking physical attacks and gaining aggro.\n\tHoly Tank: Focuses on taking hits in general with minor healing.\n\tWild Tank: Focuses on taking physical hits while dealing damage./"
+        printWithBreaks("Each character has a \"Class.\" There are 10 unique classes in total:/Clerk classes:\n\tMaster Clerk: Focuses on healing.\n\tHyper Clerk: Focuses on healing and damage.\n\tPassive Clerk: Focuses on healing and takes hits better than the other Clerks./"
+                + "Striker classes:\n\tMaster Striker: Focuses on physical and ranged damage.\n\tTranquil Striker: Focuses on physical damage and slight healing.\n\tGuardian Striker: Focuses on damage and slightly on aggro./"
+                + "Tank classes:\n\tMaster Tank: Focuses on taking physical attacks and gaining aggro.\n\tHoly Tank: Focuses on taking hits in general with minor healing.\n\tWild Tank: Focuses on taking hits while dealing damage./"
                 + "Special class:\n\tAll-Rounder: Relatively balanced with everything.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 2
         printWithBreaks("All classes except All-Rounder and the Master classes are made of two class roles./"
-                + "For example, the Passive Clerk has the primary role of a Clerk class with the secondary role being the Tank./"
-                + "This means that this role can heal while taking hits better than a Master Clerk.");
+                + "For example, the Passive Clerk has the primary role of a Clerk class with the secondary role being the Tank.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 3
-        printWithBreaks("Here are all the classes with their primary and secondary roles listed as Primary, Secondary:/\tMaster Clerk: Clerk, Clerk\n\tHyper Clerk: Clerk, Striker\n\tPassive Clerk: Clerk, Tank/"
-                + "\tMaster Striker: Striker, Striker\n\tTranquil Striker: Striker, Clerk\n\tGuardian Striker: Striker, Tank/"
-                + "\tMaster Tank: Tank, Tank\n\tHoly Tank: Tank, Clerk\n\tWild Tank: Tank, Striker");
-        
-        waitForEnter();
-        clearScreen();
-        
-        // Part 4
-        printWithBreaks("Classes mostly affect how your stats change when a level up occurs./Each class focuses on certain stats, and when a character levels up, their class determines the odds of a stat "
+        printWithBreaks("Classes affect how your stats change when a level up occurs./Each class focuses on certain stats, and when a character levels up, their class determines the odds of a stat "
                 + "increasing./For example, if Anahita levels up, you may not see her health increase, but it might increase if she levels up again.");
         
-        waitForEnter();
-        clearScreen();
+        promptToEnter();
         
         // Part 5
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
@@ -1004,7 +984,7 @@ public class MainGame
                 + "will then have the Earth element.");
         
         printWithBreaks("If a R.E.S.I is hit with a Combo attack, the element will change to the character who is fighting's/"
-                + "element, not their cheer partner not the cheer partner.");
+                + "element, not their cheer partner.");
         
         promptToEnter();
     }
@@ -1408,7 +1388,7 @@ public class MainGame
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
-        ninlil.setAggro(7);
+        ninlil.setAggro(5);
         ninlil.setMaxHealth(630);
         ninlil.setCurrentHealth(630);
         ninlil.setAttack(120);
@@ -1472,5 +1452,21 @@ public class MainGame
         ninlil.setOtherClasses(ninlilOtherClasses);
         
         return ninlil;
+    }
+
+    /**
+     * Helper method that will take the list of characters and a name. The character that has the given name will be removed.
+     * @param team
+     * @param name
+     */
+    public static void removeFromTeam(ArrayList<Player> team, String name)
+    {
+        for(Player p: team)
+        {
+            if(p.getName().equals(name))
+            {
+                team.remove(p);
+            }
+        }
     }
 }
