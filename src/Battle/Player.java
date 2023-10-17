@@ -320,8 +320,8 @@ public class Player extends Character
     
     public void updateStats()
     {
-//        removeBuffOrDebuff();
-//        removeCheerBuff();
+        removeBuffOrDebuff();
+        removeCheerBuff();
         
         // Sets the value to work with to be its original
         for(Stat s : listOfStats)
@@ -708,10 +708,9 @@ public class Player extends Character
     {
         for(Stat s: listOfStats)
         {
-            
-            if(s.getCheerBuff() > 0)
+            if(s.hasCheerBuff())
             {
-                s.setValue(s.getValue() - s.getCheerBuff());
+                s.removeCheerBuff();
             }
         }
     }
@@ -720,10 +719,7 @@ public class Player extends Character
     {
         for(Stat s : listOfStats)
         {
-            if(s.getCheerBuff() > 0)
-            {
-                s.setValue(s.getValue() + s.getCheerBuff());
-            }
+            s.reapplyCheerBuff();
         }
     }
     

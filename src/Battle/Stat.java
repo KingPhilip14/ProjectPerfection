@@ -8,13 +8,14 @@ import Game.MainGame;
  */
 public class Stat implements java.io.Serializable
 {
+    private static double cheerBuffValue = 1.2;
     private String stat;
     private int value;
     private Character character;
     private int originalValue;
     private int turnBuffEnds;
     private int turnDebuffEnds;
-    private int cheerBuff;
+    private int cheerBuffCounter;
     private double buffModifier;
     private double debuffModifier;
     private boolean buffActive;
@@ -41,14 +42,36 @@ public class Stat implements java.io.Serializable
     public void setOriginalValue(int newValue) {originalValue = newValue;}
     public int getOriginalValue() {return originalValue;}
     
-    public boolean hasCheerBuff() {return cheerBuff > 0;}
+    public boolean hasCheerBuff() {return cheerBuffCounter > 0;} //  if >0, the buff is active. If 0, no buff is applied
     
-    public int getCheerBuff() {return cheerBuff;}
-    public void resetCheerBuff() {cheerBuff = 0;}
-    public void increaseCheerBuff(int amount) 
+    public static double get_cheer_buff_value() {return cheerBuffValue;}
+
+    public double getCheerBuffCounter() {return cheerBuffCounter;}
+    // public void resetCheerBuff() {cheerBuffCounter = 0;}
+    public void increaseCheerBuff(double amount) 
     {
-        cheerBuff += amount;
-        value += amount;
+        cheerBuffCounter += 1; // increment how many cheer buff this stat has
+        System.out.println(String.format("The value before is %d", value));
+        value *= amount; // increase the amount
+        System.out.println(String.format("The value after is %d", value));
+    }
+
+    public void reapplyCheerBuff()
+    {
+        for(int i = 0; i < cheerBuffCounter; i++)
+        {
+            System.out.println(String.format("The value before reapply is %d", value));
+            value *= cheerBuffValue;
+            System.out.println(String.format("The value after reapply is %d", value));
+        }
+    }
+
+    public void removeCheerBuff()
+    {
+        for(int i = 0; i < cheerBuffCounter; i++)
+        {
+            value = (int)Math.round(value / cheerBuffValue);
+        }
     }
     
     public int getTurnBuffEnds() {return turnBuffEnds;}
