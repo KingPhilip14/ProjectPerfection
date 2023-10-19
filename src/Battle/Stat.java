@@ -1,5 +1,7 @@
 package Battle;
 
+import javax.print.attribute.standard.OrientationRequested;
+
 import Game.MainGame;
 
 /**
@@ -51,27 +53,24 @@ public class Stat implements java.io.Serializable
     public void increaseCheerBuff(double amount) 
     {
         cheerBuffCounter += 1; // increment how many cheer buff this stat has
-        System.out.println(String.format("The value before is %d", value));
         value *= amount; // increase the amount
-        System.out.println(String.format("The value after is %d", value));
     }
 
     public void reapplyCheerBuff()
     {
         for(int i = 0; i < cheerBuffCounter; i++)
         {
-            System.out.println(String.format("The value before reapply is %d", value));
             value *= cheerBuffValue;
-            System.out.println(String.format("The value after reapply is %d", value));
         }
     }
 
     public void removeCheerBuff()
     {
-        for(int i = 0; i < cheerBuffCounter; i++)
-        {
-            value = (int)Math.round(value / cheerBuffValue);
-        }
+        value = originalValue;
+        // for(int i = 0; i < cheerBuffCounter; i++)
+        // {
+            // value = (int)Math.round(value / cheerBuffValue);
+        // }
     }
     
     public int getTurnBuffEnds() {return turnBuffEnds;}

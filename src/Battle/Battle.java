@@ -111,8 +111,6 @@ public abstract class Battle implements java.io.Serializable
                     
                     // Checks if player forfeit. If so, exit battle loop
                     if(forfeit) {break;}
-
-                    player.forcedLevelUp(); // REMOVE AFTER TESTING
                 }
                 
                 // MainGame.promptToEnter();
@@ -708,29 +706,29 @@ public abstract class Battle implements java.io.Serializable
                 break;
                 case "Tank":
                     Stat defense = playerToCheer.getDefense();
-                    playerToCheer.setDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
+                    // playerToCheer.setDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
                     MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 20%!");
                     defense.increaseCheerBuff(Stat.get_cheer_buff_value());
                     
                     defense = playerToCheer.getRangedDefense();
-                    playerToCheer.setRangedDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
+                    // playerToCheer.setRangedDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
                     MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 20%!");
                     defense.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
                 case "Striker":
                     Stat attack = playerToCheer.getAttack();
-                    playerToCheer.setAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
+                    // playerToCheer.setAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
                     MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 20%!");
                     attack.increaseCheerBuff(Stat.get_cheer_buff_value());
                     
                     attack = playerToCheer.getRangedAttack();
-                    playerToCheer.setRangedAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
+                    // playerToCheer.setRangedAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
                     MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 20%!");
                     attack.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
                 default:
                     Stat speed = playerToCheer.getSpeed();
-                    playerToCheer.setSpeed((int)Math.round(speed.getValue() * Stat.get_cheer_buff_value()));
+                    // playerToCheer.setSpeed((int)Math.round(speed.getValue() * Stat.get_cheer_buff_value()));
                     MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 20%!");
                     speed.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
