@@ -56,17 +56,13 @@ public abstract class Character extends GameProperty implements Combatable
     public Stat getAttack() {return attack;}
     
     @Override
-    public void setAttack(int newAttack) 
-    {
-        attack.setValue(newAttack);
-    }
+    public void setAttack(int newAttack) {attack.setValue(newAttack);}
     
     @Override
     public Stat getDefense() {return defense;}
     
     @Override
-    public void setDefense(int newDefense) {defense.setValue(newDefense); 
-    }
+    public void setDefense(int newDefense) {defense.setValue(newDefense);}
     
     @Override
     public Stat getRangedAttack() {return rangedAttack;}
@@ -85,7 +81,7 @@ public abstract class Character extends GameProperty implements Combatable
     public Stat getSpeed() {return speed;}
     
     @Override
-    public void setSpeed(int newSpeed) {speed.setValue(newSpeed); speed.setOriginalValue(newSpeed);}
+    public void setSpeed(int newSpeed) {speed.setValue(newSpeed);}
     
     @Override
     public void displayHealth()

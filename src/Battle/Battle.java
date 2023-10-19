@@ -694,7 +694,7 @@ public abstract class Battle implements java.io.Serializable
                 case "Clerk":
                     if(!playerToCheer.isHealthy())
                     {
-                        int amt = (int)(playerToCheer.getMaxHealth() * 0.1);
+                        int amt = (int)(playerToCheer.getMaxHealth() * Stat.get_cheer_buff_value());
                         playerToCheer.setCurrentHealth(amt);
                         MainGame.printlnln(cheer.getName() + " healed " + playerToCheer.getName() + " " + amt + " HP!");
                     }
@@ -706,31 +706,31 @@ public abstract class Battle implements java.io.Serializable
                 break;
                 case "Tank":
                     Stat defense = playerToCheer.getDefense();
-                    playerToCheer.setDefense(defense.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 10!");
-                    defense.increaseCheerBuff(10);
+                    // playerToCheer.setDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 20%!");
+                    defense.increaseCheerBuff(Stat.get_cheer_buff_value());
                     
                     defense = playerToCheer.getRangedDefense();
-                    playerToCheer.setRangedDefense(defense.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 10!");
-                    defense.increaseCheerBuff(10);
+                    // playerToCheer.setRangedDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 20%!");
+                    defense.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
                 case "Striker":
                     Stat attack = playerToCheer.getAttack();
-                    playerToCheer.setAttack(attack.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 10!");
-                    attack.increaseCheerBuff(10);
+                    // playerToCheer.setAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 20%!");
+                    attack.increaseCheerBuff(Stat.get_cheer_buff_value());
                     
                     attack = playerToCheer.getRangedAttack();
-                    playerToCheer.setRangedAttack(attack.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 10!");
-                    attack.increaseCheerBuff(10);
+                    // playerToCheer.setRangedAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 20%!");
+                    attack.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
                 default:
                     Stat speed = playerToCheer.getSpeed();
-                    playerToCheer.setSpeed(speed.getValue() + 10);
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 10!");
-                    speed.increaseCheerBuff(10);
+                    // playerToCheer.setSpeed((int)Math.round(speed.getValue() * Stat.get_cheer_buff_value()));
+                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 20%!");
+                    speed.increaseCheerBuff(Stat.get_cheer_buff_value());
                 break;
             }
         }
@@ -1934,7 +1934,7 @@ public abstract class Battle implements java.io.Serializable
             {
                 if(s.hasCheerBuff())
                 {
-                    s.resetCheerBuff();
+                    s.removeCheerBuff();
                 }
                 
                 s.resetValue(p);
