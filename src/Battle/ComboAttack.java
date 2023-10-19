@@ -103,6 +103,7 @@ public class ComboAttack extends Attack
         ComboAttack burningQuake = new ComboAttack("Burning Quake", "An earthquake is combined with flames that burst from the ground to cause devistating damage.", 330, "Earth", "Fire");
         ComboAttack precipiceGale = new ComboAttack("Precipice Gale", "Giants boulders and land masses are launched at the target with great winds and tornados.", 330, "Earth", "Wind");
         
+        // Combo attacks can never miss
         explodingGeyser.setAttackHit(true);
         infiniteInferno.setAttackHit(true);
         flamingBolt.setAttackHit(true);
