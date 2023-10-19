@@ -227,8 +227,6 @@ public class Town extends Location
         RESIEnemy resi = new RESIEnemy(12, "Fire");
 //        resi.setCurrentHealth(1);
 //        resi.setSpeed(1);
-        resi.setDefense(9999999);
-        resi.setRangedDefense(9999999);
         ArrayList<Enemy> enemyTeam = new ArrayList<>(1);
         enemyTeam.add(resi);
         RESITutorialBattle battle = new RESITutorialBattle(enemyTeam, playerTeam);

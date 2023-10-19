@@ -680,7 +680,7 @@ public abstract class Battle implements java.io.Serializable
     private void activateCheerAbility(Player cheer)
     {
         Random rand = new Random();
-        int chance = 0;//rand.nextInt(20);
+        int chance = rand.nextInt(20);
         
         if(chance == 0)
         {
