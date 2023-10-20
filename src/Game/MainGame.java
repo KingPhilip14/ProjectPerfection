@@ -1177,11 +1177,11 @@ public class MainGame
         fultra.setCheerReadyMessage("You're in good hands!");
         fultra.setMaxHealth(250);
         fultra.setCurrentHealth(250);
-        fultra.setAttack(72);
-        fultra.setDefense(72);
-        fultra.setRangedAttack(72);
-        fultra.setRangedDefense(72);
-        fultra.setSpeed(72);
+        fultra.setAttack(77);
+        fultra.setDefense(77);
+        fultra.setRangedAttack(77);
+        fultra.setRangedDefense(77);
+        fultra.setSpeed(77);
         
         fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
         fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
@@ -1208,13 +1208,13 @@ public class MainGame
         
         if(Game.isTesting())
         {
-            fultra.setMaxHealth(9999);
-            fultra.setCurrentHealth(9999);
-            fultra.setAttack(9999);
-            fultra.setDefense(9999);
-            fultra.setRangedAttack(9999);
-            fultra.setRangedDefense(9999);
-            fultra.setSpeed(9999);
+            fultra.setMaxHealth(999999);
+            fultra.setCurrentHealth(999999);
+            fultra.setAttack(999999);
+            fultra.setDefense(999999);
+            fultra.setRangedAttack(999999);
+            fultra.setRangedDefense(999999);
+            fultra.setSpeed(999999);
             fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
             fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
             fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());

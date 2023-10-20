@@ -1234,6 +1234,7 @@ public class Game implements java.io.Serializable
     private void locationUnlocked()
     {
 //        MainGame.clearScreen();
+        MainGame.promptToEnter();
         MainGame.printlnln("Congratulations! You can now travel to " + nextLocation.getName() + "!");
         
         // Removes the location from the overall ArrayList to the known ArrayList

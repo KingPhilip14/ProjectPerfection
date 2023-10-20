@@ -19,7 +19,7 @@ public class RESITutorialBattle  extends TutorialBattle
     @Override
     protected void intro()
     {
-        MainGame.printlnlnWait("Pulchra is under attack! Anahita and the others are being challenged by a robot!", 25, 1000);
+        MainGame.printlnln("Pulchra is under attack! Anahita and the others are being challenged by a robot!");
         
         String message = "Would you like the final tutorial on fighting these robots?\n\t1) Yes\n\t2) No";
         
