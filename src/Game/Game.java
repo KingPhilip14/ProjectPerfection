@@ -43,6 +43,7 @@ public class Game implements java.io.Serializable
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
+    private boolean resiTutorialDone;
     private boolean recentBattleWon;
     
     private static boolean testing;
@@ -695,6 +696,7 @@ public class Game implements java.io.Serializable
                 // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
                 if(rtb.isWon())
                 {
+                    recentBattleWon = true;
                     if(objective.completedTask(this))
                     {
                         objective.update(this);

@@ -81,13 +81,13 @@ public class Cutscene
      */
     public static void opening()
     {   
-        MainGame.printlnlnWait("The year is 2XXX.", 25, 1000);
-        MainGame.printWait("The world is", 25, 100);
+        MainGame.printlnln("The year is 2XXX.");
+        MainGame.print("The world is");
         MainGame.ellipsis();
-        MainGame.printWait("a place of war. ", 25, 1000);
-        MainGame.printWait("A constant place of distress. ", 25, 1000);
-        MainGame.printlnlnWait("A place of loss. A place where peace is... seldom found.", 25, 1500);
-        MainGame.printlnlnWait("Very, very few can say that they *truly* have peace...", 50, 1000);
+        MainGame.print("a place of war. ");
+        MainGame.print("A constant place of distress. ");
+        MainGame.printlnln("A place of loss. A place where peace is... seldom found.");
+        MainGame.printlnln("Very, very few can say that they *truly* have peace...");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ public class Cutscene
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.printlnlnWait("(After a conference meeting that took place with people buzzing around):", 25, 1000);
+        MainGame.printlnln("(After a conference meeting that took place with people buzzing around):");
         
         MainGame.dialoguelnln("Newscaster", "I'm here to today at the highly anticipated government meeting that hosted "
                 + "special guest,\n\tIrwin Krov. He has been discussing and planning ways to save our corrupted world with "
@@ -149,7 +149,6 @@ public class Cutscene
         //-----------------------------------------------------------------------------------------------------------------------
         
         MainGame.ellipsis();
-        MainGame.wait(1000);
         MainGame.promptToEnter();
         
         print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
@@ -194,17 +193,17 @@ public class Cutscene
                 + "need to be mindful...");
         MainGame.dialoguelnln("Strange Voice 1", "Anahita, is that you?");
         
-        MainGame.printlnlnWait("Anahita screamed in terror by the sudden voice and used her Tsunami Shot attack where the "
-                + "voice came from.\nShe then cowered and held her fingers out for another blind shot.", 25, 1500);
+        MainGame.printlnln("Anahita screamed in terror by the sudden voice and used her Tsunami Shot attack where the "
+                + "voice came from.\nShe then cowered and held her fingers out for another blind shot.");
         MainGame.dialoguelnln("Strange Voice 1", "Ow! Was that necess- (*gasp*) my *hair*!");
         MainGame.dialoguelnln("Strange Voice 2", "Haha! It's a step up from what it was before.");
         MainGame.dialoguelnln("Strange Voice 1", "Oh shut it, Fultra. I spent so long on it today for the festival...");
-        MainGame.printlnlnWait("Anahita realized who the voices belonged to: her best friend Gaea and her boyfriend, Fultra.", 25, 1500);
+        MainGame.printlnln("Anahita realized who the voices belonged to: her best friend Gaea and her boyfriend, Fultra.");
         
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.printlnlnWait("She ran up to them, her hands covering her mouth and a guilty expression.", 25, 1500);
+        MainGame.printlnln("She ran up to them, her hands covering her mouth and a guilty expression.");
         MainGame.dialoguelnln("Anahita", "Oh my gosh! I'm so sorry Gaea. Are you okay?");
         MainGame.dialoguelnln("Gaea", "(*sniff*) I'll be fine... I guess...");
         MainGame.dialoguelnln("Fultra", "You'll know she'll be okay, Ana. She's more concerned about her hair than anything else.");
@@ -218,7 +217,7 @@ public class Cutscene
                 + "back home to see if my family needs help with preparations.");
         MainGame.dialoguelnln("Gaea", "Why don't you let us accompany you? We can stop by Degon afterwards anyway.");
         MainGame.dialoguelnln("Fultra", "And maybe we'll prevent another bad hair day for someone else...");
-        MainGame.printlnlnWait("Gaea then playfully punched Fultra's arm, making Anahita laugh a little.", 25, 1000);
+        MainGame.printlnln("Gaea then playfully punched Fultra's arm, making Anahita laugh a little.");
         MainGame.dialoguelnln("Anahita", "I'd love if you guys could help me! Thank you so much.");
         MainGame.dialoguelnln("Fultra", "Not a problem. You have 'Fearless Thunder' with you, so there's nothing to fear!");
         MainGame.dialoguelnln("Gaea", "(*sigh*) There he goes again, boosting that ego. Come on, Ana. Let's go!");
@@ -226,7 +225,7 @@ public class Cutscene
         MainGame.promptToEnter();
         //---------------------------------------------------------------------------------------------------------------------
         
-        MainGame.printlnlnWait("Congratulations! Gaea and Fultra joined your team!", 25, 150);
+        MainGame.printlnln("Congratulations! Gaea and Fultra joined your team!");
         
         MainGame.promptToEnter();
         
@@ -255,7 +254,7 @@ public class Cutscene
         MainGame.dialoguelnln("Gaea", "But of course! We wouldn't just let you *die* here, right Fultra?");
         MainGame.dialoguelnln("Fultra", "... r-right... yeah...");
         
-        MainGame.printlnlnWait("Gaea punched Fultra on the arm again.", 25, 1500);
+        MainGame.printlnln("Gaea punched Fultra on the arm again.");
         
         MainGame.dialoguelnln("Gaea", "That's not cool Fultra!");
         MainGame.dialoguelnln("Fultra", "Haha, you know I'm kidding! Jokes aside, we're happy to help you anytime, Ana.\n\t"
@@ -991,7 +990,6 @@ public class Cutscene
         print("The room fell quiet for a moment.");
         
         MainGame.ellipsislnln();
-        MainGame.wait(500);
         
         MainGame.dialoguelnln("Gaea", "It's okay, Ana... I'm really, really sorry... All of this has been... terrible...");
         
@@ -1000,7 +998,6 @@ public class Cutscene
         print("The room fell quiet once more.");
         
         MainGame.ellipsislnln();
-        MainGame.wait(500);
         
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();

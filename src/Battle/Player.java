@@ -315,7 +315,6 @@ public class Player extends Character
         MainGame.printlnln("Current stats:");
         MainGame.println(toStringOriginalStats());
         MainGame.printlnln(getName() + "'s XP to next level: " + xpToLevelUp);
-        MainGame.promptToEnter();
     }
     
     public void updateStats()
