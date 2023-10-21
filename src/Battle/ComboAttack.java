@@ -158,7 +158,6 @@ public class ComboAttack extends Attack
         }
         
         MainGame.printlnln("\n" + attacker1.getName() + " and " + attacker2.getName() + " used the combo attack, " + name + "!");
-        MainGame.wait(500);
         
         if(elementEffectiveness1 > 1)
         {
@@ -173,8 +172,6 @@ public class ComboAttack extends Attack
             MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.");
         }
         
-        MainGame.wait(1000);
-        
         if(elementEffectiveness2 > 1)
         {
             MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was super effective!");
@@ -187,8 +184,6 @@ public class ComboAttack extends Attack
         {
             MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.");
         }
-        
-        MainGame.wait(1000);
         
         MainGame.printlnln(attacker1.getName() + " and "  + attacker2.getName() + " dealt " + damage + " HP!");
     }

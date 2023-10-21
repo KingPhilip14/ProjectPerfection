@@ -1208,13 +1208,13 @@ public class MainGame
         
         if(Game.isTesting())
         {
-            fultra.setMaxHealth(999999);
-            fultra.setCurrentHealth(999999);
-            fultra.setAttack(999999);
-            fultra.setDefense(999999);
-            fultra.setRangedAttack(999999);
-            fultra.setRangedDefense(999999);
-            fultra.setSpeed(999999);
+            fultra.setMaxHealth(9999);
+            fultra.setCurrentHealth(9999);
+            fultra.setAttack(9999);
+            fultra.setDefense(9999);
+            fultra.setRangedAttack(9999);
+            fultra.setRangedDefense(9999);
+            fultra.setSpeed(9999);
             fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
             fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
             fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());

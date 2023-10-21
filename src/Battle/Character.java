@@ -68,8 +68,7 @@ public abstract class Character extends GameProperty implements Combatable
     public Stat getRangedAttack() {return rangedAttack;}
     
     @Override
-    public void setRangedAttack(int newRangedAttack) {rangedAttack.setValue(newRangedAttack);
-    }
+    public void setRangedAttack(int newRangedAttack) {rangedAttack.setValue(newRangedAttack);}
     
     @Override
     public Stat getRangedDefense() {return rangedDefense;}
