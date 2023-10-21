@@ -17,6 +17,7 @@ public abstract class Enemy extends Character
     private static ArrayList<BuffAttack> allBuffAttacks; 
     private static ArrayList<DebuffAttack> allDebuffAttacks; 
     private static ArrayList<HealingAttack> allHealingAttacks;
+    protected int totalStatPoints;
     protected boolean isOffensive;
     protected String statSpreadDescription;
     protected String elementDescriptor;
@@ -28,6 +29,7 @@ public abstract class Enemy extends Character
     public Enemy(Wilderness currentLocation)
     {
         createLevel(currentLocation);
+        totalStatPoints = level * 65;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -42,6 +44,7 @@ public abstract class Enemy extends Character
     public Enemy(int level)
     {
         this.level = level;
+        totalStatPoints = level * 65;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -56,6 +59,7 @@ public abstract class Enemy extends Character
     public Enemy(Wilderness currentLocation, int level)
     {
         this.level = level;
+        totalStatPoints = level * 65;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -72,7 +76,10 @@ public abstract class Enemy extends Character
         this.name = name;
         this.description = description;
         this.level = level;
+        totalStatPoints = level * 65;
         this.currentAttacks = knownAttacks;
+        generateStats();
+        populateCurrentAttacks();
     }
     
     public Enemy(String name, String description, int level)
@@ -80,6 +87,7 @@ public abstract class Enemy extends Character
         this.name = name;
         this.description = description;
         this.level = level;
+        totalStatPoints = level * 65;
         generateStats();
         populateCurrentAttacks();
     }
@@ -110,25 +118,23 @@ public abstract class Enemy extends Character
     private void generateStats()
     {
         Random rand = new Random();
-        int totalPoints = level * 60;
-        int lastStatAllocation = rand.nextInt(5);
         
         switch(rand.nextInt(5))
         {
             case 0:
-                offensiveStatSpread(rand, totalPoints, lastStatAllocation);
+                offensiveStatSpread();
                 break;
             case 1: 
-                defensiveStatSpread(rand, totalPoints, lastStatAllocation);
+                defensiveStatSpread();
                 break;
             case 2:
-                physicalStatSpread(rand, totalPoints, lastStatAllocation);
+                physicalStatSpread();
                 break;
             case 3:
-                rangedStatSpread(rand, totalPoints, lastStatAllocation);
+                rangedStatSpread();
                 break;
             case 4: 
-                speedStatSpread(rand, totalPoints, lastStatAllocation);
+                speedStatSpread();
                 break;
         }
         
@@ -137,223 +143,110 @@ public abstract class Enemy extends Character
         this.getRangedAttack().setOriginalValue(this.getRangedAttack().getValue());
         this.getRangedDefense().setOriginalValue(this.getRangedDefense().getValue());
         this.getSpeed().setOriginalValue(this.getSpeed().getValue());
-        
-        roundOffStats(lastStatAllocation);
     }
     
-    private void offensiveStatSpread(Random rand, int totalPoints, int lastStatAllocation)
+    private void offensiveStatSpread()
     {
         isOffensive = true;
         statSpreadDescription = "It looks like it'll pack a punch!";
         
-        this.setMaxHealth(((totalPoints) + (rand.nextInt(50) + 50)));
+        this.setMaxHealth(totalStatPoints - 50);
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to offensive stats
-        this.setAttack(Math.round((int)(totalPoints * 0.5) / 2));
-        this.setRangedAttack(Math.round((int)(totalPoints * 0.5) / 2));
+        this.setAttack((int)Math.round(totalStatPoints * 0.5 / 2));
+        this.setRangedAttack((int)Math.round(totalStatPoints * 0.5 / 2));
 
-        // Assigns 25% of total stat points to defensive stats
-        this.setDefense(Math.round((int)(totalPoints * 0.25) / 2));
-        this.setRangedDefense(Math.round((int)(totalPoints * 0.25) / 2));
+        // Assigns 30% of total stat points to defensive stats
+        this.setDefense((int)Math.round(totalStatPoints * 0.3 / 2));
+        this.setRangedDefense((int)Math.round(totalStatPoints * 0.3 / 2));
 
         // Assigns 20% of total stat points to speed
-        this.setSpeed(Math.round((int)(totalPoints * 0.2)));
-        
-        lastStatAllocation(lastStatAllocation, totalPoints);
-        
-        // Assigns 15 extra points to a defense stat
-        if(rand.nextInt() % 2 == 0)
-        {
-            this.setDefense(defense.getValue() + 15);
-        }
-        else
-        {
-            this.setRangedDefense(rangedDefense.getValue() + 15);
-        }
+        this.setSpeed((int)Math.round(totalStatPoints * 0.2));
     }
     
-    private void defensiveStatSpread(Random rand, int totalPoints, int lastStatAllocation)
+    private void defensiveStatSpread()
     {
         isOffensive = false;
         statSpreadDescription = "It seems to be on careful guard...";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((totalPoints + (rand.nextInt(70) + 50)));
+        this.setMaxHealth(totalStatPoints - 50);
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to defensive stats
-        this.setDefense(Math.round((int)(totalPoints * 0.50) / 2));
-        this.setRangedDefense((int)(totalPoints * 0.50) / 2);
+        this.setDefense((int)Math.round(totalStatPoints * 0.5 / 2));
+        this.setRangedDefense((int)Math.round(totalStatPoints * 0.5 / 2));
 
-        // Assigns 25% of total stat points to offensive stats
-        this.setAttack(Math.round((int)(totalPoints * 0.25) / 2));
-        this.setRangedAttack((int)(totalPoints * 0.25) / 2);
+        // Assigns 35% of total stat points to offensive stats
+        this.setAttack((int)Math.round(totalStatPoints * 0.35 / 2));
+        this.setRangedAttack((int)Math.round(totalStatPoints * 0.35 / 2));
 
         // Assigns 15% of total stat points to speed
-        this.setSpeed(Math.round((int)(totalPoints * 0.15)));
-        
-        lastStatAllocation(lastStatAllocation, totalPoints);
-        
-        // Assigns extra 15 points to an attack stat
-        if(rand.nextInt() % 2 == 0)
-        {
-            this.setAttack(attack.getValue() + 15);
-        }
-        else
-        {
-            this.setRangedAttack(rangedAttack.getValue() + 15);
-        }
+        this.setSpeed((int)Math.round(totalStatPoints * 0.15));
     }
     
-    private void physicalStatSpread(Random rand, int totalPoints, int lastStatAllocation)
+    private void physicalStatSpread()
     {
         isOffensive = new Random().nextBoolean();
-        statSpreadDescription = "It appears to exude a strong persona.";
+        statSpreadDescription = "It appears to have a strong stature!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((totalPoints + (rand.nextInt(80) + 50)));
+        this.setMaxHealth(totalStatPoints - 30);
         this.setCurrentHealth(maxHealth);
         
         // Assigns 50% of total stat points to physical stats
-        this.setAttack(Math.round((int)(totalPoints * 0.50) / 2));
-        this.setDefense((int)(totalPoints * 0.50) / 2);
+        this.setAttack((int)Math.round(totalStatPoints * 0.5 / 2));
+        this.setDefense((int)Math.round(totalStatPoints * 0.5 / 2));
         
         // Assigns 30% of total stat points to ranged stats
-        this.setRangedAttack(Math.round((int)(totalPoints * 0.3) / 2));
-        this.setRangedDefense((int)(totalPoints * 0.3) / 2);
+        this.setRangedAttack((int)Math.round(totalStatPoints * 0.3 / 2));
+        this.setRangedDefense((int)Math.round(totalStatPoints * 0.3 / 2));
         
-        // Assigns 10% of total stat points to speed
-        this.setSpeed(Math.round((int)(totalPoints * 0.1)));
-        
-        lastStatAllocation(lastStatAllocation, totalPoints);
-        
-        // Assigns extra 15 points to a physical stat
-        if(rand.nextInt() % 2 == 0)
-        {
-            this.setAttack(attack.getValue() + 15);
-        }
-        else
-        {
-            this.setDefense(defense.getValue() + 15);
-        }
+        // Assigns 20% of total stat points to speed
+        this.setSpeed((int)Math.round(totalStatPoints * 0.2));
     }
     
-    private void rangedStatSpread(Random rand, int totalPoints, int lastStatAllocation)
+    private void rangedStatSpread()
     {
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It seems like it prefers to keep its distance.";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((totalPoints + (rand.nextInt(40) + 50)));
+        this.setMaxHealth((totalStatPoints - 60));
         this.setCurrentHealth(maxHealth);
         
-        // Assigns 50% of total stat points to ranged stats
-        this.setRangedAttack(Math.round((int)(totalPoints * 0.50) / 2));
-        this.setRangedDefense((int)(totalPoints * 0.50) / 2);
+        // Assigns 60% of total stat points to ranged stats
+        this.setRangedAttack((int)Math.round(totalStatPoints * 0.60 / 2));
+        this.setRangedDefense((int)Math.round(totalStatPoints * 0.60 / 2));
         
-        // Assigns 20% of total stat points to physical stats
-        this.setAttack(Math.round((int)(totalPoints * 0.2) / 2));
-        this.setDefense((int)(totalPoints * 0.2) / 2);
+        // Assigns 18% of total stat points to physical stats
+        this.setAttack((int)Math.round(totalStatPoints * 0.18 / 2));
+        this.setDefense((int)Math.round(totalStatPoints * 0.18 / 2));
         
-        // Assigns 20% of total stat points to speed
-        this.setSpeed(Math.round((int)(totalPoints * 0.2)));
-        
-        lastStatAllocation(lastStatAllocation, totalPoints);
-        
-        // Assigns extra 15 points to a ranged stat
-        if(rand.nextInt() % 2 == 0)
-        {
-            this.setRangedAttack(rangedAttack.getValue() + 15);
-        }
-        else
-        {
-            this.setRangedDefense(rangedDefense.getValue() + 15);
-        }
+        // Assigns 22% of total stat points to speed
+        this.setSpeed((int)Math.round(totalStatPoints * 0.22));
     }
     
-    private void speedStatSpread(Random rand, int totalPoints, int lastStatAllocation)
+    private void speedStatSpread()
     {
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It looks quite nimble!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((totalPoints + (rand.nextInt(65) + 50)));
+        this.setMaxHealth(totalStatPoints - 10);
         this.setCurrentHealth(maxHealth);
         
-        // Assigns 30% of total stat points to speed
-        this.setSpeed(Math.round((int)(totalPoints * 0.3)));
+        // Assigns 25% of total stat points to speed
+        this.setSpeed((int)Math.round(totalStatPoints * 0.25));
         
-        // Assigns 30% of total stat points to physical stats
-        this.setAttack(Math.round((int)(totalPoints * 0.3) / 2));
-        this.setDefense((int)(totalPoints * 0.3) / 2);
+        // Assigns 37% of total stat points to physical stats
+        this.setAttack((int)Math.round(totalStatPoints * 0.37 / 2));
+        this.setDefense((int)Math.round(totalStatPoints * 0.37 / 2));
         
-        // Assigns 30% of total stat points to ranged stats
-        this.setRangedAttack(Math.round((int)(totalPoints * 0.3) / 2));
-        this.setRangedDefense((int)(totalPoints * 0.3) / 2);
-        
-        lastStatAllocation(lastStatAllocation, totalPoints);
-        
-        // Assigns 15 extra points to a defense stat
-        if(rand.nextInt() % 2 == 0)
-        {
-            this.setDefense(defense.getValue() + 15);
-        }
-        else
-        {
-            this.setRangedDefense(rangedDefense.getValue() + 15);
-        }
-    }
-    
-    private void lastStatAllocation(int lastStatAllocation, int totalPoints)
-    {
-        switch (lastStatAllocation) 
-        {
-            case 0:
-                this.setAttack(attack.getValue() + Math.round((int)(totalPoints * 0.05)));
-                break;
-            case 1:
-                this.setDefense(defense.getValue() + Math.round((int)(totalPoints * 0.05)));
-                break;
-            case 2:
-                this.setRangedAttack(rangedAttack.getValue() + Math.round((int)(totalPoints * 0.05)));
-                break;
-            case 3:
-                this.setRangedDefense(rangedDefense.getValue() + Math.round((int)(totalPoints * 0.05)));
-                break;
-            default:
-                this.setSpeed(speed.getValue() + Math.round((int)(totalPoints * 0.05)));
-                break;
-        }
-    }
-    
-    private void roundOffStats(int lastStatAllocation)
-    {
-        int totalPoints = attack.getValue() + defense.getValue() + rangedAttack.getValue() + rangedDefense.getValue() + speed.getValue();
-        
-        if(totalPoints != (level * 60) + 10)
-        {
-            int remainder = ((level * 60) + 10) - totalPoints;
-            
-            switch (lastStatAllocation) 
-            {
-                case 0:
-                    this.setAttack(this.attack.getValue() + remainder);
-                    break;
-                case 1:
-                    this.setDefense(this.defense.getValue() + remainder);
-                    break;
-                case 2:
-                    this.setRangedAttack(this.rangedAttack.getValue() + remainder);
-                    break;
-                case 3:
-                    this.setRangedDefense(this.rangedDefense.getValue() + remainder);
-                    break;
-                default:
-                    this.setSpeed(this.speed.getValue() + remainder);
-                    break;
-            }
-        }
+        // Assigns 38% of total stat points to ranged stats
+        this.setRangedAttack((int)Math.round(totalStatPoints * 0.38 / 2));
+        this.setRangedDefense((int)Math.round(totalStatPoints * 0.38 / 2));
     }
     
     protected int createLevel(boolean isRegular, ArrayList<Player> fightingTeam)
