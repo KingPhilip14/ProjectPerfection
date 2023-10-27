@@ -1307,14 +1307,11 @@ public class MainGame
     public static Player makeFrigs()
     {
         PlayerClass pc = PlayerClass.getPlayerClass("Master Striker");
+        Player frigs;
         
-        Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
-        frigs.setDeathMessage("Tch... Why like this... Anything but this...");
-        frigs.setBattleReadyMessage("We've got this. Just stay cool.");
-        frigs.setCheerReadyMessage("You've got this! I'll be right here.");
-
         if(Game.isInSecondPhase())
         {
+            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for second phase
             frigs.setMaxHealth(1260);
             frigs.setCurrentHealth(1260);
@@ -1326,6 +1323,7 @@ public class MainGame
         }
         else
         {
+            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for first phase 
             frigs.setLevel(10);
             frigs.setMaxHealth(400);  // 10 * 60 = 600
@@ -1337,6 +1335,11 @@ public class MainGame
             frigs.setSpeed(110);
         }
         
+        // Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
+        frigs.setDeathMessage("Tch... Why like this... Anything but this...");
+        frigs.setBattleReadyMessage("We've got this. Just stay cool.");
+        frigs.setCheerReadyMessage("You've got this! I'll be right here.");
+
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
         fimblevetr.setCritRate(0.35);
         fimblevetr.setAccuracy(90);
@@ -1398,16 +1401,11 @@ public class MainGame
     public static Player makeNinlil()
     {
         PlayerClass pc = PlayerClass.getPlayerClass("Guardian Striker");
-        
-        // Instantiating Ninlil and her moveset--------------------------
-        Player ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
-        ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
-        ninlil.setBattleReadyMessage("I'll show you all how it's done.");
-        ninlil.setCheerReadyMessage("... Okay. I'll help you.");
-        ninlil.setAggro(5);
+        Player ninlil;
 
         if(Game.isInSecondPhase())
         {
+            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
             // Instantiating Ninlil's stats for second phase
             ninlil.setMaxHealth(630);
             ninlil.setCurrentHealth(630);
@@ -1419,6 +1417,7 @@ public class MainGame
         }
         else
         {
+            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
             // Instantiating Ninlil's stats for first phase
             ninlil.setLevel(10); // 10 * 60 = 600
             ninlil.setMaxHealth(430);
@@ -1430,7 +1429,10 @@ public class MainGame
             ninlil.setSpeed(75);
         }
 
-        
+        ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
+        ninlil.setBattleReadyMessage("I'll show you all how it's done.");
+        ninlil.setCheerReadyMessage("... Okay. I'll help you.");
+        ninlil.setAggro(5);
         
         OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
         hurricane.setAccuracy(90);

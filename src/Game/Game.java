@@ -730,18 +730,19 @@ public class Game implements java.io.Serializable
         // Reduces the population number by an arbitrary amount to show that the world has changed
         pulchraPopulation = (pulchraPopulation / 3) - 777;
         
+        // Adds new Aquammoda and Degon with less NPCs and adds it to the known locations.
+        knownLocations.set(2, createAquammoda2());
+        knownLocations.set(3, createDegon2());
+
+        // Update the map to remove the 'current location' marker from Zoni City
+        map.updateMap(currentLocation, knownLocations.get(2));
+        
         // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
-        
-        /*
-        Adds new Water and Degons with less NPCs and adds it to the known locations. Sets Aquammoda as the 
-        current location for the player to start in for the second phase.
-        */
-        knownLocations.set(2, createAquammoda2());
+
+        // Sets Aquammoda as current location
         currentLocation = knownLocations.get(2);
-        knownLocations.set(3, createDegon2());
-        
-        
+
         // Removes Frigs and Ninlil from the player's team of characters
         removePlayer("Fultra");
         removePlayer("Frigs");
