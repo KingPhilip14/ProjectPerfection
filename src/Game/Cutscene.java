@@ -828,6 +828,8 @@ public class Cutscene
      */
     public static void invasion2()
     {
+        MainGame.promptToEnter();
+
         print("After a difficult fight, Anahita and the others successfully defeated the R.E.S.I. Bot, leaving a dismantled "
                 + "pile of metal on the ground./A green liquid started seeping out from the remains.");
         
@@ -1002,8 +1004,8 @@ public class Cutscene
         //----------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        MainGame.dialoguelnln("Calmus", "We... we should find the others. Frigs and Ninlil, I mean. We need to confront that "
-                + "man, Irwin, and stop him.");
+        MainGame.dialoguelnln("Calmus", "We... we should find the others. Frigs and Ninlil, I mean. We need to confront "
+                + "Irwin and stop him.");
         
         MainGame.dialoguelnln("Gaea", "I agree, but how would we defeat him? Those robots are already hard enought to fight as "
                 + "is.");
@@ -1081,13 +1083,14 @@ public class Cutscene
      */
     public static void aerogan()
     {
+        MainGame.promptToEnter();
         print("Anahita and the others safely arrived to the Aerogan. There were only a handful of homes that were fully "
                 + "intact. Others/were either damaged, burned, or completely missing. Debris was everywhere, with only a "
                 + "few residents cleaning up.");
         
         MainGame.dialoguelnln("Calmus", "This place is a mess... I wouldn't have expected it to be *this* bad.");
         MainGame.dialoguelnln("Gaea", "I know, it's awful. This place was always so pretty too.");
-        MainGame.dialoguelnln("Anahita", "Yeah...Let's see if we can find Ninlil. Hopefully we find her quickly.");
+        MainGame.dialoguelnln("Anahita", "Yeah... Let's see if we can find Ninlil. Hopefully we find her quickly.");
     }
     
     /**
@@ -1136,7 +1139,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Thank you so much, Elder. We'll go over there to see if we can find her.");
         
         MainGame.dialoguelnln("Elder Nu", "I wish you all the best, children. Be strong.");
-        
+
         MainGame.promptToEnter();
     }
     
@@ -1145,6 +1148,7 @@ public class Cutscene
      */
     public static void tempestTower()
     {
+        MainGame.promptToEnter();
         print("The group arrived to the entrance of Tempest Tower. Its shadow loomed over them. Its peak pierced the sky as "
                 + "clouds/encircled it. It exuded an air of majesty and power. Anahita and Gaea were too breath taken to speak.");
         
@@ -1167,6 +1171,7 @@ public class Cutscene
      */
     public static void foundNinlil()
     {
+        MainGame.promptToEnter();
         MainGame.dialoguelnln("Gaea", "(*pant*) (*pant*) UGH. How much further do we have until we find Ninlil? This is "
                 + "ridiculous.\n\tI *really* need a shower, and it's so COLD up here.");
         

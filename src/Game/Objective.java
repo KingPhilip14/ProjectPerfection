@@ -142,6 +142,7 @@ public class Objective implements Serializable
     {
         if(currentTask.unlocksLocation && currentTask.isAccomplished)
         {
+            MainGame.promptToEnter();
             game.unlockNextLocation();
         }
             

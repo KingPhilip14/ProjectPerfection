@@ -1308,18 +1308,34 @@ public class MainGame
     {
         PlayerClass pc = PlayerClass.getPlayerClass("Master Striker");
         
-        // Instantiating Frigs and his moveset--------------------------
         Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
-        frigs.setMaxHealth(1260);
-        frigs.setCurrentHealth(1260);
-        frigs.setAttack(320);
-        frigs.setDefense(190);
-        frigs.setRangedAttack(290);
-        frigs.setRangedDefense(190);
-        frigs.setSpeed(270);
+
+        if(Game.isInSecondPhase())
+        {
+            // Instantiating Frigs' stats for second phase
+            frigs.setMaxHealth(1260);
+            frigs.setCurrentHealth(1260);
+            frigs.setAttack(320);
+            frigs.setDefense(190);
+            frigs.setRangedAttack(290);
+            frigs.setRangedDefense(190);
+            frigs.setSpeed(270);
+        }
+        else
+        {
+            // Instantiating Frigs' stats for first phase 
+            frigs.setLevel(10);
+            frigs.setMaxHealth(400);  // 10 * 60 = 600
+            frigs.setCurrentHealth(400);
+            frigs.setAttack(180);
+            frigs.setDefense(70);
+            frigs.setRangedAttack(170);
+            frigs.setRangedDefense(70);
+            frigs.setSpeed(110);
+        }
         
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
         fimblevetr.setCritRate(0.35);
@@ -1389,13 +1405,32 @@ public class MainGame
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
         ninlil.setAggro(5);
-        ninlil.setMaxHealth(630);
-        ninlil.setCurrentHealth(630);
-        ninlil.setAttack(120);
-        ninlil.setDefense(120);
-        ninlil.setRangedAttack(350);
-        ninlil.setRangedDefense(125);
-        ninlil.setSpeed(125);
+
+        if(Game.isInSecondPhase())
+        {
+            // Instantiating Ninlil's stats for second phase
+            ninlil.setMaxHealth(630);
+            ninlil.setCurrentHealth(630);
+            ninlil.setAttack(120);
+            ninlil.setDefense(120);
+            ninlil.setRangedAttack(350);
+            ninlil.setRangedDefense(125);
+            ninlil.setSpeed(125);
+        }
+        else
+        {
+            // Instantiating Ninlil's stats for first phase
+            ninlil.setLevel(10); // 10 * 60 = 600
+            ninlil.setMaxHealth(430);
+            ninlil.setCurrentHealth(430);
+            ninlil.setAttack(75);
+            ninlil.setDefense(100);
+            ninlil.setRangedAttack(250);
+            ninlil.setRangedDefense(100);
+            ninlil.setSpeed(75);
+        }
+
+        
         
         OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
         hurricane.setAccuracy(90);
