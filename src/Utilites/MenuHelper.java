@@ -3,9 +3,7 @@
  */
 package Utilites;
 
-import Battle.Player;
 import Game.MainGame;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -30,6 +28,7 @@ public class MenuHelper
         {
             invalidResponse = scan.nextLine();
 //            System.out.println(invalidMessage);
+            System.out.println();
             MainGame.printlnln(message);
 //            System.out.println(message);
         }
@@ -38,12 +37,14 @@ public class MenuHelper
         while(input < min || input > max)
         {
             invalidResponse = scan.nextLine();
+            System.out.println();
             MainGame.printlnln(message);
 //            System.out.println(invalidMessage);
             
             while(!scan.hasNextInt())
             {
                 invalidResponse = scan.nextLine();
+                System.out.println();
                 MainGame.printlnln(message);
 //                System.out.println(invalidMessage);
             }

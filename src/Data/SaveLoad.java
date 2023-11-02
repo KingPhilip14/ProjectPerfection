@@ -38,7 +38,7 @@ public class SaveLoad
             DataManager dm = (DataManager) ois.readObject();
             
             // Write the data from the file into a Game object and return it
-            Game game = new Game(false);
+            Game game = new Game(dm.isTesting());
             game.setBeachTutorialDone(dm.isBeachTutorialDone());
             game.setForestTutorialDone(dm.isForestTutorialDone());
             game.setRecentBattleWon(dm.isRecentBattleWon());

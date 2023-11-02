@@ -16,14 +16,12 @@ public class Player extends Character
     private ArrayList<PlayerClass> otherClasses = new ArrayList<>();
     private int currentXP;
     private int xpToLevelUp;
-    private int aggro;
+    // private int aggro;
     private static final int BASE_XP = 75;
     private PlayerClass playerClass;
     private String deathMessage;
     private String battleReadyMessage;
     private String cheerReadyMessage;
-    private String primaryRole;
-    private String secondaryRole;
     private Player cheerPartner;
     private Player playerToCheer;
     
@@ -33,15 +31,12 @@ public class Player extends Character
         super.description = description;
         super.element = element;
         this.playerClass = playerClass;
-        this.primaryRole = playerClass.getPrimaryRole();
-        this.secondaryRole = playerClass.getSecondaryRole();
         super.level = level;
         this.listOfOtherAttacks = new ArrayList<>();
         super.currentAttacks = new ArrayList<>();
         currentXP = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4);
 //        currentXP = 0;
         xpToLevelUp = currentXP;
-        aggro = 0;
         
         populateListsOfStats();
     }
@@ -63,8 +58,8 @@ public class Player extends Character
     public int getCurrentXP() {return currentXP;}
     public int getXPToNextLV() {return xpToLevelUp;}
     
-    public int getAggro() {return aggro;}
-    public void setAggro(int newAggro) {aggro = newAggro;}
+    public int getAggro() {return playerClass.getAggro();}
+    public void setAggro(int newAggro) {playerClass.setAggro(newAggro);}
     
     public PlayerClass getPlayerClass() {return playerClass;}
     
@@ -75,8 +70,6 @@ public class Player extends Character
     public void setPlayerClass(PlayerClass pc) 
     {
         this.playerClass = pc;
-        this.primaryRole = pc.getPrimaryRole();
-        this.secondaryRole = pc.getSecondaryRole();
     }
     
     public String getPrimaryRole() {return this.playerClass.getPrimaryRole();}
@@ -315,7 +308,6 @@ public class Player extends Character
         MainGame.printlnln("Current stats:");
         MainGame.println(toStringOriginalStats());
         MainGame.printlnln(getName() + "'s XP to next level: " + xpToLevelUp);
-        MainGame.promptToEnter();
     }
     
     public void updateStats()
@@ -831,52 +823,52 @@ public class Player extends Character
         
         if(attack instanceof OffensiveAttack)
         {
-            amount = ((OffensiveAttack)attack).getBaseDamage();
-            amount = (amount / 10);
+            amount = (int)Math.round(((OffensiveAttack)attack).getBaseDamage() / 10);
+            // amount = (amount / 10);
         }
         else if(attack instanceof BuffAttack)
         {
-            amount = (int)((BuffAttack)attack).getBuffModifier() * 10;
-            amount += 15;
+            amount = (int)Math.round(((BuffAttack)attack).getBuffModifier() * 10) + 5;
+            // amount += 15;
         }
         else if(attack instanceof DebuffAttack)
         {
-            amount = (int)((DebuffAttack)attack).getDebuffModifier() * 10;
-            amount += 20;
+            amount = (int)Math.round(((DebuffAttack)attack).getDebuffModifier() * 10) + 7;
+            // amount += 20;
         }
         else if(attack instanceof SingleHealingAttack)
         {
-            amount = (int)((SingleHealingAttack)attack).getHealingRate() * 10;
-            amount += 25;
+            amount = (int)Math.round(((SingleHealingAttack)attack).getHealingRate() * 10) + 7;
+            // amount += 25;
         }
         else if(attack instanceof TeamHealingAttack)
         {
-            amount = (int)((TeamHealingAttack)attack).getHealingRate() * 10;
-            amount += 35;
+            amount = (int)Math.round(((TeamHealingAttack)attack).getHealingRate() * 10) + 10;
+            // amount += 35;
         }
         else if(attack instanceof ComboAttack)
         {
-            amount = ((ComboAttack) attack).getBaseDamage();
-            amount = (amount / 10) + 15;
+            amount = (int)Math.round(((ComboAttack) attack).getBaseDamage() / 10) + 7;
+            // amount = (amount / 10) + 15;
         }
         
         amount = multiplyAggroAmount(amount);
-        aggro += amount;
+        playerClass.increaseAggro(amount);
     }
     
     private int multiplyAggroAmount(int amount)
     {
         if(playerClass.isMasterTank())
         {
-            amount = Math.round(amount * 2);
+            amount = (int)Math.round(amount * 1.75);
         }
         else if(playerClass.isPrimaryTank())
         {
-            amount = (int)Math.round(amount * 1.75);
+            amount = (int)Math.round(amount * 1.5);
         }
         else if(playerClass.isSecondaryTank())
         {
-            amount = (int)Math.round(amount * 1.5);
+            amount = (int)Math.round(amount * 1.25);
         }
         
         return amount;
@@ -884,18 +876,19 @@ public class Player extends Character
     
     public void resetAggro()
     {
-        if(playerClass.isPrimaryTank())
-        {
-            aggro = 10;
-        }
-        else if(playerClass.isSecondaryTank())
-        {
-            aggro = 5;
-        }
-        else
-        {
-            aggro = 0;
-        }
+        playerClass.resetAggro();
+        // if(playerClass.isPrimaryTank())
+        // {
+        //     aggro = 10;
+        // }
+        // else if(playerClass.isSecondaryTank())
+        // {
+        //     aggro = 5;
+        // }
+        // else
+        // {
+        //     aggro = 0;
+        // }
     }
     
     /**

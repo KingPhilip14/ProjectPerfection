@@ -43,6 +43,7 @@ public class Game implements java.io.Serializable
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
+    private boolean resiTutorialDone;
     private boolean recentBattleWon;
     
     private static boolean testing;
@@ -417,7 +418,6 @@ public class Game implements java.io.Serializable
                     optionsMenu();
                     break;
             }
-            
 //            MainGame.waitForEnter();
         }
         // If the current location is of type Wildnerness
@@ -514,7 +514,7 @@ public class Game implements java.io.Serializable
     
     private void introduceNewLocation()
     {
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         MainGame.printWithRandomLetters("Welcome to " + currentLocation.getName() + ":");
         MainGame.printlnln("\n" + currentLocation.getDescription());
     }
@@ -664,7 +664,7 @@ public class Game implements java.io.Serializable
         // If npc has been talked to and the objective successfully updated, unlock the next location. Only in second phase
         else if(talkedToSpecificPerson() && objective.completedTask(this))
         {   
-            MainGame.clearScreen();
+            // MainGame.promptToEnter();
 //            unlockNextLocation();
             objective.update(this);
 //            objective.updateByNpc(town);
@@ -695,6 +695,7 @@ public class Game implements java.io.Serializable
                 // If the battle is won, the player can move on, and the next cutscene plays. The second phase starts here
                 if(rtb.isWon())
                 {
+                    recentBattleWon = true;
                     if(objective.completedTask(this))
                     {
                         objective.update(this);
@@ -719,42 +720,38 @@ public class Game implements java.io.Serializable
     
     private void startSecondPhase()
     {
-        if(!testing)
-        {
+        // if(!testing)
+        // {
             Cutscene.invasion2();
-        }   
+        // }   
         
         inSecondPhase = true;
         
         // Reduces the population number by an arbitrary amount to show that the world has changed
-        pulchraPopulation = (pulchraPopulation / 3) - 600;
+        pulchraPopulation = (pulchraPopulation / 3) - 777;
+        
+        // Adds new Aquammoda and Degon with less NPCs and adds it to the known locations.
+        knownLocations.set(2, createAquammoda2());
+        knownLocations.set(3, createDegon2());
+
+        // Update the map to remove the 'current location' marker from Zoni City
+        map.updateMap(currentLocation, knownLocations.get(2));
         
         // Removes Zoni City from the known locations. The player can no longer go there until unlocked again.
         knownLocations.remove(knownLocations.size() - 1);
-        
-        /*
-        Adds new Water and Degons with less NPCs and adds it to the known locations. Sets Aquammoda as the 
-        current location for the player to start in for the second phase.
-        */
-        knownLocations.set(2, createAquammoda2());
+
+        // Sets Aquammoda as current location
         currentLocation = knownLocations.get(2);
-        knownLocations.set(3, createDegon2());
-        
-        
+
         // Removes Frigs and Ninlil from the player's team of characters
         removePlayer("Fultra");
         removePlayer("Frigs");
         removePlayer("Ninlil");
         
-        if(testing)
-        {
-            setPlayerLevels(11);
-        }
-        
-        if(!testing)
-        {
+        // if(!testing)
+        // {
             Cutscene.postInvasion();
-        }
+        // }
     }
     
     /**
@@ -1234,7 +1231,7 @@ public class Game implements java.io.Serializable
     private void locationUnlocked()
     {
 //        MainGame.clearScreen();
-        MainGame.promptToEnter();
+        // MainGame.promptToEnter();
         MainGame.printlnln("Congratulations! You can now travel to " + nextLocation.getName() + "!");
         
         // Removes the location from the overall ArrayList to the known ArrayList
@@ -1416,7 +1413,6 @@ public class Game implements java.io.Serializable
                     break;
                 default:
                     MainGame.printlnln("\n" + player.toOverallString());
-                    MainGame.waitForEnter();
                     break;
             }
         }
@@ -1435,7 +1431,6 @@ public class Game implements java.io.Serializable
                     break;
                 default:
                     MainGame.printlnln("\n" + player.toOverallString());
-                    MainGame.waitForEnter();
                     break;
             }
         }

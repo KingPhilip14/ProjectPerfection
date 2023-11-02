@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public class DataManager implements Serializable
 {
+    private boolean isTesting;
+
     // Game information
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
@@ -47,6 +49,8 @@ public class DataManager implements Serializable
     
     public DataManager(Game game)
     {
+        isTesting = Game.isTesting();
+
         beachTutorialDone = game.isBeachTutorialDone();
         forestTutorialDone = game.isForestTutorialDone();
         recentBattleWon = game.isRecentBattleWon();
@@ -74,6 +78,10 @@ public class DataManager implements Serializable
         pulchraPopulation = game.getPulchraPopulation();
         map = game.getMap();
         inventory = Game.getInventory();
+    }
+
+    public boolean isTesting() {
+        return isTesting;
     }
 
     public boolean isBeachTutorialDone() {

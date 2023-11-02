@@ -186,6 +186,8 @@ public class ComboAttack extends Attack
         }
         
         MainGame.printlnln(attacker1.getName() + " and "  + attacker2.getName() + " dealt " + damage + " HP!");
+
+        MainGame.promptToEnter();
     }
     
     public void attack(Player attacker1, Player attacker2, Enemy target)
