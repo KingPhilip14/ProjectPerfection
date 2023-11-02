@@ -14,12 +14,16 @@ public class PlayerClass implements Serializable
     private String secondaryRole;
     private static ArrayList<PlayerClass> listOfClasses = new ArrayList<>();
     private String statSpread;
+    private int baseAggro;
+    private int aggro;
     
-    private PlayerClass(String className, String primaryRole, String secondaryRole)
+    private PlayerClass(String className, String primaryRole, String secondaryRole, int baseAggro)
     {
         this.className = className;
         this.primaryRole = primaryRole;
         this.secondaryRole = secondaryRole;
+        this.baseAggro = baseAggro;
+        this.aggro = baseAggro; // aggro value will always start at the base value
     }
     
     public String getSpecificClassName()
@@ -40,7 +44,17 @@ public class PlayerClass implements Serializable
     
     public String getStatSpread() {return this.statSpread;}
     public String getTabbedStatSpread() {return  "\t" + this.statSpread;}
+
+    public int getBaseAggro() {return this.baseAggro;}
+    public void setBaseAggro(int newAggro) {this.baseAggro = newAggro;}
+
+    public int getAggro() {return this.aggro;}
+    public void setAggro(int newAggro) {this.aggro = newAggro;}
+
+    public void resetAggro() {this.aggro = this.baseAggro;}
     
+    public void increaseAggro(int amount) {aggro += amount;}
+
     public static String getClassName(String toLookFor)
     {
         String name = "";
@@ -57,37 +71,37 @@ public class PlayerClass implements Serializable
     
     public static void createClasses()
     {
-        PlayerClass masterClerk = new PlayerClass("Master Clerk", "Clerk", "Clerk");
+        PlayerClass masterClerk = new PlayerClass("Master Clerk", "Clerk", "Clerk", 0);
         masterClerk.statSpread = masterClerk.masterClerkStatSpread();
         
-        PlayerClass passiveClerk = new PlayerClass("Passive Clerk", "Clerk", "Tank");
+        PlayerClass passiveClerk = new PlayerClass("Passive Clerk", "Clerk", "Tank", 5);
         passiveClerk.statSpread = passiveClerk.passiveClerkStatSpread();
         
-        PlayerClass hyperClerk = new PlayerClass("Hyper Clerk", "Clerk", "Striker");
+        PlayerClass hyperClerk = new PlayerClass("Hyper Clerk", "Clerk", "Striker", 0);
         hyperClerk.statSpread = hyperClerk.hyperClerkStatSpread();
         
         
-        PlayerClass masterTank = new PlayerClass("Master Tank", "Tank", "Tank");
+        PlayerClass masterTank = new PlayerClass("Master Tank", "Tank", "Tank", 15);
         masterTank.statSpread = masterTank.masterTankStatSpread();
         
-        PlayerClass wildTank = new PlayerClass("Wild Tank", "Tank", "Striker");
+        PlayerClass wildTank = new PlayerClass("Wild Tank", "Tank", "Striker", 10);
         wildTank.statSpread = wildTank.wildTankStatSpread();
         
-        PlayerClass holyTank = new PlayerClass("Holy Tank", "Tank", "Clerk");
+        PlayerClass holyTank = new PlayerClass("Holy Tank", "Tank", "Clerk", 10);
         holyTank.statSpread = holyTank.holyTankStatSpread();
 
         
-        PlayerClass masterStriker = new PlayerClass("Master Striker", "Striker", "Striker");
+        PlayerClass masterStriker = new PlayerClass("Master Striker", "Striker", "Striker", 0);
         masterStriker.statSpread = masterStriker.masterStrikerStatSpread();
         
-        PlayerClass tranquilStriker = new PlayerClass("Tranquil Striker", "Striker", "Clerk");
+        PlayerClass tranquilStriker = new PlayerClass("Tranquil Striker", "Striker", "Clerk", 0);
         tranquilStriker.statSpread = tranquilStriker.tranquilStrikerStatSpread();
         
-        PlayerClass guardianStriker = new PlayerClass("Guardian Striker", "Striker", "Tank");
+        PlayerClass guardianStriker = new PlayerClass("Guardian Striker", "Striker", "Tank", 5);
         guardianStriker.statSpread = guardianStriker.guardianStrikerStatSpread();
         
         
-        PlayerClass allRounder = new PlayerClass("All-Rounder", "All-Rounder", "All-Rounder");
+        PlayerClass allRounder = new PlayerClass("All-Rounder", "All-Rounder", "All-Rounder", 0);
         allRounder.statSpread = allRounder.allRounderStatSpread();
         
         listOfClasses.add(masterClerk);

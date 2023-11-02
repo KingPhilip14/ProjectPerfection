@@ -524,15 +524,16 @@ public class MainGame
         try
         {
             game = saveLoad.load();
-            game.startGame();
         }
         catch(Exception e)
         {
             printlnln("There is no game data saved currently. Starting a new game instead.");
             promptToEnter();
-            game = new Game(false);
-            game.startGame();
+            game = new Game(Game.isTesting());
         }
+
+        
+        game.startGame();
     }
         
     
@@ -1092,7 +1093,7 @@ public class MainGame
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
-        gaea.setAggro(5);
+        // gaea.setAggro(5);
         gaea.setMaxHealth(245);
         gaea.setCurrentHealth(245);
         gaea.setAttack(65);
@@ -1241,7 +1242,7 @@ public class MainGame
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setAggro(10);
+        // calmus.setAggro(10);
         calmus.setMaxHealth(360);
         calmus.setCurrentHealth(360);
         calmus.setAttack(140);
@@ -1432,7 +1433,7 @@ public class MainGame
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
-        ninlil.setAggro(5);
+        // ninlil.setAggro(5);
         
         OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
         hurricane.setAccuracy(90);
