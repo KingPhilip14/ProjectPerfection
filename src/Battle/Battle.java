@@ -2,6 +2,7 @@ package Battle;
 
 import Game.Game;
 import Game.MainGame;
+import java.io.Serializable;
 import Utilites.MenuHelper;
 import Utilites.EnemySpeedComparator;
 import Utilites.LinkedQueue;
@@ -14,7 +15,7 @@ import java.util.Random;
  * A class for starting, processing, and ending battles.
  * @author Ian King
  */
-public abstract class Battle implements java.io.Serializable
+public abstract class Battle implements Serializable
 {
     private static int currentTurn;
     protected int baseGoldAmt = 100;
@@ -1943,7 +1944,7 @@ public abstract class Battle implements java.io.Serializable
     }
     
     // private nested battle interface class------------------------------------
-    private class BattleInterface
+    private class BattleInterface implements Serializable
     {
         private ArrayList<Enemy> enemyTeam;
         private ArrayList<Player> playerFightingTeam;

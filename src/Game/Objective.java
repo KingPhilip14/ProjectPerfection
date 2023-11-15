@@ -6,6 +6,7 @@ import Exploration.NPC;
 import Exploration.Town;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * A class for managing boolean values and keeping track of the player's progress. It will also force the player to 
@@ -32,8 +33,7 @@ public class Objective implements Serializable
     private boolean foundNinlil;
     private boolean atInfol;
     private boolean talkedToElderVulca;
-    private boolean atMountVulcan;
-    private boolean foundMinerals;
+    private boolean atMountVolcan;
     private boolean talkedToLyra;
     private boolean atMountZoni;
     private boolean atSolice;
@@ -46,6 +46,9 @@ public class Objective implements Serializable
     private boolean returnedZoniCity;
     
     // Boss battle booleans
+    private boolean ninlilBossDefeated;
+    private boolean omegaBossDefeated;
+    private boolean frgisBossDefeated;
     private boolean fultraBossDefeated;
     private boolean irwinBossDefeated;
     private boolean finalBossDefeated;
@@ -64,41 +67,45 @@ public class Objective implements Serializable
         unfinsihedTasks.add(new TravelTask("Travel to Aquammoda", atAquammoda, "Aquammoda", false));
         unfinsihedTasks.add(new NpcTask("Talk to Merda", talkedToMerda, "Merda", false));
         unfinsihedTasks.add(new LevelTask("Unlock Degon (Required Level: 9)", atDegon, 9, true));
-//        unfinsihedTasks.add(new PrereqTask("Unlock Degon (Required Level: 9)", atDegon, 
-//                new Task[] {unfinsihedTasks.get(2), new LevelTask("Required Level: 9", false, 9, false)}, true));
         unfinsihedTasks.add(new TravelTask("Travel to Degon", atDegon, "Degon", false));
         unfinsihedTasks.add(new NpcTask("Talk to Fleur", talkedToFleur, "Fleur", false));
         unfinsihedTasks.add(new LevelTask("Unlock Zoni City (Required Level: 10)", false, 10, true));
-//        unfinsihedTasks.add(new PrereqTask("Unlock Zoni City (Required Level: 10)", false, 
-//                new Task[] {unfinsihedTasks.get(4), new LevelTask("Required Level: 10", false, 10, false)}, true));
         unfinsihedTasks.add(new TravelTask("Travel to Zoni City", atZoniCity, "Zoni City", false));
         unfinsihedTasks.add(new NpcTask("Enjoy the festival and talk to everyone!", talkedToEveryone, "", false));
+
+        // Second phase 
         unfinsihedTasks.add(new LevelTask("Unlock Aerogan (Required Level: 12)", false, 12, true));
         unfinsihedTasks.add(new TravelTask("Travel to Aerogan", atAerogan, "Aerogan", false));
         unfinsihedTasks.add(new NpcTask("Talk to Elder Nu", talkedToElderNu, "Elder Nu", true));
         unfinsihedTasks.add(new TravelTask("Travel to Tempest Tower", atTempestTower, "Tempest Tower", false));
-        unfinsihedTasks.add(new BattleTask("Find Ninlil in Tempest Tower (Required Level: 14)", foundNinlil, false));
+        unfinsihedTasks.add(new LevelTask("Find Ninlil in Tempest Tower (Required Level: 14)", foundNinlil, 14, false));
+        unfinsihedTasks.add(new BattleTask("Battle Ninlil", ninlilBossDefeated, true));
         unfinsihedTasks.add(new LevelTask("Unlock Infol (Required Level: 16)", false, 16, true));
         unfinsihedTasks.add(new TravelTask("Travel to Infol", atInfol, "Infol", false));
         unfinsihedTasks.add(new NpcTask("Talk to Elder Vulca", talkedToElderVulca, "Elder Vulca", true));
-        unfinsihedTasks.add(new TravelTask("Travel to Mount Volcan", atMountVulcan, "Mount Vulcan", false));
-        unfinsihedTasks.add(new BattleTask("Find the mineral for Elder Vulca (Required Level: 17)", foundMinerals, false));
+        unfinsihedTasks.add(new TravelTask("Travel to Mount Volcan", atMountVolcan, "Mount Volcan", false));
+        unfinsihedTasks.add(new LevelTask("Find the mineral for Elder Vulca (Required Level: 17)", false, 17, false));
+        unfinsihedTasks.add(new BattleTask("Defeat the boss to mine the mineral", omegaBossDefeated, false));
         unfinsihedTasks.add(new NpcTask("Talk to Lyra", talkedToLyra, "Lyra", true));
         unfinsihedTasks.add(new TravelTask("Travel to Mount Zoni", atMountZoni, "Mount Zoni", false));
         unfinsihedTasks.add(new LevelTask("Unlock Solice (Required Level: 20)", false, 20, true));
         unfinsihedTasks.add(new TravelTask("Travel to Solice", atSolice, "Solice", false));
         unfinsihedTasks.add(new NpcTask("Talk to Elder Zeno", talkedToElderZeno, "Elder Zeno", true));
         unfinsihedTasks.add(new TravelTask("Travel to Mount Zoni Summit", atSummit, "Mount Zoni Summit", false));
-        unfinsihedTasks.add(new BattleTask("Find Frigs (Required Level: 21)", foundFrigs, false));
+        unfinsihedTasks.add(new LevelTask("Find Frigs (Required Level: 21)", false, 21, false));
+        unfinsihedTasks.add(new BattleTask("Battle Frigs", frgisBossDefeated, false));
         unfinsihedTasks.add(new LevelTask("Unlock Forlorn Cave (Required Level: 23)", false, 23, true));
         unfinsihedTasks.add(new TravelTask("Travel to Forlorn Cave", atForlornCave, "Forlorn Cave", false));
         unfinsihedTasks.add(new LevelTask("Unlock Elerric (Required Level: 25)", false, 25, true));
         unfinsihedTasks.add(new TravelTask("Travel to Elerric", atElerric, "Elerric", false));
         unfinsihedTasks.add(new NpcTask("Talk to Elder Clairdra", talkedToElderClairdra, "Elder Clairdra", true));
         unfinsihedTasks.add(new TravelTask("Return to Zoni City", returnedZoniCity, "Zoni City", false));
-        unfinsihedTasks.add(new BattleTask("Search for Irwin (Required Level: 27)", fultraBossDefeated, false));
-        unfinsihedTasks.add(new BattleTask("Find Irwin again (Required Level: 28)", irwinBossDefeated, false));
-        unfinsihedTasks.add(new BattleTask("Restore Pulchra's peace (Required Level: 30)", finalBossDefeated, false));
+        unfinsihedTasks.add(new LevelTask("Search for Irwin (Required Level: 27)", false, 27, false));
+        unfinsihedTasks.add(new BattleTask("Defeat the incoming boss", fultraBossDefeated, false));
+        unfinsihedTasks.add(new LevelTask("Search for Irwin again (Required Level: 28)", false, 28, false));
+        unfinsihedTasks.add(new BattleTask("Defeat Irwin", irwinBossDefeated, false));
+        unfinsihedTasks.add(new LevelTask("Find where Irwin fled to (Required Level: 30)", false, 30, false));
+        unfinsihedTasks.add(new BattleTask("Defeat Irwin one last time", finalBossDefeated, false));
     }
     
     public void updateByTest()
@@ -114,21 +121,14 @@ public class Objective implements Serializable
     
     public boolean completedTask(Game game)
     {
+        // The Game class will manually update for Battles
         if(currentTask instanceof LevelTask)
         {
             return metLevelReq(Player.highestPlayerLV(game.getTeam()));
         }
-        else if(currentTask instanceof NpcTask)
+        else if(currentTask instanceof NpcTask && game.getCurrentLocation() instanceof Town)
         {
             return metNpcReq((Town)game.getCurrentLocation());
-        }
-        else if(currentTask instanceof PrereqTask)
-        {
-            return metPrereqs();
-        }
-        else if(currentTask instanceof BattleTask)
-        {
-            return game.getRecentBattleResult();
         }
         else if(currentTask instanceof TravelTask)
         {
@@ -178,23 +178,6 @@ public class Objective implements Serializable
 //        return false;
     }
     
-    public void updateByPrereq()
-    {
-        // If the current task doesn't have a prereq, don't do anything
-//        if(!(currentTask instanceof PrereqTask)) {return;}
-        
-        if(metPrereqs())
-        {
-            completeTask();
-        }
-    }
-    
-    public boolean metPrereqs()
-    {
-        currentTask.isAccomplished = ((PrereqTask)currentTask).completedPrereqs();
-        return currentTask.isAccomplished;
-    }
-    
     public void updateByBattleResult(boolean wonBattle)
     {
         // If the current task isn't to win a battle, don't do anything
@@ -224,7 +207,10 @@ public class Objective implements Serializable
     
     public boolean metTravelReq(Location place)
     {
-        currentTask.isAccomplished = place.getName().equals(((TravelTask)currentTask).getPlaceName()) && !place.isExplored();
+        String currentPlaceName = place.getName();
+        String taskPlaceName = ((TravelTask)currentTask).getPlaceName();
+        // currentTask.isAccomplished = place.getName().equals(((TravelTask)currentTask).getPlaceName()) && !place.isExplored();
+        currentTask.isAccomplished = currentPlaceName.equals(taskPlaceName) && !place.isExplored();
         return currentTask.isAccomplished;
     }
     
@@ -309,47 +295,6 @@ public class Objective implements Serializable
     */
     
     // Private classes -----------------------------------------------------------------------------------------------------
-    private class PrereqTask extends Task
-    {
-        private Task[] prereqs;
-        private int reqLevel;
-        
-//        private PrereqTask(String taskDescription, boolean accomplished, boolean[] prereqs)
-//        {
-//            super(taskDescription, accomplished);
-//            this.prereqs = prereqs;
-//        }
-//        
-//        private PrereqTask(String taskDescription, boolean accomplished, boolean[] prereqs, int level)
-//        {
-//            super(taskDescription, accomplished);
-//            this.prereqs = prereqs;
-//            this.reqLevel = level;
-//        }
-        
-        private PrereqTask(String taskDescription, boolean accomplished, Task[] prereqs, boolean unlocksLocation)
-        {
-            super(taskDescription, accomplished, unlocksLocation);
-            this.prereqs = prereqs;
-        }
-        
-        private int getRequiredLevel() {return reqLevel;}
-        
-        private boolean completedPrereqs() 
-        {
-            for(Task t : prereqs)
-            {
-                
-                if(!t.isAccomplished)
-                {
-                    return t.isAccomplished;
-                }
-            }
-            
-            return true;
-        }
-    }
-    
     private class BattleTask extends Task
     {
         private BattleTask(String taskDescription, boolean accomplished, boolean unlocksLocation)

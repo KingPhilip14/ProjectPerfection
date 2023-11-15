@@ -1171,7 +1171,6 @@ public class Cutscene
      */
     public static void foundNinlil()
     {
-        MainGame.promptToEnter();
         MainGame.dialoguelnln("Gaea", "(*pant*) (*pant*) UGH. How much further do we have until we find Ninlil? This is "
                 + "ridiculous.\n\tI *really* need a shower, and it's so COLD up here.");
         
@@ -1270,6 +1269,8 @@ public class Cutscene
      */
     public static void defeatedNinlil()
     {
+        MainGame.promptToEnter();
+
         print("After a fierce fight, Anahita was claimed the victor. Both Anahita and Ninlil were panting from the fight as "
                 + "Gaea and Calmus/smiled at the victory. However, their smiles quickly dropped as Ninlil fell to her knees "
                 + "and started sobbing./Between tears and gasps of air, she spoke.");
@@ -1355,9 +1356,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("Congratulations! Ninlil joined your party!");
-        
-        MainGame.promptToEnter();
+        print("Congratulations! Ninlil joined your party!");        
     }
     
     public static void infol()
@@ -1447,6 +1446,8 @@ public class Cutscene
      */
     public static void mountVulca()
     {
+        MainGame.promptToEnter();
+        
         print("The group made it safely to the base of Mount Volcan and started climbing. Simply being at the base of "
                 + "the volcano/caused all the girls to sweat from the heat. Calmus felt perfectly fine.");
         
@@ -1482,8 +1483,6 @@ public class Cutscene
                 + "We'll have to proceed with caution.");
         
         print("The girls nodded, and Calmus continued to lead them through the rocky paths.");
-        
-        MainGame.promptToEnter();
     }
     
     /**
@@ -1548,9 +1547,11 @@ public class Cutscene
      */
     public static void defeatedOmega()
     {
+        MainGame.promptToEnter();
+
         MainGame.dialoguelnln("R.E.S.I. Omega", "S Y s T 3 M  F 4 1 L U R 3 ,  5 Y 5 T 3 M  f 4 I L u R 3 .\n\t"
                 + "S Y 5 t 3 M 5  4 R e  5 H u t t I N G\n\t"
-                + "DO0OO0000OOOOOOO0OOOO0OOOO0O0OOoooooooooooooooooooooo--");
+                + "DO0OO0000OOOOOOO0OOOO0OOOO0O0OOoo0oo0000o0o0o0o0o0ooooooo--");
         
         print("After a gruesome fight, the group defeat the R.E.S.I. Bot. As it shut down, some of its parts fell off, and "
                 + "its flashing/lights dimmed into darkness. The group celebrated and gave each other high fives for their "
@@ -1620,8 +1621,6 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Could be! But we have it all now, so let's turn back to help Lyra and the Elder!");
         
         print("The group nodded and turned around to get back to the Infol.");
-        
-        MainGame.promptToEnter();
     }
     
     /**
@@ -1692,6 +1691,8 @@ public class Cutscene
      */
     public static void mountZoni()
     {
+        MainGame.promptToEnter();
+
         print("As the group arrived to the base of Mount Zoni, Gaea sulked just looking at the size of it and its frozen "
                 + "peak./The wind started to pick up, causing her to shiver.");
         
@@ -1709,8 +1710,6 @@ public class Cutscene
         
         MainGame.dialoguelnln("Gaea", "No... But we might as well start climbing... *again*. I better be ripped at the "
                 + "end of this expedition.");
-        
-        MainGame.promptToEnter();
     }
     
     /**
@@ -1718,6 +1717,8 @@ public class Cutscene
      */
     public static void solice()
     {
+        MainGame.promptToEnter();
+
         print("The group finally made it near the summit of Mount Zoni -- Solice. Everyone was crowded against Calmus "
                 + "who was a/human heat generator at this point.");
         
@@ -1855,6 +1856,8 @@ public class Cutscene
     
     public static void defeatedFrigs()
     {
+        MainGame.promptToEnter();
+
         print("Ninlil and Frigs were both panting from the fight, Ninlil the victor. Frigs looked at the sky and smiled, the "
                 + "cold winds/making his hair blow around. More tears came.");
         
@@ -1939,8 +1942,6 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("Congratulations! Frigs joined your party!");
-        
-        MainGame.promptToEnter();
     }
     
     public static void forlornCave()
@@ -1981,6 +1982,8 @@ public class Cutscene
     
     public static void elerric()
     {
+        MainGame.promptToEnter();
+
         print("The group trudged through the cave the best they could, the sense of hopelessness slowly consuming them more "
                 + "and more./They passed by a few remains of those that got lost in the cave, and it caused the weight "
                 + "of their/emotions to increase. Ninlil eventaully cracked and fell to the cold, cave floor.");

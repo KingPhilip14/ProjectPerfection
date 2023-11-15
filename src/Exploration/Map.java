@@ -89,13 +89,13 @@ public class Map implements java.io.Serializable
     {
         char result;
         
-        if(currentLocation instanceof Town)
-        {
-            result = '+';
-        }
-        else if(currentLocation.getName().equals("Zoni Village"))
+        if(currentLocation.getName().equals("Zoni Village"))
         {
             result = '*';
+        }
+        else if(currentLocation instanceof Town )
+        {
+            result = '+';
         }
         else
         {

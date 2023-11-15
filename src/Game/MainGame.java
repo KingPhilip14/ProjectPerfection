@@ -476,31 +476,6 @@ public class MainGame
     {
         clearScreen();
         saveLoad.save(game);
-//        try
-//        {
-//            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
-//            ObjectOutputStream oos = new ObjectOutputStream(fos);
-//            oos.writeObject(game); // pass in the game object and write it to the file
-//            oos.flush(); // writes out any buffered bytes
-//            oos.close();
-//            printlnln("Game was successfully saved!", 25);
-//            promptToEnter();
-//        }
-//        catch(Exception e)
-//        {
-//            printlnln("Game data couldn't be saved.", 25);
-//        }
-
-//        try
-//        {
-//            ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("ProjPerf.save")));
-//            oos.writeObject(game);
-//            oos.close();
-//        }
-//        catch(Exception e)
-//        {
-//            printlnln("Game data couldn't be saved.", 25);
-//        }
     }
     
     public static void load()
@@ -1324,9 +1299,8 @@ public class MainGame
         }
         else
         {
-            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
             // Instantiating Frigs' stats for first phase 
-            frigs.setLevel(10);
             frigs.setMaxHealth(400);  // 10 * 60 = 600
             frigs.setCurrentHealth(400);
             frigs.setAttack(180);
@@ -1420,7 +1394,6 @@ public class MainGame
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
             // Instantiating Ninlil's stats for first phase
-            ninlil.setLevel(10); // 10 * 60 = 600
             ninlil.setMaxHealth(430);
             ninlil.setCurrentHealth(430);
             ninlil.setAttack(75);
