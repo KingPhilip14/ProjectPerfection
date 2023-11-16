@@ -1,6 +1,7 @@
 package Game;
 
 import Battle.Attack;
+import Battle.BossEnemy;
 import Battle.BuffAttack;
 import Battle.ComboAttack;
 import Battle.DebuffAttack;
@@ -13,6 +14,7 @@ import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Data.SaveLoad;
+import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
 import java.util.Random;
@@ -476,31 +478,6 @@ public class MainGame
     {
         clearScreen();
         saveLoad.save(game);
-//        try
-//        {
-//            FileOutputStream fos = new FileOutputStream("ProjPerf.save");
-//            ObjectOutputStream oos = new ObjectOutputStream(fos);
-//            oos.writeObject(game); // pass in the game object and write it to the file
-//            oos.flush(); // writes out any buffered bytes
-//            oos.close();
-//            printlnln("Game was successfully saved!", 25);
-//            promptToEnter();
-//        }
-//        catch(Exception e)
-//        {
-//            printlnln("Game data couldn't be saved.", 25);
-//        }
-
-//        try
-//        {
-//            ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(Paths.get("ProjPerf.save")));
-//            oos.writeObject(game);
-//            oos.close();
-//        }
-//        catch(Exception e)
-//        {
-//            printlnln("Game data couldn't be saved.", 25);
-//        }
     }
     
     public static void load()
@@ -1233,6 +1210,49 @@ public class MainGame
         return fultra;
     }
     
+    public static Player makeResiFultra()
+    {
+        PlayerClass pc = PlayerClass.getPlayerClass("All-Rounder");
+
+        Player fultra = new Player("R.E.S.I. Fultra", "Fultra in a new form. He fights with Anahita and the others to redeem himself", 
+        "Electric", pc, 27);
+        fultra.setDeathMessage("I just wanted to redeem myself...");
+        fultra.setBattleReadyMessage("Let's go!");
+        fultra.setCheerReadyMessage("You can trust me!");
+
+        fultra.setMaxHealth(1777);
+        fultra.setCurrentHealth(1777);
+        fultra.setAttack(324);
+        fultra.setDefense(324);
+        fultra.setRangedAttack(324);
+        fultra.setRangedDefense(324);
+        fultra.setSpeed(324);
+
+        ArrayList<Attack> currentAttacks = new ArrayList<>(4);
+        currentAttacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are increased for 3 turns, and cooldown is less than Charge.", "All", 3, 3));
+        currentAttacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
+        currentAttacks.get(1).setAccuracy(85);
+        currentAttacks.add(new OffensiveAttack("Plasma Blast II", "The user discharges a overwhelming electrical wave. Its accuracy and power are better than normal.", 180, "R. Attack"));
+        currentAttacks.get(2).setAccuracy(51); 
+        OffensiveAttack overdriveII = new OffensiveAttack("Overdrive II", "The user coats themselves in electricity and rams into the target. It now has a higher crit rate.", 115, "Attack");
+        overdriveII.setCritRate(0.35);
+        overdriveII.setAccuracy(75);
+        currentAttacks.add(overdriveII);
+
+        SingleHealingAttack bluePulseII = new SingleHealingAttack("Blue Pulse II", "The user emits a healing, electrical pulse that heals an ally more than normal.", 0.2);
+        DebuffAttack filterII = new DebuffAttack("Filter II", "The user creates a thick, electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 3, 3);
+
+        ArrayList<Attack> fultraOtherAttacks = new ArrayList<>(4);
+        fultraOtherAttacks.add(bluePulseII);
+        fultraOtherAttacks.add(filterII);
+
+        fultra.setCurrentAttacks(currentAttacks);
+        ComboAttack.getComboAttacks(fultra);
+        fultra.setListOfOtherAttacks(fultraOtherAttacks);
+
+        return fultra;
+    }
+
     public static Player makeCalmus()
     {
         PlayerClass pc = PlayerClass.getPlayerClass("Wild Tank");
@@ -1242,7 +1262,6 @@ public class MainGame
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        // calmus.setAggro(10);
         calmus.setMaxHealth(360);
         calmus.setCurrentHealth(360);
         calmus.setAttack(140);
@@ -1324,9 +1343,8 @@ public class MainGame
         }
         else
         {
-            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
             // Instantiating Frigs' stats for first phase 
-            frigs.setLevel(10);
             frigs.setMaxHealth(400);  // 10 * 60 = 600
             frigs.setCurrentHealth(400);
             frigs.setAttack(180);
@@ -1420,7 +1438,6 @@ public class MainGame
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
             // Instantiating Ninlil's stats for first phase
-            ninlil.setLevel(10); // 10 * 60 = 600
             ninlil.setMaxHealth(430);
             ninlil.setCurrentHealth(430);
             ninlil.setAttack(75);

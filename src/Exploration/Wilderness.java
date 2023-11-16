@@ -531,12 +531,12 @@ public class Wilderness extends Location
         attacks.add(overdriveII);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(3225); // HP
-        stats.add(325); // Attack
-        stats.add(325); // Defense
-        stats.add(325); // R Attack
-        stats.add(325); // R Defense
-        stats.add(325); // Speed
+        stats.add(1777); // HP
+        stats.add(324); // Attack
+        stats.add(324); // Defense
+        stats.add(324); // R Attack
+        stats.add(324); // R Defense
+        stats.add(324); // Speed
         
         BossEnemy fultra = new BossEnemy("R.E.S.I. Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
                                     attacks, stats);
