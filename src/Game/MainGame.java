@@ -394,7 +394,7 @@ public class MainGame
         switch(response)
         {
             case 1:
-                game = new Game(true);
+                game = new Game(false);
                 break;
             case 2:
                 load();
@@ -506,7 +506,7 @@ public class MainGame
         {
             printlnln("There is no game data saved currently. Starting a new game instead.");
             promptToEnter();
-            game = new Game(Game.isTesting());
+            game = new Game(false);
         }
 
         

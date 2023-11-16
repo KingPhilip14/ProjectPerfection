@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public abstract class Battle implements Serializable
 {
-    private static int currentTurn;
+    protected static int currentTurn;
     protected int baseGoldAmt = 100;
     protected BattleInterface BATTLE_INTERFACE;
     private static String[] battleInfo;
@@ -1180,7 +1180,7 @@ public abstract class Battle implements Serializable
      * Allows an enemy to make a choice for what they want to do.
      * @param enemy 
      */
-    private void activateEnemyAI(Enemy enemy)
+    protected void activateEnemyAI(Enemy enemy)
     {
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
@@ -1218,7 +1218,7 @@ public abstract class Battle implements Serializable
         }
         else
         {
-            attackPlayer(enemy, adjacentPlayers, chance);
+            attackPlayer(enemy, adjacentPlayers);
         }
     }
     
@@ -1257,11 +1257,8 @@ public abstract class Battle implements Serializable
         }
     }
     
-    private void attackPlayer(Enemy enemy, ArrayList<Player> adjacentPlayers, int chance)
+    protected void attackPlayer(Enemy enemy, ArrayList<Player> adjacentPlayers)
     {
-        Random rand = new Random();
-        chance = rand.nextInt(10);
-
         /*
         The enemy will target the player with the highest aggro always. 
         If it's not the highest aggro within the entire team, it'll get the highest aggroed player from the adjacent 
@@ -1503,7 +1500,7 @@ public abstract class Battle implements Serializable
      * @param enemy
      * @return an ArrayList of players
      */
-    private ArrayList<Player> getAdjacentPlayers(Enemy enemy)
+    protected ArrayList<Player> getAdjacentPlayers(Enemy enemy)
     {
         ArrayList<Player> result = new ArrayList<>();
         
