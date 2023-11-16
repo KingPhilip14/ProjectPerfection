@@ -1184,23 +1184,14 @@ public abstract class Battle implements Serializable
     {
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
-        // Prioritizes killing if possible
-        if(canGetKill(adjacentPlayers, enemy))
+        // Defeats player if possible. If possible, end enemy AI; else, move to the next statement
+        if (defeatedPlayer(adjacentPlayers, enemy))
         {
-            Player target = getPlayerToKill(enemy, adjacentPlayers);
-            
-            if(target == null)
-            {
-                // Get player to kill can return null. If it does, have enemy choose an attack like normal
-                chooseAttack(enemy, adjacentPlayers);
-            }
-            else
-            {
-                killPlayer(enemy, target);
-            }
+            return;
         }
+
         // Prioritizes healing allies if applicable
-        else if(canHealEnemyAlly(enemy))
+        if (canHealEnemyAlly(enemy))
         {
             healEnemyAlly(enemy);
         }
@@ -1235,7 +1226,7 @@ public abstract class Battle implements Serializable
     {
         // 30% chance to use a buff or debuff if enemy has a buff or debuff attack, the attack can be used, and if a buff isn't already active
         return chance >= 0 && chance <= 2 && 
-                ((enemy.hasDebuff() && enemy.getDebuffAttack().canUse(currentTurn)) ||
+                ((enemy.hasDebuffAttack() && enemy.getDebuffAttack().canUse(currentTurn)) ||
                 ((!enemy.hasActiveBuff()) && enemy.hasBuff()));
     }
     
@@ -1250,7 +1241,7 @@ public abstract class Battle implements Serializable
             DebuffAttack debuff = enemy.getDebuffAttack();
             Player target = Player.getHighestAggro(adjacentPlayers);
 
-            if(target.hasDebuff())
+            if(target.hasDebuffAttack())
             {
                 adjacentPlayers.remove(target);
                 target = adjacentPlayers.get(rand.nextInt(adjacentPlayers.size()));
@@ -1271,18 +1262,12 @@ public abstract class Battle implements Serializable
         Random rand = new Random();
         chance = rand.nextInt(10);
 
-        Player target;
-        
-        // 30% chance for the enemy to attack any adjacent player
-        if(chance >= 0 && chance <= 2)
-        {
-            target = adjacentPlayers.get(rand.nextInt(adjacentPlayers.size()));
-        }
-        // 70% chance for the enemy to attack the player with the highest aggro
-        else
-        {
-            target = Player.getHighestAggro(adjacentPlayers);
-        }
+        /*
+        The enemy will target the player with the highest aggro always. 
+        If it's not the highest aggro within the entire team, it'll get the highest aggroed player from the adjacent 
+            players.
+        */ 
+        Player target = Player.getHighestAggro(adjacentPlayers);
 
         OffensiveAttack attack = enemy.getOffensiveAttack();
         attack.attack(enemy, target);
@@ -1296,34 +1281,59 @@ public abstract class Battle implements Serializable
 //            ORIGINAL_PLAYER_POSITIONS.remove(target);
         }
     }
-    
-    private boolean canGetKill(ArrayList<Player> adjacentPlayers, Enemy enemy)
+
+    /**
+     * Finds which Player object the enemy can defeat. Returns a boolean representing if defeating the player was successful.
+     * @param adjacentPlayers
+     * @param enemy
+     * @return
+     */
+    private boolean defeatedPlayer(ArrayList<Player> adjacentPlayers, Enemy enemy)
     {
-        boolean canKill = false;
-        
+        // For each player and OffensiveAttack, check if the damage kills them. If so, attack
         for(Player player : adjacentPlayers)
         {
             Player target = player; 
             
             for(OffensiveAttack attack : enemy.getOffensiveAttackList())
             {
-                int damageOutput = ((OffensiveAttack) attack).calculateDamage(enemy, target);
-
+                int damageOutput = attack.calculateDamage(enemy, target);
+                
+                // If the enemy's attack can kill the player's character, it will attack
                 if(target.getCurrentHealth() - damageOutput <= 0)
                 {
-                    canKill = true;
-                    break;
+                    attack.attack(enemy, target);
+                    removeDeadPlayer(enemy, target, attack);
+                    return target.isDead();
                 }
             }
-            
-            if(canKill)
-            {
-                break;
-            }
         }
-        
-        return canKill;
+
+        return false;
     }
+    
+    // private boolean canGetKill(ArrayList<Player> adjacentPlayers, Enemy enemy)
+    // {
+    //     boolean canKill = false;
+        
+    //     for(Player player : adjacentPlayers)
+    //     {            
+    //         for(OffensiveAttack attack : enemy.getOffensiveAttackList())
+    //         {
+    //             int damageOutput = ((OffensiveAttack) attack).calculateDamage(enemy, player);
+
+    //             if(player.getCurrentHealth() - damageOutput <= 0)
+    //             {
+    //                 canKill = true;
+    //                 break;
+    //             }
+    //         }
+            
+    //         if(canKill) {break;}
+    //     }
+        
+    //     return canKill;
+    // }
     
     /**
      * Looks at each Player and Enemy OffensiveAttack to determine the Player to kill. If no player can be killed, returns
@@ -1331,41 +1341,41 @@ public abstract class Battle implements Serializable
      * @param enemy
      * @return a Player or null if no Player will die
      */
-    private Player getPlayerToKill(Enemy enemy, ArrayList<Player> adjacentPlayers)
-    {   
-        // For each player and OffensiveAttack, check if the damage kills them. If so, return them. If not, return null
-        for(Player player : adjacentPlayers)
-        {
-            Player target = player; 
+    // private Player getPlayerToKill(Enemy enemy, ArrayList<Player> adjacentPlayers)
+    // {   
+    //     // For each player and OffensiveAttack, check if the damage kills them. If so, return them. If not, return null
+    //     for(Player player : adjacentPlayers)
+    //     {
+    //         Player target = player; 
             
-            for(OffensiveAttack attack : enemy.getOffensiveAttackList())
-            {
-                int damageOutput = ((OffensiveAttack) attack).calculateDamage(enemy, target);
+    //         for(OffensiveAttack attack : enemy.getOffensiveAttackList())
+    //         {
+    //             int damageOutput = ((OffensiveAttack) attack).calculateDamage(enemy, target);
 
-                if(target.getCurrentHealth() - damageOutput <= 0)
-                {
-                    return player;
-                }
-            }
-        }
+    //             if(target.getCurrentHealth() - damageOutput <= 0)
+    //             {
+    //                 return player;
+    //             }
+    //         }
+    //     }
         
-        return null;
-    }
+    //     return null;
+    // }
     
-    private void killPlayer(Enemy enemy, Player target)
-    {
-        for(OffensiveAttack attack : enemy.getOffensiveAttackList())
-        {
-            int damageOutput = attack.calculateDamage(enemy, target);
+    // private void killPlayer(Enemy enemy, Player target)
+    // {
+    //     for(OffensiveAttack attack : enemy.getOffensiveAttackList())
+    //     {
+    //         int damageOutput = attack.calculateDamage(enemy, target);
             
-            // If the enemy's attack can kill the player's character, it will attack
-            if(target.getCurrentHealth() - damageOutput <= 0)
-            {
-                attack.attack(enemy, target);
-                removeDeadPlayer(enemy, target, attack);
-            }
-        }
-    }
+    //         // If the enemy's attack can kill the player's character, it will attack
+    //         if(target.getCurrentHealth() - damageOutput <= 0)
+    //         {
+    //             attack.attack(enemy, target);
+    //             removeDeadPlayer(enemy, target, attack);
+    //         }
+    //     }
+    // }
     
     private void removeDeadPlayer(Enemy enemy, Player target, OffensiveAttack attack)
     {

@@ -330,7 +330,7 @@ public abstract class Enemy extends Character
     }
     
     @Override
-    public boolean hasDebuff()
+    public boolean hasDebuffAttack()
     {
         for(Attack anAttack : currentAttacks)
         {

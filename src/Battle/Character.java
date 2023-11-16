@@ -128,7 +128,7 @@ public abstract class Character extends GameProperty implements Combatable
         return currentHealth == 0;
     }
     
-    public boolean hasDebuff()
+    public boolean hasDebuffAttack()
     {
         for(Stat s : listOfStats)
         {
