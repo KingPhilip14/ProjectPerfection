@@ -1946,6 +1946,8 @@ public class Cutscene
     
     public static void forlornCave()
     {
+        MainGame.promptToEnter();
+
         print("The group came upon the Forlorn Cave, and Calmus had a small flame ready to be a light for the group. "
                 + "The/entrance of the cave was brooding and cold. An air of sorrowfulness "
                 + "started to wash/over the group as they came closer to the cave.");
@@ -1976,8 +1978,6 @@ public class Cutscene
         print("As the group continued to march on, Gaea mumbled to herself.");
         
         MainGame.dialoguelnln("Gaea", "we can't... stop now... need to keep... pushing through... for fultra...");
-        
-        MainGame.promptToEnter();
     }
     
     public static void elerric()
@@ -2026,8 +2026,6 @@ public class Cutscene
         MainGame.dialoguelnln("Calmus", "There's no good telling of what they did. These burns markings are crazy!");
         
         MainGame.dialoguelnln("Anahita", "Let's go look for Elder Clairdra then -- quickly! Who knows if she may need help!");
-        
-        MainGame.promptToEnter();
     }
     
     public static void elderClairdra()
@@ -2166,6 +2164,8 @@ public class Cutscene
     
     public static void returnToZoni()
     {
+        MainGame.promptToEnter();
+
         print("The group arrived to the remains of Zoni City. The place that once had people at every corner was now "
                 + "destitute/of them. All the shops, homes, and buildings were destroyed. The roads that were once "
                 + "beautifully/constructed were torn up and had gaping holes in them.");
@@ -2236,8 +2236,6 @@ public class Cutscene
         MainGame.dialoguelnln("Frigs", "Agreed. Anahita, we'll follow your lead. Whatever you say, goes.");
         
         MainGame.dialoguelnln("Anahita", "Alright... Let's see what we can do...!");
-        
-        MainGame.promptToEnter();
     }
     
     public static void foundResiFultra()
@@ -2376,7 +2374,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("(FLASHBACK: The day of the invasion when Fultra was attacked.)");
+        print("(FLASHBACK: The day of the invasion when Fultra was attacked)");
         
         MainGame.dialoguelnln("Irwin", "You've left me no choice, Fultra. This is how things will be. You'll come to "
                 + "understand soon.");
@@ -2489,7 +2487,7 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        print("(Back to present day.)");
+        print("(Back to present day)");
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "He promised that I wouldn't die... I was so close to dying, Gaea. He knows "
                 + "how to\n\tfind perfection. The whole world is suffering. He just wants to help it!");
@@ -2545,8 +2543,6 @@ public class Cutscene
         print("Fultra was left there on his knees sobbing as Anahita parted from him to catch up with the others.");
         
         MainGame.ellipsislnln();
-        
-        MainGame.promptToEnter();
     }
     
     public static void foundIrwin()
@@ -2678,12 +2674,12 @@ public class Cutscene
         MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to obtain it! I *will* have "
                 + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
                 + "hero!");
-        
-        MainGame.promptToEnter();
     }
     
     public static void defeatedIrwin()
     {
+        MainGame.promptToEnter();
+
         MainGame.dialoguelnln("Irwin", "NO, NO, NO, NO!!! I CANNOT LOSE HERE WHEN I'M SO CLOSE!");
         
         print("The R.E.S.I. Omega models were completely destroyed and dismantled, ethrellium oozing out of them. Irwin was "
@@ -2712,7 +2708,7 @@ public class Cutscene
     
     public static void foundFinalBoss()
     {
-        print("The group then flew up to the roof using updrafts Ninlil created. There, they confronted Irwin.");
+        print("The group flew up to the roof using updrafts Ninlil created. There, they confronted Irwin.");
         
         MainGame.dialoguelnln("Perfected Irwin", "I shouldn't be in this form yet, but you've all left me no choice.");
         
@@ -3047,5 +3043,14 @@ public class Cutscene
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
+    }
+
+    public static void credits()
+    {
+        print("Hello!/Thank you for playing my game! I started this as a freshman in college to " + 
+        "apply things that I learned in an interesting way./I do hope you enjoyed it./The game is over now, but " + 
+        "you can still replay it. Try using characters with different classes; experiment and have fun!");
+
+        print("A new project is underway, so stay tuned for that. Again, thank you for playing!");
     }
 }

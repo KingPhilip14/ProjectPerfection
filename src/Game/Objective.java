@@ -6,7 +6,6 @@ import Exploration.NPC;
 import Exploration.Town;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 /**
  * A class for managing boolean values and keeping track of the player's progress. It will also force the player to 
@@ -39,7 +38,6 @@ public class Objective implements Serializable
     private boolean atSolice;
     private boolean talkedToElderZeno;
     private boolean atSummit;
-    private boolean foundFrigs;
     private boolean atForlornCave;
     private boolean atElerric;
     private boolean talkedToElderClairdra;
@@ -86,7 +84,7 @@ public class Objective implements Serializable
         unfinsihedTasks.add(new TravelTask("Travel to Mount Volcan", atMountVolcan, "Mount Volcan", false));
         unfinsihedTasks.add(new LevelTask("Find the mineral for Elder Vulca (Required Level: 17)", false, 17, false));
         unfinsihedTasks.add(new BattleTask("Defeat the boss to mine the mineral", omegaBossDefeated, false));
-        unfinsihedTasks.add(new NpcTask("Talk to Lyra", talkedToLyra, "Lyra", true));
+        unfinsihedTasks.add(new NpcTask("Talk to Lyra in Infol", talkedToLyra, "Lyra", true));
         unfinsihedTasks.add(new TravelTask("Travel to Mount Zoni", atMountZoni, "Mount Zoni", false));
         unfinsihedTasks.add(new LevelTask("Unlock Solice (Required Level: 20)", false, 20, true));
         unfinsihedTasks.add(new TravelTask("Travel to Solice", atSolice, "Solice", false));
@@ -106,6 +104,7 @@ public class Objective implements Serializable
         unfinsihedTasks.add(new BattleTask("Defeat Irwin", irwinBossDefeated, false));
         unfinsihedTasks.add(new LevelTask("Find where Irwin fled to (Required Level: 30)", false, 30, false));
         unfinsihedTasks.add(new BattleTask("Defeat Irwin one last time", finalBossDefeated, false));
+        unfinsihedTasks.add(new Task("Replay the game! There's no more content.", false, false));
     }
     
     public void updateByTest()

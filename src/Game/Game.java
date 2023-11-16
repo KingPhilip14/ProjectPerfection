@@ -262,8 +262,6 @@ public class Game implements java.io.Serializable
         this.map = map;
     }
     
-    
-    
     public boolean inSecondPhase() {return inSecondPhase;}
     
     public boolean getRecentBattleResult() {return recentBattleWon;}
@@ -331,13 +329,10 @@ public class Game implements java.io.Serializable
         // Comment out for testing
         MainGame.clearScreen();
         
-//            gameOpening();
-        
-        
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
-        while(!MainGame.getFinalBossDefeated())
+        while(true)
         {
             processInput();
         }
@@ -897,8 +892,8 @@ public class Game implements java.io.Serializable
                     team.add(MainGame.makeFrigs());
                 }   
                 
-                currentLocation = getLocation("Mount Zoni");
                 map.updateMap(currentLocation, getLocation("Mount Zoni"));
+                currentLocation = getLocation("Mount Zoni");
                 break;
             case "Zoni City":
                 cityBossFights();
@@ -967,19 +962,21 @@ public class Game implements java.io.Serializable
             if(!finalBossAttempted)
             {
                 Cutscene.foundFinalBoss();
+                team.add(MainGame.makeResiFultra());
             }
 
             city.getBossBattle().start(gold, recentBattleWon);
             
             // Update objective if battle is won
             // objective.update(this);
-           objective.updateByBattleResult(city.getBossBattle().isWon());
+            objective.updateByBattleResult(city.getBossBattle().isWon());
             
             if(city.getBossBattle().isWon())
             {
                 Cutscene.defeatedFinalBoss();
                 finalBossDefeated = true;
                 city.removeBossBattle();
+                Cutscene.credits();
             }
         }
         
@@ -1174,8 +1171,8 @@ public class Game implements java.io.Serializable
         // Removes the location from the overall ArrayList to the known ArrayList
         knownLocations.add(nextLocation);
         
-        // If there is more than one remaining location, set it as the next location.
-        if(remainingLocations.size() > 1)
+        // While there are remaining locations, take the next one and assign it as the next location
+        if(!remainingLocations.isEmpty())
         {
             nextLocation = remainingLocations.remove(0);
         }
@@ -1893,7 +1890,7 @@ public class Game implements java.io.Serializable
         gift = Item.getBuffItem("Blue Bean");
         NPC clairdra = new NPC("Clairdra", "Look at you all -- two beautiful, young ladies and my wonderful grandson. Let's celebrate another year of peace\n\ttogether, yes?", gift, 1, false);
         clairdra.setGiveGiftMessage("And to celebrate, take a Blue Bean. It's good for you, you know.");
-        clairdra.setDescription("Elerric resident | Fultra's grandma");
+        clairdra.setDescription("Elerric resident | Fultra's grandmother");
         
         NPC verg = new NPC("Verg", "Oh, hey everyone! I want to say thank you for being there for my little brother. It's awesome to see him have "
                 + "amazing\n\tpeople to back him up when I'm not there. I hope you enjoy the rest of the night!", false);
@@ -2040,7 +2037,7 @@ public class Game implements java.io.Serializable
     private Town createElerric()
     {
         NPC clairdra = new NPC("Elder Clairdra", "Oh. Hello everyone. No, I don't know where Fultra is. We beleive he died during the festival. No one has seen him since... Oh, my poor grandson...", true);
-        clairdra.setDescription("Elerric Elder");
+        clairdra.setDescription("Elerric Elder | Fultra's grandmother");
         
         NPC tonnerre = new NPC("Tonnerre", "\"Fearless Thunder...\" Our town hasn't been the same without him. Gaea... I'm so sorry for your loss.", false);
         tonnerre.setDescription("Elerric resident");
