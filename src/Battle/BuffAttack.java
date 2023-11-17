@@ -222,6 +222,7 @@ public class BuffAttack extends Attack
         
         canUse = false;
         setNextAvailableTurn(Battle.getCurrentTurn());
+        MainGame.promptToEnter();
     }
     
     @Override

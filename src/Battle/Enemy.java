@@ -345,17 +345,16 @@ public abstract class Enemy extends Character
     
     public DebuffAttack getDebuffAttack()
     {
-        DebuffAttack result = null; 
-        
+        ArrayList<DebuffAttack> results = new ArrayList<>(2);
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof DebuffAttack)
             {
-                result = (DebuffAttack)anAttack;
+                results.add((DebuffAttack)anAttack);
             }
         }
         
-        return result;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     public boolean hasActiveBuff()
@@ -490,49 +489,58 @@ public abstract class Enemy extends Character
         return result;
     }
     
-    public BuffAttack getAttackBuff()
-    {
-        BuffAttack result = null; 
+    // public BuffAttack getAttackBuff()
+    // {
+    //     ArrayList<DebuffAttack> results = new ArrayList<>(2);
+    //     for(Attack anAttack : currentAttacks)
+    //     {
+    //         if(anAttack instanceof DebuffAttack)
+    //         {
+    //             results.add((DebuffAttack)anAttack);
+    //         }
+    //     }
         
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
-                scan.useDelimiter(",");
+    //     return results.get(new Random().nextInt(results.size()));
+    //     // BuffAttack result = null; 
+        
+    //     // for(Attack anAttack : currentAttacks)
+    //     // {
+    //     //     if(anAttack instanceof BuffAttack)
+    //     //     {
+    //     //         Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
+    //     //         scan.useDelimiter(",");
                 
-                while(scan.hasNext())
-                {
-                    if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
-                    {
-                        result = (BuffAttack)anAttack;
-                        break;
-                    }
-                }
-            }
+    //     //         while(scan.hasNext())
+    //     //         {
+    //     //             if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
+    //     //             {
+    //     //                 result = (BuffAttack)anAttack;
+    //     //                 break;
+    //     //             }
+    //     //         }
+    //     //     }
             
-            if(result != null)
-            {
-                break;
-            }
-        }
+    //     //     if(result != null)
+    //     //     {
+    //     //         break;
+    //     //     }
+    //     // }
         
-        return result;
-    }
+    //     // return result;
+    // }
     
     public BuffAttack getBuffAttack()
     {
-        BuffAttack result = null; 
-        
+        ArrayList<BuffAttack> results = new ArrayList<>(2);
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof BuffAttack)
             {
-                result = (BuffAttack)anAttack;
+                results.add((BuffAttack)anAttack);
             }
         }
         
-        return result;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     /**

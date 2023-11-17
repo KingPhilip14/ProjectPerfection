@@ -226,10 +226,11 @@ public class DebuffAttack extends Attack
             
             canUse = false;
             setNextAvailableTurn(Battle.getCurrentTurn());
+            MainGame.promptToEnter();
         }
         else
         {
-            MainGame.printlnln(attacker.getName() + " targeted " + target.getName() + " and missed!");
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on " + target.getName() + " but missed!");
         }
     }
     

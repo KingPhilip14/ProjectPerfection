@@ -156,7 +156,7 @@ public class OffensiveAttack extends Attack
         }
         else
         {
-            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!");
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on " + target.getName() + " but missed!");
         }
     }
     
@@ -170,7 +170,7 @@ public class OffensiveAttack extends Attack
         }
         else
         {
-            MainGame.printlnln("\n" + attacker.getName() + " targeted " + target.getName() + " and missed!");
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on " + target.getName() + " but missed!");
         }
         
         setNextAvailableTurn(Battle.getCurrentTurn());
