@@ -14,4 +14,19 @@ public class BossBattle extends Battle
         baseGoldAmt = 250;
         startingText = "The outcome of this battle could change everything...!\n\nBoss Battle: S T A R T";
     }   
+
+    @Override
+    protected void activateEnemyAI(Enemy enemy)
+    {
+        if((currentTurn == 1) || (currentTurn == enemy.getBuffAttack().nextAvailableTurn + 2 && 
+            enemy.getBuffAttack().canUse()))
+        {
+            // Activate the buff on the first turn or if it's two turns after the buff could be used, use it
+            enemy.getBuffAttack().activateBuff(enemy);
+        }
+        else
+        {
+            attackPlayer(enemy, getAdjacentPlayers(enemy));
+        }
+    }
 }

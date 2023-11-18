@@ -823,32 +823,37 @@ public class Player extends Character
         
         if(attack instanceof OffensiveAttack)
         {
-            amount = (int)Math.round(((OffensiveAttack)attack).getBaseDamage() / 10);
+            amount = 3;
+            // amount = (int)Math.round(((OffensiveAttack)attack).getBaseDamage() / 10);
             // amount = (amount / 10);
         }
         else if(attack instanceof BuffAttack)
         {
-            amount = (int)Math.round(((BuffAttack)attack).getBuffModifier() * 10) + 5;
+            amount = 5;
+            // amount = (int)Math.round(((BuffAttack)attack).getBuffModifier() * 10) + 5;
             // amount += 15;
         }
         else if(attack instanceof DebuffAttack)
         {
-            amount = (int)Math.round(((DebuffAttack)attack).getDebuffModifier() * 10) + 7;
+            amount = 7;
+            // amount = (int)Math.round(((DebuffAttack)attack).getDebuffModifier() * 10) + 7;
             // amount += 20;
         }
-        else if(attack instanceof SingleHealingAttack)
+        else if(attack instanceof HealingAttack)
         {
-            amount = (int)Math.round(((SingleHealingAttack)attack).getHealingRate() * 10) + 7;
+            amount = 9;
+            // amount = (int)Math.round(((SingleHealingAttack)attack).getHealingRate() * 10) + 7;
             // amount += 25;
         }
-        else if(attack instanceof TeamHealingAttack)
-        {
-            amount = (int)Math.round(((TeamHealingAttack)attack).getHealingRate() * 10) + 10;
-            // amount += 35;
-        }
+        // else if(attack instanceof TeamHealingAttack)
+        // {
+        //     // amount = (int)Math.round(((TeamHealingAttack)attack).getHealingRate() * 10) + 10;
+        //     // amount += 35;
+        // }
         else if(attack instanceof ComboAttack)
         {
-            amount = (int)Math.round(((ComboAttack) attack).getBaseDamage() / 10) + 7;
+            amount = 12;
+            // amount = (int)Math.round(((ComboAttack) attack).getBaseDamage() / 10) + 7;
             // amount = (amount / 10) + 15;
         }
         

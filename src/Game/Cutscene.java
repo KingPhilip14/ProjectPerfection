@@ -96,10 +96,10 @@ public class Cutscene
         
         print("A man with money. A man with influence. A man with power. A man with intellect.");
         
-        print("People look up to him. They believe that *he* can fix the world. All that's wrong, he can find a solution to it, "
+        print("People look up to him. They believe that *he* can fix the world./All that's wrong, he can find a solution to it, "
                 + "surely.");
         
-        print("He has accomplished so many things in the past. He's done so much for humanity. Surely, he can save them from "
+        print("He has accomplished so many things in the past. He's done so much for humanity./Surely, he can save them from "
                 + "this pain. This suffering. This nightmare.");
         
 //        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "
@@ -113,7 +113,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Newscaster", "I'm here to today at the highly anticipated government meeting that hosted "
                 + "special guest,\n\tIrwin Krov. He has been discussing and planning ways to save our corrupted world with "
-                + "government officials. It's\n\tonly a matter of time before they finish...");
+                + "government officials. It's\n\tonly a matter of time before they finish.");
         
         MainGame.ellipsislnln();
         MainGame.promptToEnter();
@@ -143,12 +143,11 @@ public class Cutscene
         
         print("Perplexed, the newscaster turned to the cameraman that accompanied her to finish her broadcast.");
         
-        MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
+        MainGame.dialoguelnln("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
                 + "restored?\n\tWill we have peace once -- or ever -- again? Will the supposed 'perfection' needed help us?"
                 + "\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.ellipsis();
         MainGame.promptToEnter();
         
         print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
@@ -173,10 +172,8 @@ public class Cutscene
                 + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./She realizes that she let the "
                 + "time slip past her, however, and that she's close to being late.");
         MainGame.dialoguelnln("Anahita", "(*sigh*) I wish I could stay here forever...\n\t"
-                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival! Oh, you've gone and done it "
-                + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest...");
-        
-        MainGame.promptToEnter();
+                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival!\n\tOh, you've gone and done it "
+                + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest!");
     }
     
     /**
@@ -230,8 +227,8 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.printWithBreaks("You now have access to Fultra, one of the strongest Pulchrians!/He has a unique class"
-                + " called the 'All-Rounder.'/All his stats are average and realatively even, but what really makes him "
-                + "shine is his Buff Attack called 'Charge!'/With it, he increases all his stats for a certain time, "
+                + " called the 'All-Rounder.'/All his stats are average and relatively even, but what really makes him "
+                + "shine is his Buff Attack called 'Charge!'/With it, he doubles all his stats for a certain time, "
                 + "but it has a large cooldown, so be mindful!");
         
 //        MainGame.promptToEnter();

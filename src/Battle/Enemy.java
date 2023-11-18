@@ -150,7 +150,7 @@ public abstract class Enemy extends Character
         isOffensive = true;
         statSpreadDescription = "It looks like it'll pack a punch!";
         
-        this.setMaxHealth(totalStatPoints - 50);
+        this.setMaxHealth(totalStatPoints - 90);
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to offensive stats
@@ -171,7 +171,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It seems to be on careful guard...";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 50);
+        this.setMaxHealth(totalStatPoints - 65);
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to defensive stats
@@ -192,7 +192,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It appears to have a strong stature!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 30);
+        this.setMaxHealth(totalStatPoints - 80);
         this.setCurrentHealth(maxHealth);
         
         // Assigns 50% of total stat points to physical stats
@@ -212,8 +212,8 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It seems like it prefers to keep its distance.";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((totalStatPoints - 60));
+        // Sets the HP based on the total points minus a certain value
+        this.setMaxHealth((totalStatPoints - 90));
         this.setCurrentHealth(maxHealth);
         
         // Assigns 60% of total stat points to ranged stats
@@ -234,7 +234,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It looks quite nimble!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 10);
+        this.setMaxHealth(totalStatPoints - 80);
         this.setCurrentHealth(maxHealth);
         
         // Assigns 25% of total stat points to speed
@@ -294,43 +294,7 @@ public abstract class Enemy extends Character
         return false;
     }
     
-    public boolean hasAttackBuff()
-    {
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
-                scan.useDelimiter(",");
-                
-                while(scan.hasNext())
-                {
-                    if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        return false;
-    }
-    
-    public boolean hasBuff()
-    {
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    @Override
-    public boolean hasDebuff()
+    public boolean hasDebuffAttack()
     {
         for(Attack anAttack : currentAttacks)
         {
@@ -345,23 +309,16 @@ public abstract class Enemy extends Character
     
     public DebuffAttack getDebuffAttack()
     {
-        DebuffAttack result = null; 
-        
+        ArrayList<DebuffAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof DebuffAttack)
             {
-                result = (DebuffAttack)anAttack;
+                results.add((DebuffAttack)anAttack);
             }
         }
         
-        return result;
-    }
-    
-    public boolean hasActiveBuff()
-    {
-        return attack.getIsBuffActive() || defense.getIsBuffActive() || rangedAttack.getIsBuffActive() || 
-                rangedDefense.getIsBuffActive() || speed.getIsBuffActive();
+        return results.get(0);
     }
     
     public boolean hasTeamHeal()
@@ -392,28 +349,30 @@ public abstract class Enemy extends Character
     
     public SingleHealingAttack getSingleHeal()
     {
+        ArrayList<SingleHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof SingleHealingAttack)
             {
-                return (SingleHealingAttack)anAttack;
+                results.add((SingleHealingAttack)anAttack);
             }
         }
         
-        return null;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     public TeamHealingAttack getTeamHeal()
     {
+        ArrayList<TeamHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof TeamHealingAttack)
             {
-                return (TeamHealingAttack)anAttack;
+                results.add((TeamHealingAttack)anAttack);
             }
         }
         
-        return null;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     public boolean hasHealingAttack()
@@ -445,94 +404,27 @@ public abstract class Enemy extends Character
     }
     
     /**
-     * Randomly returns a known offensive attack with a higher chance to return the highest damaging one.
+     * Randomly returns a known offensive attack.
      * @return 
      */
     public OffensiveAttack getOffensiveAttack()
     {
-        OffensiveAttack result;
-        ArrayList<OffensiveAttack> offensiveAttacks = new ArrayList<>();
-        
-        // Gathers all offensive attacks and stores them in a temporary ArrayList
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof OffensiveAttack)
-            {
-                offensiveAttacks.add((OffensiveAttack)anAttack);
-            }
-        }
-        
-        DamageComparator dc = new DamageComparator();
-        Sort.mergeSort(offensiveAttacks, dc);
-        
-        Random rand = new Random();
-        
-        int chance = rand.nextInt(10);
-        
-        // 70% chance to use the highest damaging attack; guaranteed to use that attack if only one offensive attack is known
-        if((chance >= 0 && chance <= 6) || offensiveAttacks.size() == 1)
-        {
-            result = offensiveAttacks.get(0);
-        }
-        // 30% chance to use a random move if more than 1 offensive attack is known
-        else
-        {
-            chance = rand.nextInt(offensiveAttacks.size());
-
-            if(chance == 0)
-            {
-                chance++;
-            }
-
-            result = offensiveAttacks.get(chance);
-        }
-        
-        return result;
-    }
-    
-    public BuffAttack getAttackBuff()
-    {
-        BuffAttack result = null; 
-        
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
-                scan.useDelimiter(",");
-                
-                while(scan.hasNext())
-                {
-                    if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
-                    {
-                        result = (BuffAttack)anAttack;
-                        break;
-                    }
-                }
-            }
-            
-            if(result != null)
-            {
-                break;
-            }
-        }
-        
-        return result;
+        ArrayList<OffensiveAttack> offensiveAttacks = getOffensiveAttackList();   
+        return offensiveAttacks.get(new Random().nextInt(offensiveAttacks.size()));
     }
     
     public BuffAttack getBuffAttack()
     {
-        BuffAttack result = null; 
-        
+        ArrayList<BuffAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof BuffAttack)
             {
-                result = (BuffAttack)anAttack;
+                results.add((BuffAttack)anAttack);
             }
         }
         
-        return result;
+        return results.get(0);
     }
     
     /**
@@ -581,19 +473,6 @@ public abstract class Enemy extends Character
         allHealingAttacks.add(new TeamHealingAttack("Soothing Aura", "The user emits a gentle aura to restore 30% HP to its entire team.", 0.3, 2));
     }
     
-    public static HealingAttack getHealingAttack(String attackName)
-    {
-        for(HealingAttack ha : allHealingAttacks)
-        {
-            if(attackName.toLowerCase().equals(ha.getName().toLowerCase()))
-            {
-                return ha;
-            }
-        }
-        
-        return null;
-    }
-    
     private void populateCurrentAttacks()
     {
         Random rand = new Random();
@@ -601,6 +480,11 @@ public abstract class Enemy extends Character
         
         if(isOffensive)
         {
+            /*
+             * Offensive builds will have 2-3 offensive attacks.
+             * It will have only one buff attack
+             * At most, an offensive build will have one debuff attack
+             */
             if(numOfOffensive == 1)
             {
                 numOfOffensive++;
@@ -620,6 +504,13 @@ public abstract class Enemy extends Character
         }
         else
         {
+            /*
+             * Defensive builds will a random amount of offensive attacks determined by the random int generated
+             * Only one buff attack will be assigned
+             * If possible, one debuff attack will be assigned
+             * If possible, one random healing attack will be assigned. If this is the case, the defensive build 
+             *      has one of every type of attack (Offensive, Buff, Debuff, and a Healing variation) 
+             */
             for(int i = 0; i < numOfOffensive; i++)
             {
                 currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));

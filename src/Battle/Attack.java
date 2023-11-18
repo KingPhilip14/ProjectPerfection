@@ -104,11 +104,11 @@ public abstract class Attack extends GameProperty
         }
         else if(this instanceof SingleHealingAttack)
         {
-            result += "(Single Heal Attack)";
+            result += "(Single Heal)";
         }
         else if(this instanceof TeamHealingAttack)
         {
-            result += "(Team Heal Attack)";
+            result += "(Team Heal)";
         }
         
         return result;

@@ -40,6 +40,8 @@ import java.util.Scanner;
  */
 public class Game implements java.io.Serializable
 {
+    private boolean gameStarted;
+
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
@@ -77,12 +79,13 @@ public class Game implements java.io.Serializable
     public Game(boolean isTesting)
     {
         /*
-        Aquammoda new name: Aquammoda (Aqua + accomodating [people pleasing])
-        Degon new name: Degon (Dirt + egocentric )
-        Aerogan new name: Aerogan (Aero + arrogant)
-        Infol new name: Infol (Inferno + colossus)
-        Solice new name: Solice (Solus [alone or unaccompanied] + Ice)
-        Elerric new name: Elerric  (Electric + terror)
+        Town names:
+            Aquammoda (Aqua + accomodating [people pleasing])
+            Degon (Dirt + egocentric)
+            Aerogan (Aero + arrogant)
+            Infol (Inferno + colossus)
+            Solice (Solus [alone or unaccompanied] + Ice)
+            Elerric  (Electric + terror)
         */
         
         
@@ -97,6 +100,7 @@ public class Game implements java.io.Serializable
         currentLocation = knownLocations.get(0);
         nextLocation = remainingLocations.remove(0); 
         gold = 0; 
+        gameStarted = false;
         
 
         map = new Map();
@@ -105,6 +109,10 @@ public class Game implements java.io.Serializable
     public boolean isFinalBossDefeated() {
         return finalBossDefeated;
     }
+
+    public boolean getGameStarted() {return gameStarted;}
+
+    public void setGameStarted(boolean value) {gameStarted = value;}
 
     public void setFinalBossDefeated(boolean finalBossDefeated) {
         this.finalBossDefeated = finalBossDefeated;
@@ -326,14 +334,27 @@ public class Game implements java.io.Serializable
     
     public void startGame()
     {
-        // Comment out for testing
         MainGame.clearScreen();
+
+        if(!gameStarted)
+        {
+            gameOpening();
+        }
         
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
         while(true)
         {
+            if(new Random().nextBoolean())
+            {
+                pulchraPopulation += new Random().nextInt(21);
+            }
+            else
+            {
+                pulchraPopulation -= new Random().nextInt(21);
+            }
+
             processInput();
         }
     }
@@ -367,8 +388,10 @@ public class Game implements java.io.Serializable
     
     private void gameOpening()
     {
+        gameStarted = true;
         Cutscene.opening();
         introduceNewLocation(); // introduces Purity Beach
+        MainGame.promptToEnter();
     }
     
     private void displayInfo()
@@ -389,9 +412,10 @@ public class Game implements java.io.Serializable
         
         if(currentLocation instanceof Town)
         {
-            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
             input = MenuHelper.displayMenu(message, 1, 6);
-            
+            MainGame.clearScreen();
+
             switch(input)
             {
                 case 1:
@@ -433,9 +457,10 @@ public class Game implements java.io.Serializable
         // If the requirements to start the boss battle aren't met, don't give the option.
         if(!((Wilderness)currentLocation).canDoBossBattle(team))
         {
-            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
+            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) More Options";
             input = MenuHelper.displayMenu(message, 1, 5);
-            
+            MainGame.clearScreen();
+
             switch(input)
             {
                 case 1:
@@ -457,8 +482,9 @@ public class Game implements java.io.Serializable
         }
         else
         {
-            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
             input = MenuHelper.displayMenu(message, 1, 6);
+            MainGame.clearScreen();
             
             switch(input)
             {
@@ -577,17 +603,17 @@ public class Game implements java.io.Serializable
         
         int input = MenuHelper.displayMenu(message, 1, numOfOptions);
         
-        if(input == numOfOptions)
-        {
-            MainGame.clearScreen();
-            processInput();
-        }
-        else if(knownLocations.get(input - 1) == currentLocation)
+        // if(input == numOfOptions)
+        // {
+        //     MainGame.clearScreen();
+        //     processInput();
+        // }
+        if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
             MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");
         }
-        else
+        else if(input != numOfOptions)
         {
             Location newLocation = knownLocations.get(input - 1);
             transition(newLocation);
@@ -1185,7 +1211,7 @@ public class Game implements java.io.Serializable
     {
         Town town = ((Town)currentLocation);
         town.findChest();
-        processInput();
+        // processInput();
     }
     
     private void findWildnernessChest()
@@ -1197,7 +1223,7 @@ public class Game implements java.io.Serializable
     
     private void optionsMenu()
     {
-        MainGame.println("\nWhat would you like to do?");
+        MainGame.println("What would you like to do?");
         String message = "\t1) View Team\n\t2) View Tutorials\n\t3) View World Map\n\t4) Save\n\t5) Set Text Speed\n\t6) Back";
         int input = MenuHelper.displayMenu(message, 1, 6);
         
@@ -1214,12 +1240,13 @@ public class Game implements java.io.Serializable
                 save();
                 break;
             case 5:
-                MainGame.selectTextSpeed();
-                break;
-            case 6:
-                processInput();
+                MainGame.selectTextSpeed(this);
                 break;
             default:
+                // MainGame.clearScreen();
+                // processInput();
+                break;
+            case 1:
                 viewTeam();
                 break;
         }
@@ -1227,7 +1254,9 @@ public class Game implements java.io.Serializable
     
     private void viewTutorials()
     {
-        MainGame.println("\nWhich tutorial would you like to review?");
+        MainGame.clearScreen();
+
+        MainGame.println("Which tutorial would you like to review?");
         String message = "\t1) Element Matchups\n\t2) Targeting\n\t3) Aggro\n\t4) Cheer Partner and Cheer Skills\n\t5) Back";
         int input = MenuHelper.displayMenu(message, 1, 5);
         
@@ -1242,11 +1271,13 @@ public class Game implements java.io.Serializable
             case 4:
                 MainGame.cheerPartnerTutorial();
                 break;
-            case 5: 
-                optionsMenu();
-                break;
-            default: 
-                MainGame.printElementMatchups();
+            // case 5: 
+            //     MainGame.clearScreen();
+            //     optionsMenu();
+            //     break;
+            case 1: 
+                MainGame.clearScreen();
+                new TypeChart().printChart();
                 break;
         }
     }
@@ -1267,9 +1298,9 @@ public class Game implements java.io.Serializable
                 // Saves the game using a SaveLoad object. Game data is written to a file
                 MainGame.save();
                 break;
-            case 2: 
-                processInput();
-                break;
+            // case 2: 
+            //     processInput();
+            //     break;
         }
     }
     
@@ -1282,12 +1313,11 @@ public class Game implements java.io.Serializable
     {
         if(inventory.isEmpty())
         {
-            System.out.println("");
             MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything.");
         }
         else
         {
-            MainGame.println("\nInventory:\n");
+            MainGame.println("Inventory:\n");
             inventory.showInventory();
         }
     }
@@ -1315,10 +1345,12 @@ public class Game implements java.io.Serializable
         
         if(input == numOfOptions)
         {
+            MainGame.clearScreen();
             optionsMenu();
         }
         else
         {
+            MainGame.clearScreen();
             Player p = team.get(--input);
             viewPlayer(p);
         }
@@ -1326,23 +1358,26 @@ public class Game implements java.io.Serializable
     
     private void viewPlayer(Player player)
     {
-        MainGame.println("\nWhat would you like to do with " + player.getName() + "?");
+        MainGame.clearScreen();
+        MainGame.println("What would you like to do with " + player.getName() + "?");
         
         // The player has access to changing classes when they're in the second phase
         if(inSecondPhase)
         {
-            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
+            String message = "\t1) View Stats\n\t2) Change Attacks\n\t3) Change Class\n\t4) Back";
             int input = MenuHelper.displayMenu(message, 1, 4);
+            MainGame.clearScreen();
 
             switch(input)
             {
                 case 2:
-                    changeMoves(player);
+                    changeAttacks(player);
                     break;
                 case 3:
                     changeClass(player);
                     break;
                 case 4:
+                    MainGame.clearScreen();
                     viewTeam();
                     break;
                 default:
@@ -1358,7 +1393,7 @@ public class Game implements java.io.Serializable
             switch(input)
             {
                 case 2:
-                    changeMoves(player);
+                    changeAttacks(player);
                     break;
                 case 3:
                     viewTeam();
@@ -1370,7 +1405,7 @@ public class Game implements java.io.Serializable
         }
     }
     
-    private void changeMoves(Player player)
+    private void changeAttacks(Player player)
     {
         MainGame.clearScreen();
         MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);
@@ -1449,6 +1484,8 @@ public class Game implements java.io.Serializable
         MainGame.promptToEnter();
         MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
                 " -----------> " + otherClass.toString());
+
+        MainGame.promptToEnter();
         
         MainGame.println(p.getName() + "'s new info:");
         
@@ -1666,6 +1703,7 @@ public class Game implements java.io.Serializable
         
         switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
+        MainGame.promptToEnter();
         MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
         
         // Prints out the four moves the player now knows
@@ -2293,43 +2331,4 @@ public class Game implements java.io.Serializable
         
         return null;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    Create a new class called Objective in the Game package. It will have a lot of boolean field variables that 
-    check and follow the player's progress. It will contain an ArrayList of these booleans similar to how
-    this class contains an ArrayList of locations. The boolean will be listed in two different lists:
-        completed and uncompleted
-    
-    For example: the first objective will be getting to Opicon Forest. A boolean will represent that as "arrivedOpiconForest"
-    
-    With each objective that's met, it will be updated here in the Game class
-    
-    For example: made it to Opicon Forest. Call updateObjective() which sets arriviedOpiconForest to be true and adds it to the
-    completed list. Now the next objective is the first boolean in the uncompleted list (a reference to it can be held like
-    "nextLocation" is an Object reference in this class)
-    
-    This allows for the player to not progress the story unless certain levels are attained AND NPCs are talked to since
-    each boolean will be checking for a different condition
-    
-    For example: made it to Aquammoda is completed. Current objective: talk to merda. The class will now only check if Merda
-    has been talked to. The talkToPeople() method in this class will check if she was talked to. If so, it'll update the 
-    objective class from there. The next objective is to then get to level 9 to access the Degon. Since this is the case,
-    an immediate check is necessary to see if the player is already at level 9. If so, unlock it like normal. If not, 
-    the player will simply play until they're at that level and the Degon will be unlocked. 
-    
-    Essentially, the game does not progress unless the objective class does, providing a cleaner way of tracking
-    the progress made. It also removes a lot of booleans from this class. 
-    
-    **If one objective is not complete, the objective class will not check for another until it's completed.**
-    **Therefore, the game CANNOT go on until the player meets the requirements**
-    */
 }

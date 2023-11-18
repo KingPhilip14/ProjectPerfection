@@ -125,7 +125,6 @@ public class Wilderness extends Location
     public BeachTutorialBattle makeBeachTutorial(Player player)
     {
         EarthEnemy krobble = new EarthEnemy("Sandy Krobble", "A Krobble with a loving family that's threatening Anahita!", 5);
-        krobble.setCurrentHealth(1);
         krobble.setSpeed(1);
         BeachTutorialBattle battle = new BeachTutorialBattle(krobble, player);
         return battle;
@@ -133,29 +132,9 @@ public class Wilderness extends Location
     
     public OpiconTutorialBattle makeOpiconTutorial(ArrayList<Player> playerTeam)
     {
-        WaterEnemy turkle = new WaterEnemy("Damp Turkle", "It appears to be helping the leader Krobble to get revenge!", 5);
+        WaterEnemy turkle = new WaterEnemy("Damp Turkle", "It appears to be helping the leader Krobble to get revenge!", 4);
         EarthEnemy krobble = new EarthEnemy("Sandy Krobble", "This Krobble is the sibling of the other one Anahita defeated!\n\tIt's come for revenge with its gang!", 6);
-        ElectricEnemy torped = new ElectricEnemy("Thundering Torped", "It appears to be helping the leader Krobble to get revenge!", 5);
-        
-        
-        // Remove after tests are done *************************
-        turkle.setCurrentHealth(1);
-//        turkle.setSpeed(98);
-        krobble.setCurrentHealth(1);
-//        krobble.setSpeed(97);
-        torped.setCurrentHealth(1);
-//        torped.setSpeed(1);
-        
-//        turkle.getCurrentAttacks().remove(0);
-//        krobble.getCurrentAttacks().remove(0);
-//        torped.getCurrentAttacks().remove(0);
-//        
-//        turkle.getCurrentAttacks().add(Enemy.getHealingAttack("restful spirit"));
-//        krobble.getCurrentAttacks().add(Enemy.getHealingAttack("soothing aura"));
-//        torped.getCurrentAttacks().add(Enemy.getHealingAttack("soothing aura"));
-        
-        //*************************************************************
-        
+        ElectricEnemy torped = new ElectricEnemy("Thundering Torped", "It appears to be helping the leader Krobble to get revenge!", 4);
         
         ArrayList<Enemy> enemyTeam = new ArrayList<>(3);
         enemyTeam.add(turkle);
@@ -239,31 +218,22 @@ public class Wilderness extends Location
     private Enemy createNormalEnemy()
     {
         String element = selectEnemyElement();
-        Enemy e = null;
         
         switch(element)
         {
             case "Water":
-                e = new WaterEnemy(this);
-                break;
+                return new WaterEnemy(this);
             case "Fire":
-                e = new FireEnemy(this);
-                break;
+                return new FireEnemy(this);
             case "Earth":
-                e = new EarthEnemy(this);
-                break;
+                return new EarthEnemy(this);
             case "Wind":
-                e = new WindEnemy(this);
-                break;
+                return new WindEnemy(this);
             case "Ice":
-                e = new IceEnemy(this);
-                break;
-            case "Electric":
-                e = new ElectricEnemy(this);
-                break;
+                return new IceEnemy(this);
+            default:
+                return new ElectricEnemy(this);
         }
-        
-        return e;
     }
     
     /**
@@ -274,31 +244,22 @@ public class Wilderness extends Location
     private Enemy createNormalEnemy(int level)
     {
         String element = selectEnemyElement();
-        Enemy e = null;
         
         switch(element)
         {
             case "Water":
-                e = new WaterEnemy(this, level);
-                break;
+                return new WaterEnemy(this);
             case "Fire":
-                e = new FireEnemy(this, level);
-                break;
+                return new FireEnemy(this);
             case "Earth":
-                e = new EarthEnemy(this, level);
-                break;
+                return new EarthEnemy(this);
             case "Wind":
-                e = new WindEnemy(this, level);
-                break;
+                return new WindEnemy(this);
             case "Ice":
-                e = new IceEnemy(this, level);
-                break;
-            case "Electric":
-                e = new ElectricEnemy(this, level);
-                break;
+                return new IceEnemy(this);
+            default:
+                return new ElectricEnemy(this);
         }
-        
-        return e;
     }
     
     /**
@@ -390,34 +351,18 @@ public class Wilderness extends Location
     }
     
     private void formRESIEnemyTeam(ArrayList<Enemy> enemyTeam, int enemyTeamSize)
-    {
-        Enemy e = null;
-        
+    {   
         for(int i = 0; i < enemyTeamSize; i++)
         {
             switch(enemyTeamSize)
             {
                 case 1:
-                    e = createRESIEnemy(this.MAX_ENEMY_LV - 1);
+                    enemyTeam.add(createRESIEnemy(this.MAX_ENEMY_LV - 1));
                     break;
                 case 2:
-                    e = createRESIEnemy(this.MAX_ENEMY_LV - 2);
+                    enemyTeam.add(createRESIEnemy(this.MAX_ENEMY_LV - 2));
                     break;
             }
-            
-//            // If team size is 1, make level the max - 1
-//            if(enemyTeamSize == 1)
-//            {
-//                e = createRESIEnemy(this.MAX_ENEMY_LV - 1);
-//            }
-//            // Else, make the level the max - 2
-//            else if(enemyTeamSize == 2)
-//            {
-//                e = createRESIEnemy(this.MAX_ENEMY_LV - 2);
-//            }
-            
-            
-            enemyTeam.add(e);
         }
     }
     
@@ -565,7 +510,7 @@ public class Wilderness extends Location
         omegaAttacks.add(protocal);
         
         ArrayList<Integer> omegaStats = new ArrayList<>(6);
-        omegaStats.add(2480); // HP
+        omegaStats.add(1300); // HP
         omegaStats.add(340); // Attack
         omegaStats.add(340); // Defense
         omegaStats.add(340); // R Attack
@@ -579,13 +524,15 @@ public class Wilderness extends Location
         
         // Creating Irwin
         ArrayList<Attack> irwinAttacks = new ArrayList<>(4);
-        irwinAttacks.add(new BuffAttack("Perfection Mindset", "The user thinks about their goals and fills themselves with determination, increasing their attack and speed.", "Attack,Speed", 5, 2));
-        irwinAttacks.add(new BuffAttack("R.E.S.I. Protection", "The user creates a force field around them that decreases the power of all incoming attacks", "Defense,R. Defense", 4, 2));
+        irwinAttacks.add(new BuffAttack("Perfection Mindset", "The user thinks about their goals and fills themselves with determination, increasing their attack stats.", "Attack,R.Attack", 3, 2));
+        irwinAttacks.add(new OffensiveAttack("Judgement", "The user judges the target for their imperfections.", 135, "R. Attack"));
         irwinAttacks.add(new OffensiveAttack("R.E.S.I. Blast", "Using R.E.S.I. technology, the user creates a concentrated blast to attack.", 100, "R. Attack"));
-        irwinAttacks.add(new OffensiveAttack("R.E.S.I. Punch", "Using R.E.S.I. technology, the user punches with a metalic fist", 100, "Attack"));
+        irwinAttacks.add(new OffensiveAttack("R.E.S.I. Punch", "Using R.E.S.I. technology, the user punches with a metalic fist.", 100, "Attack"));
         
+        irwinAttacks.get(1).setAccuracy(60);
+
         ArrayList<Integer> irwinStats = new ArrayList<>(6);
-        irwinStats.add(2575); // HP
+        irwinStats.add(777); // HP
         irwinStats.add(351); // Attack
         irwinStats.add(351); // Defense
         irwinStats.add(366); // R Attack
@@ -599,13 +546,13 @@ public class Wilderness extends Location
         
         // Creating R.E.S.I. Omega III
         ArrayList<Attack> omega2Attacks = new ArrayList<>(4);
-        omega2Attacks.add(new BuffAttack("System Restart", "The user restarts its systems to refresh itself, raising all stats.", "All", 2.0, 5, 2));
+        omega2Attacks.add(new BuffAttack("Reinforced Armor", "The user reinforces its armor to increase its defenses.", "Defense,R. Defense", 5, 2));
         omega2Attacks.add(deathClaw);
         omega2Attacks.add(new SingleHealingAttack("Ethrellium Injection", "The user injects their ally with pure ethrellium to heal them", 0.25, 3));
         omega2Attacks.add(protocal);
         
         ArrayList<Integer> omega2Stats = new ArrayList<>(6);
-        omega2Stats.add(2480); // HP
+        omega2Stats.add(1300); // HP
         omega2Stats.add(340); // Attack
         omega2Stats.add(340); // Defense
         omega2Stats.add(340); // R Attack
@@ -630,7 +577,7 @@ public class Wilderness extends Location
         attacks.add(new BuffAttack("Perfectionist", "The user removes their imperfections to increase all stats.", "All", 5, 3));
         attacks.add(new OffensiveAttack("Perfect Strike", "The user attacks with a forceful strike. It cannot miss.", 100, "Attack"));
         attacks.add(new OffensiveAttack("Perfect Blast", "Using concentrated energy of the user's element, an energy blast is fired. It cannot miss.", 100, "R. Attack"));
-        attacks.add(new OffensiveAttack("Divine Vision", "The vision of a new, divine world is what motivates the user. An onslaught of attacks is then launched at the target.", 120, "R. Attack"));
+        attacks.add(new OffensiveAttack("Divine Vision", "The vision of a new, divine world is what motivates the user. An onslaught of attacks is then launched at the target.", 125, "R. Attack"));
         attacks.get(3).setAccuracy(85);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
