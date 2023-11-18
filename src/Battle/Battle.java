@@ -1190,8 +1190,9 @@ public abstract class Battle implements Serializable
         {
             return;
         }
+        
         // Prioritizes healing allies if applicable
-        else if (canHealEnemyAlly(enemy))
+        if (canHealEnemyAlly(enemy))
         {
             healEnemyAlly(enemy);
         }
@@ -1301,7 +1302,7 @@ public abstract class Battle implements Serializable
                 {
                     attack.attack(enemy, target);
                     removeDeadPlayer(enemy, target, attack);
-                    return target.isDead();
+                    return true;
                 }
             }
         }
