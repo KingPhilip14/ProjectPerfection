@@ -104,7 +104,7 @@ public abstract class Item implements Collectable, java.io.Serializable
         HealingItem halfCake = new HealingItem("Half Cake", "Half of a cake. Where did the other half go? Who knows!", 350, 490);
         HealingItem wholeCake = new HealingItem("Whole Cake", "An entire, untampered cake that looks pretty good! It looks very filling.", 500, 700);
         HealingItem applePie = new HealingItem("Apple Pie", "An old town favorite dessert filled with cinnamon, apples, and lots of love.", 250, 360);
-        HealingItem peachCobbler = new HealingItem("Peach Cobbler", "A soft, sweet dessert that makes any heart warm.", 225, 335);
+        HealingItem peachCobbler = new HealingItem("Peach Cobbler", "A soft, sweet dessert that makes any heart warm.", 300, 440);
         HealingItem chocoBar = new HealingItem("Choco Bar", "A bar made of high quality chocolate.", 200, 325);
         HealingItem unknown = new HealingItem("???", "Is... Is this even edible? Only one way to find out...");
         HealingItem lollipop = new HealingItem("Lollipop", "A small, delectable treat that all the children love.", 60, 45);
