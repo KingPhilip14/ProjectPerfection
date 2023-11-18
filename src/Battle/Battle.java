@@ -1184,10 +1184,6 @@ public abstract class Battle implements Serializable
      */
     protected void activateEnemyAI(Enemy enemy)
     {
-        for (Attack attack : enemy.getCurrentAttacks()){
-            System.out.println("\n" + attack.toString());
-        }
-
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
         // Defeats player if possible. If possible, end enemy AI; else, move to the next statement
@@ -1206,11 +1202,21 @@ public abstract class Battle implements Serializable
         {
             healEnemyTeam(enemy);
         }
+        // 50% percent chance for the enemy to attack before considering to buff itself
+        else if(new Random().nextBoolean())
+        {
+            attackPlayer(enemy, adjacentPlayers);
+        }
         // Will buff itself if possible
         else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn))
         {
             BuffAttack buff = enemy.getBuffAttack();
             buff.activateBuff(enemy);
+        }
+        // 50% percent chance for the enemy to attack before considering to debuff a player's character
+        else if(new Random().nextBoolean())
+        {
+            attackPlayer(enemy, adjacentPlayers);
         }
         // Will debuff a target if enemy has a debuff attack and the highest aggroed player doesn't have a debuff
         else if(enemy.hasDebuffAttack() && canDebuffHighestAggro(enemy, adjacentPlayers))
@@ -1219,7 +1225,7 @@ public abstract class Battle implements Serializable
             Player target = Player.getHighestAggro(adjacentPlayers);
             debuff.activateDebuff(enemy, target);
         }
-        // Else, attack
+        // If nothing else, guarentee an attack
         else
         {
             attackPlayer(enemy, adjacentPlayers);
