@@ -85,7 +85,7 @@ public abstract class Location extends GameProperty
     
     private void openChest()
     {
-        MainGame.printlnln("\nYou found a chest! What does it have?");
+        MainGame.printlnln("You found a chest! What does it have?");
         chest.open();
     }
     
@@ -111,7 +111,7 @@ public abstract class Location extends GameProperty
         }
         else
         {
-            MainGame.printlnln("\nYou couldn't find a chest...");
+            MainGame.printlnln("You couldn't find a chest...");
         }
         
 //        MainGame.waitForEnter();

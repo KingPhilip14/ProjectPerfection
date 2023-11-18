@@ -398,7 +398,7 @@ public class Game implements java.io.Serializable
         
         if(currentLocation instanceof Town)
         {
-            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
             input = MenuHelper.displayMenu(message, 1, 6);
             MainGame.clearScreen();
 
@@ -443,7 +443,7 @@ public class Game implements java.io.Serializable
         // If the requirements to start the boss battle aren't met, don't give the option.
         if(!((Wilderness)currentLocation).canDoBossBattle(team))
         {
-            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
+            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) More Options";
             input = MenuHelper.displayMenu(message, 1, 5);
             MainGame.clearScreen();
 
@@ -468,7 +468,7 @@ public class Game implements java.io.Serializable
         }
         else
         {
-            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
+            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
             input = MenuHelper.displayMenu(message, 1, 6);
             MainGame.clearScreen();
             
@@ -1209,7 +1209,7 @@ public class Game implements java.io.Serializable
     
     private void optionsMenu()
     {
-        MainGame.println("\nWhat would you like to do?");
+        MainGame.println("What would you like to do?");
         String message = "\t1) View Team\n\t2) View Tutorials\n\t3) View World Map\n\t4) Save\n\t5) Set Text Speed\n\t6) Back";
         int input = MenuHelper.displayMenu(message, 1, 6);
         

@@ -143,7 +143,7 @@ public class Cutscene
         
         print("Perplexed, the newscaster turned to the cameraman that accompanied her to finish her broadcast.");
         
-        MainGame.dialogueInteract("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
+        MainGame.dialoguelnln("Newscaster", "... Th-thank you, Mr. Krov... Well, you heard it here first. Will our world be "
                 + "restored?\n\tWill we have peace once -- or ever -- again? Will the supposed 'perfection' needed help us?"
                 + "\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------

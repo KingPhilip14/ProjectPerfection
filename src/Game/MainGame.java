@@ -877,7 +877,7 @@ public class MainGame
                 + "slots.\n\tCenter slot: The center slot can target and be targeted by all opposing slots.\n\t"
                 + "Right slot: The right slot can target adn be targeted by the opposing center and right slots.");
         
-        waitForEnter();
+        // waitForEnter();
     }
     
     public static void aggroTutorial()
@@ -890,7 +890,7 @@ public class MainGame
                 + "with the most aggro will have a marker next to their name: (!)./"
                 + "Certain moves accrue more aggro than others, and some classes affect this as well./");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static void cheerPartnerTutorial()
@@ -906,7 +906,7 @@ public class MainGame
         
         printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static void cooldownTutorial()
@@ -917,7 +917,7 @@ public class MainGame
                 + "All of these attacks except Offensive have \"Cooldowns.\"/If you view your character's attacks, you can see the cooldown value./"
                 + "This value means that after using this attack, it will be unavailable for that amount of turns./After the cooldown effect is over, the move is available again.");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static void classTutorial()
@@ -948,7 +948,7 @@ public class MainGame
         printWithBreaks("Lastly, the Tank and Master Clerk classes have special properties in battle./Tank classes (primary or secondary) accrue more aggro than other classes normally would./"
                 + "The Master Clerk class has a special property where they can heal anyone no matter the adjacency./Normally, a Clerk can only heal an adjacent ally. However, a Master Clerk ignores this.");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static void resiTutorial()
@@ -963,7 +963,7 @@ public class MainGame
         printWithBreaks("If a R.E.S.I is hit with a Combo attack, the element will change to the character who is fighting's/"
                 + "element, not their cheer partner.");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static void comboAttackTutorial()
@@ -977,7 +977,7 @@ public class MainGame
                 + "effectiveness of both will/be applied and deal massive damage! This can only be done once per battle, however, "
                 + "so use it wisely!");
         
-        promptToEnter();
+        // promptToEnter();
     }
     
     public static Player makeAnahita()
