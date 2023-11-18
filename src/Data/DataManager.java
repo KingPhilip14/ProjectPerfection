@@ -17,6 +17,8 @@ public class DataManager implements Serializable
 {
     private boolean isTesting;
 
+    private boolean gameStarted;
+
     // Game information
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
@@ -50,6 +52,7 @@ public class DataManager implements Serializable
     public DataManager(Game game)
     {
         isTesting = Game.isTesting();
+        gameStarted = game.getGameStarted();
 
         beachTutorialDone = game.isBeachTutorialDone();
         forestTutorialDone = game.isForestTutorialDone();
@@ -82,6 +85,10 @@ public class DataManager implements Serializable
 
     public boolean isTesting() {
         return isTesting;
+    }
+
+    public boolean gameStarted() {
+        return gameStarted;
     }
 
     public boolean isBeachTutorialDone() {

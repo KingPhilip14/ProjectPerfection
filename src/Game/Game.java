@@ -110,7 +110,9 @@ public class Game implements java.io.Serializable
         return finalBossDefeated;
     }
 
-    public boolean gameStarted() {return gameStarted;}
+    public boolean getGameStarted() {return gameStarted;}
+
+    public void setGameStarted(boolean value) {gameStarted = value;}
 
     public void setFinalBossDefeated(boolean finalBossDefeated) {
         this.finalBossDefeated = finalBossDefeated;
@@ -1694,6 +1696,7 @@ public class Game implements java.io.Serializable
         
         switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
+        MainGame.promptToEnter();
         MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
         
         // Prints out the four moves the player now knows

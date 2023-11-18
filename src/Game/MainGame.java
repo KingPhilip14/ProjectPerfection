@@ -462,7 +462,7 @@ public class MainGame
                 clearScreen();
                 printlnln("The speed can be changed by selecting 'More Options > Set Text Speed' while playing the game.");
 
-                if(!game.gameStarted()){
+                if(!game.getGameStarted()){
                     promptToEnter();
                     startUp();
                 }
