@@ -377,6 +377,7 @@ public class Game implements java.io.Serializable
     
     private void gameOpening()
     {
+        gameStarted = true;
         Cutscene.opening();
         introduceNewLocation(); // introduces Purity Beach
         MainGame.promptToEnter();
