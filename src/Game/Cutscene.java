@@ -96,10 +96,10 @@ public class Cutscene
         
         print("A man with money. A man with influence. A man with power. A man with intellect.");
         
-        print("People look up to him. They believe that *he* can fix the world. All that's wrong, he can find a solution to it, "
+        print("People look up to him. They believe that *he* can fix the world./All that's wrong, he can find a solution to it, "
                 + "surely.");
         
-        print("He has accomplished so many things in the past. He's done so much for humanity. Surely, he can save them from "
+        print("He has accomplished so many things in the past. He's done so much for humanity./Surely, he can save them from "
                 + "this pain. This suffering. This nightmare.");
         
 //        print("Somewhere, there is a man with power, technology, and money./So much so, that people look up to him. They hope "

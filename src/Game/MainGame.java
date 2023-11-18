@@ -888,8 +888,7 @@ public class MainGame
         printWithBreaks("Each of your characters has a value called "
                 + "\"aggro\"./After every attack, their aggro will increase, forcing the enemy to target them./The character "
                 + "with the most aggro will have a marker next to their name: (!)./"
-                + "Certain moves accrue more aggro than others, and some classes affect this as well./"
-                + "However, enemies will sometimes ignore this aggro and target someone else, so be mindeful!");
+                + "Certain moves accrue more aggro than others, and some classes affect this as well./");
         
         promptToEnter();
     }
