@@ -326,9 +326,8 @@ public class Game implements java.io.Serializable
     
     public void startGame()
     {
-        // Comment out for testing
         MainGame.clearScreen();
-        
+        gameOpening();
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
@@ -2293,43 +2292,4 @@ public class Game implements java.io.Serializable
         
         return null;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    Create a new class called Objective in the Game package. It will have a lot of boolean field variables that 
-    check and follow the player's progress. It will contain an ArrayList of these booleans similar to how
-    this class contains an ArrayList of locations. The boolean will be listed in two different lists:
-        completed and uncompleted
-    
-    For example: the first objective will be getting to Opicon Forest. A boolean will represent that as "arrivedOpiconForest"
-    
-    With each objective that's met, it will be updated here in the Game class
-    
-    For example: made it to Opicon Forest. Call updateObjective() which sets arriviedOpiconForest to be true and adds it to the
-    completed list. Now the next objective is the first boolean in the uncompleted list (a reference to it can be held like
-    "nextLocation" is an Object reference in this class)
-    
-    This allows for the player to not progress the story unless certain levels are attained AND NPCs are talked to since
-    each boolean will be checking for a different condition
-    
-    For example: made it to Aquammoda is completed. Current objective: talk to merda. The class will now only check if Merda
-    has been talked to. The talkToPeople() method in this class will check if she was talked to. If so, it'll update the 
-    objective class from there. The next objective is to then get to level 9 to access the Degon. Since this is the case,
-    an immediate check is necessary to see if the player is already at level 9. If so, unlock it like normal. If not, 
-    the player will simply play until they're at that level and the Degon will be unlocked. 
-    
-    Essentially, the game does not progress unless the objective class does, providing a cleaner way of tracking
-    the progress made. It also removes a lot of booleans from this class. 
-    
-    **If one objective is not complete, the objective class will not check for another until it's completed.**
-    **Therefore, the game CANNOT go on until the player meets the requirements**
-    */
 }

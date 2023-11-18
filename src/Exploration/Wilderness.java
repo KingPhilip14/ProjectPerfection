@@ -219,31 +219,22 @@ public class Wilderness extends Location
     private Enemy createNormalEnemy()
     {
         String element = selectEnemyElement();
-        Enemy e = null;
         
         switch(element)
         {
             case "Water":
-                e = new WaterEnemy(this);
-                break;
+                return new WaterEnemy(this);
             case "Fire":
-                e = new FireEnemy(this);
-                break;
+                return new FireEnemy(this);
             case "Earth":
-                e = new EarthEnemy(this);
-                break;
+                return new EarthEnemy(this);
             case "Wind":
-                e = new WindEnemy(this);
-                break;
+                return new WindEnemy(this);
             case "Ice":
-                e = new IceEnemy(this);
-                break;
-            case "Electric":
-                e = new ElectricEnemy(this);
-                break;
+                return new IceEnemy(this);
+            default:
+                return new ElectricEnemy(this);
         }
-        
-        return e;
     }
     
     /**
@@ -254,31 +245,22 @@ public class Wilderness extends Location
     private Enemy createNormalEnemy(int level)
     {
         String element = selectEnemyElement();
-        Enemy e = null;
         
         switch(element)
         {
             case "Water":
-                e = new WaterEnemy(this, level);
-                break;
+                return new WaterEnemy(this);
             case "Fire":
-                e = new FireEnemy(this, level);
-                break;
+                return new FireEnemy(this);
             case "Earth":
-                e = new EarthEnemy(this, level);
-                break;
+                return new EarthEnemy(this);
             case "Wind":
-                e = new WindEnemy(this, level);
-                break;
+                return new WindEnemy(this);
             case "Ice":
-                e = new IceEnemy(this, level);
-                break;
-            case "Electric":
-                e = new ElectricEnemy(this, level);
-                break;
+                return new IceEnemy(this);
+            default:
+                return new ElectricEnemy(this);
         }
-        
-        return e;
     }
     
     /**
@@ -370,34 +352,18 @@ public class Wilderness extends Location
     }
     
     private void formRESIEnemyTeam(ArrayList<Enemy> enemyTeam, int enemyTeamSize)
-    {
-        Enemy e = null;
-        
+    {   
         for(int i = 0; i < enemyTeamSize; i++)
         {
             switch(enemyTeamSize)
             {
                 case 1:
-                    e = createRESIEnemy(this.MAX_ENEMY_LV - 1);
+                    enemyTeam.add(createRESIEnemy(this.MAX_ENEMY_LV - 1));
                     break;
                 case 2:
-                    e = createRESIEnemy(this.MAX_ENEMY_LV - 2);
+                    enemyTeam.add(createRESIEnemy(this.MAX_ENEMY_LV - 2));
                     break;
             }
-            
-//            // If team size is 1, make level the max - 1
-//            if(enemyTeamSize == 1)
-//            {
-//                e = createRESIEnemy(this.MAX_ENEMY_LV - 1);
-//            }
-//            // Else, make the level the max - 2
-//            else if(enemyTeamSize == 2)
-//            {
-//                e = createRESIEnemy(this.MAX_ENEMY_LV - 2);
-//            }
-            
-            
-            enemyTeam.add(e);
         }
     }
     

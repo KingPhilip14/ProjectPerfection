@@ -391,28 +391,30 @@ public abstract class Enemy extends Character
     
     public SingleHealingAttack getSingleHeal()
     {
+        ArrayList<SingleHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
-            if(anAttack instanceof SingleHealingAttack)
+            if(anAttack instanceof BuffAttack)
             {
-                return (SingleHealingAttack)anAttack;
+                results.add((SingleHealingAttack)anAttack);
             }
         }
         
-        return null;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     public TeamHealingAttack getTeamHeal()
     {
+        ArrayList<TeamHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
-            if(anAttack instanceof TeamHealingAttack)
+            if(anAttack instanceof BuffAttack)
             {
-                return (TeamHealingAttack)anAttack;
+                results.add((TeamHealingAttack)anAttack);
             }
         }
         
-        return null;
+        return results.get(new Random().nextInt(results.size()));
     }
     
     public boolean hasHealingAttack()
@@ -489,46 +491,6 @@ public abstract class Enemy extends Character
         return result;
     }
     
-    // public BuffAttack getAttackBuff()
-    // {
-    //     ArrayList<DebuffAttack> results = new ArrayList<>(2);
-    //     for(Attack anAttack : currentAttacks)
-    //     {
-    //         if(anAttack instanceof DebuffAttack)
-    //         {
-    //             results.add((DebuffAttack)anAttack);
-    //         }
-    //     }
-        
-    //     return results.get(new Random().nextInt(results.size()));
-    //     // BuffAttack result = null; 
-        
-    //     // for(Attack anAttack : currentAttacks)
-    //     // {
-    //     //     if(anAttack instanceof BuffAttack)
-    //     //     {
-    //     //         Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
-    //     //         scan.useDelimiter(",");
-                
-    //     //         while(scan.hasNext())
-    //     //         {
-    //     //             if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
-    //     //             {
-    //     //                 result = (BuffAttack)anAttack;
-    //     //                 break;
-    //     //             }
-    //     //         }
-    //     //     }
-            
-    //     //     if(result != null)
-    //     //     {
-    //     //         break;
-    //     //     }
-    //     // }
-        
-    //     // return result;
-    // }
-    
     public BuffAttack getBuffAttack()
     {
         ArrayList<BuffAttack> results = new ArrayList<>(2);
@@ -587,19 +549,6 @@ public abstract class Enemy extends Character
         // Indexes 18-19
         allHealingAttacks.add(new SingleHealingAttack("Restful Spirit", "The user calms the target's spirits to restore 30% their total HP.", 0.3, 2));
         allHealingAttacks.add(new TeamHealingAttack("Soothing Aura", "The user emits a gentle aura to restore 30% HP to its entire team.", 0.3, 2));
-    }
-    
-    public static HealingAttack getHealingAttack(String attackName)
-    {
-        for(HealingAttack ha : allHealingAttacks)
-        {
-            if(attackName.toLowerCase().equals(ha.getName().toLowerCase()))
-            {
-                return ha;
-            }
-        }
-        
-        return null;
     }
     
     private void populateCurrentAttacks()

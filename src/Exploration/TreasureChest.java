@@ -20,7 +20,7 @@ public class TreasureChest extends GameProperty
         super.name = "Treasure Chest";
         super.description = "A chest probably full of good things.";
         alreadyFound = false;
-        this.contents = new ArrayList();
+        this.contents = new ArrayList<Item>();
         
         if(numOfItems != 0)
         {
