@@ -951,6 +951,7 @@ public abstract class Battle implements Serializable
         if(target.getCurrentHealth() == 0)
         {
             MainGame.printlnln(player.getName() + " defeated " + target.getName() + "!");
+            MainGame.promptToEnter();
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
@@ -1189,9 +1190,8 @@ public abstract class Battle implements Serializable
         {
             return;
         }
-
         // Prioritizes healing allies if applicable
-        if (canHealEnemyAlly(enemy))
+        else if (canHealEnemyAlly(enemy))
         {
             healEnemyAlly(enemy);
         }

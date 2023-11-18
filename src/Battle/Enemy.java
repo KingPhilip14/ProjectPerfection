@@ -446,49 +446,13 @@ public abstract class Enemy extends Character
     }
     
     /**
-     * Randomly returns a known offensive attack with a higher chance to return the highest damaging one.
+     * Randomly returns a known offensive attack.
      * @return 
      */
     public OffensiveAttack getOffensiveAttack()
     {
-        OffensiveAttack result;
-        ArrayList<OffensiveAttack> offensiveAttacks = new ArrayList<>();
-        
-        // Gathers all offensive attacks and stores them in a temporary ArrayList
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof OffensiveAttack)
-            {
-                offensiveAttacks.add((OffensiveAttack)anAttack);
-            }
-        }
-        
-        DamageComparator dc = new DamageComparator();
-        Sort.mergeSort(offensiveAttacks, dc);
-        
-        Random rand = new Random();
-        
-        int chance = rand.nextInt(10);
-        
-        // 70% chance to use the highest damaging attack; guaranteed to use that attack if only one offensive attack is known
-        if((chance >= 0 && chance <= 6) || offensiveAttacks.size() == 1)
-        {
-            result = offensiveAttacks.get(0);
-        }
-        // 30% chance to use a random move if more than 1 offensive attack is known
-        else
-        {
-            chance = rand.nextInt(offensiveAttacks.size());
-
-            if(chance == 0)
-            {
-                chance++;
-            }
-
-            result = offensiveAttacks.get(chance);
-        }
-        
-        return result;
+        ArrayList<OffensiveAttack> offensiveAttacks = getOffensiveAttackList();   
+        return offensiveAttacks.get(new Random().nextInt(offensiveAttacks.size()));
     }
     
     public BuffAttack getBuffAttack()

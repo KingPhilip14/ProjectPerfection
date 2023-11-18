@@ -57,6 +57,7 @@ public class OpiconTutorialBattle extends TutorialBattle
                 return; // end the recursive call if the user is done
         }
 
+        MainGame.promptToEnter();
         prompt();
     }
 }

@@ -346,6 +346,15 @@ public class Game implements java.io.Serializable
         
         while(true)
         {
+            if(new Random().nextBoolean())
+            {
+                pulchraPopulation += new Random().nextInt(21);
+            }
+            else
+            {
+                pulchraPopulation -= new Random().nextInt(21);
+            }
+            
             processInput();
         }
     }
