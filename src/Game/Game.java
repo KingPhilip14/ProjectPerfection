@@ -594,17 +594,17 @@ public class Game implements java.io.Serializable
         
         int input = MenuHelper.displayMenu(message, 1, numOfOptions);
         
-        if(input == numOfOptions)
-        {
-            MainGame.clearScreen();
-            processInput();
-        }
-        else if(knownLocations.get(input - 1) == currentLocation)
+        // if(input == numOfOptions)
+        // {
+        //     MainGame.clearScreen();
+        //     processInput();
+        // }
+        if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
             MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");
         }
-        else
+        else if(input != numOfOptions)
         {
             Location newLocation = knownLocations.get(input - 1);
             transition(newLocation);
@@ -1202,7 +1202,7 @@ public class Game implements java.io.Serializable
     {
         Town town = ((Town)currentLocation);
         town.findChest();
-        processInput();
+        // processInput();
     }
     
     private void findWildnernessChest()
@@ -1233,11 +1233,11 @@ public class Game implements java.io.Serializable
             case 5:
                 MainGame.selectTextSpeed(this);
                 break;
-            case 6:
-                MainGame.clearScreen();
-                processInput();
-                break;
             default:
+                // MainGame.clearScreen();
+                // processInput();
+                break;
+            case 1:
                 viewTeam();
                 break;
         }
@@ -1255,22 +1255,20 @@ public class Game implements java.io.Serializable
         {
             case 2:
                 MainGame.targetingTutorial();
-                viewTutorials();
                 break;
             case 3:
                 MainGame.aggroTutorial();
-                viewTutorials();
                 break;
             case 4:
                 MainGame.cheerPartnerTutorial();
-                viewTutorials();
                 break;
-            case 5: 
-                optionsMenu();
-                break;
-            default: 
-                MainGame.printElementMatchups();
-                viewTutorials();
+            // case 5: 
+            //     MainGame.clearScreen();
+            //     optionsMenu();
+            //     break;
+            case 1: 
+                MainGame.clearScreen();
+                new TypeChart().printChart();
                 break;
         }
     }
@@ -1291,9 +1289,9 @@ public class Game implements java.io.Serializable
                 // Saves the game using a SaveLoad object. Game data is written to a file
                 MainGame.save();
                 break;
-            case 2: 
-                processInput();
-                break;
+            // case 2: 
+            //     processInput();
+            //     break;
         }
     }
     

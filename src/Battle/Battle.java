@@ -80,7 +80,7 @@ public abstract class Battle implements Serializable
         beforeBattlePrompt();
         BATTLE_INTERFACE = new BattleInterface(originalEnemyPositions, ORIGINAL_PLAYER_POSITIONS);
         BATTLE_INTERFACE.setBattleInfo(battleInfo);
-        MainGame.clearScreen();
+        MainGame.promptToEnter();
         
         while(!PLAYER_FIGHTING_TEAM.isEmpty() || !enemyTeam.isEmpty())
         {

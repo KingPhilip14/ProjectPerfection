@@ -227,8 +227,8 @@ public class Cutscene
         MainGame.promptToEnter();
         
         MainGame.printWithBreaks("You now have access to Fultra, one of the strongest Pulchrians!/He has a unique class"
-                + " called the 'All-Rounder.'/All his stats are average and realatively even, but what really makes him "
-                + "shine is his Buff Attack called 'Charge!'/With it, he increases all his stats for a certain time, "
+                + " called the 'All-Rounder.'/All his stats are average and relatively even, but what really makes him "
+                + "shine is his Buff Attack called 'Charge!'/With it, he doubles all his stats for a certain time, "
                 + "but it has a large cooldown, so be mindful!");
         
 //        MainGame.promptToEnter();

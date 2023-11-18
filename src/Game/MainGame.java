@@ -819,6 +819,7 @@ public class MainGame
     {
         clearScreen();
         new TypeChart().printChart();
+        promptToEnter();
     }
     
     public static ArrayList<Player> getPlayerTeam() {return playerTeam;}
@@ -1125,7 +1126,7 @@ public class MainGame
         OffensiveAttack thunderbolt = new OffensiveAttack("Thunderbolt", "The user shocks the target with a large thunderbolt.", 70, "R. Attack");
         OffensiveAttack overdrive = new OffensiveAttack("Overdrive", "The user coats themselves in electricity and rams into the target.", 115, "Attack");
         overdrive.setAccuracy(75);
-        BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are increased for 2 turns.", "All", 5, 2);
+        BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are doubled for 2 turns.", "All", 2.0, 5, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
         SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.1);
         OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 150, "R. Attack");
@@ -1184,7 +1185,7 @@ public class MainGame
         fultra.setSpeed(324);
 
         ArrayList<Attack> currentAttacks = new ArrayList<>(4);
-        currentAttacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are increased for 3 turns, and cooldown is less than Charge.", "All", 3, 3));
+        currentAttacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are doubled for 3 turns. The cooldown is less than Charge.", "All", 2.0, 3, 3));
         currentAttacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
         currentAttacks.get(1).setAccuracy(85);
         currentAttacks.add(new OffensiveAttack("Plasma Blast II", "The user discharges a overwhelming electrical wave. Its accuracy and power are better than normal.", 180, "R. Attack"));
