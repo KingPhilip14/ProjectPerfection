@@ -1393,7 +1393,7 @@ public abstract class Battle implements Serializable
             // If there is more than 1 person alive when the target is defeated
             else if(PLAYER_FIGHTING_TEAM.size() > 1)
             {
-                MainGame.printlnlnWait("The remainding fighters started defending " + target.getName() + " to prevent them from further harm.", 25, 2000);
+                MainGame.printlnln("The remainding fighters started defending " + target.getName() + " to prevent them from further harm.");
             }
             
             MainGame.promptToEnter();
