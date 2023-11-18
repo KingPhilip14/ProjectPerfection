@@ -45,7 +45,7 @@ public class EarthEnemy extends Enemy
     public static void createSpeciesNames()
     {
         speciesNames.add("Rhik"); // Rhino-like
-        speciesNames.add("Copig"); // Pig-like
+        speciesNames.add("Opig"); // Pig-like
         speciesNames.add("Scarab"); // Beetle-like
         speciesNames.add("Taur"); // Bull-like
         speciesNames.add("Phantel"); // Elephant-like

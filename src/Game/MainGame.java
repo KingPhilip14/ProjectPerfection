@@ -394,7 +394,7 @@ public class MainGame
         switch(response)
         {
             case 1:
-                game = new Game(false);
+                game = new Game(true);
                 break;
             case 2:
                 load();

@@ -294,42 +294,6 @@ public abstract class Enemy extends Character
         return false;
     }
     
-    public boolean hasAttackBuff()
-    {
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                Scanner scan = new Scanner(((BuffAttack) anAttack).getStatToBuff());
-                scan.useDelimiter(",");
-                
-                while(scan.hasNext())
-                {
-                    if(scan.next().equals("Attack") || scan.next().equals("R. Attack") || scan.next().equals("All"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        return false;
-    }
-    
-    public boolean hasBuff()
-    {
-        for(Attack anAttack : currentAttacks)
-        {
-            if(anAttack instanceof BuffAttack)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    @Override
     public boolean hasDebuffAttack()
     {
         for(Attack anAttack : currentAttacks)
@@ -345,7 +309,7 @@ public abstract class Enemy extends Character
     
     public DebuffAttack getDebuffAttack()
     {
-        ArrayList<DebuffAttack> results = new ArrayList<>(2);
+        ArrayList<DebuffAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof DebuffAttack)
@@ -354,13 +318,7 @@ public abstract class Enemy extends Character
             }
         }
         
-        return results.get(new Random().nextInt(results.size()));
-    }
-    
-    public boolean hasActiveBuff()
-    {
-        return attack.getIsBuffActive() || defense.getIsBuffActive() || rangedAttack.getIsBuffActive() || 
-                rangedDefense.getIsBuffActive() || speed.getIsBuffActive();
+        return results.get(0);
     }
     
     public boolean hasTeamHeal()
@@ -457,7 +415,7 @@ public abstract class Enemy extends Character
     
     public BuffAttack getBuffAttack()
     {
-        ArrayList<BuffAttack> results = new ArrayList<>(2);
+        ArrayList<BuffAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
             if(anAttack instanceof BuffAttack)
@@ -466,7 +424,7 @@ public abstract class Enemy extends Character
             }
         }
         
-        return results.get(new Random().nextInt(results.size()));
+        return results.get(0);
     }
     
     /**
@@ -522,6 +480,11 @@ public abstract class Enemy extends Character
         
         if(isOffensive)
         {
+            /*
+             * Offensive builds will have 2-3 offensive attacks.
+             * It will have only one buff attack
+             * At most, an offensive build will have one debuff attack
+             */
             if(numOfOffensive == 1)
             {
                 numOfOffensive++;
@@ -541,6 +504,13 @@ public abstract class Enemy extends Character
         }
         else
         {
+            /*
+             * Defensive builds will a random amount of offensive attacks determined by the random int generated
+             * Only one buff attack will be assigned
+             * If possible, one debuff attack will be assigned
+             * If possible, one random healing attack will be assigned. If this is the case, the defensive build 
+             *      has one of every type of attack (Offensive, Buff, Debuff, and a Healing variation) 
+             */
             for(int i = 0; i < numOfOffensive; i++)
             {
                 currentAttacks.add(allOffensiveAttacks.remove(rand.nextInt(allOffensiveAttacks.size())));

@@ -128,17 +128,29 @@ public abstract class Character extends GameProperty implements Combatable
         return currentHealth == 0;
     }
     
-    public boolean hasDebuffAttack()
-    {
-        for(Stat s : listOfStats)
-        {
-            if(s.getIsDebuffActive())
-            {
-                return true;
-            }
-        }
+    // public boolean hasDebuffAttack()
+    // {
+    //     for(Stat s : listOfStats)
+    //     {
+    //         if(s.getIsDebuffActive())
+    //         {
+    //             return true;
+    //         }
+    //     }
         
-        return false;
+    //     return false;
+    // }
+
+    public boolean hasActiveBuff()
+    {
+        return attack.getIsBuffActive() || defense.getIsBuffActive() || rangedAttack.getIsBuffActive() || 
+                rangedDefense.getIsBuffActive() || speed.getIsBuffActive();
+    }
+
+    public boolean hasActiveDebuff()
+    {
+        return attack.getIsDebuffActive() || defense.getIsDebuffActive() || rangedAttack.getIsDebuffActive() || 
+                rangedDefense.getIsDebuffActive() || speed.getIsDebuffActive();
     }
     
     public int getHighestAttackStat()

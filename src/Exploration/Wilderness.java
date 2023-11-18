@@ -125,8 +125,15 @@ public class Wilderness extends Location
     public BeachTutorialBattle makeBeachTutorial(Player player)
     {
         EarthEnemy krobble = new EarthEnemy("Sandy Krobble", "A Krobble with a loving family that's threatening Anahita!", 5);
-        // krobble.setCurrentHealth(1);
+        krobble.setCurrentHealth(9999);
+        krobble.setMaxHealth(9999);
         krobble.setSpeed(1);
+        krobble.setMaxHealth(9999);
+        krobble.setCurrentHealth(9999);
+        krobble.setAttack(9999);
+        krobble.setDefense(9999);
+        krobble.setRangedAttack(9999);
+        krobble.setRangedDefense(9999);
         BeachTutorialBattle battle = new BeachTutorialBattle(krobble, player);
         return battle;
     }

@@ -774,6 +774,7 @@ public abstract class Battle implements Serializable
                 else if(attack instanceof TeamHealingAttack)
                 {
                     MainGame.println("\n" + player.getName() + " used " + attack.getName() + " and healed the team!");
+                    MainGame.promptToEnter();
                     player.increaseAggro(attack);
                     TeamHealingAttack heal = (TeamHealingAttack)attack;
                     heal.healPlayers(PLAYER_FIGHTING_TEAM, currentTurn);
@@ -1183,6 +1184,10 @@ public abstract class Battle implements Serializable
      */
     protected void activateEnemyAI(Enemy enemy)
     {
+        for (Attack attack : enemy.getCurrentAttacks()){
+            System.out.println("\n" + attack.toString());
+        }
+
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
         // Defeats player if possible. If possible, end enemy AI; else, move to the next statement
@@ -1201,61 +1206,31 @@ public abstract class Battle implements Serializable
         {
             healEnemyTeam(enemy);
         }
-        // Else, either attack or use buff/debuff
-        else
+        // Will buff itself if possible
+        else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn))
         {
-            chooseAttack(enemy, adjacentPlayers);
+            BuffAttack buff = enemy.getBuffAttack();
+            buff.activateBuff(enemy);
         }
-    }
-    
-    private void chooseAttack(Enemy enemy, ArrayList<Player> adjacentPlayers)
-    {
-        Random rand = new Random();
-        int chance = rand.nextInt(10);
-        
-        if(canUseBuffOrDebuff(enemy, chance))
+        // Will debuff a target if enemy has a debuff attack and the highest aggroed player doesn't have a debuff
+        else if(enemy.hasDebuffAttack() && canDebuffHighestAggro(enemy, adjacentPlayers))
         {
-            useBuffOrDebuff(enemy, adjacentPlayers, chance);
+            DebuffAttack debuff = enemy.getDebuffAttack();
+            Player target = Player.getHighestAggro(adjacentPlayers);
+            debuff.activateDebuff(enemy, target);
         }
+        // Else, attack
         else
         {
             attackPlayer(enemy, adjacentPlayers);
         }
     }
-    
-    private boolean canUseBuffOrDebuff(Enemy enemy, int chance)
-    {
-        // 30% chance to use a buff or debuff if enemy has a buff or debuff attack, the attack can be used, and if a buff isn't already active
-        return chance >= 0 && chance <= 2 && 
-                ((enemy.hasDebuffAttack() && enemy.getDebuffAttack().canUse(currentTurn)) ||
-                ((!enemy.hasActiveBuff()) && enemy.hasBuff()));
-    }
-    
-    private void useBuffOrDebuff(Enemy enemy, ArrayList<Player> adjacentPlayers, int chance)
-    {
-        Random rand = new Random();
-        chance = rand.nextInt(10);
-                
-        // 30% chance to apply debuff
-        if((chance >= 0 && chance <= 2))
-        {
-            DebuffAttack debuff = enemy.getDebuffAttack();
-            Player target = Player.getHighestAggro(adjacentPlayers);
 
-            if(target.hasDebuffAttack())
-            {
-                adjacentPlayers.remove(target);
-                target = adjacentPlayers.get(rand.nextInt(adjacentPlayers.size()));
-            }
-
-            debuff.activateDebuff(enemy, target);
-        }
-        else if((chance >= 3 && chance <= 9) && enemy.hasBuff() && (!enemy.hasActiveBuff()))
-        {
-            BuffAttack buff = enemy.getBuffAttack();
-//                    MainGame.printlnln("\n" + enemy.getName() + " used " + buff.getName() + "!");
-            buff.activateBuff(enemy);
-        }
+   
+    private boolean canDebuffHighestAggro(Enemy enemy, ArrayList<Player> adjacentPlayers)
+    {
+        Player target = Player.getHighestAggro(adjacentPlayers);
+        return !target.hasActiveDebuff();
     }
     
     protected void attackPlayer(Enemy enemy, ArrayList<Player> adjacentPlayers)
@@ -1273,10 +1248,6 @@ public abstract class Battle implements Serializable
         if(target.isDead())
         {
             removeDeadPlayer(enemy, target, attack);
-//            MainGame.printlnln(target.getName() + " was defeated!");
-//            target.printDeathMessage();
-//            PLAYER_FIGHTING_TEAM.remove(target);
-//            ORIGINAL_PLAYER_POSITIONS.remove(target);
         }
     }
 
