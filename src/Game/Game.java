@@ -354,7 +354,7 @@ public class Game implements java.io.Serializable
             {
                 pulchraPopulation -= new Random().nextInt(21);
             }
-            
+
             processInput();
         }
     }
@@ -1364,14 +1364,14 @@ public class Game implements java.io.Serializable
         // The player has access to changing classes when they're in the second phase
         if(inSecondPhase)
         {
-            String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
+            String message = "\t1) View Stats\n\t2) Change Attacks\n\t3) Change Class\n\t4) Back";
             int input = MenuHelper.displayMenu(message, 1, 4);
             MainGame.clearScreen();
 
             switch(input)
             {
                 case 2:
-                    changeMoves(player);
+                    changeAttacks(player);
                     break;
                 case 3:
                     changeClass(player);
@@ -1393,7 +1393,7 @@ public class Game implements java.io.Serializable
             switch(input)
             {
                 case 2:
-                    changeMoves(player);
+                    changeAttacks(player);
                     break;
                 case 3:
                     viewTeam();
@@ -1405,7 +1405,7 @@ public class Game implements java.io.Serializable
         }
     }
     
-    private void changeMoves(Player player)
+    private void changeAttacks(Player player)
     {
         MainGame.clearScreen();
         MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);

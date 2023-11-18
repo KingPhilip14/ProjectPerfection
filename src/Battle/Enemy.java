@@ -394,7 +394,7 @@ public abstract class Enemy extends Character
         ArrayList<SingleHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
-            if(anAttack instanceof BuffAttack)
+            if(anAttack instanceof SingleHealingAttack)
             {
                 results.add((SingleHealingAttack)anAttack);
             }
@@ -408,7 +408,7 @@ public abstract class Enemy extends Character
         ArrayList<TeamHealingAttack> results = new ArrayList<>();
         for(Attack anAttack : currentAttacks)
         {
-            if(anAttack instanceof BuffAttack)
+            if(anAttack instanceof TeamHealingAttack)
             {
                 results.add((TeamHealingAttack)anAttack);
             }
