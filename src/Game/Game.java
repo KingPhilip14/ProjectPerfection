@@ -40,6 +40,8 @@ import java.util.Scanner;
  */
 public class Game implements java.io.Serializable
 {
+    private boolean gameStarted;
+
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
     private boolean forestTutorialDone;
@@ -77,12 +79,13 @@ public class Game implements java.io.Serializable
     public Game(boolean isTesting)
     {
         /*
-        Aquammoda new name: Aquammoda (Aqua + accomodating [people pleasing])
-        Degon new name: Degon (Dirt + egocentric )
-        Aerogan new name: Aerogan (Aero + arrogant)
-        Infol new name: Infol (Inferno + colossus)
-        Solice new name: Solice (Solus [alone or unaccompanied] + Ice)
-        Elerric new name: Elerric  (Electric + terror)
+        Town names:
+            Aquammoda (Aqua + accomodating [people pleasing])
+            Degon (Dirt + egocentric)
+            Aerogan (Aero + arrogant)
+            Infol (Inferno + colossus)
+            Solice (Solus [alone or unaccompanied] + Ice)
+            Elerric  (Electric + terror)
         */
         
         
@@ -97,6 +100,7 @@ public class Game implements java.io.Serializable
         currentLocation = knownLocations.get(0);
         nextLocation = remainingLocations.remove(0); 
         gold = 0; 
+        gameStarted = false;
         
 
         map = new Map();
@@ -327,7 +331,12 @@ public class Game implements java.io.Serializable
     public void startGame()
     {
         MainGame.clearScreen();
-        gameOpening();
+
+        if(!gameStarted)
+        {
+            gameOpening();
+        }
+        
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
@@ -368,6 +377,7 @@ public class Game implements java.io.Serializable
     {
         Cutscene.opening();
         introduceNewLocation(); // introduces Purity Beach
+        MainGame.promptToEnter();
     }
     
     private void displayInfo()
@@ -390,7 +400,8 @@ public class Game implements java.io.Serializable
         {
             message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
             input = MenuHelper.displayMenu(message, 1, 6);
-            
+            MainGame.clearScreen();
+
             switch(input)
             {
                 case 1:
@@ -434,7 +445,8 @@ public class Game implements java.io.Serializable
         {
             message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) Options";
             input = MenuHelper.displayMenu(message, 1, 5);
-            
+            MainGame.clearScreen();
+
             switch(input)
             {
                 case 1:
@@ -458,6 +470,7 @@ public class Game implements java.io.Serializable
         {
             message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) Options";
             input = MenuHelper.displayMenu(message, 1, 6);
+            MainGame.clearScreen();
             
             switch(input)
             {

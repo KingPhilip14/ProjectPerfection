@@ -113,7 +113,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Newscaster", "I'm here to today at the highly anticipated government meeting that hosted "
                 + "special guest,\n\tIrwin Krov. He has been discussing and planning ways to save our corrupted world with "
-                + "government officials. It's\n\tonly a matter of time before they finish...");
+                + "government officials. It's\n\tonly a matter of time before they finish.");
         
         MainGame.ellipsislnln();
         MainGame.promptToEnter();
@@ -148,7 +148,6 @@ public class Cutscene
                 + "\n\tI'm Natasha Green with 10PM News, signing off.");
         //-----------------------------------------------------------------------------------------------------------------------
         
-        MainGame.ellipsis();
         MainGame.promptToEnter();
         
         print("Amidst the blue terror called the ocean, there is a special, small land./Here, there is a special people "
@@ -173,10 +172,8 @@ public class Cutscene
                 + "peacefully absorbing the beach's scenery and enjoying the gentle breeze./She realizes that she let the "
                 + "time slip past her, however, and that she's close to being late.");
         MainGame.dialoguelnln("Anahita", "(*sigh*) I wish I could stay here forever...\n\t"
-                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival! Oh, you've gone and done it "
-                + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest...");
-        
-        MainGame.promptToEnter();
+                + "Oh no! I forgot I need to get back home to help Mom prepare for the Annual Festival!\n\tOh, you've gone and done it "
+                + "now, Ana... Ugh!\n\tOkay, okay, I'll be fine. To get back home, I just have to go through Opicon Forest!");
     }
     
     /**
