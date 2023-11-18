@@ -1232,6 +1232,7 @@ public class Game implements java.io.Serializable
                 MainGame.selectTextSpeed(this);
                 break;
             case 6:
+                MainGame.clearScreen();
                 processInput();
                 break;
             default:
@@ -1252,18 +1253,22 @@ public class Game implements java.io.Serializable
         {
             case 2:
                 MainGame.targetingTutorial();
+                viewTutorials();
                 break;
             case 3:
                 MainGame.aggroTutorial();
+                viewTutorials();
                 break;
             case 4:
                 MainGame.cheerPartnerTutorial();
+                viewTutorials();
                 break;
             case 5: 
                 optionsMenu();
                 break;
             default: 
                 MainGame.printElementMatchups();
+                viewTutorials();
                 break;
         }
     }
@@ -1331,10 +1336,12 @@ public class Game implements java.io.Serializable
         
         if(input == numOfOptions)
         {
+            MainGame.clearScreen();
             optionsMenu();
         }
         else
         {
+            MainGame.clearScreen();
             Player p = team.get(--input);
             viewPlayer(p);
         }
@@ -1343,7 +1350,7 @@ public class Game implements java.io.Serializable
     private void viewPlayer(Player player)
     {
         MainGame.clearScreen();
-        MainGame.println("\nWhat would you like to do with " + player.getName() + "?");
+        MainGame.println("What would you like to do with " + player.getName() + "?");
         
         // The player has access to changing classes when they're in the second phase
         if(inSecondPhase)
@@ -1361,6 +1368,7 @@ public class Game implements java.io.Serializable
                     changeClass(player);
                     break;
                 case 4:
+                    MainGame.clearScreen();
                     viewTeam();
                     break;
                 default:
