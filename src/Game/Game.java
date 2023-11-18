@@ -110,6 +110,8 @@ public class Game implements java.io.Serializable
         return finalBossDefeated;
     }
 
+    public boolean gameStarted() {return gameStarted;}
+
     public void setFinalBossDefeated(boolean finalBossDefeated) {
         this.finalBossDefeated = finalBossDefeated;
     }
@@ -1226,7 +1228,7 @@ public class Game implements java.io.Serializable
                 save();
                 break;
             case 5:
-                MainGame.selectTextSpeed();
+                MainGame.selectTextSpeed(this);
                 break;
             case 6:
                 processInput();
@@ -1239,7 +1241,9 @@ public class Game implements java.io.Serializable
     
     private void viewTutorials()
     {
-        MainGame.println("\nWhich tutorial would you like to review?");
+        MainGame.clearScreen();
+
+        MainGame.println("Which tutorial would you like to review?");
         String message = "\t1) Element Matchups\n\t2) Targeting\n\t3) Aggro\n\t4) Cheer Partner and Cheer Skills\n\t5) Back";
         int input = MenuHelper.displayMenu(message, 1, 5);
         
@@ -1294,12 +1298,11 @@ public class Game implements java.io.Serializable
     {
         if(inventory.isEmpty())
         {
-            System.out.println("");
             MainGame.dialoguelnln("Anahita", "Aww, dang it! We don't have anything.");
         }
         else
         {
-            MainGame.println("\nInventory:\n");
+            MainGame.println("Inventory:\n");
             inventory.showInventory();
         }
     }
@@ -1338,6 +1341,7 @@ public class Game implements java.io.Serializable
     
     private void viewPlayer(Player player)
     {
+        MainGame.clearScreen();
         MainGame.println("\nWhat would you like to do with " + player.getName() + "?");
         
         // The player has access to changing classes when they're in the second phase
@@ -1345,6 +1349,7 @@ public class Game implements java.io.Serializable
         {
             String message = "\t1) View Stats\n\t2) Change Moves\n\t3) Change Class\n\t4) Back";
             int input = MenuHelper.displayMenu(message, 1, 4);
+            MainGame.clearScreen();
 
             switch(input)
             {
@@ -1461,6 +1466,8 @@ public class Game implements java.io.Serializable
         MainGame.promptToEnter();
         MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
                 " -----------> " + otherClass.toString());
+
+        MainGame.promptToEnter();
         
         MainGame.println(p.getName() + "'s new info:");
         

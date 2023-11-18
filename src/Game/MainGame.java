@@ -400,18 +400,20 @@ public class MainGame
                 load();
                 break;
             case 3:
-                selectTextSpeed();
+                game = new Game(false);
+                selectTextSpeed(game);
                 break;
         }
         
         game.startGame();
     }
     
-    public static void selectTextSpeed()
+    public static void selectTextSpeed(Game game)
     {
+        MainGame.clearScreen();
         promptToChangeTextSpeed();
         textSpeedExample();
-        finalTextSpeedPrompt();
+        finalTextSpeedPrompt(game);
     }
     
     /**
@@ -419,11 +421,11 @@ public class MainGame
      */
     private static void promptToChangeTextSpeed()
     {
-        String message = String.format("What would you like the text speed to be? It is currently set to %d.\n"
+        String message = String.format("What would you like the text speed to be? It is currently set to %d.\n\n"
                 + "0 is instant.\n"
                 + "1 is the fastest.\n"
                 + "25 is average.\n" 
-                + "Anything greater than 40 is slow.\n"
+                + "Anything greater than 40 is slow.\n\n"
                 + "Please enter a number between 0-100", textSpeed);
         
         int input = MenuHelper.displayMenu(message, 0, 100);
@@ -448,7 +450,7 @@ public class MainGame
     /**
      * Asks the player if the current speed is fine or if they need the example again.
      */
-    private static void finalTextSpeedPrompt()
+    private static void finalTextSpeedPrompt(Game game)
     {
         String message = String.format("Is a speed of %d what you want?\n\t1) Yes\n\t2) No\n\t3) Show example", textSpeed);
         
@@ -458,18 +460,22 @@ public class MainGame
         {
             case 1:
                 clearScreen();
-                printlnln("The speed can be changed by selecting 'Options > Set Text Speed' while playing the game.");
+                printlnln("The speed can be changed by selecting 'More Options > Set Text Speed' while playing the game.");
                 promptToEnter();
-                startUp();
+
+                if(game.gameStarted()){
+                    startUp();
+                }
+                
                 break;
             case 2: 
                 promptToEnter();
-                selectTextSpeed();
+                selectTextSpeed(game);
                 break;
             case 3: 
                 promptToEnter();
                 textSpeedExample();
-                finalTextSpeedPrompt();
+                finalTextSpeedPrompt(game);
                 break;
         }
     }
@@ -812,57 +818,7 @@ public class MainGame
     public static void printElementMatchups()
     {
         clearScreen();
-        
-//        println("Water's Offensive Capabilites:", 25);
-//        printlnWait("\tWater is strong against: Fire and Earth", 25, 100);
-//        printlnWait("\tWater is not very effective against: Water", 25, 100);
-//        println("Water's Defensive Capabilites:", 25);
-//        printlnWait("\tWater is resistant to: Fire and Earth", 25, 100);
-//        printlnlnWait("\tWater is weak to: Electric", 25, 100);
-//        promptToEnter();
-//        
-//        println("Fire's Offensive Capabilites:", 25);
-//        printlnWait("\tFire is strong against: Ice and Earth", 25, 100);
-//        printlnWait("\tFire is not very effective against: Fire and Water", 25, 100);
-//        println("Fire's Defensive Capabilites:", 25);
-//        printlnWait("\tFire is resistant to: Ice", 25, 100);
-//        printlnlnWait("\tFire is weak to: Earth, Wind, and Water", 25, 100);
-//        promptToEnter();
-//        
-//        println("Wind's Offensive Capabilites:", 25);
-//        printlnWait("\tWind is strong against: Fire", 25, 100);
-//        printlnWait("\tWind is not very effective against: Electric", 25, 100);
-//        println("Wind's Defensive Capabilites:", 25);
-//        printlnlnWait("\tWind is weak to: Ice", 25, 100);
-//        promptToEnter();
-//        
-//        println("Ice's Offensive Capabilites:", 25);
-//        printlnWait("\tIce is strong against: Wind, Water and Earth", 25, 100);
-//        printlnWait("\tIce is not very effective against: Ice and Fire", 25, 100);
-//        println("Ice's Defensive Capabilites:", 25);
-//        printlnWait("\tIce is resistant to: Ice", 25, 100);
-//        printlnlnWait("\tIce is weak to: Fire", 25, 100);
-//        promptToEnter();
-//        
-//        println("Earth's Offensive Capabilites:", 25);
-//        printlnWait("\tEarth is strong against: Fire and Electric", 25, 100);
-//        printlnWait("\tEarth is not very effective against: Water", 25, 100);
-//        println("Earth's Defensive Capabilites:", 25);
-//        printlnWait("\tEarth is resistant to: Electric", 25, 100);
-//        printlnlnWait("\tEarth is weak to: Water, Fire, and Ice", 25, 100);
-//        promptToEnter();
-//        
-//        println("Electric's Offensive Capabilites:", 25);
-//        printlnWait("\tElectric is strong against: Water", 25, 100);
-//        printlnWait("\tElectric is not very effective against: Earth and Electric", 25, 100);
-//        println("Electric's Defensive Capabilites:", 25);
-//        printlnWait("\tElectric is resistant to: Wind and Electric", 25, 100);
-//        printlnlnWait("\tElectric is weak to: Earth", 25, 100);
-//        promptToEnter();
-        
         new TypeChart().printChart();
-        
-        promptToEnter();
     }
     
     public static ArrayList<Player> getPlayerTeam() {return playerTeam;}
