@@ -160,6 +160,11 @@ public class OffensiveAttack extends Attack
         }
     }
     
+    /**
+     * Given attacker attacks the target. Will calculate damage and apply it.
+     * @param attacker
+     * @param target
+     */
     public void attack(Character attacker, Character target)
     {
         attackHit();
@@ -178,6 +183,30 @@ public class OffensiveAttack extends Attack
         MainGame.promptToEnter();
     }
     
+    /**
+     * Given attacker attacks the target with the specified damage given. Used to help with enemy AI in battles.
+     * @param damage
+     * @param attacker
+     * @param target
+     */
+    public void attack(int damage, Character attacker, Character target)
+    {
+        attackHit();
+        
+        if(attackHit)
+        {
+            applyDamage(damage, attacker, target);
+        }
+        else
+        {
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on " + target.getName() + " but missed!");
+        }
+        
+        setNextAvailableTurn(Battle.getCurrentTurn());
+        
+        MainGame.promptToEnter();
+    }
+
     @Override
     public String toString()
     {

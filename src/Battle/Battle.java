@@ -1277,7 +1277,11 @@ public abstract class Battle implements Serializable
                 // If the enemy's attack can kill the player's character, it will attack
                 if(target.getCurrentHealth() - damageOutput <= 0)
                 {
-                    attack.attack(enemy, target);
+                    /* 
+                    Call overloaded attack() method by using the damage output calculated earlier.
+                    This method is used instead because of the random damage roll that is used to calculate damage.
+                    */ 
+                    attack.attack(damageOutput, enemy, target);
                     removeDeadPlayer(enemy, target, attack);
                     return true;
                 }
