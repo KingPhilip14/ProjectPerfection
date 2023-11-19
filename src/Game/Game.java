@@ -603,12 +603,11 @@ public class Game implements java.io.Serializable
         
         int input = MenuHelper.displayMenu(message, 1, numOfOptions);
         
-        // if(input == numOfOptions)
-        // {
-        //     MainGame.clearScreen();
-        //     processInput();
-        // }
-        if(knownLocations.get(input - 1) == currentLocation)
+        if(input == numOfOptions)
+        {
+            return;
+        }
+        else if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
             MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");

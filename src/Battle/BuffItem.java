@@ -25,7 +25,7 @@ public class BuffItem extends Item
     {
         super.name = name;
         super.description = description;
-        super.price = 3500;
+        super.price = 1750;
         this.STAT_TO_BUFF = statToBoost;
         this.BUFF_MODIFIER = 1.25;
         salePrice = (int)Math.round(price * 0.75);

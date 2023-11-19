@@ -26,7 +26,7 @@ import java.util.Scanner;
  */
 public class MainGame 
 {
-    private static int gold = 10000, textSpeed = 0;
+    private static int textSpeed = 0;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);

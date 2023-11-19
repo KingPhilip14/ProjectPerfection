@@ -1925,6 +1925,11 @@ public abstract class Battle implements Serializable
                 
                 s.resetValue(p);
             }
+
+            for(Attack a : p.getCurrentAttacks())
+            {
+                a.resetNextAvailableTurn();
+            }
         }
     }
     
