@@ -791,6 +791,9 @@ public class Game implements java.io.Serializable
             // If the player loses the tutorial, they can't move on
             if(battle.isWon())
             {
+                // Objective updates when the tutorial is won
+                objective.updateByBattleResult(battle.isWon());
+                unlockNextLocation();
                 forestTutorialDone = true;
                 
                 // Activate cutscene here so it only happens right after the tutorial is done

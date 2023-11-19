@@ -43,7 +43,8 @@ public class Objective implements Serializable
     private boolean talkedToElderClairdra;
     private boolean returnedZoniCity;
     
-    // Boss battle booleans
+    // Battle booleans
+    private boolean opiconTutorialDone;
     private boolean ninlilBossDefeated;
     private boolean omegaBossDefeated;
     private boolean frgisBossDefeated;
@@ -61,7 +62,7 @@ public class Objective implements Serializable
     {
         unfinsihedTasks.add(new LevelTask("Unlock Opicon Forest (Required Level: 6)", false, 6, true));
         unfinsihedTasks.add(new TravelTask("Travel to Opicon Forest", atOpiconForest, "Opicon Forest", false));
-        unfinsihedTasks.add(new LevelTask("Unlock Aquammoda (Required Level: 7)", atAquammoda, 7, true));
+        unfinsihedTasks.add(new BattleTask("Complete the battle tutorial in Opicon Forest", opiconTutorialDone, true));
         unfinsihedTasks.add(new TravelTask("Travel to Aquammoda", atAquammoda, "Aquammoda", false));
         unfinsihedTasks.add(new NpcTask("Talk to Merda", talkedToMerda, "Merda", false));
         unfinsihedTasks.add(new LevelTask("Unlock Degon (Required Level: 9)", atDegon, 9, true));
