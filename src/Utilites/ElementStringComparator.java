@@ -102,11 +102,11 @@ public class ElementStringComparator implements Comparator<String>
                         result = 1;
                         break;
                     case "Wind":
-                    case "Earth":
                     case "Ice":
                         result = 0;
                         break;
                     case "Water":
+                    case "Earth":
                         result = -1;
                         break;
                     default:

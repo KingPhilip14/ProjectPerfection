@@ -112,11 +112,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
                     result = 1;
                     break;
                 case "Wind":
-                case "Earth":
                 case "Ice":
                     result = 0;
                     break;
                 case "Water":
+                case "Earth":
                     result = -1;
                     break;
                 default:
@@ -245,11 +245,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
                         result = 1;
                         break;
                     case "Wind":
-                    case "Earth":
                     case "Ice":
                         result = 0;
                         break;
                     case "Water":
+                    case "Earth":
                         result = -1;
                         break;
                     default:
