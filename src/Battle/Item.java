@@ -220,6 +220,8 @@ public abstract class Item implements Collectable, java.io.Serializable
         
         for(Item i : allItems)
         {
+            if(i.getName().equals("???")) {continue;}
+            
             items.add(i);
         }
         

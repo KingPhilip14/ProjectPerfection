@@ -652,11 +652,6 @@ public class MainGame
         gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-        gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
-        gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
-        gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
-        gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
-        gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         
         SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.30);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
@@ -741,7 +736,7 @@ public class MainGame
         BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are doubled for 2 turns.", "All", 2.0, 4, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
         SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.15);
-        OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 150, "R. Attack");
+        OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 250, "R. Attack");
         plasmaBlast.setAccuracy(50);
         
         ArrayList<Attack> fultraCurrentAttacks = new ArrayList<>(4);
@@ -796,6 +791,12 @@ public class MainGame
         fultra.setRangedDefense(324);
         fultra.setSpeed(324);
 
+        fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
+        fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
+        fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());
+        fultra.getRangedDefense().setOriginalValue(fultra.getRangedDefense().getValue());
+        fultra.getSpeed().setOriginalValue(fultra.getSpeed().getValue());
+
         ArrayList<Attack> currentAttacks = new ArrayList<>(4);
         currentAttacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are doubled for 3 turns. The cooldown is less than Charge.", "All", 2.0, 3, 3));
         currentAttacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
@@ -827,7 +828,7 @@ public class MainGame
         
         // Instantiating Calmus and his moveset--------------------------
         Player calmus = new Player("Calmus", "A muscular yet gentle master of Fire.", "Fire", pc, 10);
-        calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
+        calmus.setDeathMessage("Argh, no! Anahita, I have failed you...");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
         calmus.setMaxHealth(360);
@@ -837,6 +838,12 @@ public class MainGame
         calmus.setRangedAttack(100);
         calmus.setRangedDefense(120);
         calmus.setSpeed(80);
+
+        calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
+        calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
+        calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+        calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+        calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
         
         OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack");
         fieryWrath.setAccuracy(80);
@@ -922,6 +929,12 @@ public class MainGame
             frigs.setSpeed(110);
         }
         
+        frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+        frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+        frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+        frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+        frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+
         // Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
         frigs.setDeathMessage("Tch... Why like this... Anything but this...");
         frigs.setBattleReadyMessage("We've got this. Just stay cool.");
@@ -1014,6 +1027,12 @@ public class MainGame
             ninlil.setRangedDefense(100);
             ninlil.setSpeed(75);
         }
+
+        ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
+        ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
+        ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
+        ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
+        ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
 
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
