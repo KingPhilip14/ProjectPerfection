@@ -2127,7 +2127,7 @@ public class Game implements java.io.Serializable
     {
         Coordinate c = new Coordinate(19, 35);
         Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between Degon and Aquammoda, "
-                + "separating the two.", 6, c);
+                + "separating the two.", 7, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");
@@ -2138,7 +2138,7 @@ public class Game implements java.io.Serializable
     private Wilderness createTempestTower()
     {
         Coordinate c = new Coordinate(18, 68);
-        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 13, c);
+        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 11, c);
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
         
@@ -2151,7 +2151,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountVolcan()
     {
         Coordinate c = new Coordinate(4, 58);
-        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 17, c);
+        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 13, c);
         mountVolcan.addLocalElement("Fire");
         mountVolcan.addLocalElement("Earth");
         mountVolcan.addLocalElement("Wind");
@@ -2161,7 +2161,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountZoni()
     {
         Coordinate c = new Coordinate(4, 31);
-        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 19, c);
+        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 15, c);
         mountZoni.addLocalElement("Ice");
         mountZoni.addLocalElement("Wind");
         mountZoni.addLocalElement("Earth");
@@ -2172,7 +2172,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountZoniSummit()
     {
         Coordinate c = new Coordinate(2, 31);
-        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 20, c);
+        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 17, c);
         mountZoniSummit.addLocalElement("Ice");
         mountZoniSummit.addLocalElement("Wind");
         return mountZoniSummit;
@@ -2181,7 +2181,7 @@ public class Game implements java.io.Serializable
     private Wilderness createForlornCave()
     {
         Coordinate c = new Coordinate(9, 15);
-        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dark and ominous cave. Some say that the cave feels sentient. Those that go in rarely come out...", 23, c);
+        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dark and ominous cave. Some say that the cave feels sentient. Those that go in rarely come out...", 20, c);
         forlornDessert.addLocalElement("Electric");
         forlornDessert.addLocalElement("Earth");
         forlornDessert.addLocalElement("Wind");

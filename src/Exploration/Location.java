@@ -16,14 +16,14 @@ public abstract class Location extends GameProperty
     protected boolean explored;
     protected boolean unlocked;
     protected TreasureChest chest;
-    protected int requiredLevel;
+    protected int averageLevel;
     protected Coordinate coordinate;
     
-    public Location(String name, String description, int requiredLevel, Coordinate coordinate)
+    public Location(String name, String description, int averageLevel, Coordinate coordinate)
     {
         this.name = name;
         this.description = description;
-        this.requiredLevel = requiredLevel;
+        this.averageLevel = averageLevel;
         this.coordinate = coordinate;
         makeChest();
     }
@@ -32,7 +32,7 @@ public abstract class Location extends GameProperty
     public void setSpeciesNames(ArrayList<String> listOfNames) {speciesNames = listOfNames;}
     
     public boolean isExplored() {return explored;}
-    public int getRequiredLevel() {return requiredLevel;}
+    public int getRequiredLevel() {return averageLevel;}
     
     public int getXCoordinate() {return coordinate.getXCoordinate();}
     

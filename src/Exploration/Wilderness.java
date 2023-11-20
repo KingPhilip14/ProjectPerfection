@@ -34,11 +34,11 @@ public class Wilderness extends Location
     private BossBattle bossBattle;
     private int requiredBossLevel;
     
-    public Wilderness(String name, String description, int requiredLevel, Coordinate coordinate)
+    public Wilderness(String name, String description, int averageLevel, Coordinate coordinate)
     {
-        super(name, description, requiredLevel, coordinate);
-        MAX_ENEMY_LV = requiredLevel + 3;
-        MIN_ENEMY_LV = requiredLevel;
+        super(name, description, averageLevel, coordinate);
+        MAX_ENEMY_LV = averageLevel + 3;
+        MIN_ENEMY_LV = averageLevel;
         this.coordinate = coordinate;
         bossBattle = null;
     }

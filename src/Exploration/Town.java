@@ -29,16 +29,16 @@ public class Town extends Location
 //        shop = new Shop();
 //    }
     
-    public Town(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate)
+    public Town(String name, String description, ArrayList<NPC> people, int averageLevel, int population, Coordinate coordinate)
     {
-        super(name, description, requiredLevel, coordinate);
+        super(name, description, averageLevel, coordinate);
         this.villagePeople = people;
         this.population = population;
     }
     
-    public Town(String name, String description, ArrayList<NPC> people, int requiredLevel, int population, Coordinate coordinate, Shop shop)
+    public Town(String name, String description, ArrayList<NPC> people, int averageLevel, int population, Coordinate coordinate, Shop shop)
     {
-        super(name, description, requiredLevel, coordinate);
+        super(name, description, averageLevel, coordinate);
         this.villagePeople = people;
         this.population = population;
         this.shop = shop;
@@ -48,9 +48,9 @@ public class Town extends Location
     public void setVillagePeople(ArrayList<NPC> people) {villagePeople = people;}
     
     @Override
-    public int getRequiredLevel() {return requiredLevel;}
+    public int getRequiredLevel() {return averageLevel;}
     
-    public void setRequiredLevel(int level) {requiredLevel = level;}
+    public void setRequiredLevel(int level) {averageLevel = level;}
     
     public Shop getShop(){return shop;}
     
