@@ -658,14 +658,14 @@ public class MainGame
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         
-        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.15);
+        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.30);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
         DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
         terraForce.setAccuracy(95);
         OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
-        SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 2);
+        SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 3);
         OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
@@ -740,7 +740,7 @@ public class MainGame
         overdrive.setAccuracy(75);
         BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are doubled for 2 turns.", "All", 2.0, 4, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
-        SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.1);
+        SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.15);
         OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 150, "R. Attack");
         plasmaBlast.setAccuracy(50);
         
@@ -807,7 +807,7 @@ public class MainGame
         overdriveII.setAccuracy(75);
         currentAttacks.add(overdriveII);
 
-        SingleHealingAttack bluePulseII = new SingleHealingAttack("Blue Pulse II", "The user emits a healing, electrical pulse that heals an ally more than normal.", 0.2);
+        SingleHealingAttack bluePulseII = new SingleHealingAttack("Blue Pulse II", "The user emits a healing, electrical pulse that heals an ally more than normal.", 0.25);
         DebuffAttack filterII = new DebuffAttack("Filter II", "The user creates a thick, electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 3, 3);
 
         ArrayList<Attack> fultraOtherAttacks = new ArrayList<>(4);
@@ -846,7 +846,7 @@ public class MainGame
         BuffAttack flamingAura = new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3);
         OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack");
         burningDunk.setAccuracy(75);
-        SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.15);
+        SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.25);
         DebuffAttack singe = new DebuffAttack("Singe", "The user singes the target with heat to make them more sensitive. This lowers their Defense.", "Defense", 4, 3);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
