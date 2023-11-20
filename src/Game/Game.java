@@ -1259,27 +1259,23 @@ public class Game implements java.io.Serializable
         MainGame.clearScreen();
 
         MainGame.println("Which tutorial would you like to review?");
-        String message = "\t1) Element Matchups\n\t2) Targeting\n\t3) Aggro\n\t4) Cheer Partner and Cheer Skills\n\t5) Back";
+        String message = "\t1) Matchup Chart\n\t2) Cheer Partners\n\t3) Classes\n\t4) Back";
         int input = MenuHelper.displayMenu(message, 1, 5);
         
         switch(input)
         {
-            case 2:
-                MainGame.targetingTutorial();
-                break;
-            case 3:
-                MainGame.aggroTutorial();
-                break;
-            case 4:
-                MainGame.cheerPartnerTutorial();
-                break;
-            // case 5: 
-            //     MainGame.clearScreen();
-            //     optionsMenu();
-            //     break;
             case 1: 
                 MainGame.clearScreen();
                 new TypeChart().printChart();
+                break;
+            case 2:
+                MainGame.cheerPartnerTutorial();
+                break;
+            case 3:
+                MainGame.classTutorial();
+                break;
+            case 4:
+                MainGame.cheerPartnerTutorial();
                 break;
         }
     }
@@ -1410,7 +1406,7 @@ public class Game implements java.io.Serializable
     private void changeAttacks(Player player)
     {
         MainGame.clearScreen();
-        MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);
+        MainGame.println(player.getName() + "'s current attacks:");
         
         // Prints out the four moves the character can use
         for(Attack attack : player.getCurrentAttacks())
@@ -1418,7 +1414,7 @@ public class Game implements java.io.Serializable
             printMove(attack);
         }
         
-        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 500);
+        MainGame.println(player.getName() + "'s other attacks:");
         
         // Prints out the other two moves the character can use
         for(Attack attack : player.getOtherAttacks())
@@ -1485,7 +1481,7 @@ public class Game implements java.io.Serializable
         
         MainGame.promptToEnter();
         MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
-                " -----------> " + otherClass.toString());
+                " <-----------> " + otherClass.toString());
 
         MainGame.promptToEnter();
         
@@ -1593,23 +1589,23 @@ public class Game implements java.io.Serializable
     {
         if(attack instanceof OffensiveAttack)
         {
-            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((OffensiveAttack)attack).toString());
         }
         else if(attack instanceof BuffAttack)
         {
-            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((BuffAttack)attack).toString());
         }
         else if(attack instanceof DebuffAttack)
         {
-            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((DebuffAttack)attack).toString());
         }
         else if(attack instanceof SingleHealingAttack)
         {
-            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((SingleHealingAttack)attack).toString());
         }
         else if(attack instanceof TeamHealingAttack)
         {
-            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((TeamHealingAttack)attack).toString());
         }
     }
     
@@ -1706,7 +1702,7 @@ public class Game implements java.io.Serializable
         switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
         MainGame.promptToEnter();
-        MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
+        MainGame.println(p.getName() + "'s new, current attacks:");
         
         // Prints out the four moves the player now knows
         for(Attack attack : p.getCurrentAttacks())
@@ -1739,7 +1735,7 @@ public class Game implements java.io.Serializable
         p.getOtherAttacks().set(otherAttackInput, currentAttack);
         
         MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
-                " -----------> " + otherAttack.getName() , 25, 500);
+                " <-----------> " + otherAttack.getName() , 25, 500);
     }
     
     public ArrayList<Location> getKnownLocations() {return knownLocations;}

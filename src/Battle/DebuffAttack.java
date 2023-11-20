@@ -263,6 +263,6 @@ public class DebuffAttack extends Attack
         }
         
         return "\t" + this.name + ":\n\t\t" + this.description + "\n\t\tAccuracy: " + this.accuracy + "%\n\t\tCooldown: " + 
-                cooldown + "\n\t\tStat(s) affected: " + stats;
+                cooldown + "\n\t\tModifier: " + (int)(DEBUFF_MODIFIER * 100) + "%\n\t\tStat(s) affected: " + stats;
     }
 }

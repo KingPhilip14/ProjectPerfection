@@ -423,7 +423,8 @@ public abstract class Battle implements Serializable
         
         for(Player p : PLAYER_TEAM)
         {
-            message += "\n\t" + ++num  + ") " + p.getName();
+            message += "\n\t" + ++num  + ") " + p.getName() + ": " + p.getElement() + 
+                        "   (" + p.getPlayerClass().toString() + ")";
         }
         
         return message;

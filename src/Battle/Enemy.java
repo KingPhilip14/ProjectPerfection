@@ -150,7 +150,7 @@ public abstract class Enemy extends Character
         isOffensive = true;
         statSpreadDescription = "It looks like it'll pack a punch!";
         
-        this.setMaxHealth(totalStatPoints - 90);
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.65)));
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to offensive stats
@@ -171,7 +171,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It seems to be on careful guard...";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 65);
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.8)));
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to defensive stats
@@ -192,7 +192,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It appears to have a strong stature!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 80);
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.75)));
         this.setCurrentHealth(maxHealth);
         
         // Assigns 50% of total stat points to physical stats
@@ -213,7 +213,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It seems like it prefers to keep its distance.";
         
         // Sets the HP based on the total points minus a certain value
-        this.setMaxHealth((totalStatPoints - 90));
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.6)));
         this.setCurrentHealth(maxHealth);
         
         // Assigns 60% of total stat points to ranged stats
@@ -234,7 +234,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It looks quite nimble!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 80);
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.7)));
         this.setCurrentHealth(maxHealth);
         
         // Assigns 25% of total stat points to speed
