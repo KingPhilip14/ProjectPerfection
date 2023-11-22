@@ -90,6 +90,7 @@ public abstract class Enemy extends Character
         totalStatPoints = level * 65;
         generateStats();
         populateCurrentAttacks();
+        populateListsOfStats();
     }
     
     public String getStatSpreadDesc() {return statSpreadDescription;}
@@ -234,7 +235,7 @@ public abstract class Enemy extends Character
         statSpreadDescription = "It looks quite nimble!";
         
         // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        this.setMaxHealth((int)Math.round((totalStatPoints * 0.75)));
         this.setCurrentHealth(maxHealth);
         
         // Assigns 25% of total stat points to speed
@@ -440,7 +441,7 @@ public abstract class Enemy extends Character
         // Indexes 0-9
         allOffensiveAttacks.add(new OffensiveAttack("Rushdown", "The user rushes at the target and tackles them with impressive force.", 80, "Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Burst", "The user emits a powerful wave of energy based on their element.", 90, "R. Attack"));
-        allOffensiveAttacks.get(1).setAccuracy(80);
+        allOffensiveAttacks.get(1).setAccuracy(95);
         allOffensiveAttacks.add(new OffensiveAttack("Wild Fever", "The user uses its wild instinct to cause massive damage.", 140, "Attack"));
         allOffensiveAttacks.get(2).setAccuracy(65);
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Pulse", "The user emits a shock wave of energy based on their element.", 80, "R. Attack"));
@@ -448,7 +449,7 @@ public abstract class Enemy extends Character
         allOffensiveAttacks.add(new OffensiveAttack("Fury Strikes", "The user strikes with many quick blows in succession.", 75, "Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Wrath", "The user uses raw, elemental energy in the area to inflict damage.", 85, "R. Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Outrage", "Using their raw strength, the user attacks with all its might.", 90, "Attack"));
-        allOffensiveAttacks.get(7).setAccuracy(70);
+        allOffensiveAttacks.get(7).setAccuracy(90);
         allOffensiveAttacks.add(new OffensiveAttack("Piercing Strike", "The user focuses where to land their attack, resulting in more critical hits.", 65, "Attack"));
         allOffensiveAttacks.get(8).setCritRate(0.35);
         allOffensiveAttacks.get(8).setAccuracy(85);

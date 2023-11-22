@@ -1,7 +1,5 @@
 package Battle;
 
-import javax.print.attribute.standard.OrientationRequested;
-
 import Game.MainGame;
 
 /**
@@ -43,6 +41,8 @@ public class Stat implements java.io.Serializable
     
     public void setOriginalValue(int newValue) {originalValue = newValue;}
     public int getOriginalValue() {return originalValue;}
+
+    public Character getCharacter() {return character;}
     
     public boolean hasCheerBuff() {return cheerBuffCounter > 0;} //  if >0, the buff is active. If 0, no buff is applied
     
@@ -158,6 +158,12 @@ public class Stat implements java.io.Serializable
         removeBuff();
 //            resetValue(character);
     }
+
+    public void deactivateBuffNoPrint()
+    {
+        buffActive = false;
+        removeBuff();
+    }
     
     public void activateStatDebuff(int turnsToBeActive, double debuffModifier)
     {
@@ -170,6 +176,12 @@ public class Stat implements java.io.Serializable
     {
         debuffActive = false;
         MainGame.printlnln(character.getName() + "'s " + stat + " debuff is no longer active!");
+        removeDebuff();
+    }
+
+    public void deactivateDebuffNoPrint()
+    {
+        debuffActive = false;
         removeDebuff();
     }
     
@@ -197,17 +209,13 @@ public class Stat implements java.io.Serializable
     {
         if(buffActive)
         {
-            buffActive = false;
-            buffModifier = 1;
+            deactivateBuffNoPrint();
         }
         
         if(debuffActive)
         {
-            debuffActive = false;
-            debuffModifier = 1;
+            deactivateDebuffNoPrint();
         }
-        
-        value = originalValue;
         
 //        switch(stat)
 //        {

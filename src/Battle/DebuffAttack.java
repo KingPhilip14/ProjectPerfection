@@ -58,6 +58,7 @@ public class DebuffAttack extends Attack
         {
             Scanner scan = new Scanner(STAT_TO_DEBUFF);
             scan.useDelimiter(",");
+            boolean success = false;
 
             while(scan.hasNext())
             {
@@ -72,7 +73,8 @@ public class DebuffAttack extends Attack
                             target.getAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s attack decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getAttack());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -88,7 +90,8 @@ public class DebuffAttack extends Attack
                             target.getDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s defense decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getDefense());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -104,7 +107,8 @@ public class DebuffAttack extends Attack
                             target.getRangedAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s ranged attack decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getRangedAttack());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -120,7 +124,8 @@ public class DebuffAttack extends Attack
                             target.getRangedDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s ranged defense decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getRangedDefense());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -136,7 +141,8 @@ public class DebuffAttack extends Attack
                             target.getAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s attack decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getAttack());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -151,7 +157,8 @@ public class DebuffAttack extends Attack
                             target.getDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s defense decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getDefense());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -166,7 +173,8 @@ public class DebuffAttack extends Attack
                             target.getRangedAttack().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s ranged attack decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getRangedAttack());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -181,7 +189,8 @@ public class DebuffAttack extends Attack
                             target.getRangedDefense().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s ranged defense decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getRangedDefense());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else 
                         {
@@ -196,7 +205,8 @@ public class DebuffAttack extends Attack
                             target.getSpeed().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s speed decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getSpeed());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else
                         {
@@ -214,7 +224,8 @@ public class DebuffAttack extends Attack
                             target.getSpeed().setTurnDebuffEnds(DEBUFF_MODIFIER_TIMER);
                             MainGame.printlnln(target.getName() + "'s speed decreased!");
                             
-                            Battle.getChangedStats().enqueue(target.getSpeed());
+                            success = true;
+                            // Battle.getStatAffectedCharacters().add(target);
                         }
                         else
                         {
@@ -226,6 +237,7 @@ public class DebuffAttack extends Attack
             
             canUse = false;
             setNextAvailableTurn(Battle.getCurrentTurn());
+            if(success){Battle.getStatAffectedCharacters().add(target);} 
             MainGame.promptToEnter();
         }
         else

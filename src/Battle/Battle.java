@@ -27,7 +27,7 @@ public abstract class Battle implements Serializable
     private ArrayList<Player> PLAYER_TEAM;
     private ArrayList<Player> ORIGINAL_PLAYER_POSITIONS = new ArrayList<>();
     private ArrayList<Character> TURN_ORDER = new ArrayList<>(6);
-    private static LinkedQueue<Stat> changedStats = new LinkedQueue<>();
+    private static ArrayList<Character> statAffectedCharacters = new ArrayList<>();
     private boolean comboAttackUsed;
     protected String startingText;
     protected boolean won;
@@ -58,7 +58,7 @@ public abstract class Battle implements Serializable
     }
     
     public static int getCurrentTurn() {return currentTurn;}
-    public static LinkedQueue<Stat> getChangedStats() {return changedStats;}
+    public static ArrayList<Character> getStatAffectedCharacters() {return statAffectedCharacters;}
     
     private void getOriginalEnemyPositions()
     {
@@ -957,6 +957,7 @@ public abstract class Battle implements Serializable
             TURN_ORDER.remove(target);
             enemyTeam.remove(target);
             originalEnemyPositions.remove(target);
+            removeDeadEnemyStats(target);
             
             // The Beach Tutorial Battle forces a special type of level up, so the player doesn't need to see the xp gained
             if(!(this instanceof BeachTutorialBattle))
@@ -1188,11 +1189,11 @@ public abstract class Battle implements Serializable
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
         // Defeats player if possible. If possible, end enemy AI; else, move to the next statement
-        if (defeatedPlayer(adjacentPlayers, enemy))
+        if(defeatedPlayer(adjacentPlayers, enemy))
         {
             return;
         }
-        
+
         // Prioritizes healing allies if applicable
         if (canHealEnemyAlly(enemy))
         {
@@ -1384,8 +1385,6 @@ public abstract class Battle implements Serializable
                 cheer.resetPlayerToCheer();
                 target.resetCheerPartner();
                 MainGame.printlnln(cheer.getName() + " took " + target.getName() + " to protect them from futher harm.");
-
-                target.resetStats();
             }
             // If there is only one person left to fight, they defend the last person defeated
             else if(PLAYER_FIGHTING_TEAM.size() == 1)
@@ -1393,7 +1392,6 @@ public abstract class Battle implements Serializable
                 String name = PLAYER_FIGHTING_TEAM.get(0).getName();
                 MainGame.printlnln(name + " started defending " + target.getName() + " to prevent them from further harm.");
                 MainGame.dialoguelnln(name, "Hang in there, " + target.getName() + "! I've got you!");
-                target.resetStats();
             }
             // If there is more than 1 person alive when the target is defeated
             else if(PLAYER_FIGHTING_TEAM.size() > 1)
@@ -1401,7 +1399,41 @@ public abstract class Battle implements Serializable
                 MainGame.printlnln("The remainding fighters started defending " + target.getName() + " to prevent them from further harm.");
             }
             
+            removeDeadPlayerStats(target); // will remove player from affected list and reset their stats
             MainGame.promptToEnter();
+        }
+    }
+
+    /**
+     * If a Player dies, this will remove them from the list that holds which Characters had their stats affected.
+     * @param player
+     */
+    private void removeDeadPlayerStats(Player player)
+    {
+        for(int i = 0; i < statAffectedCharacters.size(); i++)
+        {
+            if(statAffectedCharacters.get(i).equals((Character)player))
+            {
+                statAffectedCharacters.remove(i);
+                player.resetStats(); // Reset the stats since the player is dead
+                i--; // If a character was removed, we need to now check that same index for the next one
+            }
+        }
+    }
+
+    /**
+     * If an Enemy dies, this will remove them from the list that holds which Characters had their stats affected.
+     * @param player
+     */
+    private void removeDeadEnemyStats(Enemy enemy)
+    {
+        for(int i = 0; i < statAffectedCharacters.size(); i++)
+        {
+            if(statAffectedCharacters.get(i).equals((Character)enemy))
+            {
+                statAffectedCharacters.remove(i);
+                i--; // If a character was removed, we need to now check that same index for the next one
+            }
         }
     }
     
@@ -1882,22 +1914,44 @@ public abstract class Battle implements Serializable
     }
     
     /**
-     * Removes the appropriate buff or debuff from a Stat that was affected earlier.
+     * Removes the buff or debuff that was applied earlier in the battle from the characters in the 
+     * statAffectedCharacters list.
      */
     private void deactivateStatChanges()
     {
-        while(changedStats.first() != null && changedStats.first().isTurnChangeEnds(currentTurn))
+        // while(changedStats.get(0) != null && changedStats.first().isTurnChangeEnds(currentTurn))
+
+        boolean success = false;
+        while(!statAffectedCharacters.isEmpty() && (statAffectedCharacters.get(0)).canRemoveStatChange(currentTurn))
         {
-            Stat s = changedStats.dequeue();
-            
-            if(s.isTurnBuffEnds(currentTurn))
+            success = true;
+            Character c = statAffectedCharacters.remove(0);
+            for(Stat s : c.getStats())
             {
-                s.deactivateBuff();
+                if(s.isTurnBuffEnds(currentTurn))
+                {
+                    s.deactivateBuff();
+                }
+                
+                if(s.isTurnDebuffEnds(currentTurn))
+                {
+                    s.deactivateDebuff();
+                }
             }
-            else
-            {    
-                s.deactivateDebuff();
-            }
+        }
+
+        if(success) {MainGame.promptToEnter();}
+    }
+
+    /**
+     * Removes all modifications to a stat. Used at the end of the battle.
+     */
+    private void deactivateStatModifications(Player p)
+    {
+        for(Stat s : p.getStats())
+        {
+            s.deactivateBuffNoPrint();
+            s.deactivateDebuffNoPrint();
         }
     }
     
@@ -1907,7 +1961,8 @@ public abstract class Battle implements Serializable
         {
             p.resetAggro();
             p.resetAttacks();
-            
+            deactivateStatModifications(p);
+
             PLAYER_TEAM.add(p);
             
             if(p.getCheerPartner() != null)
