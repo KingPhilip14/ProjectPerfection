@@ -15,7 +15,7 @@ public class BuffItem extends Item
     {
         super.name = "Red Bean";
         super.description = "A magical red bean that boosts the attack stat.";
-        super.price = 1750;
+        super.price = 750;
         STAT_TO_BUFF = "Attack";
         BUFF_MODIFIER = 1.25;
         salePrice = (int)Math.round(price * 0.75);
@@ -25,7 +25,7 @@ public class BuffItem extends Item
     {
         super.name = name;
         super.description = description;
-        super.price = 1750;
+        super.price = 750;
         this.STAT_TO_BUFF = statToBoost;
         this.BUFF_MODIFIER = 1.25;
         salePrice = (int)Math.round(price * 0.75);

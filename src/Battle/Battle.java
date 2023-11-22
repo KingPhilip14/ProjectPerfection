@@ -1950,8 +1950,15 @@ public abstract class Battle implements Serializable
     {
         for(Stat s : p.getStats())
         {
-            s.deactivateBuffNoPrint();
-            s.deactivateDebuffNoPrint();
+            if(s.getIsBuffActive())
+            {
+                s.deactivateBuffNoPrint();
+            }
+            
+            if(s.getIsDebuffActive())
+            {
+                s.deactivateDebuffNoPrint();
+            }
         }
     }
     
@@ -1961,7 +1968,7 @@ public abstract class Battle implements Serializable
         {
             p.resetAggro();
             p.resetAttacks();
-            deactivateStatModifications(p);
+            // deactivateStatModifications(p);
 
             PLAYER_TEAM.add(p);
             
