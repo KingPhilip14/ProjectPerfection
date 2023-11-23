@@ -209,7 +209,7 @@ public class ComboAttack extends Attack
                 result = 1;
                 break;
             default:
-                result = 0.75;
+                result = 0.8;
         }
         
         return result;

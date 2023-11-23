@@ -38,7 +38,7 @@ public class BuffAttack extends Attack
         super.name = name;
         super.description = description;
         this.STAT_TO_BUFF = statToBuff;
-        super.cooldown = 0;
+        super.cooldown = 3;
         BUFF_MODIFIER = 1.5;
         BUFF_MODIFIER_TIMER = buffModifierTimer;
     }

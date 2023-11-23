@@ -1188,50 +1188,78 @@ public abstract class Battle implements Serializable
     {
         ArrayList<Player> adjacentPlayers = getAdjacentPlayers(enemy);
         
+        // delete after testing the bug where the enemy does nothing
+        boolean success = false;
+
         // Defeats player if possible. If possible, end enemy AI; else, move to the next statement
         if(defeatedPlayer(adjacentPlayers, enemy))
         {
-            return;
+            success = true;
+            System.out.println("Killed player: " + success);
         }
-
         // Prioritizes healing allies if applicable
-        if (canHealEnemyAlly(enemy))
+        else if (canHealEnemyAlly(enemy))
         {
+            success = true;
             healEnemyAlly(enemy);
+            System.out.println("Healed ally: " + success);
         }
         // Then decides to heal team if applicable
         else if(canHealEnemyTeam(enemy))
         {
+            success = true;
             healEnemyTeam(enemy);
+            System.out.println("Healed team: " + success);
         }
         // 50% percent chance for the enemy to attack before considering to buff itself
         else if(new Random().nextBoolean())
         {
+            success = true;
             attackPlayer(enemy, adjacentPlayers);
+            System.out.println("Attacked player before buff: " + success);
         }
         // Will buff itself if possible
         else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn))
         {
+            success = true;
             BuffAttack buff = enemy.getBuffAttack();
             buff.activateBuff(enemy);
+            System.out.println("Buffed self: " + success);
         }
         // 50% percent chance for the enemy to attack before considering to debuff a player's character
         else if(new Random().nextBoolean())
         {
+            success = true;
             attackPlayer(enemy, adjacentPlayers);
+            System.out.println("Attacked player before debuff: " + success);
         }
         // Will debuff a target if enemy has a debuff attack and the highest aggroed player doesn't have a debuff
         else if(enemy.hasDebuffAttack() && canDebuffHighestAggro(enemy, adjacentPlayers))
         {
+            success = true;
             DebuffAttack debuff = enemy.getDebuffAttack();
             Player target = Player.getHighestAggro(adjacentPlayers);
             debuff.activateDebuff(enemy, target);
+            System.out.println("Debuffed player: " + success);
         }
         // If nothing else, guarentee an attack
         else
         {
+            success = true;
             attackPlayer(enemy, adjacentPlayers);
+            System.out.println("Attacked player on else: " + success);
         }
+
+        if(success)
+        {
+            System.out.println("Turn success: " + success);
+        }
+        else
+        {
+            System.out.println("No if statement reached");
+        }
+
+        MainGame.promptToEnter();
     }
 
    
@@ -1384,6 +1412,7 @@ public abstract class Battle implements Serializable
                 Player cheer = target.getCheerPartner();
                 cheer.resetPlayerToCheer();
                 target.resetCheerPartner();
+                PLAYER_TEAM.add(cheer);
                 MainGame.printlnln(cheer.getName() + " took " + target.getName() + " to protect them from futher harm.");
             }
             // If there is only one person left to fight, they defend the last person defeated
@@ -1400,6 +1429,7 @@ public abstract class Battle implements Serializable
             }
             
             removeDeadPlayerStats(target); // will remove player from affected list and reset their stats
+            target.resetAttacks();
             MainGame.promptToEnter();
         }
     }
@@ -1682,7 +1712,7 @@ public abstract class Battle implements Serializable
         else if(ORIGINAL_PLAYER_POSITIONS.size() == 2)
         {
             // When the size is 2, the position is either 0 or 2 since the Character is on either side of the interface
-            for(int i = 0; i < ORIGINAL_PLAYER_POSITIONS.size(); i++)
+            for(int i = 0; i < ORIGINAL_PLAYER_POSITIONS.size();)
             {
                 if((i == 0) && (ORIGINAL_PLAYER_POSITIONS.get(i).equals(player)))
                 {
@@ -1725,7 +1755,7 @@ public abstract class Battle implements Serializable
         else if(originalEnemyPositions.size() == 2)
         {
             // When the size is 2, the position is either 0 or 2 since the Character is on either side of the interface
-            for(int i = 0; i < originalEnemyPositions.size(); i++)
+            for(int i = 0; i < originalEnemyPositions.size();)
             {
                 if((i == 0) && (originalEnemyPositions.get(i).equals(enemy)))
                 {
@@ -1983,20 +2013,20 @@ public abstract class Battle implements Serializable
             p.resetStats();
             p.currentHealth = p.maxHealth;
             
-            for(Stat s : p.getStats())
-            {
-                if(s.hasCheerBuff())
-                {
-                    s.removeCheerBuff();
-                }
+            // for(Stat s : p.getStats())
+            // {
+            //     if(s.hasCheerBuff())
+            //     {
+            //         s.removeCheerBuff();
+            //     }
                 
-                s.resetValue(p);
-            }
+            //     s.resetValue(p);
+            // }
 
-            for(Attack a : p.getCurrentAttacks())
-            {
-                a.resetNextAvailableTurn();
-            }
+            // for(Attack a : p.getCurrentAttacks())
+            // {
+            //     a.resetNextAvailableTurn();
+            // }
         }
     }
     
@@ -2026,8 +2056,6 @@ public abstract class Battle implements Serializable
 //            cellPadding = 6;
 //            decimalPlaceAccuracy = 2;
         }
-        
-        public BattleInterface() {}
         
         private void setBattleInfo(String[] battleInfo)
         {

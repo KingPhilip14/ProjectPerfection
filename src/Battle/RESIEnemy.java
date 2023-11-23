@@ -72,19 +72,19 @@ public class RESIEnemy extends Enemy
                 result = "Delta";
                 break;
             case 4:
-                result = "Zeta";
+                result = "Epsilon";
                 break;
             case 5:
-                result = "Mu";
+                result = "Zeta";
                 break;
             case 6:
                 result = "Phi";
                 break;
             case 7:
-                result = "Chi";
+                result = "Sigma";
                 break;
             case 8:
-                result = "Psi";
+                result = "Lambda";
                 break;
             default:
                 result = "Omicron";
