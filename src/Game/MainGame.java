@@ -575,7 +575,7 @@ public class MainGame
         anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
         
         // All of Anahita's attacks
-        TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.2, 2);
+        TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.35, 2);
         OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
         tsnunamiShot.setCritRate(0.35);
         SingleHealingAttack waterHalo = new SingleHealingAttack("Water Halo", "A ring of water surrounds the target and heals 30% of their total health.", 0.3, 3);
@@ -824,20 +824,20 @@ public class MainGame
 
     public static Player makeCalmus()
     {
-        PlayerClass pc = PlayerClass.getPlayerClass("Wild Tank");
+        PlayerClass pc = PlayerClass.getPlayerClass("Master Tank");
         
         // Instantiating Calmus and his moveset--------------------------
         Player calmus = new Player("Calmus", "A muscular yet gentle master of Fire.", "Fire", pc, 10);
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you...");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setMaxHealth(360);
-        calmus.setCurrentHealth(360);
-        calmus.setAttack(140);
+        calmus.setMaxHealth(380);
+        calmus.setCurrentHealth(380);
+        calmus.setAttack(150);
         calmus.setDefense(160);
-        calmus.setRangedAttack(100);
-        calmus.setRangedDefense(120);
-        calmus.setSpeed(80);
+        calmus.setRangedAttack(80);
+        calmus.setRangedDefense(140);
+        calmus.setSpeed(70);
 
         calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
         calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());

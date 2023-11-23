@@ -1,6 +1,7 @@
 package Battle;
 
 import Exploration.Wilderness;
+import Game.Game;
 import Utilites.DamageComparator;
 import Utilites.Sort;
 import java.util.ArrayList;
@@ -151,7 +152,16 @@ public abstract class Enemy extends Character
         isOffensive = true;
         statSpreadDescription = "It looks like it'll pack a punch!";
         
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.5)));
+        }
+        
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to offensive stats
@@ -171,8 +181,16 @@ public abstract class Enemy extends Character
         isOffensive = false;
         statSpreadDescription = "It seems to be on careful guard...";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.85)));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.85)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.65)));
+        }
+
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to defensive stats
@@ -192,8 +210,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It appears to have a strong stature!";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.80)));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.80)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.60)));
+        }
+        
         this.setCurrentHealth(maxHealth);
         
         // Assigns 50% of total stat points to physical stats
@@ -213,8 +239,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It seems like it prefers to keep its distance.";
         
-        // Sets the HP based on the total points minus a certain value
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.55)));
+        }
+
         this.setCurrentHealth(maxHealth);
         
         // Assigns 60% of total stat points to ranged stats
@@ -234,8 +268,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It looks quite nimble!";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth((int)Math.round((totalStatPoints * 0.75)));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.75)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.65)));
+        }
+
         this.setCurrentHealth(maxHealth);
         
         // Assigns 25% of total stat points to speed
