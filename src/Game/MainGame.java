@@ -833,11 +833,11 @@ public class MainGame
         calmus.setCheerReadyMessage("Just let me know what to do!");
         calmus.setMaxHealth(380);
         calmus.setCurrentHealth(380);
-        calmus.setAttack(130);
+        calmus.setAttack(140);
         calmus.setDefense(180);
-        calmus.setRangedAttack(70);
-        calmus.setRangedDefense(160);
-        calmus.setSpeed(70);
+        calmus.setRangedAttack(65);
+        calmus.setRangedDefense(150);
+        calmus.setSpeed(75);
 
         calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
         calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
@@ -845,13 +845,13 @@ public class MainGame
         calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
         calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
         
-        OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack");
+        OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 120, "Attack");
         fieryWrath.setAccuracy(80);
         DebuffAttack heatWave = new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3);
         BuffAttack flareBoost = new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2);
         OffensiveAttack searingBlow = new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack");
         BuffAttack flamingAura = new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3);
-        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 135, "Attack");
+        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 155, "Attack");
         burningDunk.setAccuracy(75);
         SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.25);
         DebuffAttack singe = new DebuffAttack("Singe", "The user singes the target with heat to make them more sensitive. This lowers their Defense.", "Defense", 4, 3);
@@ -890,7 +890,7 @@ public class MainGame
         }
 
         ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
-        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Wild Tank"));
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
         

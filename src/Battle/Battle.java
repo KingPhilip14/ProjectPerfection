@@ -1195,28 +1195,28 @@ public abstract class Battle implements Serializable
         if(defeatedPlayer(adjacentPlayers, enemy))
         {
             success = true;
-            System.out.println("Killed player: " + success);
+            // System.out.println("Killed player: " + success);
         }
         // Prioritizes healing allies if applicable
         else if (canHealEnemyAlly(enemy))
         {
             success = true;
             healEnemyAlly(enemy);
-            System.out.println("Healed ally: " + success);
+            // System.out.println("Healed ally: " + success);
         }
         // Then decides to heal team if applicable
         else if(canHealEnemyTeam(enemy))
         {
             success = true;
             healEnemyTeam(enemy);
-            System.out.println("Healed team: " + success);
+            // System.out.println("Healed team: " + success);
         }
         // 50% percent chance for the enemy to attack before considering to buff itself
         else if(new Random().nextBoolean())
         {
             success = true;
             attackPlayer(enemy, adjacentPlayers);
-            System.out.println("Attacked player before buff: " + success);
+            // System.out.println("Attacked player before buff: " + success);
         }
         // Will buff itself if possible
         else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn))
@@ -1224,14 +1224,14 @@ public abstract class Battle implements Serializable
             success = true;
             BuffAttack buff = enemy.getBuffAttack();
             buff.activateBuff(enemy);
-            System.out.println("Buffed self: " + success);
+            // System.out.println("Buffed self: " + success);
         }
         // 50% percent chance for the enemy to attack before considering to debuff a player's character
         else if(new Random().nextBoolean())
         {
             success = true;
             attackPlayer(enemy, adjacentPlayers);
-            System.out.println("Attacked player before debuff: " + success);
+            // System.out.println("Attacked player before debuff: " + success);
         }
         // Will debuff a target if enemy has a debuff attack and the highest aggroed player doesn't have a debuff
         else if(enemy.hasDebuffAttack() && canDebuffHighestAggro(enemy, adjacentPlayers))
@@ -1240,26 +1240,21 @@ public abstract class Battle implements Serializable
             DebuffAttack debuff = enemy.getDebuffAttack();
             Player target = Player.getHighestAggro(adjacentPlayers);
             debuff.activateDebuff(enemy, target);
-            System.out.println("Debuffed player: " + success);
+            // System.out.println("Debuffed player: " + success);
         }
         // If nothing else, guarentee an attack
         else
         {
             success = true;
             attackPlayer(enemy, adjacentPlayers);
-            System.out.println("Attacked player on else: " + success);
+            // System.out.println("Attacked player on else: " + success);
         }
 
-        if(success)
-        {
-            System.out.println("Turn success: " + success);
-        }
-        else
+        if(!success)
         {
             System.out.println("No if statement reached");
+            MainGame.promptToEnter();
         }
-
-        MainGame.promptToEnter();
     }
 
    

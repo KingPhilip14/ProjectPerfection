@@ -2124,7 +2124,7 @@ public class Game implements java.io.Serializable
     {
         Coordinate c = new Coordinate(19, 35);
         Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between Degon and Aquammoda, "
-                + "separating the two.", 8, c);
+                + "separating the two.", 9, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");
