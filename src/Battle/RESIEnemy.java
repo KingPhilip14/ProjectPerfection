@@ -31,6 +31,7 @@ public class RESIEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     public RESIEnemy(int level, Wilderness currentLocation)
@@ -41,6 +42,7 @@ public class RESIEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     public RESIEnemy(int level, String element)
@@ -51,6 +53,7 @@ public class RESIEnemy extends Enemy
         setDescription();
         improveOffense();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     private String createName()

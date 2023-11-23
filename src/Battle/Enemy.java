@@ -2,11 +2,8 @@ package Battle;
 
 import Exploration.Wilderness;
 import Game.Game;
-import Utilites.DamageComparator;
-import Utilites.Sort;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * A class for instantiating any type of enemy.
@@ -23,7 +20,7 @@ public abstract class Enemy extends Character
     protected String statSpreadDescription;
     protected String elementDescriptor;
     protected String species;
-    protected int xpYield = 15;
+    protected int xpYield = 25;
     protected abstract String createElementDescriptor();
     protected abstract String createDescription();
     

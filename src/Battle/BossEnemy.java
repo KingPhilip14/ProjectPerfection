@@ -16,7 +16,7 @@ public class BossEnemy extends Enemy
         setStats(statValues);
         this.element = element;
         addElementDescriptor();
-        xpYield = 35;
+        xpYield = 45;
     }
     
     public void setStatDescription(String desc)

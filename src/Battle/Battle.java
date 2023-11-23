@@ -18,7 +18,7 @@ import java.util.Random;
 public abstract class Battle implements Serializable
 {
     protected static int currentTurn;
-    protected int baseGoldAmt = 100;
+    protected int baseGoldAmt = 140;
     protected BattleInterface BATTLE_INTERFACE;
     private static String[] battleInfo;
     private ArrayList<Enemy> enemyTeam;

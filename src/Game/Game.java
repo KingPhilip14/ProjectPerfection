@@ -811,7 +811,7 @@ public class Game implements java.io.Serializable
         // Second phase - 60% normal battles, 40% RESI battles
         else
         {
-            chooseBattle(new Random().nextInt(100));
+            chooseBattle(new Random().nextBoolean());
         }
         
         if(objective.completedTask(this))
@@ -822,9 +822,10 @@ public class Game implements java.io.Serializable
 //        checkForNextLocation();
     }
     
-    private void chooseBattle(int chance)
+    private void chooseBattle(boolean isNormalBattle)
     {
-        if(chance >= 0 && chance < 59)
+        // 50/50 to either be a normal battle or a resi battle
+        if(isNormalBattle)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold, recentBattleWon);
@@ -2134,7 +2135,7 @@ public class Game implements java.io.Serializable
     private Wilderness createTempestTower()
     {
         Coordinate c = new Coordinate(18, 68);
-        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 10, c);
+        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 11, c);
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
         

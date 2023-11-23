@@ -833,10 +833,10 @@ public class MainGame
         calmus.setCheerReadyMessage("Just let me know what to do!");
         calmus.setMaxHealth(380);
         calmus.setCurrentHealth(380);
-        calmus.setAttack(150);
-        calmus.setDefense(160);
-        calmus.setRangedAttack(80);
-        calmus.setRangedDefense(140);
+        calmus.setAttack(130);
+        calmus.setDefense(180);
+        calmus.setRangedAttack(70);
+        calmus.setRangedDefense(160);
         calmus.setSpeed(70);
 
         calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
@@ -851,7 +851,7 @@ public class MainGame
         BuffAttack flareBoost = new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2);
         OffensiveAttack searingBlow = new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack");
         BuffAttack flamingAura = new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3);
-        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack");
+        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 135, "Attack");
         burningDunk.setAccuracy(75);
         SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.25);
         DebuffAttack singe = new DebuffAttack("Singe", "The user singes the target with heat to make them more sensitive. This lowers their Defense.", "Defense", 4, 3);

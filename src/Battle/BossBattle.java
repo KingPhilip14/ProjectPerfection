@@ -11,7 +11,7 @@ public class BossBattle extends Battle
     public BossBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
         super(enemyTeam, playerTeam);
-        baseGoldAmt = 250;
+        baseGoldAmt = 210;
         startingText = "The outcome of this battle could change everything...!\n\nBoss Battle: S T A R T";
     }   
 
