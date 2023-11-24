@@ -267,14 +267,9 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        // REMOVE IF AND KEEP ELSE STATEMENT AFTER DONE WITH TESTS
-        if(Game.isTesting())
+        if(xpToLevelUp > 3000) // set a cap for XP gains to not let game progression take too long
         {
-            xpToLevelUp = 2000;
-        }
-        else if(xpToLevelUp > 5000)
-        {
-            xpToLevelUp = 5000;
+            xpToLevelUp = 3000;
         }
         
         updateStats();

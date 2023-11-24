@@ -384,12 +384,12 @@ public class Wilderness extends Location
         attacks.add(tempestBlade);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(630); // HP
-        stats.add(120); // Attack
-        stats.add(120); // Defense
+        stats.add(400); // HP
+        stats.add(80); // Attack
+        stats.add(135); // Defense
         stats.add(350); // R Attack
-        stats.add(125); // R Defense
-        stats.add(125); // Speed
+        stats.add(140); // R Defense
+        stats.add(135); // Speed
         
         BossEnemy ninlil = new BossEnemy("Ninlil", "Someone with a broken, grieving heart who needs a friend.", "Wind", 14, 
                                     attacks, stats);

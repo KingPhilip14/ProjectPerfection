@@ -559,8 +559,8 @@ public class MainGame
         anahita.setDeathMessage("Everyone... I'm sorry...");
         anahita.setCheerReadyMessage("I'm right behind you!");
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
-        anahita.setMaxHealth(210);
-        anahita.setCurrentHealth(210);
+        anahita.setMaxHealth(250);
+        anahita.setCurrentHealth(250);
         anahita.setAttack(45);
         anahita.setDefense(55);
         anahita.setRangedAttack(70);
@@ -639,8 +639,8 @@ public class MainGame
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
-        gaea.setMaxHealth(245);
-        gaea.setCurrentHealth(245);
+        gaea.setMaxHealth(280);
+        gaea.setCurrentHealth(280);
         gaea.setAttack(65);
         gaea.setDefense(80);
         gaea.setRangedAttack(80);
@@ -716,8 +716,8 @@ public class MainGame
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
         fultra.setCheerReadyMessage("You're in good hands!");
-        fultra.setMaxHealth(250);
-        fultra.setCurrentHealth(250);
+        fultra.setMaxHealth(300);
+        fultra.setCurrentHealth(300);
         fultra.setAttack(77);
         fultra.setDefense(77);
         fultra.setRangedAttack(77);
@@ -831,8 +831,8 @@ public class MainGame
         calmus.setDeathMessage("Argh, no! Anahita, I have failed you...");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setMaxHealth(380);
-        calmus.setCurrentHealth(380);
+        calmus.setMaxHealth(420);
+        calmus.setCurrentHealth(420);
         calmus.setAttack(160);
         calmus.setDefense(170);
         calmus.setRangedAttack(45);
@@ -908,8 +908,8 @@ public class MainGame
         {
             frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for second phase
-            frigs.setMaxHealth(1260);
-            frigs.setCurrentHealth(1260);
+            frigs.setMaxHealth(410);
+            frigs.setCurrentHealth(410);
             frigs.setAttack(320);
             frigs.setDefense(190);
             frigs.setRangedAttack(290);
@@ -920,8 +920,8 @@ public class MainGame
         {
             frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
             // Instantiating Frigs' stats for first phase 
-            frigs.setMaxHealth(400);  // 10 * 60 = 600
-            frigs.setCurrentHealth(400);
+            frigs.setMaxHealth(300);  // 10 * 60 = 600
+            frigs.setCurrentHealth(300);
             frigs.setAttack(180);
             frigs.setDefense(70);
             frigs.setRangedAttack(170);
@@ -1007,20 +1007,20 @@ public class MainGame
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
             // Instantiating Ninlil's stats for second phase
-            ninlil.setMaxHealth(630);
-            ninlil.setCurrentHealth(630);
-            ninlil.setAttack(120);
-            ninlil.setDefense(120);
+            ninlil.setMaxHealth(400);
+            ninlil.setCurrentHealth(400);
+            ninlil.setAttack(80);
+            ninlil.setDefense(135);
             ninlil.setRangedAttack(350);
-            ninlil.setRangedDefense(125);
-            ninlil.setSpeed(125);
+            ninlil.setRangedDefense(140);
+            ninlil.setSpeed(135);
         }
         else
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
             // Instantiating Ninlil's stats for first phase
-            ninlil.setMaxHealth(430);
-            ninlil.setCurrentHealth(430);
+            ninlil.setMaxHealth(370);
+            ninlil.setCurrentHealth(370);
             ninlil.setAttack(75);
             ninlil.setDefense(100);
             ninlil.setRangedAttack(250);
@@ -1040,9 +1040,9 @@ public class MainGame
         
         OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
         hurricane.setAccuracy(90);
-        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 75, "R. Attack");
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 80, "R. Attack");
         tornado.setCritRate(0.5);
-        tornado.setAccuracy(85);
+        tornado.setAccuracy(90);
         BuffAttack soaringSpirit = new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2);
         OffensiveAttack aerialDance = new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack");
         OffensiveAttack airSlash = new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack");
