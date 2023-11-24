@@ -149,7 +149,7 @@ public class Player extends Character
         // Calculates the XP gained by rounding the amount
         getXPAmount(player, amt);
         
-        amt = (int)Math.round(BASE_XP * ((10 * defeatedEnemy.getLevel()) / player.getLevel()));
+        amt *= 0.85;  // give 85% of the orignal XP to the remaining characters
         
         // For loop applies new amount of XP to everyone that isn't the player that got the kill
         for(Player p : fighitngTeam)

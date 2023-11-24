@@ -1425,6 +1425,7 @@ public abstract class Battle implements Serializable
             
             removeDeadPlayerStats(target); // will remove player from affected list and reset their stats
             target.resetAttacks();
+            target.resetAggro();
             MainGame.promptToEnter();
         }
     }

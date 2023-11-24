@@ -156,7 +156,7 @@ public abstract class Enemy extends Character
         }
         else
         {
-            this.setMaxHealth((int)Math.round((totalStatPoints * 0.5)));
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.45)));
         }
         
         this.setCurrentHealth(maxHealth);
@@ -185,7 +185,7 @@ public abstract class Enemy extends Character
         }
         else
         {
-            this.setMaxHealth((int)Math.round((totalStatPoints * 0.65)));
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.60)));
         }
 
         this.setCurrentHealth(maxHealth);
@@ -214,7 +214,7 @@ public abstract class Enemy extends Character
         }
         else
         {
-            this.setMaxHealth((int)Math.round((totalStatPoints * 0.60)));
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.55)));
         }
         
         this.setCurrentHealth(maxHealth);
@@ -243,7 +243,7 @@ public abstract class Enemy extends Character
         }
         else
         {
-            this.setMaxHealth((int)Math.round((totalStatPoints * 0.55)));
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.50)));
         }
 
         this.setCurrentHealth(maxHealth);
@@ -272,7 +272,7 @@ public abstract class Enemy extends Character
         }
         else
         {
-            this.setMaxHealth((int)Math.round((totalStatPoints * 0.65)));
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.50)));
         }
 
         this.setCurrentHealth(maxHealth);

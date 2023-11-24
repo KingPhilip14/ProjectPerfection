@@ -780,6 +780,7 @@ public class Game implements java.io.Serializable
             if(battle.isWon())
             {
                 beachTutorialDone = true;
+                battle = null;
             }   
         }
         // If the player is in Opicon Forest and haven't done the last tutorial
@@ -795,6 +796,7 @@ public class Game implements java.io.Serializable
                 objective.updateByBattleResult(battle.isWon());
                 unlockNextLocation();
                 forestTutorialDone = true;
+                battle = null;
                 
                 // Activate cutscene here so it only happens right after the tutorial is done
 //                Cutscene.opiconCutscene2();
@@ -807,6 +809,7 @@ public class Game implements java.io.Serializable
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
         }
         // Second phase - 60% normal battles, 40% RESI battles
         else
@@ -829,11 +832,13 @@ public class Game implements java.io.Serializable
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
         }
         else
         {
             RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
         }
     }
     
