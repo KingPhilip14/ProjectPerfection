@@ -415,7 +415,7 @@ public class Wilderness extends Location
         attacks.add(protocal);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(2480); // HP
+        stats.add(1000); // HP
         stats.add(204); // Attack
         stats.add(234); // Defense
         stats.add(204); // R Attack
@@ -424,7 +424,7 @@ public class Wilderness extends Location
         
         BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 17, 
                                     attacks, stats);
-        omega.setStatDescription("This R.E.S.I. Bot is more than 3 times the size of a normal one. Be careful!");
+        omega.setStatDescription("This R.E.S.I. Bot is only suited for hot areas, so its element won't change!");
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(omega);

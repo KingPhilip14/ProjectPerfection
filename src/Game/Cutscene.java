@@ -1358,6 +1358,8 @@ public class Cutscene
     
     public static void infol()
     {
+        MainGame.promptToEnter();
+
         MainGame.dialoguelnln("Calmus", "Oh no...");
         
         print("The group arrived to the Infol. It was in better shape than Aerogan, but it still experienced "
@@ -1453,17 +1455,17 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "We'll be okay... I hope. I'll try to provide water on the way up. This will be "
                 + "*exhausting*.");
         
-        MainGame.dialoguelnln("Ninlil", "Could we just... take breaks here and there? I don't know if I'll handle this heat "
+        MainGame.dialoguelnln("Ninlil", "Could we just (*huff*) take breaks here and there?\n\tI don't know if I'll handle this heat "
                 + "too well.");
         
         print("Calmus couldn't help but smile at the girls complaining about the heat. He came to the volcano often to train "
-                + "his powers/so he is well adapted to the environment.");
+                + "his powers/so he was well adapted to the environment.");
         
         MainGame.dialoguelnln("Calmus", "As long as Ana can provide water, you guys should be okay. I will warn you though -- "
                 + "it will only\n\tget hotter from here.");
         
         print("The girls all groaned at the warning which caused Calmus to laugh. Calmus led the group up the path as the "
-                + "other trudged/along begrudgingly.");
+                + "others trudged/along begrudgingly.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -1570,14 +1572,14 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("After the cheers subsided, Calmus and Gaea inspected the remains of the Bot while Anahita and Ninlil tried to "
-                + "stay cool./Calmus and Gaea looked to see a green liquid seeping from the Bot. Gaea smelled it to see if "
-                + "it had an odor.");
+                + "stay cool./Calmus and Gaea looked to see a green liquid seeping from the Bot. Gaea caught a whiff of it "
+                + "as she inspected it.");
         
         MainGame.dialoguelnln("Gaea", "Hey, this green stuff kinda smells like... beans?");
         
         MainGame.dialoguelnln("Calmus", "Really?");
         
-        print("Calmus also smelled the mysterious liquid, and sure enough, it smelled just like the beans that are abundantly "
+        print("Calmus smelled the mysterious liquid, and sure enough, it smelled just like the beans that are abundantly "
                 + "found on/Pulchra.");
         
         MainGame.dialoguelnln("Calmus", "Ana, Ninlil, come see this!");
@@ -1599,8 +1601,7 @@ public class Cutscene
         MainGame.dialoguelnln("Ninlil", "It really does smell like them... Why could that be?");
         
         MainGame.dialoguelnln("Anahita", "... I think I have an idea. The beans are filled with ethrellium, right? That's "
-                + "what gives\n\tus our powers. Maybe the Bots use ethrellium too, and that's how their elements change in "
-                + "battle.");
+                + "what gives\n\tus our powers. Maybe the Bots use ethrellium too, and that's how they have elemental properties.");
         
         MainGame.dialoguelnln("Calmus", "That actually makes a lot of sense... Good job, Ana! We'll have to be mindful of "
                 + "that from\n\there on out then.");
@@ -1644,14 +1645,14 @@ public class Cutscene
         MainGame.dialoguelnln("Elder Vulca", "Thank you, children. I can't imagine getting the mineral was easy, but I am "
                 + "so grateful to\n\tyou all. You've all done a great thing today.");
         
-        MainGame.dialoguelnln("Calmus", "I'm just... so happy you're okay... I wasn't sure if we'd be able to do anything "
+        MainGame.dialoguelnln("Calmus", "I'm just... so happy you're okay! I wasn't sure if we'd be able to do anything "
                 + "for you.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
         print("Calmus started crying. Gaea repaid him by consoling him with a hug as the others comforted him too. Calmus and "
-                + "Lyra have a/few years between them in age, and their orphans. Their parents died in an accident years ago, "
+                + "Lyra have a/few years between them in age, and they're orphans. Their parents died in an accident years ago, "
                 + "so the Elder/took them into her care. Calmus has struggled with this loss all his life. Although he "
                 + "suppresses his feelings/this was something that got the better of him. The hug from Gaea helped him "
                 + "overcome the/overwhelming emotions he felt.");
@@ -1664,7 +1665,7 @@ public class Cutscene
         print("Anahita and Ninlil were touched by the moment. As Gaea and Calmus parted, Calmus recollected himself and "
                 + "looked at the group.");
         
-        MainGame.dialoguelnln("Calmus", "Okay... I think we can go find Frigs now. I just needed to take care of my family.");
+        MainGame.dialoguelnln("Calmus", "Okay. I think we can go find Frigs now. I just needed to take care of my family.");
         
         MainGame.dialoguelnln("Anahita", "We admire you for that, Calmus. Let's leave whenever you're ready.");
         
@@ -1673,10 +1674,10 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        MainGame.dialoguelnln("Anahita", "Alright guys, to get to Solice, we'll have to climb Mount Zoni...");
+        MainGame.dialoguelnln("Anahita", "Alright guys, to get to Solice, we'll have to climb Mount Zoni.");
         
         MainGame.dialoguelnln("Gaea", "More. Climbing. Great. Calmus, will you be able to keep us warm? I won't be able to "
-                + "stand the cold...");
+                + "stand the cold again\n\tafter Tempest Tower. Ugh!");
         
         MainGame.dialoguelnln("Calmus", "I'll do whatever I need to for you guys. You've all done what you could for me.");
         

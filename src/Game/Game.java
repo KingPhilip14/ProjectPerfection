@@ -2153,7 +2153,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountVolcan()
     {
         Coordinate c = new Coordinate(4, 58);
-        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 11, c);
+        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 12, c);
         mountVolcan.addLocalElement("Fire");
         mountVolcan.addLocalElement("Earth");
         mountVolcan.addLocalElement("Wind");

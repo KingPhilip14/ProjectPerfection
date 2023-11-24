@@ -1406,6 +1406,7 @@ public abstract class Battle implements Serializable
             {
                 Player cheer = target.getCheerPartner();
                 cheer.resetPlayerToCheer();
+                cheer.setCurrentHealth(cheer.getMaxHealth()); // a check to make sure that a cheer always has max health between battles
                 target.resetCheerPartner();
                 PLAYER_TEAM.add(cheer);
                 MainGame.printlnln(cheer.getName() + " took " + target.getName() + " to protect them from futher harm.");
@@ -2004,6 +2005,7 @@ public abstract class Battle implements Serializable
                 PLAYER_TEAM.add(cheer);
                 cheer.resetPlayerToCheer();
                 p.resetCheerPartner();
+                cheer.setCurrentHealth(cheer.getMaxHealth()); // a check to make sure that a cheer always has max health between battles
             }    
             
             p.resetStats();
