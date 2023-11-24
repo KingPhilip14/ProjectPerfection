@@ -445,9 +445,9 @@ public class Player extends Character
     {
         /*
                     HP Atk Def R Atk  R Def SPd
-        Master Tank: 90 65 85   35     30     30
-        Wild Tank:  80 75 75   35     30     40
-        Holy Tank: 70 65 75  45     45     35
+        Master Tank: 90 65 85   35     70     30
+        Wild Tank:  80 75 75   35     60     40
+        Holy Tank: 70 65 75  45     60     35
         */
         ArrayList<Integer> listOfPercentages = new ArrayList<>();
         
@@ -475,7 +475,7 @@ public class Player extends Character
                 listOfPercentages.add(65);
                 listOfPercentages.add(85);
                 listOfPercentages.add(35);
-                listOfPercentages.add(30);
+                listOfPercentages.add(70);
                 listOfPercentages.add(30);
                 
                 // Goes through each stat and increases them accordingly
@@ -499,7 +499,7 @@ public class Player extends Character
                 listOfPercentages.add(75);
                 listOfPercentages.add(75);
                 listOfPercentages.add(45);
-                listOfPercentages.add(45);
+                listOfPercentages.add(60);
                 listOfPercentages.add(35);
                 
                 // Goes through each stat and increases them accordingly
@@ -522,7 +522,7 @@ public class Player extends Character
                 listOfPercentages.add(65);
                 listOfPercentages.add(75);
                 listOfPercentages.add(70);
-                listOfPercentages.add(75);
+                listOfPercentages.add(60);
                 listOfPercentages.add(20);
                 
                 // Goes through each stat and increases them accordingly
