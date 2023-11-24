@@ -564,8 +564,8 @@ public class MainGame
         anahita.setAttack(45);
         anahita.setDefense(55);
         anahita.setRangedAttack(70);
-        anahita.setRangedDefense(75);
-        anahita.setSpeed(55);
+        anahita.setRangedDefense(80);
+        anahita.setSpeed(50);
         
         // make this a method in the character class as a for loop
         anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -659,7 +659,7 @@ public class MainGame
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
         OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 95, "Attack");
         terraForce.setAccuracy(95);
-        OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
+        OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with sharp leaves.", 80, "R. Attack");
         SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 3);
         OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
         
@@ -783,8 +783,8 @@ public class MainGame
         fultra.setBattleReadyMessage("Let's go!");
         fultra.setCheerReadyMessage("You can trust me!");
 
-        fultra.setMaxHealth(1777);
-        fultra.setCurrentHealth(1777);
+        fultra.setMaxHealth(777);
+        fultra.setCurrentHealth(777);
         fultra.setAttack(324);
         fultra.setDefense(324);
         fultra.setRangedAttack(324);
@@ -833,9 +833,9 @@ public class MainGame
         calmus.setCheerReadyMessage("Just let me know what to do!");
         calmus.setMaxHealth(380);
         calmus.setCurrentHealth(380);
-        calmus.setAttack(140);
-        calmus.setDefense(180);
-        calmus.setRangedAttack(65);
+        calmus.setAttack(160);
+        calmus.setDefense(170);
+        calmus.setRangedAttack(45);
         calmus.setRangedDefense(150);
         calmus.setSpeed(75);
 
