@@ -85,7 +85,7 @@ public class Objective implements Serializable
         unfinsihedTasks.add(new TravelTask("Travel to Mount Volcan", atMountVolcan, "Mount Volcan", false));
         unfinsihedTasks.add(new LevelTask("Find the mineral for Elder Vulca (Required Level: 17)", false, 17, false));
         unfinsihedTasks.add(new BattleTask("Defeat the boss to mine the mineral", omegaBossDefeated, false));
-        unfinsihedTasks.add(new NpcTask("Talk to Lyra in Infol", talkedToLyra, "Lyra", true));
+        unfinsihedTasks.add(new NpcTask("Talk to Lyra", talkedToLyra, "Lyra", true));
         unfinsihedTasks.add(new TravelTask("Travel to Mount Zoni", atMountZoni, "Mount Zoni", false));
         unfinsihedTasks.add(new LevelTask("Unlock Solice (Required Level: 20)", false, 20, true));
         unfinsihedTasks.add(new TravelTask("Travel to Solice", atSolice, "Solice", false));
