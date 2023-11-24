@@ -1007,8 +1007,8 @@ public class MainGame
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
             // Instantiating Ninlil's stats for second phase
-            ninlil.setMaxHealth(400);
-            ninlil.setCurrentHealth(400);
+            ninlil.setMaxHealth(355);
+            ninlil.setCurrentHealth(355);
             ninlil.setAttack(80);
             ninlil.setDefense(135);
             ninlil.setRangedAttack(350);

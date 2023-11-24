@@ -149,7 +149,7 @@ public class Player extends Character
         // Calculates the XP gained by rounding the amount
         getXPAmount(player, amt);
         
-        amt *= 0.85;  // give 85% of the orignal XP to the remaining characters
+        amt *= 0.8;  // give 80% of the orignal XP to the remaining characters
         
         // For loop applies new amount of XP to everyone that isn't the player that got the kill
         for(Player p : fighitngTeam)
@@ -267,9 +267,9 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        if(xpToLevelUp > 3000) // set a cap for XP gains to not let game progression take too long
+        if(xpToLevelUp > 3500) // set a cap for XP gains to not let game progression take too long
         {
-            xpToLevelUp = 3000;
+            xpToLevelUp = 3500;
         }
         
         updateStats();

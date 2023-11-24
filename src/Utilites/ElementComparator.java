@@ -67,13 +67,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
         {
             switch (targetElement) 
             {
-                case "Fire":
-                    result = 1;
-                    break;
                 case "Water":
                 case "Ice":
                 case "Earth":
                 case "Wind":
+                case "Fire":
                     result = 0;
                     break;
                 case "Electric":
@@ -108,11 +106,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
             switch (targetElement) 
             {
                 case "Electric":
-                case "Fire":
                     result = 1;
                     break;
                 case "Wind":
                 case "Ice":
+                case "Fire":
                     result = 0;
                     break;
                 case "Water":
@@ -202,13 +200,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
             case "Wind":
                 switch (targetElement)
                 {
-                    case "Fire":
-                        result = 1;
-                        break;
                     case "Water":
                     case "Ice":
                     case "Earth":
                     case "Wind":
+                    case "Fire":
                         result = 0;
                         break;
                     case "Electric":
@@ -241,11 +237,11 @@ public class ElementComparator implements UniqueComparator<Player, Enemy>
                 switch (targetElement)
                 {
                     case "Electric":
-                    case "Fire":
                         result = 1;
                         break;
                     case "Wind":
                     case "Ice":
+                    case "Fire":
                         result = 0;
                         break;
                     case "Water":

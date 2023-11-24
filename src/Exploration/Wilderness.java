@@ -384,7 +384,7 @@ public class Wilderness extends Location
         attacks.add(tempestBlade);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(400); // HP
+        stats.add(355); // HP
         stats.add(80); // Attack
         stats.add(135); // Defense
         stats.add(350); // R Attack

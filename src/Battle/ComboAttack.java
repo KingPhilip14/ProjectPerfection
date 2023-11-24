@@ -182,7 +182,7 @@ public class ComboAttack extends Attack
         }
         else
         {
-            MainGame.printlnln(attacker1.getName() + "'s contribution to the combo was effective.");
+            MainGame.printlnln(attacker2.getName() + "'s contribution to the combo was effective.");
         }
         
         MainGame.printlnln(attacker1.getName() + " and "  + attacker2.getName() + " dealt " + damage + " HP!");
