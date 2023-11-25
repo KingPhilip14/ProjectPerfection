@@ -542,20 +542,31 @@ public class Game implements java.io.Serializable
         {
             case "Tempest Tower":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
-                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                    if (!towerBossAttempted) 
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                        ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                    }
                 }
                 break;
             case "Mount Volcan":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
-                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                    if(!volcanBossAttempted)
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                        ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                    }
+                   
                 }
                 break;
             case "Mount Zoni Summit":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
-                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                    if(!summitBossAttempted)
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                        ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                    }
+                    
                 }
                 break;
             case "Zoni City": // Zoni City in second phase
@@ -869,7 +880,12 @@ public class Game implements java.io.Serializable
                     Cutscene.defeatedNinlil();
                     tempestTower.removeBossBattle();
                     team.add(MainGame.makeNinlil());
-                }   
+                }
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                }
                 break;
             case "Mount Volcan":
                 // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
@@ -902,6 +918,11 @@ public class Game implements java.io.Serializable
                     vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
                     vulca.setTalkedTo(false);
                 }   
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                }
                 break;
             case "Mount Zoni Summit":
                 // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
@@ -925,6 +946,11 @@ public class Game implements java.io.Serializable
                     summit.removeBossBattle();
                     team.add(MainGame.makeFrigs());
                 }   
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                }
                 
                 map.updateMap(currentLocation, getLocation("Mount Zoni"));
                 currentLocation = getLocation("Mount Zoni");
