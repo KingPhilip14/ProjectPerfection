@@ -346,9 +346,9 @@ public class Player extends Character
     {
         /*
                       HP Atk Def R Atk  R Def SPd
-        Master Clerk: 40 30 30   80     80     40
+        Master Clerk: 40 30 30   80     80     25
         Hyper Clerk:  35 35 25   90     60     65
-        Passive Clerk: 50 50 50  70     75     20
+        Passive Clerk: 50 50 50  70     75     30
         */
         ArrayList<Integer> listOfPercentages = new ArrayList<>();
         
@@ -372,11 +372,11 @@ public class Player extends Character
                 // Potential HP increase
                 newStatPoints = increaseHealth(newStatPoints, hpIncrease, 40);
                 
-                listOfPercentages.add(30);
+                listOfPercentages.add(25);
                 listOfPercentages.add(30);
                 listOfPercentages.add(80);
                 listOfPercentages.add(80);
-                listOfPercentages.add(40);
+                listOfPercentages.add(25);
                 
                 // Goes through each stat and increases them accordingly
                 while(newStatPoints != 0)
@@ -423,7 +423,7 @@ public class Player extends Character
                 listOfPercentages.add(50);
                 listOfPercentages.add(70);
                 listOfPercentages.add(75);
-                listOfPercentages.add(20);
+                listOfPercentages.add(30);
                 
                 // Goes through each stat and increases them accordingly
                 while(newStatPoints != 0)

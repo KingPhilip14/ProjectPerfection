@@ -1902,7 +1902,7 @@ public abstract class Battle implements Serializable
         }
         else
         {
-            gold += baseGoldAmt + (int)(gold * 0.333);
+            gold *= 1.333;
         }
         
         return gold;

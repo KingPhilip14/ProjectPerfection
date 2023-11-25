@@ -148,7 +148,7 @@ public class PlayerClass implements Serializable
     
     private String masterClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Slow\n\tAttack: Very Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Very Fast\n\tSpeed: Slow";
+        return className + " Growth Pattern:\n\tHP: Very Slow Slow\n\tAttack: Very Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Very Fast\n\tSpeed: Very Slow";
     }
     
     private String hyperClerkStatSpread()
