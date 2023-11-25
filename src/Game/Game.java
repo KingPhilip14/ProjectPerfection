@@ -822,6 +822,13 @@ public class Game implements java.io.Serializable
             battle.start(gold, recentBattleWon);
             battle = null;
         }
+        // Zoni City will only have R.E.S.I. battles
+        else if(currentLocation.getName().equals("Zoni City"))
+        {
+            RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
+            battle.start(gold, recentBattleWon);
+            battle = null;
+        }
         // Second phase - 60% normal battles, 40% RESI battles
         else
         {

@@ -2227,7 +2227,7 @@ public class Cutscene
         print("The group was astonished to see the damage done. R.E.S.I. Bots were everywhere in the city; not a single "
                 + "living/organism was found. Anahita and the others took cover behind some debris to avoid being found.");
         
-        MainGame.dialoguelnln("Frigs", "This is terrifying... I've never seen so many in one area!");
+        MainGame.dialoguelnln("Frigs", "This is terrifying. I've never seen so many in one area!");
         
         MainGame.dialoguelnln("Calmus", "Where can we even find Irwin in the middle of everything?");
         
@@ -2259,7 +2259,7 @@ public class Cutscene
         MainGame.dialoguelnln("Anahita", "Guys! We'll do what we can. We'll sneak around them, and if we have to fight, "
                 + "we'll defeat them\n\tas quickly and quietly as we can. Does that sound like a plan?");
         
-        print("Frigs and Gaea nodded, as well as Calmus and Ninlil.");
+        print("Everyone nodded in understanding.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2271,13 +2271,9 @@ public class Cutscene
         
         MainGame.dialoguelnln("Ninlil", "I don't think words will persuade him at this point. We will have to fight.");
         
-        MainGame.dialoguelnln("Calmus", "Yeah... I should've expected that.");
+        MainGame.dialoguelnln("Calmus", "I should've expected that...");
         
-        MainGame.dialoguelnln("Anahita", "It... it's not ideal, but we'll have to do what we need to...");
-        
-        print("The group fell silent once more.");
-        
-        MainGame.ellipsislnln();
+        MainGame.dialoguelnln("Anahita", "It's not ideal, but we'll have to do what we need to.");
         
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
@@ -2286,7 +2282,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Frigs", "Agreed. Anahita, we'll follow your lead. Whatever you say, goes.");
         
-        MainGame.dialoguelnln("Anahita", "Alright... Let's see what we can do...!");
+        MainGame.dialoguelnln("Anahita", "Alright. Let's see what we can do!");
     }
     
     public static void foundResiFultra()

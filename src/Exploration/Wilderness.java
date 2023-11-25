@@ -445,7 +445,7 @@ public class Wilderness extends Location
         attacks.add(fimblevetr);
 
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(300); // HP
+        stats.add(350); // HP
         stats.add(390); // Attack
         stats.add(120); // Defense
         stats.add(360); // R Attack

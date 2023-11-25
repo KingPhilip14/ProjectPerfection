@@ -908,8 +908,8 @@ public class MainGame
         {
             frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for second phase
-            frigs.setMaxHealth(300);
-            frigs.setCurrentHealth(300);
+            frigs.setMaxHealth(350);
+            frigs.setCurrentHealth(350);
             frigs.setAttack(360);
             frigs.setDefense(150);
             frigs.setRangedAttack(330);

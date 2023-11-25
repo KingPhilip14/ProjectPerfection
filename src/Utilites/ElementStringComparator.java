@@ -60,13 +60,13 @@ public class ElementStringComparator implements Comparator<String>
                 switch (targetElement)
                 {
                     case "Water":
-                    case "Ice":
                     case "Earth":
                     case "Wind":
                     case "Fire":
                         result = 0;
                         break;
                     case "Electric":
+                    case "Ice":
                         result = -1;
                         break;
                     default:
