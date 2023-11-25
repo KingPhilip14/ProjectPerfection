@@ -1945,25 +1945,64 @@ public abstract class Battle implements Serializable
         // while(changedStats.get(0) != null && changedStats.first().isTurnChangeEnds(currentTurn))
 
         boolean success = false;
-        while(!statAffectedCharacters.isEmpty() && (statAffectedCharacters.get(0)).canRemoveStatChange(currentTurn))
+
+        for(Enemy e : enemyTeam)
         {
-            success = true;
-            Character c = statAffectedCharacters.remove(0);
-            for(Stat s : c.getStats())
+            for(Stat s : e.getStats())
             {
                 if(s.isTurnBuffEnds(currentTurn))
                 {
                     s.deactivateBuff();
+                    success = true;
                 }
-                
-                if(s.isTurnDebuffEnds(currentTurn))
+
+                if(s.isTurnDebuffEnds(currentTurn)) 
                 {
-                    s.deactivateDebuff();
+                    s.deactivateDebuff();     
+                    success = true;
+                }
+            }
+        }
+
+        for(Player p : PLAYER_FIGHTING_TEAM)
+        {
+            for(Stat s : p.getStats())
+            {
+                if(s.isTurnBuffEnds(currentTurn))
+                {
+                    s.deactivateBuff();
+                    success = true;
+                }
+
+                if(s.isTurnDebuffEnds(currentTurn)) 
+                {
+                    s.deactivateDebuff();     
+                    success = true;
                 }
             }
         }
 
         if(success) {MainGame.promptToEnter();}
+        // boolean success = false;
+        // while(!statAffectedCharacters.isEmpty() && (statAffectedCharacters.get(0)).canRemoveStatChange(currentTurn))
+        // {
+        //     success = true;
+        //     Character c = statAffectedCharacters.remove(0);
+        //     for(Stat s : c.getStats())
+        //     {
+        //         if(s.isTurnBuffEnds(currentTurn))
+        //         {
+        //             s.deactivateBuff();
+        //         }
+                
+        //         if(s.isTurnDebuffEnds(currentTurn))
+        //         {
+        //             s.deactivateDebuff();
+        //         }
+        //     }
+        // }
+
+        // if(success) {MainGame.promptToEnter();}
     }
 
     /**

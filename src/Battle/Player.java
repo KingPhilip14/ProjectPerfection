@@ -111,6 +111,9 @@ public class Player extends Character
             {
                 s.resetValue(this);
             }   
+
+            s.setTurnBuffEnds(0);
+            s.setTurnDebuffEnds(0);
         }
     }
     
