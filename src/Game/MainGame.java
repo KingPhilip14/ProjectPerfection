@@ -910,10 +910,10 @@ public class MainGame
             // Instantiating Frigs' stats for second phase
             frigs.setMaxHealth(300);
             frigs.setCurrentHealth(300);
-            frigs.setAttack(390);
-            frigs.setDefense(120);
-            frigs.setRangedAttack(360);
-            frigs.setRangedDefense(120);
+            frigs.setAttack(360);
+            frigs.setDefense(150);
+            frigs.setRangedAttack(330);
+            frigs.setRangedDefense(150);
             frigs.setSpeed(270);
         }
         else
@@ -936,8 +936,8 @@ public class MainGame
         frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
 
         // Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
-        frigs.setDeathMessage("Tch... Why like this... Anything but this...");
-        frigs.setBattleReadyMessage("We've got this. Just stay cool.");
+        frigs.setDeathMessage("Tch. Why like this? Anything but this...");
+        frigs.setBattleReadyMessage("We got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
 
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");

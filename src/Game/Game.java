@@ -945,15 +945,14 @@ public class Game implements java.io.Serializable
                     Cutscene.defeatedFrigs();
                     summit.removeBossBattle();
                     team.add(MainGame.makeFrigs());
+                    map.updateMap(currentLocation, getLocation("Mount Zoni"));
+                    currentLocation = getLocation("Mount Zoni");
                 }   
                 else // remake battle to prevent errors if lost
                 {
                     BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
                     ((Wilderness)currentLocation).setBossBattle(battle, 21);
                 }
-                
-                map.updateMap(currentLocation, getLocation("Mount Zoni"));
-                currentLocation = getLocation("Mount Zoni");
                 break;
             case "Zoni City":
                 cityBossFights();
@@ -2111,11 +2110,11 @@ public class Game implements java.io.Serializable
         tonnerre.setDescription("Elerric resident");
         
         Item gift = Item.getHealingItem("Half Cake");
-        NPC san = new NPC("San", "Are you guys okay? How are your towns?", gift, false);
+        NPC san = new NPC("San", "Pheu is a wonderful lady. Calmus, you have an amazing aunt.", gift, false);
         san.setDescription("Elerric resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
         
-        NPC pheu = new NPC("Pheu", "MAKE ME HAVE DEFAULT TEXT", true);
+        NPC pheu = new NPC("Pheu", "Restore to us the peace we lost! I beleive in you all. Take care, nephew.", true);
         pheu.setDescription("Infol Resident | Calmus' aunt");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -2200,7 +2199,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountZoniSummit()
     {
         Coordinate c = new Coordinate(2, 31);
-        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 19, c);
+        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. The winds and bitter cold are unforgiving here.", 19, c);
         mountZoniSummit.addLocalElement("Ice");
         mountZoniSummit.addLocalElement("Wind");
         return mountZoniSummit;

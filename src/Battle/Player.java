@@ -36,8 +36,15 @@ public class Player extends Character
         super.currentAttacks = new ArrayList<>();
         currentXP = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4);
 //        currentXP = 0;
+
         xpToLevelUp = currentXP;
         
+        // Set the xpToLevelUp to not exceed the max
+        if (xpToLevelUp > 3500) 
+        {
+            xpToLevelUp = 3500;
+        }
+
         populateListsOfStats();
     }
     

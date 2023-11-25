@@ -24,7 +24,7 @@ public class RESIBattle extends Battle
     {
         super.attackWithOffense(attack, player, target);
         
-        if(attack.getAttackHit() && !target.isDead())
+        if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
         {
             RESIEnemy enemy = ((RESIEnemy)target);
         
