@@ -415,7 +415,7 @@ public class Wilderness extends Location
         attacks.add(protocal);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(1255); // HP
+        stats.add(1550); // HP
         stats.add(204); // Attack
         stats.add(234); // Defense
         stats.add(204); // R Attack
@@ -443,13 +443,13 @@ public class Wilderness extends Location
         fimblevetr.setCritRate(0.35);
         fimblevetr.setAccuracy(90);
         attacks.add(fimblevetr);
-        
+
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(1260); // HP
-        stats.add(320); // Attack
-        stats.add(190); // Defense
-        stats.add(290); // R Attack
-        stats.add(190); // R Defense
+        stats.add(300); // HP
+        stats.add(390); // Attack
+        stats.add(120); // Defense
+        stats.add(360); // R Attack
+        stats.add(120); // R Defense
         stats.add(270); // Speed
         
         BossEnemy frigs = new BossEnemy("Frigs", "A greiving friend who needs friends that'll stick closer than a lost brother.", "Ice", 21, 

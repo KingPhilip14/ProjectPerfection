@@ -906,14 +906,14 @@ public class MainGame
         
         if(Game.isInSecondPhase())
         {
-            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for second phase
-            frigs.setMaxHealth(410);
-            frigs.setCurrentHealth(410);
-            frigs.setAttack(320);
-            frigs.setDefense(190);
-            frigs.setRangedAttack(290);
-            frigs.setRangedDefense(190);
+            frigs.setMaxHealth(300);
+            frigs.setCurrentHealth(300);
+            frigs.setAttack(390);
+            frigs.setDefense(120);
+            frigs.setRangedAttack(360);
+            frigs.setRangedDefense(120);
             frigs.setSpeed(270);
         }
         else

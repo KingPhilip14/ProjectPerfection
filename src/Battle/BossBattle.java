@@ -18,7 +18,7 @@ public class BossBattle extends Battle
     @Override
     protected void activateEnemyAI(Enemy enemy)
     {
-        if((currentTurn == 1) || (currentTurn == enemy.getBuffAttack().nextAvailableTurn + 2 && 
+        if((currentTurn == 1) || (currentTurn == enemy.getBuffAttack().nextAvailableTurn++ && 
             enemy.getBuffAttack().canUse()))
         {
             // Activate the buff on the first turn or if it's two turns after the buff could be used, use it

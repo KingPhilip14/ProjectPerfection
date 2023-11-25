@@ -167,7 +167,8 @@ public abstract class Character extends GameProperty implements Combatable
     {
         for(Stat s : listOfStats)
         {
-            if(s.isTurnBuffEnds(currentTurn) || s.isTurnDebuffEnds(currentTurn))
+            if((s.isTurnBuffEnds(currentTurn) && s.getIsBuffActive()) || 
+            (s.isTurnDebuffEnds(currentTurn) && s.getIsDebuffActive()))
             {
                 return true;
             }
