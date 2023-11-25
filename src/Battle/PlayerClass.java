@@ -158,7 +158,7 @@ public class PlayerClass implements Serializable
     
     private String passiveClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Slow";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Fast\n\tRanged Defense: Fast\n\tSpeed: Very Slow";
     }
     
     private String masterTankStatSpread()

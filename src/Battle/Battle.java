@@ -1219,7 +1219,7 @@ public abstract class Battle implements Serializable
             attackPlayer(enemy, adjacentPlayers);
         }
         // Will buff itself if possible
-        else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn))
+        else if(enemy.hasBuffAttack() && enemy.getBuffAttack().canUse(currentTurn) && !enemy.hasActiveBuff())
         {
             success = true;
             BuffAttack buff = enemy.getBuffAttack();

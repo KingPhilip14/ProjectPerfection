@@ -69,15 +69,19 @@ public abstract class Enemy extends Character
         populateListsOfStats();
     }
     
+    /**
+     * Super constructor used for making boss enemies
+     * @param name
+     * @param description
+     * @param level
+     * @param knownAttacks
+     */
     public Enemy(String name, String description, int level, ArrayList<Attack> knownAttacks)
     {
         this.name = name;
         this.description = description;
         this.level = level;
-        totalStatPoints = level * 65;
         this.currentAttacks = knownAttacks;
-        generateStats();
-        populateCurrentAttacks();
     }
     
     public Enemy(String name, String description, int level)

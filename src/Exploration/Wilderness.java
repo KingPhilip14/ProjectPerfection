@@ -406,7 +406,7 @@ public class Wilderness extends Location
         ArrayList<Attack> attacks = new ArrayList<>(4);
         attacks.add(new BuffAttack("System Restart", "The user restarts its systems to refresh itself, raising all stats.", "All", 2.0, 5, 2));
         OffensiveAttack deathClaw = new OffensiveAttack("Death Claw", "The user flies into the air and launches a claw that captures the target and applies pressure to deal damage.", 130, "Attack");
-        deathClaw.setAccuracy(70);
+        deathClaw.setAccuracy(90);
         attacks.add(deathClaw);
         attacks.add(new OffensiveAttack("Omega Laser", "The user blasts a highly concentrated laser that destroys everyting in its path.", 100, "R. Attack"));
         attacks.get(2).setAccuracy(90);
@@ -415,7 +415,7 @@ public class Wilderness extends Location
         attacks.add(protocal);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(1000); // HP
+        stats.add(1255); // HP
         stats.add(204); // Attack
         stats.add(234); // Defense
         stats.add(204); // R Attack
