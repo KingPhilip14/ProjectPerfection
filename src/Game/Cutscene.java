@@ -985,7 +985,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Merda", "(*sniff*) Oh, Lac... I can't believe he died... It's too soon... too soon...");
         
-        MainGame.dialoguelnln("Anahita", "I... I couldn't heal him... His wounds were too severe once I got to him... The "
+        MainGame.dialoguelnln("Anahita", "I... I couldn't heal him... His wounds were too severe once I got to him. The "
                 + "look he\n\tgave me before he died... I...");
         
         MainGame.promptToEnter();
@@ -994,11 +994,7 @@ public class Cutscene
         
         MainGame.ellipsislnln();
         
-        MainGame.dialoguelnln("Gaea", "It's okay, Ana... I'm really, really sorry... All of this has been... terrible...");
-        
-        MainGame.promptToEnter();
-        
-        print("The room fell quiet once more.");
+        MainGame.dialoguelnln("Gaea", "It's okay, Ana. I'm really, really sorry... All of this has been... terrible.");
         
         MainGame.ellipsislnln();
         

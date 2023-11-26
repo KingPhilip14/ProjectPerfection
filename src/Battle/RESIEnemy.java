@@ -163,7 +163,7 @@ public class RESIEnemy extends Enemy
     private void improveOffense()
     {
         this.attack.setValue(attack.getValue() + 20);
-        this.rangedAttack.setValue(rangedAttack.getValue() + 15);
+        this.rangedAttack.setValue(rangedAttack.getValue() + 20);
         this.speed.setValue(speed.getValue() + 10);
     }
     
