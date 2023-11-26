@@ -39,7 +39,10 @@ public class SingleHealingAttack extends HealingAttack
         canUse = false;
         setNextAvailableTurn(Battle.getCurrentTurn());
 
-        MainGame.promptToEnter();
+        if(target instanceof Player)
+        {
+            MainGame.promptToEnter();
+        }   
     }
     
     @Override
