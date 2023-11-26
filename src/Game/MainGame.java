@@ -576,10 +576,10 @@ public class MainGame
         
         // All of Anahita's attacks
         TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.35, 2);
-        OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
+        OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 70, "R. Attack");
         tsnunamiShot.setCritRate(0.35);
         SingleHealingAttack waterHalo = new SingleHealingAttack("Water Halo", "A ring of water surrounds the target and heals 30% of their total health.", 0.3, 3);
-        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 100, "R. Attack");
+        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 95, "R. Attack");
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
         DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.67, 4, 3);
@@ -661,7 +661,7 @@ public class MainGame
         terraForce.setAccuracy(95);
         OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with sharp leaves.", 80, "R. Attack");
         SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 3);
-        OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
+        OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 105, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
