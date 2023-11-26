@@ -59,16 +59,14 @@ public class ElementStringComparator implements Comparator<String>
             case "Wind":
                 switch (targetElement)
                 {
-                    case "Fire":
-                        result = 1;
-                        break;
                     case "Water":
-                    case "Ice":
                     case "Earth":
                     case "Wind":
+                    case "Fire":
                         result = 0;
                         break;
                     case "Electric":
+                    case "Ice":
                         result = -1;
                         break;
                     default:
@@ -98,15 +96,15 @@ public class ElementStringComparator implements Comparator<String>
                 switch (targetElement)
                 {
                     case "Electric":
-                    case "Fire":
                         result = 1;
                         break;
                     case "Wind":
-                    case "Earth":
+                    case "Fire":
                     case "Ice":
                         result = 0;
                         break;
                     case "Water":
+                    case "Earth":
                         result = -1;
                         break;
                     default:

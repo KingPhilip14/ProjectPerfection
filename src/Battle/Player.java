@@ -36,8 +36,15 @@ public class Player extends Character
         super.currentAttacks = new ArrayList<>();
         currentXP = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4);
 //        currentXP = 0;
+
         xpToLevelUp = currentXP;
         
+        // Set the xpToLevelUp to not exceed the max
+        if (xpToLevelUp > 3500) 
+        {
+            xpToLevelUp = 3500;
+        }
+
         populateListsOfStats();
     }
     
@@ -111,6 +118,9 @@ public class Player extends Character
             {
                 s.resetValue(this);
             }   
+
+            s.setTurnBuffEnds(0);
+            s.setTurnDebuffEnds(0);
         }
     }
     
@@ -149,7 +159,7 @@ public class Player extends Character
         // Calculates the XP gained by rounding the amount
         getXPAmount(player, amt);
         
-        amt = (int)Math.round(BASE_XP * ((10 * defeatedEnemy.getLevel()) / player.getLevel()));
+        amt *= 0.8;  // give 80% of the orignal XP to the remaining characters
         
         // For loop applies new amount of XP to everyone that isn't the player that got the kill
         for(Player p : fighitngTeam)
@@ -267,14 +277,9 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        // REMOVE IF AND KEEP ELSE STATEMENT AFTER DONE WITH TESTS
-        if(Game.isTesting())
+        if(xpToLevelUp > 3500) // set a cap for XP gains to not let game progression take too long
         {
-            xpToLevelUp = 2000;
-        }
-        else if(xpToLevelUp > 5000)
-        {
-            xpToLevelUp = 5000;
+            xpToLevelUp = 3500;
         }
         
         updateStats();
@@ -351,9 +356,9 @@ public class Player extends Character
     {
         /*
                       HP Atk Def R Atk  R Def SPd
-        Master Clerk: 40 30 30   80     80     40
+        Master Clerk: 40 30 30   80     80     25
         Hyper Clerk:  35 35 25   90     60     65
-        Passive Clerk: 50 50 50  70     75     20
+        Passive Clerk: 50 50 50  70     75     30
         */
         ArrayList<Integer> listOfPercentages = new ArrayList<>();
         
@@ -377,11 +382,11 @@ public class Player extends Character
                 // Potential HP increase
                 newStatPoints = increaseHealth(newStatPoints, hpIncrease, 40);
                 
-                listOfPercentages.add(30);
+                listOfPercentages.add(25);
                 listOfPercentages.add(30);
                 listOfPercentages.add(80);
                 listOfPercentages.add(80);
-                listOfPercentages.add(40);
+                listOfPercentages.add(25);
                 
                 // Goes through each stat and increases them accordingly
                 while(newStatPoints != 0)
@@ -428,7 +433,7 @@ public class Player extends Character
                 listOfPercentages.add(50);
                 listOfPercentages.add(70);
                 listOfPercentages.add(75);
-                listOfPercentages.add(20);
+                listOfPercentages.add(30);
                 
                 // Goes through each stat and increases them accordingly
                 while(newStatPoints != 0)
@@ -450,9 +455,9 @@ public class Player extends Character
     {
         /*
                     HP Atk Def R Atk  R Def SPd
-        Master Tank: 90 65 85   35     30     30
-        Wild Tank:  80 75 75   35     30     40
-        Holy Tank: 70 65 75  45     45     35
+        Master Tank: 90 65 85   35     70     30
+        Wild Tank:  80 75 75   35     60     40
+        Holy Tank: 70 65 75  45     60     35
         */
         ArrayList<Integer> listOfPercentages = new ArrayList<>();
         
@@ -480,7 +485,7 @@ public class Player extends Character
                 listOfPercentages.add(65);
                 listOfPercentages.add(85);
                 listOfPercentages.add(35);
-                listOfPercentages.add(30);
+                listOfPercentages.add(70);
                 listOfPercentages.add(30);
                 
                 // Goes through each stat and increases them accordingly
@@ -504,7 +509,7 @@ public class Player extends Character
                 listOfPercentages.add(75);
                 listOfPercentages.add(75);
                 listOfPercentages.add(45);
-                listOfPercentages.add(45);
+                listOfPercentages.add(60);
                 listOfPercentages.add(35);
                 
                 // Goes through each stat and increases them accordingly
@@ -527,7 +532,7 @@ public class Player extends Character
                 listOfPercentages.add(65);
                 listOfPercentages.add(75);
                 listOfPercentages.add(70);
-                listOfPercentages.add(75);
+                listOfPercentages.add(60);
                 listOfPercentages.add(20);
                 
                 // Goes through each stat and increases them accordingly

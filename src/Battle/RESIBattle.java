@@ -12,7 +12,7 @@ public class RESIBattle extends Battle
     public RESIBattle(ArrayList<Enemy> enemyTeam, ArrayList<Player> playerTeam)
     {
         super(enemyTeam, playerTeam);
-        baseGoldAmt = 175;
+        baseGoldAmt = 155;
         startingText = "A L E R T! Incoming R.E.S.I. Bots!\n\nBattle: S T A R T";
     }
     
@@ -24,7 +24,7 @@ public class RESIBattle extends Battle
     {
         super.attackWithOffense(attack, player, target);
         
-        if(attack.getAttackHit() && !target.isDead())
+        if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
         {
             RESIEnemy enemy = ((RESIEnemy)target);
         

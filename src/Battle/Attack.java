@@ -35,6 +35,7 @@ public abstract class Attack extends GameProperty
     public void resetNextAvailableTurn()
     {
         nextAvailableTurn = 1;
+        canUse = true;
     }
     
     public boolean canUse()

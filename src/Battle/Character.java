@@ -152,6 +152,30 @@ public abstract class Character extends GameProperty implements Combatable
         return attack.getIsDebuffActive() || defense.getIsDebuffActive() || rangedAttack.getIsDebuffActive() || 
                 rangedDefense.getIsDebuffActive() || speed.getIsDebuffActive();
     }
+
+    public boolean hasActiveBuffOrDebuff()
+    {
+        return hasActiveBuff() || hasActiveDebuff();
+    }
+
+    /**
+     * Returns true if a buff or debuff in any stat can be removed on the given turn
+     * @param currentTurn
+     * @return true or false
+     */
+    public boolean canRemoveStatChange(int currentTurn)
+    {
+        for(Stat s : listOfStats)
+        {
+            if((s.isTurnBuffEnds(currentTurn) && s.getIsBuffActive()) || 
+            (s.isTurnDebuffEnds(currentTurn) && s.getIsDebuffActive()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public int getHighestAttackStat()
     {

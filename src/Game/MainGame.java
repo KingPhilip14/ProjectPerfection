@@ -26,7 +26,7 @@ import java.util.Scanner;
  */
 public class MainGame 
 {
-    private static int gold = 10000, textSpeed = 0;
+    private static int textSpeed = 0;
     private static boolean finalBossDefeated;
     private static ArrayList<String> startUpOptions = new ArrayList<>();
     private static ArrayList<Player> playerTeam = new ArrayList<>(6);
@@ -559,13 +559,13 @@ public class MainGame
         anahita.setDeathMessage("Everyone... I'm sorry...");
         anahita.setCheerReadyMessage("I'm right behind you!");
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
-        anahita.setMaxHealth(210);
-        anahita.setCurrentHealth(210);
-        anahita.setAttack(45);
-        anahita.setDefense(55);
-        anahita.setRangedAttack(70);
-        anahita.setRangedDefense(75);
-        anahita.setSpeed(55);
+        anahita.setMaxHealth(250);
+        anahita.setCurrentHealth(250);
+        anahita.setAttack(55);
+        anahita.setDefense(45);
+        anahita.setRangedAttack(80);
+        anahita.setRangedDefense(70);
+        anahita.setSpeed(50);
         
         // make this a method in the character class as a for loop
         anahita.getAttack().setOriginalValue(anahita.getAttack().getValue());
@@ -575,17 +575,17 @@ public class MainGame
         anahita.getSpeed().setOriginalValue(anahita.getSpeed().getValue());
         
         // All of Anahita's attacks
-        TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.2, 2);
-        OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 75, "R. Attack");
+        TeamHealingAttack blessedRain = new TeamHealingAttack("Blessed Rain", "The user heals each party member 20% of their total health.", 0.35, 2);
+        OffensiveAttack tsnunamiShot = new OffensiveAttack("Tsunami Shot", "The user shoots the target with pressurized water.", 70, "R. Attack");
         tsnunamiShot.setCritRate(0.35);
         SingleHealingAttack waterHalo = new SingleHealingAttack("Water Halo", "A ring of water surrounds the target and heals 30% of their total health.", 0.3, 3);
-        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 100, "R. Attack");
+        OffensiveAttack torrent = new OffensiveAttack("Torrent", "The user blasts the target with a torrent of water.", 95, "R. Attack");
         torrent.setAccuracy(90);
         BuffAttack liquidArmor = new BuffAttack("Liquid Armor", "The user surrounds themself with a armor made of water, raises their Defense for 3 turns.", "Defense", 4, 3);
-        DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.75, 4, 3);
+        DebuffAttack sparklingMist = new DebuffAttack("Sparkling Mist", "The user sprays a light mist that sparkles and distracts the target to slightly lower their defenses for 3 turns.", "Defense,R. Defense", 0.67, 4, 3);
         OffensiveAttack tidalWave = new OffensiveAttack("Tidal Wave", "The user surrounds themselves in water and crashes into the target with the force of a tidal wave.", 95, "Attack");
         tidalWave.setAccuracy(95);
-        DebuffAttack soak = new DebuffAttack("Soak", "The user soaks the target in so much water to weigh them down that their Speed decreases.", "Speed", 0.75, 3, 2);
+        DebuffAttack soak = new DebuffAttack("Soak", "The user soaks the target in so much water to weigh them down that their Speed decreases.", "Speed", 0.67, 3, 2);
         
         ArrayList<Attack> anahitaCurrentAttacks = new ArrayList<>(4);
         anahitaCurrentAttacks.add(blessedRain);
@@ -639,8 +639,8 @@ public class MainGame
         gaea.setDeathMessage("Ana, Fultra, everyone... forgive me...");
         gaea.setBattleReadyMessage("I'll help, but don't mess up my hair!");
         gaea.setCheerReadyMessage("I'm right here to support you!");
-        gaea.setMaxHealth(245);
-        gaea.setCurrentHealth(245);
+        gaea.setMaxHealth(280);
+        gaea.setCurrentHealth(280);
         gaea.setAttack(65);
         gaea.setDefense(80);
         gaea.setRangedAttack(80);
@@ -652,21 +652,16 @@ public class MainGame
         gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
         gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
         gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
-        gaea.getAttack().setOriginalValue(gaea.getAttack().getValue());
-        gaea.getDefense().setOriginalValue(gaea.getDefense().getValue());
-        gaea.getRangedAttack().setOriginalValue(gaea.getRangedAttack().getValue());
-        gaea.getRangedDefense().setOriginalValue(gaea.getRangedDefense().getValue());
-        gaea.getSpeed().setOriginalValue(gaea.getSpeed().getValue());
         
-        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.15);
+        SingleHealingAttack floralHealing = new SingleHealingAttack("Floral Healing", "The user uses blessed plants to heal the target one third of their total health.", 0.30);
         DebuffAttack overgrowth = new DebuffAttack("Overgrowth", "The user grows giant, thick vines to trip the target, lowering their speed for 3 turns.", "Speed", 4, 3);
-        DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.75, 4, 3);
+        DebuffAttack foulAroma = new DebuffAttack("Foul Aroma", "Using foul-smelling flowers, the user slightly lowers the target's attack and defense for 3 turns.", "Attack,Defense", 0.67, 4, 3);
         BuffAttack stoneShield = new BuffAttack("Stone Shield", "The user creates a shield made of stone to increase their ranged defense for 3 turns.", "R. Defense", 4, 3);
-        OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 90, "Attack");
+        OffensiveAttack terraForce = new OffensiveAttack("Terra Force", "The user creates a massive boulder and launches it at the target.", 95, "Attack");
         terraForce.setAccuracy(95);
-        OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with viscious vines that emerge from the earth.", 80, "R. Attack");
-        SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 2);
-        OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 110, "R. Attack");
+        OffensiveAttack wrathOfGaea = new OffensiveAttack("Wrath of Gaea", "The user overwhelms and damages the target with sharp leaves.", 80, "R. Attack");
+        SingleHealingAttack earthsLove = new SingleHealingAttack("Earth's Love", "The user heals the target by uses special soils that soothe any injury.", 0.5, 3);
+        OffensiveAttack obsidianStorm = new OffensiveAttack("Obsidian Storm", "The user attacks by surrounding the target with a plethera of obsidian shards.", 105, "R. Attack");
         
         ArrayList<Attack> gaeaCurrentAttacks = new ArrayList<>(4);
         gaeaCurrentAttacks.add(floralHealing);
@@ -721,8 +716,8 @@ public class MainGame
         fultra.setDeathMessage("What?! N-no! Gaea... I'm so sorry...");
         fultra.setBattleReadyMessage("Time for Fearless Thunder to shine!");
         fultra.setCheerReadyMessage("You're in good hands!");
-        fultra.setMaxHealth(250);
-        fultra.setCurrentHealth(250);
+        fultra.setMaxHealth(300);
+        fultra.setCurrentHealth(300);
         fultra.setAttack(77);
         fultra.setDefense(77);
         fultra.setRangedAttack(77);
@@ -737,11 +732,11 @@ public class MainGame
         
         OffensiveAttack thunderbolt = new OffensiveAttack("Thunderbolt", "The user shocks the target with a large thunderbolt.", 70, "R. Attack");
         OffensiveAttack overdrive = new OffensiveAttack("Overdrive", "The user coats themselves in electricity and rams into the target.", 115, "Attack");
-        overdrive.setAccuracy(75);
+        overdrive.setAccuracy(85);
         BuffAttack charge = new BuffAttack("Charge", "The user charges themselves with high amounts of electricity. Then, all stats are doubled for 2 turns.", "All", 2.0, 4, 2);
         DebuffAttack filter = new DebuffAttack("Filter", "The user creates an electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 4, 3);
-        SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.1);
-        OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 150, "R. Attack");
+        SingleHealingAttack bluePulse = new SingleHealingAttack("Blue Pulse", "The user emits a healing, electrical pulse that heals an ally slightly.", 0.15);
+        OffensiveAttack plasmaBlast = new OffensiveAttack("Plasma Blast", "The user discharges a overwhelming electrical wave. It has poor accuracy due to taking time to charge.", 250, "R. Attack");
         plasmaBlast.setAccuracy(50);
         
         ArrayList<Attack> fultraCurrentAttacks = new ArrayList<>(4);
@@ -782,19 +777,25 @@ public class MainGame
     {
         PlayerClass pc = PlayerClass.getPlayerClass("All-Rounder");
 
-        Player fultra = new Player("R.E.S.I. Fultra", "Fultra in a new form. He fights with Anahita and the others to redeem himself", 
+        Player fultra = new Player("Fultra", "Fultra in his R.E.S.I form. He fights with Anahita and the others to redeem himself", 
         "Electric", pc, 27);
         fultra.setDeathMessage("I just wanted to redeem myself...");
         fultra.setBattleReadyMessage("Let's go!");
         fultra.setCheerReadyMessage("You can trust me!");
 
-        fultra.setMaxHealth(1777);
-        fultra.setCurrentHealth(1777);
+        fultra.setMaxHealth(777);
+        fultra.setCurrentHealth(777);
         fultra.setAttack(324);
         fultra.setDefense(324);
         fultra.setRangedAttack(324);
         fultra.setRangedDefense(324);
         fultra.setSpeed(324);
+
+        fultra.getAttack().setOriginalValue(fultra.getAttack().getValue());
+        fultra.getDefense().setOriginalValue(fultra.getDefense().getValue());
+        fultra.getRangedAttack().setOriginalValue(fultra.getRangedAttack().getValue());
+        fultra.getRangedDefense().setOriginalValue(fultra.getRangedDefense().getValue());
+        fultra.getSpeed().setOriginalValue(fultra.getSpeed().getValue());
 
         ArrayList<Attack> currentAttacks = new ArrayList<>(4);
         currentAttacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are doubled for 3 turns. The cooldown is less than Charge.", "All", 2.0, 3, 3));
@@ -807,7 +808,7 @@ public class MainGame
         overdriveII.setAccuracy(75);
         currentAttacks.add(overdriveII);
 
-        SingleHealingAttack bluePulseII = new SingleHealingAttack("Blue Pulse II", "The user emits a healing, electrical pulse that heals an ally more than normal.", 0.2);
+        SingleHealingAttack bluePulseII = new SingleHealingAttack("Blue Pulse II", "The user emits a healing, electrical pulse that heals an ally more than normal.", 0.25);
         DebuffAttack filterII = new DebuffAttack("Filter II", "The user creates a thick, electrical barrier that weakens the target's ranged attacks for 3 turns.", "R. Attack", 3, 3);
 
         ArrayList<Attack> fultraOtherAttacks = new ArrayList<>(4);
@@ -823,30 +824,36 @@ public class MainGame
 
     public static Player makeCalmus()
     {
-        PlayerClass pc = PlayerClass.getPlayerClass("Wild Tank");
+        PlayerClass pc = PlayerClass.getPlayerClass("Master Tank");
         
         // Instantiating Calmus and his moveset--------------------------
         Player calmus = new Player("Calmus", "A muscular yet gentle master of Fire.", "Fire", pc, 10);
-        calmus.setDeathMessage("Argh, no! Anahita, I have failed you... Tell my family I-");
+        calmus.setDeathMessage("Argh, no! Anahita, I have failed you...");
         calmus.setBattleReadyMessage("I'm all fired up!");
         calmus.setCheerReadyMessage("Just let me know what to do!");
-        calmus.setMaxHealth(360);
-        calmus.setCurrentHealth(360);
-        calmus.setAttack(140);
-        calmus.setDefense(160);
-        calmus.setRangedAttack(100);
-        calmus.setRangedDefense(120);
-        calmus.setSpeed(80);
+        calmus.setMaxHealth(420);
+        calmus.setCurrentHealth(420);
+        calmus.setAttack(160);
+        calmus.setDefense(170);
+        calmus.setRangedAttack(45);
+        calmus.setRangedDefense(150);
+        calmus.setSpeed(75);
+
+        calmus.getAttack().setOriginalValue(calmus.getAttack().getValue());
+        calmus.getDefense().setOriginalValue(calmus.getDefense().getValue());
+        calmus.getRangedAttack().setOriginalValue(calmus.getRangedAttack().getValue());
+        calmus.getRangedDefense().setOriginalValue(calmus.getRangedDefense().getValue());
+        calmus.getSpeed().setOriginalValue(calmus.getSpeed().getValue());
         
-        OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 100, "Attack");
+        OffensiveAttack fieryWrath = new OffensiveAttack("Fiery Wrath", "The user goes berserk, ramming their flaming body into the target.", 135, "Attack");
         fieryWrath.setAccuracy(80);
         DebuffAttack heatWave = new DebuffAttack("Heat Wave", "The user causes an immense heat wave to surround the target, lowering its attack for 3 turns.", "Attack", 4, 3);
         BuffAttack flareBoost = new BuffAttack("Flare Boost", "The user charges themselves with flames to double their speed for 2 turns.", "Speed", 2.0, 4, 2);
         OffensiveAttack searingBlow = new OffensiveAttack("Searing Blow", "Using a flaming fist, the user lands a hard blow on the target.", 80, "Attack");
         BuffAttack flamingAura = new BuffAttack("Flaming Aura", "The user creates a hot aura that increases their ranged defense for 3 turns.", "R. Defense", 3);
-        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 125, "Attack");
-        burningDunk.setAccuracy(75);
-        SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.15);
+        OffensiveAttack burningDunk = new OffensiveAttack("Burning Dunk", "The user attacks by grabbing the target and slamming them into the ground with intense heat.", 160, "Attack");
+        burningDunk.setAccuracy(70);
+        SingleHealingAttack pureFlame = new SingleHealingAttack("Pure Flame", "The user creates an unsoiled flame that heals any injury.", 0.25);
         DebuffAttack singe = new DebuffAttack("Singe", "The user singes the target with heat to make them more sensitive. This lowers their Defense.", "Defense", 4, 3);
         
         ArrayList<Attack> calmusCurrentAttacks = new ArrayList<>(4);
@@ -883,7 +890,7 @@ public class MainGame
         }
 
         ArrayList<PlayerClass> calmusOtherClasses = new ArrayList<>(3);
-        calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Tank"));
+        calmusOtherClasses.add(PlayerClass.getPlayerClass("Wild Tank"));
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Master Striker"));
         calmusOtherClasses.add(PlayerClass.getPlayerClass("Hyper Clerk"));
         
@@ -899,22 +906,22 @@ public class MainGame
         
         if(Game.isInSecondPhase())
         {
-            frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 21);
             // Instantiating Frigs' stats for second phase
-            frigs.setMaxHealth(1260);
-            frigs.setCurrentHealth(1260);
-            frigs.setAttack(320);
-            frigs.setDefense(190);
-            frigs.setRangedAttack(290);
-            frigs.setRangedDefense(190);
+            frigs.setMaxHealth(350);
+            frigs.setCurrentHealth(350);
+            frigs.setAttack(360);
+            frigs.setDefense(150);
+            frigs.setRangedAttack(330);
+            frigs.setRangedDefense(150);
             frigs.setSpeed(270);
         }
         else
         {
             frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 10);
             // Instantiating Frigs' stats for first phase 
-            frigs.setMaxHealth(400);  // 10 * 60 = 600
-            frigs.setCurrentHealth(400);
+            frigs.setMaxHealth(300);  // 10 * 60 = 600
+            frigs.setCurrentHealth(300);
             frigs.setAttack(180);
             frigs.setDefense(70);
             frigs.setRangedAttack(170);
@@ -922,9 +929,15 @@ public class MainGame
             frigs.setSpeed(110);
         }
         
+        frigs.getAttack().setOriginalValue(frigs.getAttack().getValue());
+        frigs.getDefense().setOriginalValue(frigs.getDefense().getValue());
+        frigs.getRangedAttack().setOriginalValue(frigs.getRangedAttack().getValue());
+        frigs.getRangedDefense().setOriginalValue(frigs.getRangedDefense().getValue());
+        frigs.getSpeed().setOriginalValue(frigs.getSpeed().getValue());
+
         // Player frigs = new Player("Frigs", "A witty master of Ice with a cool personailty.", "Ice", pc, 21);
-        frigs.setDeathMessage("Tch... Why like this... Anything but this...");
-        frigs.setBattleReadyMessage("We've got this. Just stay cool.");
+        frigs.setDeathMessage("Tch. Why like this? Anything but this...");
+        frigs.setBattleReadyMessage("We got this. Just stay cool.");
         frigs.setCheerReadyMessage("You've got this! I'll be right here.");
 
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
@@ -994,20 +1007,20 @@ public class MainGame
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
             // Instantiating Ninlil's stats for second phase
-            ninlil.setMaxHealth(630);
-            ninlil.setCurrentHealth(630);
-            ninlil.setAttack(120);
-            ninlil.setDefense(120);
+            ninlil.setMaxHealth(355);
+            ninlil.setCurrentHealth(355);
+            ninlil.setAttack(80);
+            ninlil.setDefense(135);
             ninlil.setRangedAttack(350);
-            ninlil.setRangedDefense(125);
-            ninlil.setSpeed(125);
+            ninlil.setRangedDefense(140);
+            ninlil.setSpeed(135);
         }
         else
         {
             ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 10);
             // Instantiating Ninlil's stats for first phase
-            ninlil.setMaxHealth(430);
-            ninlil.setCurrentHealth(430);
+            ninlil.setMaxHealth(370);
+            ninlil.setCurrentHealth(370);
             ninlil.setAttack(75);
             ninlil.setDefense(100);
             ninlil.setRangedAttack(250);
@@ -1015,15 +1028,21 @@ public class MainGame
             ninlil.setSpeed(75);
         }
 
+        ninlil.getAttack().setOriginalValue(ninlil.getAttack().getValue());
+        ninlil.getDefense().setOriginalValue(ninlil.getDefense().getValue());
+        ninlil.getRangedAttack().setOriginalValue(ninlil.getRangedAttack().getValue());
+        ninlil.getRangedDefense().setOriginalValue(ninlil.getRangedDefense().getValue());
+        ninlil.getSpeed().setOriginalValue(ninlil.getSpeed().getValue());
+
         ninlil.setDeathMessage("I hope you can all forgive me... I thought I was strong enough...");
         ninlil.setBattleReadyMessage("I'll show you all how it's done.");
         ninlil.setCheerReadyMessage("... Okay. I'll help you.");
         
-        OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 100, "R. Attack");
+        OffensiveAttack hurricane = new OffensiveAttack("Hurricane", "The user creates a massive hurricane to damage the target.", 110, "R. Attack");
         hurricane.setAccuracy(90);
-        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 75, "R. Attack");
-        tornado.setCritRate(0.5);
-        tornado.setAccuracy(85);
+        OffensiveAttack tornado = new OffensiveAttack("Tornado", "The user causes a tornado to cause damage. This will deal critical damage 50% of the time.", 80, "R. Attack");
+        tornado.setCritRate(0.50);
+        tornado.setAccuracy(90);
         BuffAttack soaringSpirit = new BuffAttack("Soaring Spirit", "The user using their high spirits to double their attack for 2 turns.", "Attack", 2.0, 3, 2);
         OffensiveAttack aerialDance = new OffensiveAttack("Aerial Dance", "The user flies into the air and dances around the target while dealing a flurry of quick blows.", 100, "Attack");
         OffensiveAttack airSlash = new OffensiveAttack("Air Slash", "The user attacks by slashing the target with concentrated air.", 90, "R. Attack");

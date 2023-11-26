@@ -13,7 +13,7 @@ public class SingleHealingAttack extends HealingAttack
         super.name = name;
         super.description = description;
         super.healRate = healRate;
-        super.cooldown = 0;
+        super.cooldown = 1;
     }
     
     public SingleHealingAttack(String name, String description, double healRate, int cooldown)
@@ -39,7 +39,10 @@ public class SingleHealingAttack extends HealingAttack
         canUse = false;
         setNextAvailableTurn(Battle.getCurrentTurn());
 
-        MainGame.promptToEnter();
+        if(target instanceof Player)
+        {
+            MainGame.promptToEnter();
+        }   
     }
     
     @Override

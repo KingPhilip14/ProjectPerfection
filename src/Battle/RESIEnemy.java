@@ -9,15 +9,7 @@ import java.util.Random;
  * @author Ian King
  */
 public class RESIEnemy extends Enemy
-{
-    
-    /*
-    IMPORTANT: The enemy AI looks for a healing move for RESI bots, which can cause a null pointer reference. Either
-    change the enemyAI in the RESIBattle class, or fix it in the abstract battle class
-    */
-    
-    
-    
+{   
     private static ArrayList<OffensiveAttack> allOffensiveResiAttacks; 
     private static ArrayList<BuffAttack> allBuffResiAttacks; 
     private static ArrayList<DebuffAttack> allDebuffResiAttacks;
@@ -29,8 +21,9 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     public RESIEnemy(int level, Wilderness currentLocation)
@@ -39,8 +32,9 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     public RESIEnemy(int level, String element)
@@ -49,8 +43,9 @@ public class RESIEnemy extends Enemy
         this.element = element;
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
+        xpYield = 30;
     }
     
     private String createName()
@@ -72,19 +67,19 @@ public class RESIEnemy extends Enemy
                 result = "Delta";
                 break;
             case 4:
-                result = "Zeta";
+                result = "Epsilon";
                 break;
             case 5:
-                result = "Mu";
+                result = "Zeta";
                 break;
             case 6:
                 result = "Phi";
                 break;
             case 7:
-                result = "Chi";
+                result = "Sigma";
                 break;
             case 8:
-                result = "Psi";
+                result = "Lambda";
                 break;
             default:
                 result = "Omicron";
@@ -155,13 +150,15 @@ public class RESIEnemy extends Enemy
     }
     
     /**
-     * Adds extra points to offensive stats to make RESI enemies tougher
+     * Adds extra points to stats to make RESI enemies tougher
      */
-    private void improveOffense()
+    private void improveStats()
     {
         this.attack.setValue(attack.getValue() + 20);
+        this.defense.setValue(defense.getValue() + 10);
         this.rangedAttack.setValue(rangedAttack.getValue() + 20);
-        this.speed.setValue(speed.getValue() + 20);
+        this.rangedDefense.setValue(rangedDefense.getValue() + 10);
+        this.speed.setValue(speed.getValue() + 10);
     }
     
     /**
@@ -175,16 +172,16 @@ public class RESIEnemy extends Enemy
         
         // Indexes 0-6
         allOffensiveResiAttacks.add(new OffensiveAttack("Laser Blast", "The user charges a laser and fires it at the target.", 90, "R. Attack"));
-        allOffensiveResiAttacks.add(new OffensiveAttack("Metal Grip", "The user grabs the target with a metal claw and crushes them.", 105, "Attack"));
+        allOffensiveResiAttacks.add(new OffensiveAttack("Metal Grip", "The user grabs the target with a metal claw and crushes them.", 95, "Attack"));
         allOffensiveResiAttacks.get(1).setAccuracy(90);
         allOffensiveResiAttacks.add(new OffensiveAttack("Engine Rush", "The user rushes into the target with immense force by using it's engines to fly at high speeds.", 110, "Attack"));
         allOffensiveResiAttacks.get(2).setAccuracy(85);
         allOffensiveResiAttacks.add(new OffensiveAttack("Metal Spike", "The user shoots a sharp, metal spike at the target to inflict damage.", 95, "R. Attack"));
         allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol I: Barrage", "The user throws a barrage of attacks at the target to overwhelm them.", 100, "Attack"));
-        allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol II: Blast", "The user flies high in the sky to rain a myriad of lasers on the target.", 115, "R. Attack"));
+        allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol II: Blast", "The user flies high in the sky to rain a myriad of lasers on the target.", 100, "R. Attack"));
         allOffensiveResiAttacks.get(5).setAccuracy(70);
         allOffensiveResiAttacks.add(new OffensiveAttack("RESI Protocol III: Arsenal", "The user uses a combination of missles, lasers, and metal projectiles to inflict damage.", 120, "R. Attack"));
-        allOffensiveResiAttacks.get(6).setAccuracy(70);
+        allOffensiveResiAttacks.get(6).setAccuracy(65);
         
         // Indexes 7-10
         allDebuffResiAttacks.add(new DebuffAttack("Extraction", "The user uses a needle-like apparatus to drain the target of their strength, weakening their offenses.", "Attack,R. Attack", 0.5, 3, 2));

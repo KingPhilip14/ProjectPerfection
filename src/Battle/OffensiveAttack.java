@@ -88,6 +88,9 @@ public class OffensiveAttack extends Attack
         isCrit = isCrit();
         int damage; 
         
+        // System.out.println("Level * 2 + 2: " + ((2 * attacker.getLevel()) + 2));
+        // System.out.println("Base damage: " + baseDamage);
+
         if(isCrit)
         {
             if(statToUse.equals("Attack"))
@@ -104,14 +107,22 @@ public class OffensiveAttack extends Attack
         {
             if(statToUse.equals("Attack"))
             {
+                // System.out.println("Attacker's Attack Stat: " + attacker.getAttack().getValue());
+                // System.out.println("Targets's Defense Stat: " + target.getDefense().getValue());
                 damage = (int)(Math.round((((((2 * attacker.getLevel()) + 5) * baseDamage * attacker.getAttack().getValue() / target.getDefense().getValue()) / 50) + 50) * elementEffectiveness));
             }
             else
             {
+                // System.out.println("Attacker's Ranged Attack Stat: " + attacker.getRangedAttack().getValue());
+                // System.out.println("Target's Defense Stat: " + target.getRangedDefense().getValue());
                 damage = (int)(Math.round((((((2 * attacker.getLevel()) + 5) * baseDamage * attacker.getRangedAttack().getValue() / target.getRangedDefense().getValue()) / 50) + 50) * elementEffectiveness));
             }
         }
-        
+
+        // System.out.println("Crit modifier: " + critDamageModifier);
+        // System.out.println("Main calculation: " + ((((2 * attacker.getLevel()) + 2) * baseDamage * attacker.getAttack().getValue() / target.getDefense().getValue()) / 50) + 50);
+        // MainGame.printlnln("total damage: " + damage);
+
         // Adds a damage roll to the calculation
         damage += new Random().nextInt(50); 
 
@@ -160,6 +171,11 @@ public class OffensiveAttack extends Attack
         }
     }
     
+    /**
+     * Given attacker attacks the target. Will calculate damage and apply it.
+     * @param attacker
+     * @param target
+     */
     public void attack(Character attacker, Character target)
     {
         attackHit();
@@ -178,12 +194,36 @@ public class OffensiveAttack extends Attack
         MainGame.promptToEnter();
     }
     
+    /**
+     * Given attacker attacks the target with the specified damage given. Used to help with enemy AI in battles.
+     * @param damage
+     * @param attacker
+     * @param target
+     */
+    public void attack(int damage, Character attacker, Character target)
+    {
+        attackHit();
+        
+        if(attackHit)
+        {
+            applyDamage(damage, attacker, target);
+        }
+        else
+        {
+            MainGame.printlnln("\n" + attacker.getName() + " used " + name + " on " + target.getName() + " but missed!");
+        }
+        
+        setNextAvailableTurn(Battle.getCurrentTurn());
+        
+        MainGame.promptToEnter();
+    }
+
     @Override
     public String toString()
     {
         int crit = (int)(critRate * 100);
         
         return "\t" + this.name + ":\n\t\t" + this.description + "\n\t\tBase Damage: " + this.baseDamage + "\n\t\tAccuracy: " + 
-                this.accuracy + "%\n\t\tCritical Hit Rate: " + crit + "%";
+                this.accuracy + "%\n\t\tCritical Hit Rate: " + crit + "%" + "\n\t\tStat Used: " + statToUse;
     }
 }

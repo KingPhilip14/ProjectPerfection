@@ -148,7 +148,7 @@ public class PlayerClass implements Serializable
     
     private String masterClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Slow\n\tAttack: Very Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Very Fast\n\tSpeed: Slow";
+        return className + " Growth Pattern:\n\tHP: Very Slow Slow\n\tAttack: Very Slow\n\tDefense: Very Slow\n\tRanged Attack: Very Fast\n\tRanged Defense: Very Fast\n\tSpeed: Very Slow";
     }
     
     private String hyperClerkStatSpread()
@@ -158,22 +158,22 @@ public class PlayerClass implements Serializable
     
     private String passiveClerkStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Average\n\tRanged Defense: Average\n\tSpeed: Very Slow";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Average\n\tRanged Attack: Fast\n\tRanged Defense: Fast\n\tSpeed: Very Slow";
     }
     
     private String masterTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Average\n\tDefense: Very Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Very Slow\n\tSpeed: Very Slow";
+        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Average\n\tDefense: Very Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Fast\n\tSpeed: Very Slow";
     }
     
     private String wildTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Fast\n\tDefense: Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Very Slow\n\tSpeed: Very Slow";
+        return className + " Growth Pattern:\n\tHP: Very Fast\n\tAttack: Fast\n\tDefense: Fast\n\tRanged Attack: Very Slow\n\tRanged Defense: Average\n\tSpeed: Very Slow";
     }
     
     private String holyTankStatSpread()
     {
-        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Fast\n\tRanged Attack: Slow\n\tRanged Defense: Slow\n\tSpeed: Slow";
+        return className + " Growth Pattern:\n\tHP: Average\n\tAttack: Average\n\tDefense: Fast\n\tRanged Attack: Slow\n\tRanged Defense: Average\n\tSpeed: Slow";
     }
     
     private String masterStrikerStatSpread()

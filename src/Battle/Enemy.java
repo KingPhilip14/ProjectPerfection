@@ -1,11 +1,9 @@
 package Battle;
 
 import Exploration.Wilderness;
-import Utilites.DamageComparator;
-import Utilites.Sort;
+import Game.Game;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * A class for instantiating any type of enemy.
@@ -22,7 +20,7 @@ public abstract class Enemy extends Character
     protected String statSpreadDescription;
     protected String elementDescriptor;
     protected String species;
-    protected int xpYield = 15;
+    protected int xpYield = 25;
     protected abstract String createElementDescriptor();
     protected abstract String createDescription();
     
@@ -71,15 +69,19 @@ public abstract class Enemy extends Character
         populateListsOfStats();
     }
     
+    /**
+     * Super constructor used for making boss enemies
+     * @param name
+     * @param description
+     * @param level
+     * @param knownAttacks
+     */
     public Enemy(String name, String description, int level, ArrayList<Attack> knownAttacks)
     {
         this.name = name;
         this.description = description;
         this.level = level;
-        totalStatPoints = level * 65;
         this.currentAttacks = knownAttacks;
-        generateStats();
-        populateCurrentAttacks();
     }
     
     public Enemy(String name, String description, int level)
@@ -90,9 +92,11 @@ public abstract class Enemy extends Character
         totalStatPoints = level * 65;
         generateStats();
         populateCurrentAttacks();
+        populateListsOfStats();
     }
     
     public String getStatSpreadDesc() {return statSpreadDescription;}
+    public void setStatSpreadDesc(String info) {statSpreadDescription = info;}
     
     public int getXpYield() {return xpYield;}
     public void setXpYield(int yield) {xpYield = yield;}
@@ -150,7 +154,16 @@ public abstract class Enemy extends Character
         isOffensive = true;
         statSpreadDescription = "It looks like it'll pack a punch!";
         
-        this.setMaxHealth(totalStatPoints - 90);
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.45)));
+        }
+        
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to offensive stats
@@ -170,8 +183,16 @@ public abstract class Enemy extends Character
         isOffensive = false;
         statSpreadDescription = "It seems to be on careful guard...";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 65);
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.85)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.60)));
+        }
+
         this.setCurrentHealth(maxHealth);
 
         // Assigns 50% of total stat points to defensive stats
@@ -191,8 +212,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It appears to have a strong stature!";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 80);
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.80)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.55)));
+        }
+        
         this.setCurrentHealth(maxHealth);
         
         // Assigns 50% of total stat points to physical stats
@@ -212,8 +241,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It seems like it prefers to keep its distance.";
         
-        // Sets the HP based on the total points minus a certain value
-        this.setMaxHealth((totalStatPoints - 90));
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.70)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.50)));
+        }
+
         this.setCurrentHealth(maxHealth);
         
         // Assigns 60% of total stat points to ranged stats
@@ -233,8 +270,16 @@ public abstract class Enemy extends Character
         isOffensive = new Random().nextBoolean();
         statSpreadDescription = "It looks quite nimble!";
         
-        // Sets the HP based on the total points plus a random number
-        this.setMaxHealth(totalStatPoints - 80);
+        // A check to balance the health of the enemies a bit more
+        if(!Game.isInSecondPhase())
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.75)));
+        }
+        else
+        {
+            this.setMaxHealth((int)Math.round((totalStatPoints * 0.50)));
+        }
+
         this.setCurrentHealth(maxHealth);
         
         // Assigns 25% of total stat points to speed
@@ -440,7 +485,7 @@ public abstract class Enemy extends Character
         // Indexes 0-9
         allOffensiveAttacks.add(new OffensiveAttack("Rushdown", "The user rushes at the target and tackles them with impressive force.", 80, "Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Burst", "The user emits a powerful wave of energy based on their element.", 90, "R. Attack"));
-        allOffensiveAttacks.get(1).setAccuracy(80);
+        allOffensiveAttacks.get(1).setAccuracy(95);
         allOffensiveAttacks.add(new OffensiveAttack("Wild Fever", "The user uses its wild instinct to cause massive damage.", 140, "Attack"));
         allOffensiveAttacks.get(2).setAccuracy(65);
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Pulse", "The user emits a shock wave of energy based on their element.", 80, "R. Attack"));
@@ -448,7 +493,7 @@ public abstract class Enemy extends Character
         allOffensiveAttacks.add(new OffensiveAttack("Fury Strikes", "The user strikes with many quick blows in succession.", 75, "Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Elemental Wrath", "The user uses raw, elemental energy in the area to inflict damage.", 85, "R. Attack"));
         allOffensiveAttacks.add(new OffensiveAttack("Outrage", "Using their raw strength, the user attacks with all its might.", 90, "Attack"));
-        allOffensiveAttacks.get(7).setAccuracy(70);
+        allOffensiveAttacks.get(7).setAccuracy(90);
         allOffensiveAttacks.add(new OffensiveAttack("Piercing Strike", "The user focuses where to land their attack, resulting in more critical hits.", 65, "Attack"));
         allOffensiveAttacks.get(8).setCritRate(0.35);
         allOffensiveAttacks.get(8).setAccuracy(85);

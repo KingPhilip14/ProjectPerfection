@@ -542,20 +542,31 @@ public class Game implements java.io.Serializable
         {
             case "Tempest Tower":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
-                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                    if (!towerBossAttempted) 
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                        ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                    }
                 }
                 break;
             case "Mount Volcan":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
-                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                    if(!volcanBossAttempted)
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                        ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                    }
+                   
                 }
                 break;
             case "Mount Zoni Summit":
                 {
-                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
-                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                    if(!summitBossAttempted)
+                    {
+                        BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                        ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                    }
+                    
                 }
                 break;
             case "Zoni City": // Zoni City in second phase
@@ -603,12 +614,11 @@ public class Game implements java.io.Serializable
         
         int input = MenuHelper.displayMenu(message, 1, numOfOptions);
         
-        // if(input == numOfOptions)
-        // {
-        //     MainGame.clearScreen();
-        //     processInput();
-        // }
-        if(knownLocations.get(input - 1) == currentLocation)
+        if(input == numOfOptions)
+        {
+            return;
+        }
+        else if(knownLocations.get(input - 1) == currentLocation)
         {
             System.out.println("");
             MainGame.printlnln("Anahita: Stop messing around! We're already at " + currentLocation + "!");
@@ -781,6 +791,7 @@ public class Game implements java.io.Serializable
             if(battle.isWon())
             {
                 beachTutorialDone = true;
+                battle = null;
             }   
         }
         // If the player is in Opicon Forest and haven't done the last tutorial
@@ -792,7 +803,11 @@ public class Game implements java.io.Serializable
             // If the player loses the tutorial, they can't move on
             if(battle.isWon())
             {
+                // Objective updates when the tutorial is won
+                objective.updateByBattleResult(battle.isWon());
+                unlockNextLocation();
                 forestTutorialDone = true;
+                battle = null;
                 
                 // Activate cutscene here so it only happens right after the tutorial is done
 //                Cutscene.opiconCutscene2();
@@ -805,11 +820,19 @@ public class Game implements java.io.Serializable
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
+        }
+        // Zoni City will only have R.E.S.I. battles
+        else if(currentLocation.getName().equals("Zoni City"))
+        {
+            RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
+            battle.start(gold, recentBattleWon);
+            battle = null;
         }
         // Second phase - 60% normal battles, 40% RESI battles
         else
         {
-            chooseBattle(new Random().nextInt(100));
+            chooseBattle(new Random().nextBoolean());
         }
         
         if(objective.completedTask(this))
@@ -820,17 +843,20 @@ public class Game implements java.io.Serializable
 //        checkForNextLocation();
     }
     
-    private void chooseBattle(int chance)
+    private void chooseBattle(boolean isNormalBattle)
     {
-        if(chance >= 0 && chance < 59)
+        // 50/50 to either be a normal battle or a resi battle
+        if(isNormalBattle)
         {
             NormalBattle battle = ((Wilderness)currentLocation).makeNormalBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
         }
         else
         {
             RESIBattle battle = ((Wilderness)currentLocation).makeRESIBattle(team);
             battle.start(gold, recentBattleWon);
+            battle = null;
         }
     }
     
@@ -861,7 +887,12 @@ public class Game implements java.io.Serializable
                     Cutscene.defeatedNinlil();
                     tempestTower.removeBossBattle();
                     team.add(MainGame.makeNinlil());
-                }   
+                }
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeNinlilBoss(), makePlayerTeam("Anahita"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 14);
+                }
                 break;
             case "Mount Volcan":
                 // If the R.E.S.I. Omega boss hasn't been attempted, play the cutscene. If it has already, don't.
@@ -894,6 +925,11 @@ public class Game implements java.io.Serializable
                     vulca.setDialogue("Bless you, grandson. And the rest of you too. Be careful on your journey, okay?");
                     vulca.setTalkedTo(false);
                 }   
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeOmegaBoss(), team);
+                    ((Wilderness)currentLocation).setBossBattle(battle, 17);
+                }
                 break;
             case "Mount Zoni Summit":
                 // If the Frigs boss hasn't been attempted, play the cutscene. If it has already, don't.
@@ -916,10 +952,14 @@ public class Game implements java.io.Serializable
                     Cutscene.defeatedFrigs();
                     summit.removeBossBattle();
                     team.add(MainGame.makeFrigs());
+                    map.updateMap(currentLocation, getLocation("Mount Zoni"));
+                    currentLocation = getLocation("Mount Zoni");
                 }   
-                
-                map.updateMap(currentLocation, getLocation("Mount Zoni"));
-                currentLocation = getLocation("Mount Zoni");
+                else // remake battle to prevent errors if lost
+                {
+                    BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFrigsBoss(), makePlayerTeam("Ninlil"));
+                    ((Wilderness)currentLocation).setBossBattle(battle, 21);
+                }
                 break;
             case "Zoni City":
                 cityBossFights();
@@ -960,6 +1000,11 @@ public class Game implements java.io.Serializable
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 28);
             }
+            else // remake battle to prevent errors if lost
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFultraBoss(city), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 27);
+            }
         }
         else if(fultraBossDefeated && !irwinBossDefeated) // Irwin Fight
         {   
@@ -982,6 +1027,11 @@ public class Game implements java.io.Serializable
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 30);
             }
+            else
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 28);
+            }
         }
         else if(fultraBossDefeated && irwinBossDefeated) // Final boss fight
         {
@@ -1003,6 +1053,11 @@ public class Game implements java.io.Serializable
                 finalBossDefeated = true;
                 city.removeBossBattle();
                 Cutscene.credits();
+            }
+            else
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 28);
             }
         }
         
@@ -1257,27 +1312,23 @@ public class Game implements java.io.Serializable
         MainGame.clearScreen();
 
         MainGame.println("Which tutorial would you like to review?");
-        String message = "\t1) Element Matchups\n\t2) Targeting\n\t3) Aggro\n\t4) Cheer Partner and Cheer Skills\n\t5) Back";
+        String message = "\t1) Matchup Chart\n\t2) Cheer Partners\n\t3) Classes\n\t4) Back";
         int input = MenuHelper.displayMenu(message, 1, 5);
         
         switch(input)
         {
-            case 2:
-                MainGame.targetingTutorial();
-                break;
-            case 3:
-                MainGame.aggroTutorial();
-                break;
-            case 4:
-                MainGame.cheerPartnerTutorial();
-                break;
-            // case 5: 
-            //     MainGame.clearScreen();
-            //     optionsMenu();
-            //     break;
             case 1: 
                 MainGame.clearScreen();
                 new TypeChart().printChart();
+                break;
+            case 2:
+                MainGame.cheerPartnerTutorial();
+                break;
+            case 3:
+                MainGame.classTutorial();
+                break;
+            case 4:
+                MainGame.cheerPartnerTutorial();
                 break;
         }
     }
@@ -1408,7 +1459,7 @@ public class Game implements java.io.Serializable
     private void changeAttacks(Player player)
     {
         MainGame.clearScreen();
-        MainGame.printlnWait(player.getName() + "'s current moves:", 25, 500);
+        MainGame.println(player.getName() + "'s current attacks:");
         
         // Prints out the four moves the character can use
         for(Attack attack : player.getCurrentAttacks())
@@ -1416,7 +1467,7 @@ public class Game implements java.io.Serializable
             printMove(attack);
         }
         
-        MainGame.printlnWait(player.getName() + "'s other moves:", 25, 500);
+        MainGame.println(player.getName() + "'s other attacks:");
         
         // Prints out the other two moves the character can use
         for(Attack attack : player.getOtherAttacks())
@@ -1483,7 +1534,7 @@ public class Game implements java.io.Serializable
         
         MainGame.promptToEnter();
         MainGame.printlnln("Class Change: Successful!\n\t" + currentClass.toString() +
-                " -----------> " + otherClass.toString());
+                " <-----------> " + otherClass.toString());
 
         MainGame.promptToEnter();
         
@@ -1591,23 +1642,23 @@ public class Game implements java.io.Serializable
     {
         if(attack instanceof OffensiveAttack)
         {
-            MainGame.printlnlnWait(((OffensiveAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((OffensiveAttack)attack).toString());
         }
         else if(attack instanceof BuffAttack)
         {
-            MainGame.printlnlnWait(((BuffAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((BuffAttack)attack).toString());
         }
         else if(attack instanceof DebuffAttack)
         {
-            MainGame.printlnlnWait(((DebuffAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((DebuffAttack)attack).toString());
         }
         else if(attack instanceof SingleHealingAttack)
         {
-            MainGame.printlnlnWait(((SingleHealingAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((SingleHealingAttack)attack).toString());
         }
         else if(attack instanceof TeamHealingAttack)
         {
-            MainGame.printlnlnWait(((TeamHealingAttack)attack).toString(), 5, 500);
+            MainGame.printlnln(((TeamHealingAttack)attack).toString());
         }
     }
     
@@ -1704,7 +1755,7 @@ public class Game implements java.io.Serializable
         switchAttacksProcess(currentAttackInput, otherAttackInput, p);
         
         MainGame.promptToEnter();
-        MainGame.printlnWait(p.getName() + "'s new, current moves:", 25, 1500);
+        MainGame.println(p.getName() + "'s new, current attacks:");
         
         // Prints out the four moves the player now knows
         for(Attack attack : p.getCurrentAttacks())
@@ -1737,7 +1788,7 @@ public class Game implements java.io.Serializable
         p.getOtherAttacks().set(otherAttackInput, currentAttack);
         
         MainGame.printlnlnWait("\nMove Change: Successful!\n\t" + currentAttack.getName() +
-                " -----------> " + otherAttack.getName() , 25, 500);
+                " <-----------> " + otherAttack.getName() , 25, 500);
     }
     
     public ArrayList<Location> getKnownLocations() {return knownLocations;}
@@ -2081,11 +2132,11 @@ public class Game implements java.io.Serializable
         tonnerre.setDescription("Elerric resident");
         
         Item gift = Item.getHealingItem("Half Cake");
-        NPC san = new NPC("San", "Are you guys okay? How are your towns?", gift, false);
+        NPC san = new NPC("San", "Pheu is a wonderful lady. Calmus, you have an amazing aunt.", gift, false);
         san.setDescription("Elerric resident");
         san.setGiveGiftMessage("I hope this helps, even if just a little.");
         
-        NPC pheu = new NPC("Pheu", "MAKE ME HAVE DEFAULT TEXT", true);
+        NPC pheu = new NPC("Pheu", "Restore to us the peace we lost! I beleive in you all. Take care, nephew.", true);
         pheu.setDescription("Infol Resident | Calmus' aunt");
         
         ArrayList<NPC> people = new ArrayList<>();
@@ -2125,7 +2176,7 @@ public class Game implements java.io.Serializable
     {
         Coordinate c = new Coordinate(19, 35);
         Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between Degon and Aquammoda, "
-                + "separating the two.", 6, c);
+                + "separating the two.", 9, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");
@@ -2136,7 +2187,7 @@ public class Game implements java.io.Serializable
     private Wilderness createTempestTower()
     {
         Coordinate c = new Coordinate(18, 68);
-        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 13, c);
+        Wilderness tempestTower = new Wilderness("Tempest Tower", "An ancient tower the pierces the sky. The top is surrounded by clouds in a cresent shape.", 11, c);
         tempestTower.addLocalElement("Wind");
         tempestTower.addLocalElement("Ice");
         
@@ -2149,7 +2200,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountVolcan()
     {
         Coordinate c = new Coordinate(4, 58);
-        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 17, c);
+        Wilderness mountVolcan = new Wilderness("Mount Volcan", "An inactive volcano. Infol residents come here frequently to train and hone their abilities.", 15, c);
         mountVolcan.addLocalElement("Fire");
         mountVolcan.addLocalElement("Earth");
         mountVolcan.addLocalElement("Wind");
@@ -2159,7 +2210,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountZoni()
     {
         Coordinate c = new Coordinate(4, 31);
-        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 19, c);
+        Wilderness mountZoni = new Wilderness("Mount Zoni", "A large mountain with a frigid summit. During certain times of the year, the mountain expereinces whiteout blizzards.", 17, c);
         mountZoni.addLocalElement("Ice");
         mountZoni.addLocalElement("Wind");
         mountZoni.addLocalElement("Earth");
@@ -2170,7 +2221,7 @@ public class Game implements java.io.Serializable
     private Wilderness createMountZoniSummit()
     {
         Coordinate c = new Coordinate(2, 31);
-        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. Thw winds and bitter cold are unforgiving here.", 20, c);
+        Wilderness mountZoniSummit = new Wilderness("Mount Zoni Summit", "The summit of Mount Zoni. The winds and bitter cold are unforgiving here.", 19, c);
         mountZoniSummit.addLocalElement("Ice");
         mountZoniSummit.addLocalElement("Wind");
         return mountZoniSummit;
@@ -2179,7 +2230,7 @@ public class Game implements java.io.Serializable
     private Wilderness createForlornCave()
     {
         Coordinate c = new Coordinate(9, 15);
-        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dark and ominous cave. Some say that the cave feels sentient. Those that go in rarely come out...", 23, c);
+        Wilderness forlornDessert = new Wilderness("Forlorn Cave", "A dark and ominous cave. Some say that the cave feels sentient. Those that go in rarely come out...", 21, c);
         forlornDessert.addLocalElement("Electric");
         forlornDessert.addLocalElement("Earth");
         forlornDessert.addLocalElement("Wind");

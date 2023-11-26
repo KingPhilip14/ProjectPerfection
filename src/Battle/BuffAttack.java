@@ -38,7 +38,7 @@ public class BuffAttack extends Attack
         super.name = name;
         super.description = description;
         this.STAT_TO_BUFF = statToBuff;
-        super.cooldown = 0;
+        super.cooldown = 3;
         BUFF_MODIFIER = 1.5;
         BUFF_MODIFIER_TIMER = buffModifierTimer;
     }
@@ -52,6 +52,7 @@ public class BuffAttack extends Attack
     {
         Scanner scan = new Scanner(STAT_TO_BUFF);
         scan.useDelimiter(",");
+        boolean success = false;
         
         MainGame.printlnln("\n" + target.getName() + " used " + name + "!");
         
@@ -68,7 +69,8 @@ public class BuffAttack extends Attack
                         target.getAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s attack increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getAttack());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -84,7 +86,8 @@ public class BuffAttack extends Attack
                         target.getDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s defense increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getDefense());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -100,7 +103,8 @@ public class BuffAttack extends Attack
                         target.getRangedAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s ranged attack increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getRangedAttack());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -116,7 +120,8 @@ public class BuffAttack extends Attack
                         target.getRangedDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s ranged defense increased!" );
                         
-                        Battle.getChangedStats().enqueue(target.getRangedDefense());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -132,7 +137,8 @@ public class BuffAttack extends Attack
                         target.getAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s attack increased!" );
                         
-                        Battle.getChangedStats().enqueue(target.getAttack());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -147,7 +153,8 @@ public class BuffAttack extends Attack
                         target.getDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s defense increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getDefense());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -162,7 +169,8 @@ public class BuffAttack extends Attack
                         target.getRangedAttack().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s ranged attack increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getRangedAttack());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -177,7 +185,8 @@ public class BuffAttack extends Attack
                         target.getRangedDefense().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s ranged defense increased!" );
                         
-                        Battle.getChangedStats().enqueue(target.getRangedDefense());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else 
                     {
@@ -192,7 +201,8 @@ public class BuffAttack extends Attack
                         target.getSpeed().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s speed increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getSpeed());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else
                     {
@@ -210,7 +220,8 @@ public class BuffAttack extends Attack
                         target.getSpeed().setTurnBuffEnds(BUFF_MODIFIER_TIMER);
                         MainGame.printlnln(target.getName() + "'s speed increased!");
                         
-                        Battle.getChangedStats().enqueue(target.getSpeed());
+                        success = true;
+                        // Battle.getStatAffectedCharacters().add(target);
                     }
                     else
                     {
@@ -222,6 +233,8 @@ public class BuffAttack extends Attack
         
         canUse = false;
         setNextAvailableTurn(Battle.getCurrentTurn());
+        if(success){Battle.getStatAffectedCharacters().add(target);}
+        
         MainGame.promptToEnter();
     }
     
@@ -253,7 +266,7 @@ public class BuffAttack extends Attack
             }
         }
                 
-        return "\t" + this.name + ":\n\t\t" + this.description + "\n\t\tAccuracy: " + this.accuracy + "%\n\t\tCooldown: " + cooldown
-                + "\n\t\tStat(s) affected: " + stats;
+        return "\t" + this.name + ":\n\t\t" + this.description + "\n\t\tAccuracy: " + this.accuracy + 
+                "%\n\t\tCooldown: " + cooldown + "\n\t\tModifier: " + (int)(BUFF_MODIFIER * 100) + "%\n\t\tStat(s) affected: " + stats;
     }
 }
