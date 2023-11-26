@@ -9,15 +9,7 @@ import java.util.Random;
  * @author Ian King
  */
 public class RESIEnemy extends Enemy
-{
-    
-    /*
-    IMPORTANT: The enemy AI looks for a healing move for RESI bots, which can cause a null pointer reference. Either
-    change the enemyAI in the RESIBattle class, or fix it in the abstract battle class
-    */
-    
-    
-    
+{   
     private static ArrayList<OffensiveAttack> allOffensiveResiAttacks; 
     private static ArrayList<BuffAttack> allBuffResiAttacks; 
     private static ArrayList<DebuffAttack> allDebuffResiAttacks;
@@ -29,7 +21,7 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
         xpYield = 30;
     }
@@ -40,7 +32,7 @@ public class RESIEnemy extends Enemy
         createElement(currentLocation);
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
         xpYield = 30;
     }
@@ -51,7 +43,7 @@ public class RESIEnemy extends Enemy
         this.element = element;
         name = createName();
         setDescription();
-        improveOffense();
+        improveStats();
         populateCurrentAttacks();
         xpYield = 30;
     }
@@ -158,12 +150,14 @@ public class RESIEnemy extends Enemy
     }
     
     /**
-     * Adds extra points to offensive stats to make RESI enemies tougher
+     * Adds extra points to stats to make RESI enemies tougher
      */
-    private void improveOffense()
+    private void improveStats()
     {
         this.attack.setValue(attack.getValue() + 20);
+        this.defense.setValue(defense.getValue() + 10);
         this.rangedAttack.setValue(rangedAttack.getValue() + 20);
+        this.rangedDefense.setValue(rangedDefense.getValue() + 10);
         this.speed.setValue(speed.getValue() + 10);
     }
     
