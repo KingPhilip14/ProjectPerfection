@@ -561,10 +561,10 @@ public class MainGame
         anahita.setBattleReadyMessage("I have faith we'll succeed!");
         anahita.setMaxHealth(250);
         anahita.setCurrentHealth(250);
-        anahita.setAttack(45);
-        anahita.setDefense(55);
-        anahita.setRangedAttack(70);
-        anahita.setRangedDefense(80);
+        anahita.setAttack(55);
+        anahita.setDefense(45);
+        anahita.setRangedAttack(80);
+        anahita.setRangedDefense(70);
         anahita.setSpeed(50);
         
         // make this a method in the character class as a for loop
