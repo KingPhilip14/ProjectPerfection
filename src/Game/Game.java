@@ -1000,6 +1000,11 @@ public class Game implements java.io.Serializable
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 28);
             }
+            else // remake battle to prevent errors if lost
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFultraBoss(city), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 27);
+            }
         }
         else if(fultraBossDefeated && !irwinBossDefeated) // Irwin Fight
         {   
@@ -1022,6 +1027,11 @@ public class Game implements java.io.Serializable
                 BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeFinalBoss(), team);
                 ((Wilderness)currentLocation).setBossBattle(battle, 30);
             }
+            else
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 28);
+            }
         }
         else if(fultraBossDefeated && irwinBossDefeated) // Final boss fight
         {
@@ -1043,6 +1053,11 @@ public class Game implements java.io.Serializable
                 finalBossDefeated = true;
                 city.removeBossBattle();
                 Cutscene.credits();
+            }
+            else
+            {
+                BossBattle battle = new BossBattle(((Wilderness)currentLocation).makeIrwinBoss(), team);
+                ((Wilderness)currentLocation).setBossBattle(battle, 28);
             }
         }
         

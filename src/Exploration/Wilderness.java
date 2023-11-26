@@ -476,7 +476,7 @@ public class Wilderness extends Location
         attacks.add(overdriveII);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(1777); // HP
+        stats.add(777); // HP
         stats.add(324); // Attack
         stats.add(324); // Defense
         stats.add(324); // R Attack
@@ -491,6 +491,17 @@ public class Wilderness extends Location
         team.add(new RESIEnemy(currentLocation));
         team.add(fultra);
         team.add(new RESIEnemy(currentLocation));
+
+        // Specify the R.E.S.I. enemies
+        team.get(0).setMaxHealth(800);
+        team.get(0).setCurrentHealth(800);
+        team.get(0).setElement("Ice");
+        team.get(0).setStatSpreadDesc("Its element won't change in this battle!");
+        team.get(2).setMaxHealth(800);
+        team.get(2).setCurrentHealth(800);
+        team.get(2).setElement("Earth");
+        team.get(0).setStatSpreadDesc("Its element won't change in this battle!");
+
         
         return team;
     }
@@ -510,7 +521,7 @@ public class Wilderness extends Location
         omegaAttacks.add(protocal);
         
         ArrayList<Integer> omegaStats = new ArrayList<>(6);
-        omegaStats.add(1300); // HP
+        omegaStats.add(780); // HP
         omegaStats.add(340); // Attack
         omegaStats.add(340); // Defense
         omegaStats.add(340); // R Attack
@@ -519,7 +530,7 @@ public class Wilderness extends Location
         
         BossEnemy omegaII = new BossEnemy("R.E.S.I. Bot Omega II", "The second of its kind. Irwin's attempt at redemption for the first one's failure.", "Fire", 26, 
                                     omegaAttacks, omegaStats);
-        omegaII.setStatDescription("This R.E.S.I. Bot towers over the group. Don't lose heart!");
+        omegaII.setStatDescription("This R.E.S.I. Bot focuses on offense. Its element won't change!");
         // ----------------------------------------------------------------------------------------
         
         // Creating Irwin
@@ -552,16 +563,16 @@ public class Wilderness extends Location
         omega2Attacks.add(protocal);
         
         ArrayList<Integer> omega2Stats = new ArrayList<>(6);
-        omega2Stats.add(1300); // HP
+        omega2Stats.add(800); // HP
         omega2Stats.add(340); // Attack
         omega2Stats.add(340); // Defense
         omega2Stats.add(340); // R Attack
         omega2Stats.add(340); // R Defense
         omega2Stats.add(200); // Speed
         
-        BossEnemy omegaIII = new BossEnemy("R.E.S.I. Bot Omega III", "The third -- and last -- of its kind. It's made to focus on support in battle.", "Water", 26, 
+        BossEnemy omegaIII = new BossEnemy("R.E.S.I. Bot Omega III", "The third -- and last -- of its kind. Irwin wishes it to crush you.", "Water", 26, 
                                     omega2Attacks, omega2Stats);
-        omegaIII.setStatDescription("This R.E.S.I. Bot is still large, but its smaller than the other. Don't give up!");
+        omegaIII.setStatDescription("This R.E.S.I. Bot focuses on support. It's element won't change!");
         
         ArrayList<Enemy> team = new ArrayList<>(3);
         team.add(omegaII);
@@ -581,7 +592,7 @@ public class Wilderness extends Location
         attacks.get(3).setAccuracy(85);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(777); // HP
+        stats.add(888); // HP
         stats.add(420); // Attack
         stats.add(420); // Defense
         stats.add(420); // R Attack

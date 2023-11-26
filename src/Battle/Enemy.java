@@ -96,6 +96,7 @@ public abstract class Enemy extends Character
     }
     
     public String getStatSpreadDesc() {return statSpreadDescription;}
+    public void setStatSpreadDesc(String info) {statSpreadDescription = info;}
     
     public int getXpYield() {return xpYield;}
     public void setXpYield(int yield) {xpYield = yield;}

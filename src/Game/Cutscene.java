@@ -2293,7 +2293,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Ninlil", "We're getting close, guys. If we sneak our way through, we'll be there quickly.");
         
-        MainGame.dialoguelnln("Calmus", "Glad to hear it. I'm getting tired of these metal buckets... Is everyone okay?");
+        MainGame.dialoguelnln("Calmus", "Glad to hear it. I'm getting tired of these tin cans. Is everyone okay?");
         
         MainGame.dialoguelnln("Frigs", "Besides the endless swarm out there, yeah, I'm swell.");
         
@@ -2312,7 +2312,7 @@ public class Cutscene
         MainGame.promptToEnter();
         
         print("A black figure flew in from above and attacked the group. As Calmus yelled, he grabbed Gaea and Frigs as he "
-                + "dived/out the way with them. Ninlil was able to move quickly to pulled Anahita out the way too. The "
+                + "dived/out the way with them. Ninlil was able to move quickly and pulled Anahita out the way. The "
                 + "figure landed,/causing dust and debris to fly around. Its landing impact caused the ground beneath it to "
                 + "shatter and break.");
         
@@ -2364,22 +2364,22 @@ public class Cutscene
         //---------------------------------------------------------------------------------------------------------------------
         MainGame.promptToEnter();
         
-        MainGame.dialoguelnln("Ninlil", "Fultra... I don't know you all too well, but I know that you aren't the same. You "
-                + "need to\n\trealize that everything you just said is garbage; it makes no sense!");
+        MainGame.dialoguelnln("Ninlil", "Fultra... I don't know you all too well, but I know that you are not the same. You "
+                + "need to\n\trealize that everything you just said makes no sense!");
         
-        MainGame.dialoguelnln("R.E.S.I. Fultra", "... I hope you'll all understand soon. It may not be now, but soon...");
+        MainGame.dialoguelnln("R.E.S.I. Fultra", "I hope you'll all understand soon. It may not be now, but soon.");
         
         MainGame.dialoguelnln("Anahita", "Fultra, please listen to us--");
         
         MainGame.dialoguelnln("R.E.S.I. Fultra", "NO! There's nothing to discuss! I'm going to stop you all here. Right now.");
-        
-        MainGame.dialoguelnln("Calmus", "Everyone, be careful!");
         
         MainGame.promptToEnter();
     }
     
     public static void defeatedResiFultra()
     {
+        MainGame.promptToEnter();
+
         print("After the most exhausting fight they've had yet, Anahita and the others defeated Fultra and the other R.E.S.I. "
                 + "Bots that/were with him. Fultra fell to his knees, his mechanical parts starting to malfunction.");
         
@@ -2579,7 +2579,7 @@ public class Cutscene
         
         MainGame.dialoguelnln("Gaea", "We have a goal to accomplish right now. We're leaving you here, and we are going to "
                 + "save our\n\thome from the damage *you've* done. 'Fearless Thunder...' You don't deserve that name. The "
-                + "Fultra we're\n\tlooking at doesn't deserve it. You're nothing more than a coward. A selfish coward.");
+                + "Fultra we're\n\tlooking at doesn't deserve it. You're nothing more than a coward.");
         
         print("With that, Gaea was the first to leave Fultra. She marched off to find a new place to hid from the R.E.S.I. "
                 + "Bots/that were still around. Next came Frigs, then Calmus, then Ninlil. Fultra looked up at Anahita, but "
@@ -2629,8 +2629,8 @@ public class Cutscene
         
         MainGame.dialoguelnln("Gaea", "Wh-what is he doing to everyone??");
         
-        MainGame.dialoguelnln("Frigs", "It's kind of hard to tell... The fuilds in the tubes look like ethrellium. That "
-                + "might\n\tbe what he's after, but why...?");
+        MainGame.dialoguelnln("Frigs", "It's kind of hard to tell... The fluids in the tubes look like ethrellium. That "
+                + "might\n\tbe what he's after, but why?");
         
         MainGame.dialoguelnln("Calmus", "We should keep moving first. We might get the answer when we find Irwin.");
         
@@ -2675,11 +2675,11 @@ public class Cutscene
         MainGame.dialoguelnln("Irwin", "That you did. However, I remade them to be better and stronger. You defeating the "
                 + "first one was\n\tpure luck. You cannot beat two of them *and* me at the same time.");
         
-        MainGame.dialoguelnln("Frigs", "Tch, he's crazy!");
+        MainGame.dialoguelnln("Frigs", "Tch, he's truly insane!");
         
-        MainGame.dialoguelnln("Irwin", "Crazy? You know what's crazy? Seeing this world perish to its own foolishness! "
+        MainGame.dialoguelnln("Irwin", "You know what's insane? Seeing this world perish to its own foolishness! "
                 + "You all\n\thave lived a secluded live where you live in eternal peace! The rest of the world deserves it "
-                + "too!\n\tYou all have perfect lives. I'm here to spread it to the rest of the world... It needs a reset.");
+                + "too!\n\tYou all have perfect lives. I'm here to spread it to the rest of the world. It needs a reset.");
         
         MainGame.dialoguelnln("Gaea", "Perfect lives? We are *far* from perfect! We may not know all that the rest of the "
                 + "world goes\n\tthrough, but we are far from perfection here!");
@@ -2687,7 +2687,7 @@ public class Cutscene
         MainGame.dialoguelnln("Ninlil", "Gaea's right! We all still have our flaws and imperfections here! That's part of "
                 + "being human!");
         
-        MainGame.dialoguelnln("Anahita", "People pleasing, self-centeredness, arrogance, being emotional, fearful, alone... "
+        MainGame.dialoguelnln("Anahita", "People pleasing, self-centeredness, arrogance, facing emotions, being fearful or alone... "
                 + "We\n\tstill have struggles. Why do you think we're different? Us having powers makes us no different!");
         
         //---------------------------------------------------------------------------------------------------------------------
@@ -2709,9 +2709,9 @@ public class Cutscene
         
         MainGame.dialoguelnln("Iriwn", "It's simply a small price to pay for the betterment of the world.");
         
-        MainGame.dialoguelnln("Calmus", "You're insane!");
+        MainGame.dialoguelnln("Calmus", "You've lost your mind!");
         
-        MainGame.dialoguelnln("Irwin", "What is insane, Calmus, is that no one else in the world has tried to resolve all "
+        MainGame.dialoguelnln("Irwin", "No, I am perfectly fine. No one else in the world has tried to resolve all "
                 + "these problems!\n\tI'm the only one with enough sense to help this fallen world.");
         
         MainGame.dialoguelnln("Anahita", "There's no helping you! Even though the world is corrupt, it doesn't mean that "
@@ -2721,6 +2721,8 @@ public class Cutscene
         MainGame.dialoguelnln("Irwin", "Not when I'm so close! I've found the formula to obtain it! I *will* have "
                 + "what I desire,\n\tand none of you will stop me! This world will be transformed, and *I* will be the "
                 + "hero!");
+
+        MainGame.promptToEnter();
     }
     
     public static void defeatedIrwin()
