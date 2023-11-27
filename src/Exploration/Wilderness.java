@@ -391,7 +391,7 @@ public class Wilderness extends Location
         stats.add(140); // R Defense
         stats.add(135); // Speed
         
-        BossEnemy ninlil = new BossEnemy("Ninlil", "Someone with a broken, grieving heart who needs a friend.", "Wind", 14, 
+        BossEnemy ninlil = new BossEnemy("Ninlil", "Someone with a broken, grieving heart who needs a friend.", "Wind", 15, 
                                     attacks, stats);
         ninlil.setStatDescription("A currently grieving master of Wind.");
         
@@ -422,7 +422,7 @@ public class Wilderness extends Location
         stats.add(204); // R Defense
         stats.add(174); // Speed
         
-        BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 17, 
+        BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 18, 
                                     attacks, stats);
         omega.setStatDescription("This R.E.S.I. Bot is only suited for hot areas, so its element won't change!");
         
@@ -452,7 +452,7 @@ public class Wilderness extends Location
         stats.add(120); // R Defense
         stats.add(270); // Speed
         
-        BossEnemy frigs = new BossEnemy("Frigs", "A greiving friend who needs friends that'll stick closer than a lost brother.", "Ice", 21, 
+        BossEnemy frigs = new BossEnemy("Frigs", "A greiving friend who needs friends that'll stick closer than a lost brother.", "Ice", 22, 
                                     attacks, stats);
         frigs.setStatDescription("A currently grieving master of Ice.");
         
@@ -466,8 +466,8 @@ public class Wilderness extends Location
     {
         ArrayList<Attack> attacks = new ArrayList<>(4);
         attacks.add(new BuffAttack("Charge II", "The user charges themselves with high amounts of electricity. All stats are increased for 3 turns, and cooldown is less than Charge.", "All", 3, 3));
-        attacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 115, "R. Attack"));
-        attacks.get(1).setAccuracy(85);
+        attacks.add(new OffensiveAttack("Blackbolt", "The user brings down a massive, destructive lightning bolt that is dark in color.", 105, "R. Attack"));
+        attacks.get(1).setAccuracy(90);
         attacks.add(new OffensiveAttack("Plasma Blast II", "The user discharges a overwhelming electrical wave. Its accuracy and power are better than normal.", 180, "R. Attack"));
         attacks.get(2).setAccuracy(51); 
         OffensiveAttack overdriveII = new OffensiveAttack("Overdrive II", "The user coats themselves in electricity and rams into the target. It now has a higher crit rate.", 115, "Attack");
