@@ -906,13 +906,13 @@ public class MainGame
         
         if(Game.isInSecondPhase())
         {
-            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 22);
             // Instantiating Frigs' stats for second phase
             frigs.setMaxHealth(350);
             frigs.setCurrentHealth(350);
-            frigs.setAttack(360);
+            frigs.setAttack(390);
             frigs.setDefense(150);
-            frigs.setRangedAttack(330);
+            frigs.setRangedAttack(360);
             frigs.setRangedDefense(150);
             frigs.setSpeed(270);
         }
@@ -1005,15 +1005,15 @@ public class MainGame
 
         if(Game.isInSecondPhase())
         {
-            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
+            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 15);
             // Instantiating Ninlil's stats for second phase
-            ninlil.setMaxHealth(355);
-            ninlil.setCurrentHealth(355);
+            ninlil.setMaxHealth(345);
+            ninlil.setCurrentHealth(345);
             ninlil.setAttack(80);
-            ninlil.setDefense(135);
-            ninlil.setRangedAttack(350);
-            ninlil.setRangedDefense(140);
-            ninlil.setSpeed(135);
+            ninlil.setDefense(145);
+            ninlil.setRangedAttack(380);
+            ninlil.setRangedDefense(150); 
+            ninlil.setSpeed(145);
         }
         else
         {

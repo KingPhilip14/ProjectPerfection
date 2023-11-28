@@ -16,23 +16,23 @@ public class RESIBattle extends Battle
         startingText = "A L E R T! Incoming R.E.S.I. Bots!\n\nBattle: S T A R T";
     }
     
-    @Override
-    /**
-     * This overridden method changes the RESI Bot's element depending on the player's element.
-     */
-    protected void attackWithOffense(Attack attack, Player player, Enemy target)
-    {
-        super.attackWithOffense(attack, player, target);
+    // @Override
+    // /**
+    //  * This overridden method changes the RESI Bot's element depending on the player's element.
+    //  */
+    // protected void attackWithOffense(Attack attack, Player player, Enemy target)
+    // {
+    //     super.attackWithOffense(attack, player, target);
         
-        if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
-        {
-            RESIEnemy enemy = ((RESIEnemy)target);
+    //     if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
+    //     {
+    //         RESIEnemy enemy = ((RESIEnemy)target);
         
-            enemy.setElement(player.getElement());
+    //         enemy.setElement(player.getElement());
 
-            MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!");
+    //         MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!");
 
-            MainGame.promptToEnter();
-        }
-    }
+    //         MainGame.promptToEnter();
+    //     }
+    // }
 }

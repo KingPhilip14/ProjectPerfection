@@ -965,6 +965,22 @@ public abstract class Battle implements Serializable
                 player.increaseXP(player, ORIGINAL_PLAYER_POSITIONS, target);
             }
         }
+
+        // Change target's element if it's a R.E.S.I.
+        if(target.getName().contains("R.E.S.I.") && attack.getAttackHit() && !target.isDead() && 
+            !player.getElement().equals(target.getElement()))
+        {
+            if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
+            {
+                RESIEnemy enemy = ((RESIEnemy)target);
+            
+                enemy.setElement(player.getElement());
+
+                MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!");
+
+                MainGame.promptToEnter();
+            }
+        }
     }
     
     private void attackWithDebuff(Attack attack, Player player, Enemy target)
