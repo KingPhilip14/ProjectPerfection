@@ -23,7 +23,7 @@ public class RESIEnemy extends Enemy
         setDescription();
         improveStats();
         populateCurrentAttacks();
-        xpYield = 30;
+        xpYield = 45;
     }
     
     public RESIEnemy(int level, Wilderness currentLocation)

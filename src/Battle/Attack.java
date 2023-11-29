@@ -97,11 +97,11 @@ public abstract class Attack extends GameProperty
         }
         else if(this instanceof BuffAttack)
         {
-            result += "(Buff Attack)";
+            result += "(Buff)";
         }
         else if(this instanceof DebuffAttack)
         {
-            result += "(Debuff Attack)";
+            result += "(Debuff)";
         }
         else if(this instanceof SingleHealingAttack)
         {

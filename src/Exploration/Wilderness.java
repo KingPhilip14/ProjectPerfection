@@ -476,7 +476,7 @@ public class Wilderness extends Location
         attacks.add(overdriveII);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(777); // HP
+        stats.add(1680); // HP
         stats.add(324); // Attack
         stats.add(324); // Defense
         stats.add(324); // R Attack
@@ -510,7 +510,7 @@ public class Wilderness extends Location
         omegaAttacks.add(protocal);
         
         ArrayList<Integer> omegaStats = new ArrayList<>(6);
-        omegaStats.add(780); // HP
+        omegaStats.add(1560); // HP
         omegaStats.add(340); // Attack
         omegaStats.add(340); // Defense
         omegaStats.add(340); // R Attack
@@ -532,7 +532,7 @@ public class Wilderness extends Location
         irwinAttacks.get(1).setAccuracy(60);
 
         ArrayList<Integer> irwinStats = new ArrayList<>(6);
-        irwinStats.add(777); // HP
+        irwinStats.add(1700); // HP
         irwinStats.add(351); // Attack
         irwinStats.add(381); // Defense
         irwinStats.add(366); // R Attack
@@ -552,7 +552,7 @@ public class Wilderness extends Location
         omega2Attacks.add(protocal);
         
         ArrayList<Integer> omega2Stats = new ArrayList<>(6);
-        omega2Stats.add(820); // HP
+        omega2Stats.add(1510); // HP
         omega2Stats.add(340); // Attack
         omega2Stats.add(340); // Defense
         omega2Stats.add(340); // R Attack
@@ -581,7 +581,7 @@ public class Wilderness extends Location
         attacks.get(3).setAccuracy(85);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(888); // HP
+        stats.add(2125); // HP
         stats.add(420); // Attack
         stats.add(420); // Defense
         stats.add(420); // R Attack

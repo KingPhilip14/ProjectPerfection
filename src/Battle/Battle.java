@@ -682,7 +682,7 @@ public abstract class Battle implements Serializable
     private void activateCheerAbility(Player cheer)
     {
         Random rand = new Random();
-        int chance = rand.nextInt(20);
+        int chance = rand.nextInt(10);
         
         if(chance == 0)
         {

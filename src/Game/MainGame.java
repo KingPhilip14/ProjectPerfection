@@ -216,6 +216,8 @@ public class MainGame
         {
             System.out.print(string.charAt(i));
             
+            if(string.charAt(i) == ' ') {continue;}
+
             try
             {
                 Thread.sleep(textSpeed);
@@ -235,6 +237,8 @@ public class MainGame
         {
             System.out.print(string.charAt(i));
             
+            if(string.charAt(i) == ' ') {continue;}
+
             try
             {
                 Thread.sleep(textSpeed);
@@ -290,6 +294,8 @@ public class MainGame
         {
             System.out.print(string.charAt(i));
             
+            if(string.charAt(i) == ' ') {continue;}
+
             try
             {
                 Thread.sleep(textSpeed);

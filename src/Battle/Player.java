@@ -40,9 +40,9 @@ public class Player extends Character
         xpToLevelUp = currentXP;
         
         // Set the xpToLevelUp to not exceed the max
-        if (xpToLevelUp > 3500) 
+        if (xpToLevelUp > 4200) 
         {
-            xpToLevelUp = 3500;
+            xpToLevelUp = 4200;
         }
 
         populateListsOfStats();
@@ -212,6 +212,11 @@ public class Player extends Character
     
     private void updateXP(int xpAmt)
     {
+        if(level == 35)
+        {
+            MainGame.printlnln("You've reached the max level! Congrats!");
+        }
+
         if(xpToLevelUp - xpAmt <= 0)
         {
             int remaining = xpAmt - xpToLevelUp;
@@ -277,9 +282,9 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        if(xpToLevelUp > 3500) // set a cap for XP gains to not let game progression take too long
+        if(xpToLevelUp > 4200) // set a cap for XP gains to not let game progression take too long
         {
-            xpToLevelUp = 3500;
+            xpToLevelUp = 4200;
         }
         
         updateStats();
