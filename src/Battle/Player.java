@@ -215,6 +215,8 @@ public class Player extends Character
         if(level == 35)
         {
             MainGame.printlnln("You've reached the max level! Congrats!");
+            MainGame.promptToEnter();
+            return;
         }
 
         if(xpToLevelUp - xpAmt <= 0)
@@ -272,6 +274,7 @@ public class Player extends Character
     
     private void levelUp(int remainingXP)
     {
+        
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!");
         MainGame.printlnln("Stats before:");
         MainGame.printlnln(toStringOriginalStats());
@@ -282,7 +285,11 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        if(xpToLevelUp > 4200) // set a cap for XP gains to not let game progression take too long
+        if(level == 35)
+        {
+            xpToLevelUp = 0; // No more exp can be gained
+        }
+        else if(xpToLevelUp > 4200) // set a cap for XP gains to not let game progression take too long
         {
             xpToLevelUp = 4200;
         }
