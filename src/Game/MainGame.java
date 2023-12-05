@@ -569,8 +569,8 @@ public class MainGame
         anahita.setCurrentHealth(250);
         anahita.setAttack(55);
         anahita.setDefense(45);
-        anahita.setRangedAttack(80);
-        anahita.setRangedDefense(70);
+        anahita.setRangedAttack(60);
+        anahita.setRangedDefense(90);
         anahita.setSpeed(50);
         
         // make this a method in the character class as a for loop
