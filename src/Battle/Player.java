@@ -289,9 +289,9 @@ public class Player extends Character
         {
             xpToLevelUp = 0; // No more exp can be gained
         }
-        else if(xpToLevelUp > 4200) // set a cap for XP gains to not let game progression take too long
+        else if(xpToLevelUp > 4500) // set a cap for XP gains to not let game progression take too long
         {
-            xpToLevelUp = 4200;
+            xpToLevelUp = 4500;
         }
         
         updateStats();
