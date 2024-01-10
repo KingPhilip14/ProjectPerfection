@@ -67,8 +67,7 @@ public class Map implements java.io.Serializable
         {
             for(int col = 0; col < map[row].length; col++)
             {
-                
-                MainGame.print(map[row][col]);
+                MainGame.print(String.valueOf(map[row][col]));
             }
             
             System.out.println("");

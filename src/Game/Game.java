@@ -40,7 +40,10 @@ import java.util.Scanner;
  */
 public class Game implements java.io.Serializable
 {
+    private static int textSpeed;
+
     private boolean gameStarted;
+    private boolean stillPlaying;
 
     private boolean finalBossDefeated;
     private boolean beachTutorialDone;
@@ -95,12 +98,14 @@ public class Game implements java.io.Serializable
         
         objective = new Objective();
         
-        
         team.add(MainGame.makeAnahita());
+
+        team.get(0).setCheerPartner(MainGame.makeGaea());
         currentLocation = knownLocations.get(0);
         nextLocation = remainingLocations.remove(0); 
         gold = 0; 
         gameStarted = false;
+        stillPlaying = true;
         
 
         map = new Map();
@@ -344,7 +349,7 @@ public class Game implements java.io.Serializable
         instatiations();
 //        currentObjective = "Get to Opicon Forest (Required level: " + nextLocation.getRequiredLevel() + ")";
         
-        while(true)
+        while(stillPlaying)
         {
             if(new Random().nextBoolean())
             {
@@ -412,8 +417,8 @@ public class Game implements java.io.Serializable
         
         if(currentLocation instanceof Town)
         {
-            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
-            input = MenuHelper.displayMenu(message, 1, 6);
+            message += "Shop\n\t3) Talk to Townsfolk\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options\n\t7) Quit Game";
+            input = MenuHelper.displayMenu(message, 1, 7);
             MainGame.clearScreen();
 
             switch(input)
@@ -436,6 +441,9 @@ public class Game implements java.io.Serializable
                 case 6:
                     optionsMenu();
                     break;
+                case 7:
+                    quit();
+                    break;
             }
 //            MainGame.waitForEnter();
         }
@@ -457,8 +465,8 @@ public class Game implements java.io.Serializable
         // If the requirements to start the boss battle aren't met, don't give the option.
         if(!((Wilderness)currentLocation).canDoBossBattle(team))
         {
-            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) More Options";
-            input = MenuHelper.displayMenu(message, 1, 5);
+            message += "Battle\n\t3) Search for Chest\n\t4) View Inventory\n\t5) More Options\n\t6) Quit Game";
+            input = MenuHelper.displayMenu(message, 1, 6);
             MainGame.clearScreen();
 
             switch(input)
@@ -478,12 +486,15 @@ public class Game implements java.io.Serializable
                 case 5:
                     optionsMenu();
                     break;
+                default:
+                    quit();
+                    break;
             }
         }
         else
         {
-            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options";
-            input = MenuHelper.displayMenu(message, 1, 6);
+            message += "Battle\n\t3) Boss Battle\n\t4) Search for Chest\n\t5) View Inventory\n\t6) More Options\n\t7) Quit Game";
+            input = MenuHelper.displayMenu(message, 1, 7);
             MainGame.clearScreen();
             
             switch(input)
@@ -505,6 +516,9 @@ public class Game implements java.io.Serializable
                     break;
                 case 6:
                     optionsMenu();
+                    break;
+                default:
+                    quit();
                     break;
             }
         }
@@ -1307,6 +1321,25 @@ public class Game implements java.io.Serializable
         }
     }
     
+    private void quit()
+    {
+        MainGame.clearScreen();
+
+        String message = "Would you like to quit the game?\n\t1) Yes\n\t2) No";
+        int input = MenuHelper.displayMenu(message, 1, 2);
+
+        switch(input)
+        {
+            case 1:
+                MainGame.clearScreen();
+                save();
+                stillPlaying = false;
+                break;
+            case 2:
+                break;
+        }
+    }
+
     private void viewTutorials()
     {
         MainGame.clearScreen();
@@ -2176,7 +2209,7 @@ public class Game implements java.io.Serializable
     {
         Coordinate c = new Coordinate(19, 35);
         Wilderness opiconForest = new Wilderness("Opicon Forest", "A luscious forest with towering trees, diverse wildlife, and a variety of vegetation.\nIt spans between Degon and Aquammoda, "
-                + "separating the two.", 9, c);
+                + "separating the two.", 10, c);
         opiconForest.addLocalElement("Earth");
         opiconForest.addLocalElement("Water");
         opiconForest.addLocalElement("Wind");

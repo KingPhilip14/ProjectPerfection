@@ -123,8 +123,8 @@ public class Cutscene
         MainGame.promptToEnter();
         //-----------------------------------------------------------------------------------------------------------------------
         
-        print("The doors to a large building open. A man in a suit emerges from the threashold. He has a solid build with "
-                + "peppered hair./Following him are 3 bodyguards. Once he's outside, cameras flash and people with microphones "
+        print("The doors to a large building open. A man in a suit emerges from the threshold. He has a solid build with "
+                + "salt and pepper hair./Following him are 3 bodyguards. Once he's outside, cameras flash and people with microphones "
                 + "start crowding the door./The bodyguards start to push a few people back to give the man space. The man "
                 + "sighs out of annoyance and shakes his head.");
         
@@ -1736,7 +1736,7 @@ public class Cutscene
     {
         MainGame.dialoguelnln("Anahita", "Hello, Elder Zeno!");
         
-        print("The group approached Elder Zeno, a tall, slender man with a pointed nose and peppered hair.");
+        print("The group approached Elder Zeno, a tall, slender man with a pointed nose and pepper hair.");
         
         MainGame.dialoguelnln("Elder Zeno", "Ah, hello Anahita!");
         

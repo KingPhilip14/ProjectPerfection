@@ -27,7 +27,7 @@ public abstract class Enemy extends Character
     public Enemy(Wilderness currentLocation)
     {
         createLevel(currentLocation);
-        totalStatPoints = level * 65;
+        totalStatPoints = level * 80;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -42,7 +42,7 @@ public abstract class Enemy extends Character
     public Enemy(int level)
     {
         this.level = level;
-        totalStatPoints = level * 65;
+        totalStatPoints = level * 80;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -57,7 +57,7 @@ public abstract class Enemy extends Character
     public Enemy(Wilderness currentLocation, int level)
     {
         this.level = level;
-        totalStatPoints = level * 65;
+        totalStatPoints = level * 80;
         generateStats();
         
         // RESI enemies will not get their moveset from this classes list of attacks
@@ -89,7 +89,7 @@ public abstract class Enemy extends Character
         this.name = name;
         this.description = description;
         this.level = level;
-        totalStatPoints = level * 65;
+        totalStatPoints = level * 80;
         generateStats();
         populateCurrentAttacks();
         populateListsOfStats();

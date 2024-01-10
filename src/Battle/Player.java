@@ -40,9 +40,9 @@ public class Player extends Character
         xpToLevelUp = currentXP;
         
         // Set the xpToLevelUp to not exceed the max
-        if (xpToLevelUp > 3500) 
+        if (xpToLevelUp > 4200) 
         {
-            xpToLevelUp = 3500;
+            xpToLevelUp = 4200;
         }
 
         populateListsOfStats();
@@ -114,6 +114,8 @@ public class Player extends Character
     {
         for(Stat s : listOfStats)
         {
+            s.resetCheerBuffModifier();
+
             if(s.getValue() != s.getOriginalValue())
             {
                 s.resetValue(this);
@@ -212,6 +214,13 @@ public class Player extends Character
     
     private void updateXP(int xpAmt)
     {
+        if(level == 35)
+        {
+            MainGame.printlnln("You've reached the max level! Congrats!");
+            MainGame.promptToEnter();
+            return;
+        }
+
         if(xpToLevelUp - xpAmt <= 0)
         {
             int remaining = xpAmt - xpToLevelUp;
@@ -267,6 +276,7 @@ public class Player extends Character
     
     private void levelUp(int remainingXP)
     {
+        
         MainGame.printlnln(name + " leveled up to level " + (level + 1) + "!");
         MainGame.printlnln("Stats before:");
         MainGame.printlnln(toStringOriginalStats());
@@ -277,9 +287,13 @@ public class Player extends Character
         level++;
         xpToLevelUp = (int)Math.round((Math.pow((level + 1) * 10, 2)) / 4); 
         
-        if(xpToLevelUp > 3500) // set a cap for XP gains to not let game progression take too long
+        if(level == 35)
         {
-            xpToLevelUp = 3500;
+            xpToLevelUp = 0; // No more exp can be gained
+        }
+        else if(xpToLevelUp > 4500) // set a cap for XP gains to not let game progression take too long
+        {
+            xpToLevelUp = 4500;
         }
         
         updateStats();
@@ -716,7 +730,7 @@ public class Player extends Character
     {
         for(Stat s : listOfStats)
         {
-            s.reapplyCheerBuff();
+            s.applyCheerBuff();
         }
     }
     

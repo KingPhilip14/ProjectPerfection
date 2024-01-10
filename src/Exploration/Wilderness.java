@@ -73,7 +73,7 @@ public class Wilderness extends Location
     public int getMAX_ENEMY_LV() {return MAX_ENEMY_LV;}
     public int getMIN_ENEMY_LV() {return MIN_ENEMY_LV;}
     
-    public ArrayList getLocalElements() {return LOCAL_ELEMENTS;}
+    public ArrayList<String> getLocalElements() {return LOCAL_ELEMENTS;}
     
     public void addLocalElement(String element) {LOCAL_ELEMENTS.add(element);}
     
@@ -384,12 +384,12 @@ public class Wilderness extends Location
         attacks.add(tempestBlade);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(355); // HP
+        stats.add(345); // HP
         stats.add(80); // Attack
-        stats.add(135); // Defense
-        stats.add(350); // R Attack
-        stats.add(140); // R Defense
-        stats.add(135); // Speed
+        stats.add(145); // Defense
+        stats.add(380); // R Attack
+        stats.add(150); // R Defense
+        stats.add(145); // Speed
         
         BossEnemy ninlil = new BossEnemy("Ninlil", "Someone with a broken, grieving heart who needs a friend.", "Wind", 15, 
                                     attacks, stats);
@@ -415,16 +415,16 @@ public class Wilderness extends Location
         attacks.add(protocal);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(1550); // HP
-        stats.add(204); // Attack
-        stats.add(234); // Defense
-        stats.add(204); // R Attack
-        stats.add(204); // R Defense
-        stats.add(174); // Speed
+        stats.add(1250); // HP
+        stats.add(234); // Attack
+        stats.add(224); // Defense
+        stats.add(214); // R Attack
+        stats.add(224); // R Defense
+        stats.add(184); // Speed
         
         BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 18, 
                                     attacks, stats);
-        omega.setStatDescription("This R.E.S.I. Bot is only suited for hot areas, so its element won't change!");
+        omega.setStatDescription("This R.E.S.I. Bot towers over the group, filling them with fear.");
         
         ArrayList<Enemy> team = new ArrayList<>(1);
         team.add(omega);
@@ -437,7 +437,7 @@ public class Wilderness extends Location
         ArrayList<Attack> attacks = new ArrayList<>(4);
         attacks.add(new BuffAttack("Frosted Knuckles", "The user creates a layer of ice on their fists to increase their attack for 3 turns.", "Attack", 4, 3));
         attacks.add(new OffensiveAttack("Avalanche", "The user attacks by causing an avalanche to fall on the target.", 85, "Attack"));
-        attacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 95, "Attack"));
+        attacks.add(new OffensiveAttack("Icicle Slash", "The user creates many sharp icicles to slash at the target.", 100, "Attack"));
         attacks.get(2).setAccuracy(95);
         OffensiveAttack fimblevetr = new OffensiveAttack("Fimbulvetr", "The user blasts the target with what feels like an eternal blizzard. Has a higher chance to land a critical hit.", 90, "R. Attack");
         fimblevetr.setCritRate(0.35);
@@ -447,9 +447,9 @@ public class Wilderness extends Location
         ArrayList<Integer> stats = new ArrayList<>(6);
         stats.add(350); // HP
         stats.add(390); // Attack
-        stats.add(120); // Defense
+        stats.add(150); // Defense
         stats.add(360); // R Attack
-        stats.add(120); // R Defense
+        stats.add(150); // R Defense
         stats.add(270); // Speed
         
         BossEnemy frigs = new BossEnemy("Frigs", "A greiving friend who needs friends that'll stick closer than a lost brother.", "Ice", 22, 
@@ -476,14 +476,14 @@ public class Wilderness extends Location
         attacks.add(overdriveII);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(777); // HP
+        stats.add(1680); // HP
         stats.add(324); // Attack
         stats.add(324); // Defense
         stats.add(324); // R Attack
         stats.add(324); // R Defense
         stats.add(324); // Speed
         
-        BossEnemy fultra = new BossEnemy("R.E.S.I. Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
+        BossEnemy fultra = new BossEnemy("Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
                                     attacks, stats);
         fultra.setStatDescription("'Fearless Thunder' in a new form. Has he lived up to his name?");
         
@@ -491,17 +491,6 @@ public class Wilderness extends Location
         team.add(new RESIEnemy(currentLocation));
         team.add(fultra);
         team.add(new RESIEnemy(currentLocation));
-
-        // Specify the R.E.S.I. enemies
-        team.get(0).setMaxHealth(800);
-        team.get(0).setCurrentHealth(800);
-        team.get(0).setElement("Ice");
-        team.get(0).setStatSpreadDesc("Its element won't change in this battle!");
-        team.get(2).setMaxHealth(800);
-        team.get(2).setCurrentHealth(800);
-        team.get(2).setElement("Earth");
-        team.get(0).setStatSpreadDesc("Its element won't change in this battle!");
-
         
         return team;
     }
@@ -521,7 +510,7 @@ public class Wilderness extends Location
         omegaAttacks.add(protocal);
         
         ArrayList<Integer> omegaStats = new ArrayList<>(6);
-        omegaStats.add(780); // HP
+        omegaStats.add(1560); // HP
         omegaStats.add(340); // Attack
         omegaStats.add(340); // Defense
         omegaStats.add(340); // R Attack
@@ -530,7 +519,7 @@ public class Wilderness extends Location
         
         BossEnemy omegaII = new BossEnemy("R.E.S.I. Bot Omega II", "The second of its kind. Irwin's attempt at redemption for the first one's failure.", "Fire", 26, 
                                     omegaAttacks, omegaStats);
-        omegaII.setStatDescription("This R.E.S.I. Bot focuses on offense. Its element won't change!");
+        omegaII.setStatDescription("This R.E.S.I. Bot focuses on offense!");
         // ----------------------------------------------------------------------------------------
         
         // Creating Irwin
@@ -543,12 +532,12 @@ public class Wilderness extends Location
         irwinAttacks.get(1).setAccuracy(60);
 
         ArrayList<Integer> irwinStats = new ArrayList<>(6);
-        irwinStats.add(777); // HP
+        irwinStats.add(1700); // HP
         irwinStats.add(351); // Attack
-        irwinStats.add(351); // Defense
+        irwinStats.add(381); // Defense
         irwinStats.add(366); // R Attack
-        irwinStats.add(351); // R Defense
-        irwinStats.add(261); // Speed
+        irwinStats.add(381); // R Defense
+        irwinStats.add(201); // Speed
         
         BossEnemy irwin = new BossEnemy("Irwin Krov", "A man trying to destroy the world to restart it in his image.", "Electric", 28, 
                                     irwinAttacks, irwinStats);
@@ -563,7 +552,7 @@ public class Wilderness extends Location
         omega2Attacks.add(protocal);
         
         ArrayList<Integer> omega2Stats = new ArrayList<>(6);
-        omega2Stats.add(800); // HP
+        omega2Stats.add(1510); // HP
         omega2Stats.add(340); // Attack
         omega2Stats.add(340); // Defense
         omega2Stats.add(340); // R Attack
@@ -572,7 +561,7 @@ public class Wilderness extends Location
         
         BossEnemy omegaIII = new BossEnemy("R.E.S.I. Bot Omega III", "The third -- and last -- of its kind. Irwin wishes it to crush you.", "Water", 26, 
                                     omega2Attacks, omega2Stats);
-        omegaIII.setStatDescription("This R.E.S.I. Bot focuses on support. It's element won't change!");
+        omegaIII.setStatDescription("This R.E.S.I. Bot focuses on support!");
         
         ArrayList<Enemy> team = new ArrayList<>(3);
         team.add(omegaII);
@@ -592,7 +581,7 @@ public class Wilderness extends Location
         attacks.get(3).setAccuracy(85);
         
         ArrayList<Integer> stats = new ArrayList<>(6);
-        stats.add(888); // HP
+        stats.add(2125); // HP
         stats.add(420); // Attack
         stats.add(420); // Defense
         stats.add(420); // R Attack

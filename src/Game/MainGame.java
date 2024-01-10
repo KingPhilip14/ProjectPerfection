@@ -1,7 +1,6 @@
 package Game;
 
 import Battle.Attack;
-import Battle.BossEnemy;
 import Battle.BuffAttack;
 import Battle.ComboAttack;
 import Battle.DebuffAttack;
@@ -14,7 +13,6 @@ import Battle.RESIEnemy;
 import Battle.SingleHealingAttack;
 import Battle.TeamHealingAttack;
 import Data.SaveLoad;
-import Exploration.Wilderness;
 import Utilites.MenuHelper;
 import java.util.ArrayList;
 import java.util.Random;
@@ -48,7 +46,6 @@ public class MainGame
         PlayerClass.createClasses();
         startUpOptions.add("New Game");
         startUpOptions.add("Continue Game");
-        startUpOptions.add("Set Text Speed");
 
         startUp();
     }
@@ -82,10 +79,6 @@ public class MainGame
             case 2:
                 load();
                 break;
-            case 3:
-                game = new Game(false);
-                selectTextSpeed(game);
-                break;
         }
         
         game.startGame();
@@ -99,6 +92,7 @@ public class MainGame
         finalTextSpeedPrompt(game);
     }
     
+
     /**
      * Asks the player what they want to set the text speed to.
      */
@@ -107,16 +101,20 @@ public class MainGame
         String message = String.format("What would you like the text speed to be? It is currently set to %d.\n\n"
                 + "0 is instant.\n"
                 + "1 is the fastest.\n"
-                + "25 is average.\n" 
-                + "Anything greater than 40 is slow.\n\n"
-                + "Please enter a number between 0-100", textSpeed);
+                + "5 is average.\n" 
+                + "Anything greater than 5 is slow.\n\n"
+                + "Please enter a number between 0-10", textSpeed);
         
-        int input = MenuHelper.displayMenu(message, 0, 100);
+        int input = MenuHelper.displayMenu(message, 0, 10);
         
         textSpeed = input;
         
         promptToEnter();
     }
+
+    public static int getTextSpeed() {return textSpeed;}
+    
+    public static void setTextSpeed(int value) {textSpeed = value;}
     
     /**
      * Shows an example of how fast the text will be typed.
@@ -212,39 +210,13 @@ public class MainGame
     
     public static void println(String string)
     {
-        for(int i = 0; i < string.length(); i++)
-        {
-            System.out.print(string.charAt(i));
-            
-            try
-            {
-                Thread.sleep(textSpeed);
-            }
-            catch(InterruptedException ie)
-            {
-                
-            }
-        }
-        
+        print(string);
         System.out.println("");
     }
     
     public static void printlnln(String string)
     {
-        for(int i = 0; i < string.length(); i++)
-        {
-            System.out.print(string.charAt(i));
-            
-            try
-            {
-                Thread.sleep(textSpeed);
-            }
-            catch(InterruptedException ie)
-            {
-                
-            }
-        }
-        
+        print(string);
         System.out.println("\n");
     }
     
@@ -290,6 +262,8 @@ public class MainGame
         {
             System.out.print(string.charAt(i));
             
+            if(string.charAt(i) == ' ') {continue;}
+
             try
             {
                 Thread.sleep(textSpeed);
@@ -481,8 +455,8 @@ public class MainGame
         printWithBreaks("When you have more than 3 team members, you can assign a Cheer Partner to another character./"
                 + "A Cheer Partner will be there to support the person fighting by using their Cheer Skill./"
                 + "A Cheer Skill depends on the Cheer Partner's primary Class type.//\tStriker: Boosts Attack and Ranged Attack "
-                + "by 10 points./\tTank: Boosts Defense and Ranged Defense by 10 points.\n\tClerk: Heals the fighter "
-                + "slightly if they aren't at full HP./\tAll-Rounder: Boosts Speed by 10 points.");
+                + "by 20%./\tTank: Boosts Defense and Ranged Defense by 20%.\n\tClerk: Increases the fighter's "
+                + "HP by 25%./\tAll-Rounder: Boosts Speed by 30%.");
         
         printlnln("A Cheer Skill has a chance of activating after every turn a character finishes. It may come in handy!");
     }
@@ -563,8 +537,8 @@ public class MainGame
         anahita.setCurrentHealth(250);
         anahita.setAttack(55);
         anahita.setDefense(45);
-        anahita.setRangedAttack(80);
-        anahita.setRangedDefense(70);
+        anahita.setRangedAttack(60);
+        anahita.setRangedDefense(90);
         anahita.setSpeed(50);
         
         // make this a method in the character class as a for loop
@@ -906,13 +880,13 @@ public class MainGame
         
         if(Game.isInSecondPhase())
         {
-            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 21);
+            frigs = new Player("Frigs", "A master of Ice with a cool personailty.", "Ice", pc, 22);
             // Instantiating Frigs' stats for second phase
             frigs.setMaxHealth(350);
             frigs.setCurrentHealth(350);
-            frigs.setAttack(360);
+            frigs.setAttack(390);
             frigs.setDefense(150);
-            frigs.setRangedAttack(330);
+            frigs.setRangedAttack(360);
             frigs.setRangedDefense(150);
             frigs.setSpeed(270);
         }
@@ -1005,15 +979,15 @@ public class MainGame
 
         if(Game.isInSecondPhase())
         {
-            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 14);
+            ninlil = new Player("Ninlil", "A master of Wind with a (too) high esteem.", "Wind", pc, 15);
             // Instantiating Ninlil's stats for second phase
-            ninlil.setMaxHealth(355);
-            ninlil.setCurrentHealth(355);
+            ninlil.setMaxHealth(345);
+            ninlil.setCurrentHealth(345);
             ninlil.setAttack(80);
-            ninlil.setDefense(135);
-            ninlil.setRangedAttack(350);
-            ninlil.setRangedDefense(140);
-            ninlil.setSpeed(135);
+            ninlil.setDefense(145);
+            ninlil.setRangedAttack(380);
+            ninlil.setRangedDefense(150); 
+            ninlil.setSpeed(145);
         }
         else
         {

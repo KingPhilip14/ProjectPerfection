@@ -37,6 +37,8 @@ public class SaveLoad
         {
             DataManager dm = (DataManager) ois.readObject();
             
+            MainGame.setTextSpeed(dm.textSpeed());
+
             // Write the data from the file into a Game object and return it
             Game game = new Game(dm.isTesting());
             game.setGameStarted(dm.gameStarted());
