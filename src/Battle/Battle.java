@@ -390,6 +390,8 @@ public abstract class Battle implements Serializable
         player.setCheerPartner(cheer);
         cheer.setPlayerToCheer(player);
         cheer.printCheerReadyMessage();
+
+        activateCheerAbility(player.getCheerPartner());
     }
     
     private String addPositionMessage(String message)
@@ -643,10 +645,10 @@ public abstract class Battle implements Serializable
             }
         }    
         
-        if(!player.isDead())
-        {
-            activateCheerPartner(player);
-        }
+        // if(!player.isDead())
+        // {
+        //     activateCheerPartner(player);
+        // }
     }
     
     /**
@@ -670,71 +672,75 @@ public abstract class Battle implements Serializable
         }
     }
     
-    private void activateCheerPartner(Player player)
-    {
-        if((!(enemyTeam.isEmpty())) && (player.getCheerPartner() != null))
-        {
-            Player cheer = player.getCheerPartner();
-            activateCheerAbility(cheer);
-        }
-    }
+    // private void activateCheerPartner(Player player)
+    // {
+    //     if((!(enemyTeam.isEmpty())) && (player.getCheerPartner() != null))
+    //     {
+    //         Player cheer = player.getCheerPartner();
+    //         activateCheerAbility(cheer);
+    //     }
+    // }
     
+    /**
+     * After a cheer partner is assigned, they will increase a repsective stat to the character they're cheering
+     * @param cheer
+     */
     private void activateCheerAbility(Player cheer)
-    {
-        Random rand = new Random();
-        int chance = rand.nextInt(10);
+    {   
+        PlayerClass pc = cheer.getPlayerClass();
+        Player playerToCheer = cheer.getPlayerToCheer();
         
-        if(chance == 0)
+        MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!");
+        
+        int before = 0;
+
+        switch (pc.getPrimaryRole())
         {
-            PlayerClass pc = cheer.getPlayerClass();
-            Player playerToCheer = cheer.getPlayerToCheer();
-            
-            MainGame.printlnln(cheer.getName() + "'s cheer skill was activiated!");
-            
-            switch (pc.getPrimaryRole())
-            {
-                case "Clerk":
-                    if(!playerToCheer.isHealthy())
-                    {
-                        int amt = (int)(playerToCheer.getMaxHealth() * Stat.get_cheer_buff_value());
-                        playerToCheer.setCurrentHealth(amt);
-                        MainGame.printlnln(cheer.getName() + " healed " + playerToCheer.getName() + " " + amt + " HP!");
-                    }
-                    else
-                    {
-                        MainGame.printlnln("But " + cheer.getName() + " couldn't do anything!");
-                        MainGame.printlnln(cheer.getName() + ": Sorry about that!");
-                    }
-                break;
-                case "Tank":
-                    Stat defense = playerToCheer.getDefense();
-                    // playerToCheer.setDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 20%!");
-                    defense.increaseCheerBuff(Stat.get_cheer_buff_value());
-                    
-                    defense = playerToCheer.getRangedDefense();
-                    // playerToCheer.setRangedDefense((int)Math.round(defense.getValue() * Stat.get_cheer_buff_value()));
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 20%!");
-                    defense.increaseCheerBuff(Stat.get_cheer_buff_value());
-                break;
-                case "Striker":
-                    Stat attack = playerToCheer.getAttack();
-                    // playerToCheer.setAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 20%!");
-                    attack.increaseCheerBuff(Stat.get_cheer_buff_value());
-                    
-                    attack = playerToCheer.getRangedAttack();
-                    // playerToCheer.setRangedAttack((int)Math.round(attack.getValue() * Stat.get_cheer_buff_value()));
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 20%!");
-                    attack.increaseCheerBuff(Stat.get_cheer_buff_value());
-                break;
-                default:
-                    Stat speed = playerToCheer.getSpeed();
-                    // playerToCheer.setSpeed((int)Math.round(speed.getValue() * Stat.get_cheer_buff_value()));
-                    MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 20%!");
-                    speed.increaseCheerBuff(Stat.get_cheer_buff_value());
-                break;
-            }
+            case "Clerk":
+                int amt = (int)(playerToCheer.getMaxHealth() * 0.25);
+                before = playerToCheer.getCurrentHealth();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s' HP by " + amt + "!");
+                playerToCheer.setCurrentHealth(playerToCheer.getCurrentHealth() + amt);
+                MainGame.printlnln(playerToCheer.getName() + "'s health change: " + before + " ---> " + playerToCheer.getCurrentHealth());
+            break;
+            case "Tank":
+                Stat defense = playerToCheer.getDefense();
+                defense.setCheerBuffModifier(1.2);
+                before = defense.getValue();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s defense by 20%!");
+                defense.applyCheerBuff();
+                MainGame.printlnln(playerToCheer.getName() + "'s Defense change: " + before + " ---> " + defense.getValue());
+                
+                defense = playerToCheer.getRangedDefense();
+                defense.setCheerBuffModifier(1.2);
+                before = defense.getValue();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged defense by 20%!");
+                defense.applyCheerBuff();
+                MainGame.printlnln(playerToCheer.getName() + "'s Ranged Defense change: " + before + " ---> " + defense.getValue());
+            break;
+            case "Striker":
+                Stat attack = playerToCheer.getAttack();
+                attack.setCheerBuffModifier(1.2);
+                before = attack.getValue();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s attack by 20%!");
+                attack.applyCheerBuff();
+                MainGame.printlnln(playerToCheer.getName() + "'s Attack change: " + before + " ---> " + attack.getValue());
+                
+                attack = playerToCheer.getRangedAttack();
+                attack.setCheerBuffModifier(1.2);
+                before = attack.getValue();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s ranged attack by 20%!");
+                attack.applyCheerBuff();
+                MainGame.printlnln(playerToCheer.getName() + "'s Ranged Attack change: " + before + " ---> " + attack.getValue());
+            break;
+            default:
+                Stat speed = playerToCheer.getSpeed();
+                speed.setCheerBuffModifier(1.3);
+                before = speed.getValue();
+                MainGame.printlnln(cheer.getName() + " increased " + playerToCheer.getName() + "'s speed by 30%!");
+                speed.applyCheerBuff();
+                MainGame.printlnln(playerToCheer.getName() + "'s Speed change: " + before + " ---> " + speed.getValue());
+            break;
         }
     }
     

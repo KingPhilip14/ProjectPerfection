@@ -5,6 +5,7 @@ import Battle.Player;
 import Exploration.Location;
 import Exploration.Map;
 import Game.Game;
+import Game.MainGame;
 import Game.Objective;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class DataManager implements Serializable
     private boolean isTesting;
 
     private boolean gameStarted;
+    private int textSpeed;
 
     // Game information
     private boolean beachTutorialDone;
@@ -52,6 +54,7 @@ public class DataManager implements Serializable
     public DataManager(Game game)
     {
         isTesting = Game.isTesting();
+        textSpeed = MainGame.getTextSpeed();
         gameStarted = game.getGameStarted();
 
         beachTutorialDone = game.isBeachTutorialDone();
@@ -89,6 +92,10 @@ public class DataManager implements Serializable
 
     public boolean gameStarted() {
         return gameStarted;
+    }
+
+    public int textSpeed(){
+        return textSpeed;
     }
 
     public boolean isBeachTutorialDone() {

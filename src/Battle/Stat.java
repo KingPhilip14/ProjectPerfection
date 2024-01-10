@@ -8,14 +8,13 @@ import Game.MainGame;
  */
 public class Stat implements java.io.Serializable
 {
-    private static double cheerBuffValue = 1.2;
     private String stat;
     private int value;
     private Character character;
     private int originalValue;
     private int turnBuffEnds;
     private int turnDebuffEnds;
-    private int cheerBuffCounter;
+    private double cheerBuffModifer;
     private double buffModifier;
     private double debuffModifier;
     private boolean buffActive;
@@ -27,6 +26,7 @@ public class Stat implements java.io.Serializable
         this.value = value;
         this.originalValue = value;
         character = c;
+        cheerBuffModifer = 1;
     }
     
     public Stat(String stat, Character c)
@@ -34,6 +34,7 @@ public class Stat implements java.io.Serializable
         this.stat = stat;
         this.originalValue = value;
         character = c;
+        cheerBuffModifer = 1;
     }
     
     public String getStat() {return stat;}
@@ -44,34 +45,23 @@ public class Stat implements java.io.Serializable
 
     public Character getCharacter() {return character;}
     
-    public boolean hasCheerBuff() {return cheerBuffCounter > 0;} //  if >0, the buff is active. If 0, no buff is applied
-    
-    public static double get_cheer_buff_value() {return cheerBuffValue;}
+    public boolean hasCheerBuff() {return cheerBuffModifer > 1;} //  if >0, the buff is active. If 0, no buff is applied
 
-    public double getCheerBuffCounter() {return cheerBuffCounter;}
-    // public void resetCheerBuff() {cheerBuffCounter = 0;}
-    public void increaseCheerBuff(double amount) 
-    {
-        cheerBuffCounter += 1; // increment how many cheer buff this stat has
-        value *= amount; // increase the amount
-    }
+    public double getCheerBuffModifer() {return cheerBuffModifer;}
+    public void setCheerBuffModifier(double mod) {cheerBuffModifer = mod;}
+    public void resetCheerBuffModifier() {cheerBuffModifer = 1;}
 
-    public void reapplyCheerBuff()
+    public void applyCheerBuff() 
     {
-        for(int i = 0; i < cheerBuffCounter; i++)
-        {
-            value *= cheerBuffValue;
-        }
+        value *= cheerBuffModifer; 
     }
 
     public void removeCheerBuff()
     {
-        value = originalValue;
-        // for(int i = 0; i < cheerBuffCounter; i++)
-        // {
-            // value = (int)Math.round(value / cheerBuffValue);
-        // }
+        value /= cheerBuffModifer;
     }
+
+    
     
     public int getTurnBuffEnds() {return turnBuffEnds;}
     public void setTurnBuffEnds(int modifierTimer) {turnBuffEnds = Battle.getCurrentTurn() + modifierTimer + 1;}

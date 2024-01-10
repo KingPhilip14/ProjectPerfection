@@ -114,6 +114,8 @@ public class Player extends Character
     {
         for(Stat s : listOfStats)
         {
+            s.resetCheerBuffModifier();
+
             if(s.getValue() != s.getOriginalValue())
             {
                 s.resetValue(this);
@@ -728,7 +730,7 @@ public class Player extends Character
     {
         for(Stat s : listOfStats)
         {
-            s.reapplyCheerBuff();
+            s.applyCheerBuff();
         }
     }
     
