@@ -98,13 +98,8 @@ public class Game implements java.io.Serializable
         
         objective = new Objective();
         
-        
         team.add(MainGame.makeAnahita());
-        team.add(MainGame.makeAnahita());
-        team.add(MainGame.makeFrigs());
-        team.add(MainGame.makeFultra());
-        team.add(MainGame.makeNinlil());
-        team.add(MainGame.makeCalmus());
+
         team.get(0).setCheerPartner(MainGame.makeGaea());
         currentLocation = knownLocations.get(0);
         nextLocation = remainingLocations.remove(0); 
