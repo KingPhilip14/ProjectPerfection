@@ -2,7 +2,11 @@
 
 ## What is this project?
 
-This is a text-based RPG I started as a freshman in college to practice some of the coding concepts I learned in class. As of September 2023, it isn't complete yet, but it is nearly finished.
+This is a text-based RPG I started as a freshman in college to practice some of the coding concepts I learned in class. As of January 2024, the game is completed.
+
+## How do I play the game?
+
+Go [here](https://github.com/KingPhilip14/ProjectPerfection/releases/tag/v1.0) and download the `ProjectPerfect.jar` file. From there, you can start the game!
 
 ## What can you do in the game?
 
