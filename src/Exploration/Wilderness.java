@@ -417,9 +417,9 @@ public class Wilderness extends Location
         ArrayList<Integer> stats = new ArrayList<>(6);
         stats.add(1250); // HP
         stats.add(234); // Attack
-        stats.add(224); // Defense
+        stats.add(234); // Defense
         stats.add(214); // R Attack
-        stats.add(224); // R Defense
+        stats.add(234); // R Defense
         stats.add(184); // Speed
         
         BossEnemy omega = new BossEnemy("R.E.S.I. Bot Omega", "The first of its kind. Irwin's best R.E.S.I. Bot so far.", "Fire", 18, 
@@ -478,9 +478,9 @@ public class Wilderness extends Location
         ArrayList<Integer> stats = new ArrayList<>(6);
         stats.add(1680); // HP
         stats.add(324); // Attack
-        stats.add(324); // Defense
+        stats.add(344); // Defense
         stats.add(324); // R Attack
-        stats.add(324); // R Defense
+        stats.add(344); // R Defense
         stats.add(324); // Speed
         
         BossEnemy fultra = new BossEnemy("Fultra", "Fultra in a new form. Has he betrayed everyone?", "Electric", 27, 
@@ -511,9 +511,9 @@ public class Wilderness extends Location
         
         ArrayList<Integer> omegaStats = new ArrayList<>(6);
         omegaStats.add(1560); // HP
-        omegaStats.add(340); // Attack
+        omegaStats.add(350); // Attack
         omegaStats.add(340); // Defense
-        omegaStats.add(340); // R Attack
+        omegaStats.add(350); // R Attack
         omegaStats.add(340); // R Defense
         omegaStats.add(200); // Speed
         
@@ -553,10 +553,10 @@ public class Wilderness extends Location
         
         ArrayList<Integer> omega2Stats = new ArrayList<>(6);
         omega2Stats.add(1510); // HP
-        omega2Stats.add(340); // Attack
-        omega2Stats.add(340); // Defense
-        omega2Stats.add(340); // R Attack
-        omega2Stats.add(340); // R Defense
+        omega2Stats.add(300); // Attack
+        omega2Stats.add(380); // Defense
+        omega2Stats.add(300); // R Attack
+        omega2Stats.add(380); // R Defense
         omega2Stats.add(200); // Speed
         
         BossEnemy omegaIII = new BossEnemy("R.E.S.I. Bot Omega III", "The third -- and last -- of its kind. Irwin wishes it to crush you.", "Water", 26, 
@@ -582,11 +582,11 @@ public class Wilderness extends Location
         
         ArrayList<Integer> stats = new ArrayList<>(6);
         stats.add(2125); // HP
-        stats.add(420); // Attack
-        stats.add(420); // Defense
-        stats.add(420); // R Attack
-        stats.add(420); // R Defense
-        stats.add(420); // Speed
+        stats.add(450); // Attack
+        stats.add(450); // Defense
+        stats.add(450); // R Attack
+        stats.add(450); // R Defense
+        stats.add(450); // Speed
         
         BossEnemy perfectedIrwin = new BossEnemy("Perfected Irwin", "He's one step closer to accomplishing his goals.", "Electric", 35, 
                                     attacks, stats);
