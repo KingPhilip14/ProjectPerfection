@@ -6,7 +6,7 @@ This is a text-based RPG I started as a freshman in college to practice some of 
 
 ## How do I play the game?
 
-Go [here](https://github.com/KingPhilip14/ProjectPerfection/releases/tag/v1.0) and download the `ProjectPerfect.jar` file. From there, you can start the game!
+Go [here](https://github.com/KingPhilip14/ProjectPerfection/releases/tag/v1.0) and download the `ProjectPerfectPackage.zip` folder. You can extract the contents anywhere on your computer (/Desktop, /Downloads, etc.) as long as you move the folder in its entirety. To then start the game, go into the folder and click on the .bat file. Enjoy!
 
 ## What can you do in the game?
 
