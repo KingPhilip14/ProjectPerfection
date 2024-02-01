@@ -976,16 +976,11 @@ public abstract class Battle implements Serializable
         if(target.getName().contains("R.E.S.I.") && attack.getAttackHit() && !target.isDead() && 
             !player.getElement().equals(target.getElement()))
         {
-            if(attack.getAttackHit() && !target.isDead() && !player.getElement().equals(target.getElement()))
-            {
-                RESIEnemy enemy = ((RESIEnemy)target);
-            
-                enemy.setElement(player.getElement());
+            target.setElement(player.getElement());
 
-                MainGame.printlnln(enemy.name + "'s element is now " + enemy.element + "!");
+            MainGame.printlnln(target.name + "'s element is now " + target.element + "!");
 
-                MainGame.promptToEnter();
-            }
+            MainGame.promptToEnter();
         }
     }
     
